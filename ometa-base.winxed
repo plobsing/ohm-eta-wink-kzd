@@ -10,6 +10,80 @@ function call_rule[anon](var _self, var rule) {
   return callmethodwithargs(_self, rule, []);
 }
 
+function typeof[anon](var o) {
+  var t;
+  ${ typeof t, o };
+  return t;
+}
+
+class OMInputStream {
+  var memo;
+  var lst;
+  var idx;
+  var hd;
+  var tl;
+
+  function init_pmc[vtable]() {
+    self.memo = {};
+    if (self.tl != null) {
+      self.lst  = self.tl.lst;
+      self.idx  = self.tl.idx;
+    }
+  }
+  function head() { return self.hd; }
+  function tail() { return self.tl; }
+  function type() {
+    using static typeof;
+    return typeof(self.lst);
+  }
+  function upTo(var that) {
+    var ans  = [];
+    var curr = self;
+    while (curr != that) {
+      r.push(curr.head());
+      curr = curr.tail();
+    }
+    if (self.type == 'String')
+      return ans.join('');
+    else
+      return ans;
+  }
+}
+
+class OMInputStreamEnd : OMInputStream {
+  function head() {
+    using static fail;
+    throw fail;
+  }
+  function tail() {
+    using static fail;
+    throw fail;
+  }
+}
+
+class ListOMInputStream : OMInputStream {
+  function init[vtable]() {
+    self.hd = self.lst[self.idx];
+  }
+  function head() { return self.hd; }
+  function tail() {
+    if (!self.tl)
+      self.tl = makeListOMInputStream(self.lst, self.idx + 1);
+    return self.tl;
+  }
+}
+
+function makeListOMInputStream(var lst, var idx) {
+  string klass = idx < elements(lst) ? 'ListOMInputStream' : 'OMInputStreamEnd';
+  return new (get_class(klass))( lst:[named('lst')], idx:[named('idx')] );
+}
+
+// XXX delegation in stead of inheritance
+class OMInputStreamProxy : OMInputStream {
+  var target;
+  function tail() { return new OMInputStreamProxy( target.tail():[named('target')] ); }
+}
+
 class OMeta {
   var input;
 
@@ -226,7 +300,8 @@ class OMeta {
   function foreign() {
     var g      = self._apply('anything');
     var r      = self._apply('anything');
-    var gi     = g.new( makeOMInputStreamProxy(self.input)[named('input')] );
+    var proxy  = new OMInputStreamProxy( self.input:[named('target')] );
+    var gi     = g.new( proxy[named('input')] );
     var ans    = gi._apply(r);
     self.input = gi.input.target;
     return ans;
@@ -313,7 +388,8 @@ class OMeta {
 
   function _genericMatch(var input, var rule, var args, var matchFailed) {
     using static fail;
-    var m = get_class(self).new( input[named('input')] );
+    using static typeof;
+    var m = typeof(self).new( input[named('input')] );
     try {
       if (args == null)
 	return m._apply(rule);
