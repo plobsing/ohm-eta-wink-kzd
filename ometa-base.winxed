@@ -1,0 +1,344 @@
+$include_pasm 'cclass.pasm'
+
+function fail[anon, immediate]() {
+  return new Exception({
+    'message': 'failed match'
+  });
+}
+
+function call_rule[anon](var _self, var rule) {
+  return callmethodwithargs(_self, rule, []);
+}
+
+class OMeta {
+  var input;
+
+  function _apply(string rule) {
+    using static fail;
+    using static call_rule;
+    var memoRec = self.input.memo[rule];
+    if (memoRec == null) {
+      var origInput = self.input;
+      var failer    = new Failer();
+
+      try       { find_method(self, rule); }
+      catch (e) { die('tried to apply undefined rule "' + rule + '"'); }
+
+      self.input.memo[rule] = failer;
+      var ans               = call_rule(self, rule);
+      self.input.memo[rule] = memoRec
+                            = { 'ans': result, 'nextInput': self.input };
+
+      if (failer.used) {
+	var sentinel = self.input;
+	while (true) {
+	  try {
+	    self.input = origInput;
+	    var ans = call_rule(self, rule);
+	    if (self.input === sentinel)
+	      throw fail;
+	    memoRec['ans']       = ans;
+	    memoRec['nextInput'] = self.input;
+	  } catch (e) {
+	    if (e !== fail)
+	      throw e;
+	    break;
+	  }
+	}
+      }
+    } else {
+      memoRec['used'] = true;
+      throw fail;
+    }
+    self.input = memoRec['nextInput'];
+    return memoRec['ans'];
+  }
+
+  function _applyWithArgs(string rule, var args[slurpy]) {
+    using static call_rule;
+    for (int i = elements(args) - 1; i >= 0; i--)
+      self._prependInput(args[i]);
+    return call_rule(self, rule);
+  }
+
+  function _superApplyWithArgs(var recv, var args[slurpy]) {
+    die("TODO");
+  }
+
+  function _prependInput(var v) {
+    self.input = OMInputStream(v, self.input);
+  }
+
+  function memoizeParameterizedRules() {
+    die("TODO");
+  }
+
+  function _pred(int b) {
+    using static fail;
+    if (b)
+      return true;
+    throw fail;
+  }
+
+  function _not(var x) {
+    using static fail;
+    using static call_rule;
+    var origInput = self.input;
+    try       { call_rule(self, x); }
+    catch (e) {
+      if (e !== fail)
+	throw e;
+      self.input = origInput;
+      return true;
+    }
+    throw fail;
+  }
+
+  function _lookahead(var x) {
+    using static call_rule;
+    var origInput = self.input;
+    var result    = call_rule(self, x);
+    self.input    = origInput;
+    return result;
+  }
+
+  function _or(var args[slurpy]) {
+    using static fail;
+    using static call_rule;
+    var origInput = self.input;
+    for (var x in args) {
+      try {
+	self.input = origInput;
+	return call_rule(self, x);
+      } catch (e) {
+	if (e !== fail)
+	  throw e;
+      }
+    }
+    throw fail;
+  }
+
+  function _xor(string rule_name, var args[slurpy]) {
+    using static fail;
+    using static call_rule;
+    var origInput = self.input;
+    var ans;
+    var newInput;
+    for (var x in args) {
+      try {
+	self.input = origInput;
+	ans = call_rule(self, x);
+	if (newInput)
+	  die('more than one choice matched by "exclusive-OR" in ' + rule_name);
+	newInput = self.input;
+      } catch (e) {
+	if (e !== fail)
+	  throw e;
+      }
+    }
+    if (newInput) {
+      self.input = newInput;
+      return ans;
+    } else {
+      throw fail;
+    }
+  }
+
+  function disableXORs() {
+    die("TODO");
+  }
+
+  function _opt(var x) {
+    using static fail;
+    using static call_rule;
+    var origInput = self.input;
+    var ans;
+    try       { ans = call_rule(self, x); }
+    catch (e) {
+      if (e !== fail)
+	throw e;
+      self.input = origInput;
+    }
+    return ans;
+  }
+
+  function _many(var x, var first[optional], int has_first[opt_flag]) {
+    using static fail;
+    using static call_rule;
+    var ans = has_first ? [first] : [];
+    while (true) {
+      var origInput = self.input;
+      try	{ call_rule(self, x); }
+      catch (e) {
+	if (e !== fail)
+	  throw e;
+	self.input = origInput;
+	return ans;
+      }
+    }
+  }
+
+  function _many1(var x) {
+    using static call_rule;
+    return self._many(x, call_rule(self, x));
+  }
+
+  function _consumedBy(var x) {
+    var origInput = self.input;
+    call_rule(self, x);
+    return origInput.upTo(self.input);
+  }
+
+  function _idxConsumedBy(var x) {
+    using static call_rule;
+    var origInput = self.input;
+    call_rule(self, x);
+    return {
+      'fromIdx': origInput.idx,
+      'toIdx':   self.input.idx
+    };
+  }
+
+  function _interleave(var args[slurpy]) {
+    die("TODO");
+  }
+
+  function _currIdx() { return self.input.idx; }
+
+  function anything() {
+    var ans    = self.input.head();
+    self.input = self.input.tail();
+    return ans;
+  }
+
+  function end() {
+    return self._not(function [method]() { self._apply('anything') });
+  }
+
+  function pos() { return self.input.idx; }
+
+  function empty() { return true };
+
+  function apply() {
+    return self._apply( self._apply('anything') );
+  }
+
+  function foreign() {
+    var g      = self._apply('anything');
+    var r      = self._apply('anything');
+    var gi     = g.new( makeOMInputStreamProxy(self.input)[named('input')] );
+    var ans    = gi._apply(r);
+    self.input = gi.input.target;
+    return ans;
+  }
+
+  function exactly() {
+    using static fail;
+    var wanted = self._apply('anything');
+    // XXX not sure if === is as useful in winxed
+    if (self._apply('anything') === wanted)
+      return wanted;
+    throw fail;
+  }
+
+  function null() {
+    var ans = self._apply('anything');
+    self._pred(ans == null);
+    return ans;
+  }
+
+  function number() {
+    var ans = self._apply('anything');
+    self._pred(ans instanceof Number);
+    return ans;
+  }
+
+  function string() {
+    var ans = self._apply('anything');
+    self._pred(ans instanceof String);
+    return ans;
+  }
+
+  function char() {
+    var ans = self._apply('anything');
+    self._pred(ans instanceof String && length(ans) == 1);
+    return ans;
+  }
+
+  function _cclass_char(int cclass) {
+    string c = self._apply('char');
+    int pred;
+    ${ pred = is_cclass cclass, c, 0 };
+    self._pred(pred);
+    return c;
+  }
+
+  function space() { return self._cclass_pred(CCLASS_WHITESPACE); }
+
+  function spaces() {
+    return self._many( function [method]() { return self._apply('space') } );
+  }
+
+  function digit() { return self._cclass_pred(CCLASS_NUMERIC); }
+
+  function hexdigit() { return self._cclass_pred(CCLASS_HEXADECIMAL); }
+
+  function lower() { return self._cclass_pred(CCLASS_LOWERCASE); }
+
+  function upper() { return self._cclass_pred(CCLASS_UPPERCASE); }
+
+  function letter() { return self._cclass_pred(CCLASS_ALPHABETIC); }
+
+  function letterOrDigit() { return self._cclass_pred(CCLASS_ALPHANUMERIC); }
+
+  function firstAndRest() {
+    var first = self._apply('anything');
+    var rest  = self._apply('anything');
+    return self._many(function [method]() { return self._apply(rest); }, self._apply(first));
+  }
+
+  function seq() {
+    var xs = self._apply('anything');
+    for (var x in xs)
+      self._applyWithArgs('exactly', x);
+    return xs;
+  }
+
+  function notLast() {
+    var rule = this._apply('anything');
+    var ans  = this._apply('rule');
+    self._lookahead(function [method]() { return self._apply(rule) });
+    return ans;
+  }
+
+  function _genericMatch(var input, var rule, var args, var matchFailed) {
+    var m = get_class(self).new( input[named('input')] );
+    try {
+      if (args == null)
+	return m._apply(rule);
+      else
+	return m._applyWithArgs(rule, args[flat]);
+    } catch (e) {
+      if (e === fail && matchFailed != null) {
+	var input = m.input;
+	if (input.idx != null) {
+	  while (input.tl != null && input.tl.idx != null)
+	    input = input.tl;
+	  input.idx--;
+	}
+	return matchFaile(m, input,idx);
+      }
+      throw e;
+    }
+  }
+
+  function match(obj, rule, args[optional], matchFailed[optional]) {
+    return self._genericMatch( makeListOMInputStream([obj]), rule, args, matchFailed );
+  }
+
+  function matchAll(list, rule, args[optional], matchFailed[optional]) {
+    return self._genericMatch( makeListOMInputStream(list), rule, args, matchFailed );
+  }
+}
+
+
