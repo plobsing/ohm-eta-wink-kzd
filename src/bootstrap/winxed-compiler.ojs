@@ -4,8 +4,8 @@ ometa WinxedParser <: Parser {
   nameFirst    = letter | '_',
   nameRest     = nameFirst | digit,
   iName        = firstAndRest(#nameFirst, #nameRest):r                               -> r.join(''),
-  isKeyword :x = ?BSJSParser._isKeyword(x),
-  name         = iName:n ~isKeyword(n)                                               -> [#name, n],
+  isKeyword :x = ?WinxedParser._isKeyword(x),
+  name         = iName:n ~isKeyword(n)                                               -> [#name, n=='self' ? '$elf' : n],
   keyword      = iName:k isKeyword(k)                                                -> [k, k],
   hexDigit     = char:x {this.hexDigits.indexOf(x.toLowerCase())}:v ?(v >= 0)        -> v,
   hexLit       = hexLit:n hexDigit:d                                                 -> (n * 16 + d)
@@ -130,7 +130,7 @@ ometa WinxedParser <: Parser {
                | expr:e sc                                                           -> e
                | ";"                                                                 -> [#get, "null"],
   classRest    = "{" classElem*:es "}"                                               -> es,
-  classBases   = ":" listOf(#name, ","):bs                                           -> bs,
+  classBases   = ":" listOf(#name, ","):bs                                           -> bs
                | empty                                                               -> [],
   classElem    = funcDecl
                | varDecl,
@@ -145,17 +145,17 @@ ometa WinxedParser <: Parser {
 
   topLevel     = srcElems:r spaces end                                               -> r
 }
-BSJSParser.hexDigits = "0123456789abcdef"
-BSJSParser.keywords  = { }
+WinxedParser.hexDigits = "0123456789abcdef"
+WinxedParser.keywords  = { }
 keywords = [
   "break", "case", "catch", "continue", "default", "do", "else", "for", "function", "if", "in",
   "instanceof", "new", "return", "switch", "this", "throw", "try", "var", "while", "ometa" ]
 for (var idx = 0; idx < keywords.length; idx++)
-  BSJSParser.keywords[keywords[idx]] = true
-BSJSParser._isKeyword = function(k) { return this.keywords.hasOwnProperty(k) }
+  WinxedParser.keywords[keywords[idx]] = true
+WinxedParser._isKeyword = function(k) { return this.keywords.hasOwnProperty(k) }
 
 
-ometa BSSemActionParser <: BSJSParser {
+ometa BSSemActionParser <: WinxedParser {
   curlySemAction = "{" expr:r sc "}" spaces                                  -> r
                  | "{" (stmt:s &stmt -> s)*:ss
                        ( expr:r sc -> [#return, r] | stmt):s {ss.push(s)}
@@ -166,7 +166,7 @@ ometa BSSemActionParser <: BSJSParser {
                  | primExpr:r spaces                                         -> r
 }
 
-ometa BSJSTranslator {
+ometa WinxedTranslator {
   trans      = [:t apply(t):ans]     -> ans,
   curlyTrans = [#begin curlyTrans:r] -> r
              | [#begin trans*:rs]    -> ('{' + rs.join(';') + '}')
@@ -176,7 +176,7 @@ ometa BSJSTranslator {
   break                                                 -> 'break',
   continue                                              -> 'continue',
   number   :n                                           -> ('(' + n + ')'),
-  string   :s                                           -> s.toWinxedString(),
+  string   :s                                           -> s.toProgramString(),
   arr      trans*:xs                                    -> ('[' + xs.join(',') + ']'),
   unop     :op trans:x                                  -> ('(' + op + ' ' + x + ')'),
   getp     trans:fd trans:x                             -> (x + '[' + fd + ']'),
