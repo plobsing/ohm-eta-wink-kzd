@@ -1,9 +1,7 @@
 $include_const 'cclass.pasm';
 
 function fail[anon, immediate]() {
-  return new Exception({
-    'message': 'failed match'
-  });
+  return Error('failed match');
 }
 
 function call_rule[anon](var _self, var rule) {
@@ -14,6 +12,10 @@ function typeof[anon](var o) {
   var t;
   ${ typeof t, o };
   return t;
+}
+
+class Failer {
+  var used;
 }
 
 class OMInputStream {
@@ -124,8 +126,8 @@ class OMeta {
 	  }
 	}
       }
-    } else {
-      memoRec['used'] = true;
+    } else if (memoRec instanceof Failer) {
+      memoRec.used = true;
       throw fail;
     }
     self.input = memoRec['nextInput'];
@@ -405,7 +407,7 @@ class OMeta {
 	if (input.idx != null) {
 	  while (input.tl != null && input.tl.idx != null)
 	    input = input.tl;
-	  input.idx--;
+	  --input.idx;
 	}
 	return matchFaile(m, input.idx);
       }
@@ -421,5 +423,3 @@ class OMeta {
     return self._genericMatch( makeListOMInputStream(list), rule, args, matchFailed );
   }
 }
-
-
