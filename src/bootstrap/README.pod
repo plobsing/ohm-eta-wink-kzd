@@ -1,0 +1,42 @@
+
+=head1 NAME
+
+src/bootstrap/README.pod - bootstrapping plan
+
+=head1 STEPS
+
+=over
+
+=item Build stage0 compiler using ojsc.js
+
+Outputs:
+src/bootstrap/stage0/winxed-compiler.js
+src/bootstrap/stage0/ometa-compiler.js
+src/bootstrap/stage0/ometa-winxed-compiler.js
+src/bootstrap/Ωηc.js
+
+=item Build stage1 compiler using Ωηc.js
+
+Outputs:
+src/bootstrap/stage1/winxed-compiler.winxed
+src/bootstrap/stage1/ometa-compiler.winxed
+src/bootstrap/stage1/ometa-winxed-compiler.winxed
+src/bootstrap/Ωηc.winxed
+
+=item Build stage2 compiler using Ωηc.winxed
+
+Outputs
+src/winxed-compiler.winxed
+src/ometa-compiler.winxed
+src/ometa-winxed-compiler.winxed
+src/Ωηc.winxed
+
+=item Run normal build
+
+Outputs
+ometa-winxed.pbc
+Ωηc.exe
+
+=back
+
+=cut
