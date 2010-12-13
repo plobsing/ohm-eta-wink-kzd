@@ -26,12 +26,10 @@ GEN_FILES = \
     ometa-js.js \
     stage0.js
 
-.SUFFIXES: .ojs .js .Ωη .winxed
-
-.ojs.js: ometa-js.js ojsc.js
+%.js: %.ojs ometa-js.js ojsc.js
 	$(NODE) ojsc.js $<
 
-.Ωη.winxed: stage0.js Ωηc.js
+%.winxed: %.Ωη stage0.js Ωηc.js
 	$(NODE) Ωηc.js $<
 
 default: $(STAGE0_FILES)
