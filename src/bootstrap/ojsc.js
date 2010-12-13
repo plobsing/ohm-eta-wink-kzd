@@ -1,11 +1,14 @@
 /* node.js based OMeta/JS -> JS compiler for bootstrapping */
 
-require.paths.push(process.env['OMETAJS_PATH']);
 require.paths.push('.');
 
-load = require;
-StringBuffer = require('lib').StringBuffer;
-require('ometa-rhino');
+load = function () {
+    /*
+     * ignore load()
+     * OMeta/JS has been prepackaged as ometa-js.js
+     */
+};
+require('ometa-js');
 
 var fs  = require('fs');
     sys = require('sys');
