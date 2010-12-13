@@ -290,7 +290,7 @@ class OMeta {
   }
 
   function end() {
-    return self._not(function /*[method]*/ () { self._apply('anything'); });
+    return self._not(function (var _self) { _self._apply('anything'); });
   }
 
   function pos() { return self.input.idx; }
@@ -355,7 +355,7 @@ class OMeta {
   function space() { return self._cclass_pred(CCLASS_WHITESPACE); }
 
   function spaces() {
-    return self._many( function /*[method]*/ () { return self._apply('space'); } );
+    return self._many( function (var _self) { return _self._apply('space'); } );
   }
 
   function digit() { return self._cclass_pred(CCLASS_NUMERIC); }
@@ -373,7 +373,7 @@ class OMeta {
   function firstAndRest() {
     var first = self._apply('anything');
     var rest  = self._apply('anything');
-    return self._many(function /*[method]*/ () { return self._apply(rest); }, self._apply(first));
+    return self._many(function (var _self) { return _self._apply(rest); }, self._apply(first));
   }
 
   function seq() {
@@ -386,7 +386,7 @@ class OMeta {
   function notLast() {
     var rule = self._apply('anything');
     var ans  = self._apply('rule');
-    self._lookahead(function /*[method]*/ () { return self._apply(rule); });
+    self._lookahead(function (var _self) { return _self._apply(rule); });
     return ans;
   }
 
