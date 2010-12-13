@@ -212,12 +212,12 @@ class OMeta {
   }
 
   function end() {
-    return self._not(function /*[method]*/ () { self._apply('anything') });
+    return self._not(function /*[method]*/ () { self._apply('anything'); });
   }
 
   function pos() { return self.input.idx; }
 
-  function empty() { return true };
+  function empty() { return true; }
 
   function apply() {
     return self._apply( self._apply('anything') );
@@ -268,7 +268,7 @@ class OMeta {
   function _cclass_char(int cclass) {
     string c = self._apply('char');
     int pred;
-    ${ pred = is_cclass cclass, c, 0 };
+    ${ is_cclass pred, cclass, c, 0 };
     self._pred(pred);
     return c;
   }
@@ -276,7 +276,7 @@ class OMeta {
   function space() { return self._cclass_pred(CCLASS_WHITESPACE); }
 
   function spaces() {
-    return self._many( function /*[method]*/ () { return self._apply('space') } );
+    return self._many( function /*[method]*/ () { return self._apply('space'); } );
   }
 
   function digit() { return self._cclass_pred(CCLASS_NUMERIC); }
@@ -305,19 +305,20 @@ class OMeta {
   }
 
   function notLast() {
-    var rule = this._apply('anything');
-    var ans  = this._apply('rule');
-    self._lookahead(function /*[method]*/ () { return self._apply(rule) });
+    var rule = self._apply('anything');
+    var ans  = self._apply('rule');
+    self._lookahead(function /*[method]*/ () { return self._apply(rule); });
     return ans;
   }
 
   function _genericMatch(var input, var rule, var args, var matchFailed) {
+    using static fail;
     var m = get_class(self).new( input[named('input')] );
     try {
       if (args == null)
 	return m._apply(rule);
       else
-	return m._applyWithArgs(rule, args[flat]);
+	return m._applyWithArgs(rule, args:[flat]);
     } catch (e) {
       if (e === fail && matchFailed != null) {
 	var input = m.input;
@@ -326,7 +327,7 @@ class OMeta {
 	    input = input.tl;
 	  input.idx--;
 	}
-	return matchFaile(m, input,idx);
+	return matchFaile(m, input.idx);
       }
       throw e;
     }
