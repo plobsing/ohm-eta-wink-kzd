@@ -1,6 +1,6 @@
 /* node.js based OMeta/JS -> JS compiler for bootstrapping */
 
-require.paths.push('.');
+require.paths.push(__dirname);
 
 load = function () {
     /*
