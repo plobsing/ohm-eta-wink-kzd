@@ -40,7 +40,7 @@ class OMInputStream {
     var ans  = [];
     var curr = self;
     while (curr != that) {
-      r.push(curr.head());
+      ans.push(curr.head());
       curr = curr.tail();
     }
     if (self.type == 'String')
@@ -75,13 +75,17 @@ class ListOMInputStream : OMInputStream {
 
 function makeListOMInputStream(var lst, var idx) {
   string klass = idx < elements(lst) ? 'ListOMInputStream' : 'OMInputStreamEnd';
-  return new (get_class(klass))( lst:[named('lst')], idx:[named('idx')] );
+  return get_class(klass).new( lst:[named('lst')], idx:[named('idx')] );
 }
 
 // XXX delegation in stead of inheritance
 class OMInputStreamProxy : OMInputStream {
   var target;
-  function tail() { return new OMInputStreamProxy( target.tail():[named('target')] ); }
+  function tail() {
+    var tail = self.target.tail();
+    var proxy = new OMInputStreamProxy({ 'target': self.target.tail });
+    return proxy;
+  }
 }
 
 class OMeta {
@@ -300,7 +304,7 @@ class OMeta {
   function foreign() {
     var g      = self._apply('anything');
     var r      = self._apply('anything');
-    var proxy  = new OMInputStreamProxy( self.input:[named('target')] );
+    var proxy  = new OMInputStreamProxy({ 'target': self.input });
     var gi     = g.new( proxy[named('input')] );
     var ans    = gi._apply(r);
     self.input = gi.input.target;
