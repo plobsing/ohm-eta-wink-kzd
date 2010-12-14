@@ -1,6 +1,8 @@
 /* node.js based OMeta/Winxed -> Winxed compiler for bootstrapping */
 
 require.paths.push(__dirname);
+load = function () { /* ignore (used in OMeta/JS) */ };
+require('ometa-js');
 require('stage0');
 
 var fs  = require('fs');
@@ -14,13 +16,13 @@ function translateCode(s) {
     return OMetaWinxedTranslator.match(tree, "trans", undefined, function(m, i) {
 	sys.debug("Translation error - pless tell Peter about this!");
 	throw fail;
-    }
+    });
 }
 
 process.argv.forEach( function (srcfile, idx, ary) {
     if (idx < 2)
 	return;
-    if (srcfile.substr(-4) !== ".Ωη") {
+    if (srcfile.substr(-3) !== ".Ωη") {
 	sys.debug("Ignoring file of unknown type `" + srcfile + "'\n");
 	return;
     }

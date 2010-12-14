@@ -1,8 +1,9 @@
 NODE = node
 CPP  = cpp
 
-OJS_CPP_FLAGS = -E -P -DJS     -DUNDEF=undefined -DSELF=this
-OWX_CPP_FLAGS = -E -P -DWINXED -DUNDEF=null      -DSELF=self
+CPP_FLAGS     = -E -P
+OJS_CPP_FLAGS = -DJS     -DUNDEF=undefined -DSELF=this
+OWX_CPP_FLAGS = -DWINXED -DUNDEF=null      -DSELF=self
 
 OMJS_FILES = \
     ometa-js/lib.js \
@@ -17,12 +18,14 @@ OMJS_FILES = \
 JS_GRAMMARS = \
     winxed-compiler.js \
     ometa-compiler.js \
-    ometa-winxed-compiler.js
+    ometa-winxed-compiler.js \
+    ometa-optimizer.js
 
 WX_GRAMMARS = \
     winxed-compiler.winxed \
     ometa-compiler.winxed \
-    ometa-winxed-compiler.winxed
+    ometa-winxed-compiler.winxed \
+    ometa-optimizer.winxed
 
 STAGE0_FILES = \
     ojs.capo.js \
@@ -41,13 +44,13 @@ GEN_FILES = \
     stage0.js
 
 %.ojs: %.dual
-	$(CPP) $(OJS_CPP_FLAGS)  $< $@
+	$(CPP) $(CPP_FLAGS) $(OJS_CPP_FLAGS)  $< $@
 
 %.js: %.ojs ometa-js.js ojsc.js
 	$(NODE) ojsc.js $<
 
 %.Ωη: %.dual
-	$(CPP) $(OWX_CPP_FLAGS) $< $@
+	$(CPP) $(CPP_FLAGS) $(OWX_CPP_FLAGS) $< $@
 
 %.winxed: %.Ωη stage0.js Ωηc.js
 	$(NODE) Ωηc.js $<

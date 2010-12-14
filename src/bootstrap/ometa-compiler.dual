@@ -69,7 +69,7 @@ ometa OMetaParser <: Parser {
                                                   ),
   grammar        = keyword('ometa') name:n
                      ( "<:" name | empty -> 'OMeta' ):sn
-                     "{" listOf(#rule, ','):rs "}"                        WinxedOMetaOptimizer.optimizeGrammar(
+                     "{" listOf(#rule, ','):rs "}"                        OMetaOptimizer.optimizeGrammar(
                                                                             [#Grammar, n, sn].concat(rs)
                                                                           )
 }

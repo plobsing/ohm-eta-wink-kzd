@@ -8,7 +8,7 @@ for (var idx = 0; idx < keywords.length; idx++)
 WinxedParser._isKeyword = function(k) { return this.keywords.hasOwnProperty(k) }
 
 /* ometa-compiler */
-WinxedOMetaTranslator.jumpTableCode = function(cases) {
+OMetaWinxedTranslator.jumpTableCode = function(cases) {
   var buf = new StringBuffer()
   buf.nextPutAll("(function(){switch(this._apply('anything')){")
   for (var i = 0; i < cases.length; i += 1)
