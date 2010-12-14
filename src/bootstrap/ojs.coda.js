@@ -2,7 +2,7 @@
 WinxedParser.hexDigits = "0123456789abcdef"
 WinxedParser.keywords  = { }
 keywords = ["break", "case", "catch", "continue", "default", "delete", "do", "else", "finally", "for", "function", "if", "in",
-            "instanceof", "new", "return", "switch", "this", "throw", "try", "typeof", "var", "void", "while", "with", "ometa"]
+            "instanceof", "new", "return", "switch", "this", "throw", "try", "typeof", "var", "void", "while", "with", "ometa", "class"]
 for (var idx = 0; idx < keywords.length; idx++)
   WinxedParser.keywords[keywords[idx]] = true
 WinxedParser._isKeyword = function(k) { return this.keywords.hasOwnProperty(k) }
