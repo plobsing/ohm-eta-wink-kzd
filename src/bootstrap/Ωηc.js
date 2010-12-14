@@ -27,7 +27,7 @@ process.argv.forEach( function (srcfile, idx, ary) {
 	return;
     }
 
-    var destfile = srcfile.substr(0, srcfile.length - 4) + '.winxed';
+    var destfile = srcfile.substr(0, srcfile.length - 3) + '.winxed';
     sys.debug(srcfile + " -> " + destfile + "\n");
 
     var src  = fs.readFileSync(srcfile).toString();
