@@ -63,3 +63,5 @@ ometa-js.js: $(OMJS_FILES)
 stage0.js: $(STAGE0_FILES)
 	cat $^ > $@
 
+stage1.winxed: $(STAGE1_FILES)
+	cat $^ > $@
