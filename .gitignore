@@ -1,2 +1,4 @@
 src/bootstrap/ometa-js.js
 src/bootstrap/winxed-compiler.js
+src/bootstrap/ometa-compiler.js
+src/bootstrap/ometa-winxed-compiler.js
