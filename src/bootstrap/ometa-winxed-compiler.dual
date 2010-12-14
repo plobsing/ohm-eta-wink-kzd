@@ -1,6 +1,6 @@
 ometa OMetaWinxedParser <: WinxedParser {
-  srcElem = spaces OMetaParser.grammar:r sc -> r
-          | ^srcElem
+  topElem = spaces OMetaParser.grammar:r -> r
+          | ^topElem
 }
 
 ometa OMetaWinxedTranslator <: WinxedTranslator {
