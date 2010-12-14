@@ -96,16 +96,18 @@ ometa WinxedParser <: Parser {
   anonFunc     = "function" funcRest:f                                               -> [#anonfunc].concat(f),
   funcRest     = "(" listOf(#formal, ','):fs ")" "{" srcElems:ss "}"                 -> [fs, ss],
   sc           = ";",
-  binding      = "name":n ( "=" expr
-                          | empty -> [#get, 'null'] ):v                              -> [#var, n, v],
   block        = "{" srcElems:ss "}"                                                 -> ss,
+  var          = ("var"|"string"|"int"|"num"):t "name":n                             -> [t, n],
+  varInit      = var:v ( "=" expr
+                       | empty -> [#get, 'null'] ):i                                 -> [#varinit].concat(v).concat([i]),
+  varNoInit    = var:v                                                               -> [#var].concat(v),
   stmt         = block
-               | "var" binding:b sc                                                  -> [#begin, b]
+               | varInit
                | "if" "(" expr:c ")" stmt:t ( "else" stmt
                                             | empty -> [#get, 'undefined'] ):f       -> [#if, c, t, f]
                | "while" "(" expr:c ")" stmt:s                                       -> [#while,   c, s]
                | "do" stmt:s "while" "(" expr:c ")" sc                               -> [#doWhile, s, c]
-               | "for" "(" ( "var" binding
+               | "for" "(" ( varInit
                            | expr
                            | empty -> [#get, 'null'] ):i
                        ";" ( expr
@@ -113,7 +115,7 @@ ometa WinxedParser <: Parser {
                        ";" ( expr
                            | empty -> [#get, 'null'] ):u
                        ")" stmt:s                                                    -> [#for, i, c, u, s]
-               | "for" "(" ( "var" "name":n -> [#var, n, [#get, 'null']]
+               | "for" "(" ( varNoInit
                            | expr                                             ):v
                       "in" expr:e
                        ")" stmt:s                                                    -> [#forIn, v, e, s]
@@ -130,14 +132,14 @@ ometa WinxedParser <: Parser {
                | expr:e sc                                                           -> e
                | ";"                                                                 -> [#get, "null"],
   classRest    = "{" classElem*:es "}"                                               -> [#begin].concat(es),
-  classBases   = ":" listOf(#name, ","):bs                                           -> bs
-               | empty                                                               -> [],
+  classBases   = ":" listOf(#name, ","):bs                                           -> bs,
+  classBases   = empty                                                               -> [],
+  classVar     = var:v ?(v[0] == 'var') sc                                           -> [#var].concat(v),
   classElem    = funcDecl
-               | varDecl,
+               | classVar,
 
   funcDecl     = "function" "name":n funcRest:f                                      -> [#funcdecl, n].concat(f),
   classDecl    = "class"    "name":n classBases:bs classRest:c                       -> [#classdecl, n, bs, c],
-  varDecl      = "var" "name":n sc                                                   -> [#var, n, null],
 
   srcElems     = stmt*:ss                                                            -> [#begin].concat(ss),
 
@@ -152,8 +154,8 @@ ometa WinxedSemActionParser <: WinxedParser {
                  | "{" (stmt:s &stmt -> s)*:ss
                        ( expr:r sc -> [#return, r] | stmt):s {ss.push(s)}
                    "}" spaces                                                -> [#call,
-										      [#anonfunc, ['self'], [#begin].concat(ss)],
-										      [#self]],
+                                                                                      [#anonfunc, ['self'], [#begin].concat(ss)],
+                                                                                      [#self]],
   semAction      = curlySemAction
                  | primExpr:r spaces                                         -> r
 }
@@ -200,7 +202,8 @@ ometa WinxedTranslator {
   call     trans:fn trans*:args                         -> (fn + '(' + args.join(',') + ')'),
   send     :msg trans:recv trans*:args                  -> (recv + '.' + msg + '(' + args.join(',') + ')'),
   new      :cls trans:arg                               -> ('new ' + cls + '(' + arg + ')'),
-  var      :name trans:val                              -> ('var ' + name + '=' + val),
+  var      :type :name                                  -> (type + ' ' + name),
+  varinit  :type :name :init                            -> (type + ' ' + name + ' = ' + init),
   throw    trans:x                                      -> ('throw ' + x),
   try      curlyTrans:x :name curlyTrans:c              -> ('try ' + x + 'catch(' + name + ')' + c),
   json     trans*:props                                 -> ('({' + props.join(',') + '})'),
