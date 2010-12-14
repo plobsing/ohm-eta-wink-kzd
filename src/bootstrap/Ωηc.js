@@ -10,10 +10,14 @@ var fs  = require('fs');
 
 function translateCode(s) {
     var tree = OMetaWinxedParser.matchAll(s, "topLevel", undefined, function(m, i) {
+	sys.debug(sys.inspect([m, i]));
 	throw objectThatDelegatesTo(fail, {errorPos: i}) 
     });
 
+    sys.puts(sys.inspect(tree));
+
     return OMetaWinxedTranslator.match(tree, "trans", undefined, function(m, i) {
+	sys.debug(sys.inspect([m, i]));
 	sys.debug("Translation error - pless tell Peter about this!");
 	throw fail;
     });
