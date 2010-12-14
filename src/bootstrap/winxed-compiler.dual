@@ -159,10 +159,10 @@ ometa WinxedSemActionParser <: WinxedParser {
 }
 
 ometa WinxedTranslator {
-  trans      = [:t apply(t):ans]     -> ans,
-  curlyTrans = [#begin curlyTrans:r] -> r
-             | [#begin trans*:rs]    -> ('{' + rs.join(';') + '}')
-             | trans:r               -> ('{' + r + '}'),
+  trans      = [:t apply(t):ans]                    -> ans,
+  curlyTrans = [#begin curlyTrans:r]                -> r
+             | [#begin (trans:r -> (r + ';'))*:rs]  -> ('{' + rs.join('') + '}')
+             | trans:r                              -> ('{' + r + ';}'),
 
   self                                                  -> 'self',
   break                                                 -> 'break',
@@ -187,9 +187,8 @@ ometa WinxedTranslator {
   for      trans:init trans:cond trans:upd
            curlyTrans:body                              -> ('for(' + init + ';' + cond + ';' + upd + ')' + body),
   forIn    trans:x trans:arr curlyTrans:body            -> ('for(' + x + ' in ' + arr + ')' + body),
-  begin    trans:x end                                  -> x,
   begin    (trans:x
-              ( (?(x[x.length - 1] == '}') | end) -> x
+              (?(x[x.length - 1] == '}')          -> x
               | empty                             -> (x  + ';')
               )
            )*:xs                                        -> ('{' + xs.join('') + '}'),
