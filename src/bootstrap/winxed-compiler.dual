@@ -129,7 +129,7 @@ ometa WinxedParser <: Parser {
                           | empty -> [#get, 'undefined'] ):e sc                      -> [#return, e]
                | expr:e sc                                                           -> e
                | ";"                                                                 -> [#get, "null"],
-  classRest    = "{" classElem*:es "}"                                               -> es,
+  classRest    = "{" classElem*:es "}"                                               -> [#begin].concat(es),
   classBases   = ":" listOf(#name, ","):bs                                           -> bs
                | empty                                                               -> [],
   classElem    = funcDecl
@@ -139,11 +139,12 @@ ometa WinxedParser <: Parser {
   classDecl    = "class"    "name":n classBases:bs classRest:c                       -> [#classdecl, n, bs, c],
   varDecl      = "var" "name":n sc                                                   -> [#var, n, null],
 
-  srcElem      = funcDecl
-               | classDecl,
+  topElem      = funcDecl
+               | classDecl
+               | "ometa" -> [#ometa],
   srcElems     = srcElem*:ss                                                         -> [#begin].concat(ss),
 
-  topLevel     = srcElems:r spaces end                                               -> r
+  topLevel     = topElem*:es spaces /* end */                                              -> [#top].concat(es)
 }
 
 ometa WinxedSemActionParser <: WinxedParser {
@@ -192,9 +193,10 @@ ometa WinxedTranslator {
               | empty                             -> (x  + ';')
               )
            )*:xs                                        -> ('{' + xs.join('') + '}'),
+  top      trans*:xs                                    -> xs.join(''),
   anonfunc :args         curlyTrans:body                -> ('(function (' + args.join(',') + ')' + body + ')'),
   funcdecl  :name :args  curlyTrans:body                -> ('function ' + name + '(' + args.join(',') + ')' + body),
-  classdecl :name :bases curlyTrans:body                -> ('class ' + name + (bs.length > 0 ? ':' + bs.join(',') : '') + body),
+  classdecl :name :bases curlyTrans:body                -> ('class ' + name + (bases.length > 0 ? ':' + bases.join(',') : '') + body),
 
   call     trans:fn trans*:args                         -> (fn + '(' + args.join(',') + ')'),
   send     :msg trans:recv trans*:args                  -> (recv + '.' + msg + '(' + args.join(',') + ')'),
