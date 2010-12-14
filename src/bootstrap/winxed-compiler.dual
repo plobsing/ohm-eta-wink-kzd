@@ -94,7 +94,7 @@ ometa WinxedParser <: Parser {
   jsonPropName = "name" | "number" | "string",
   formal       = spaces "name",
   anonFunc     = "function" funcRest:f                                               -> [#anonfunc].concat(f),
-  funcRest     = "(" listOf(#formal, ','):fs ")" "{" stmt*:body "}"                  -> [fs, [#begin].concat(body)],
+  funcRest     = "(" listOf(#formal, ','):fs ")" "{" srcElems:ss "}"                 -> [fs, ss],
   sc           = ";",
   binding      = "name":n ( "=" expr
                           | empty -> [#get, 'null'] ):v                              -> [#var, n, v],
@@ -139,11 +139,11 @@ ometa WinxedParser <: Parser {
   classDecl    = "class"    "name":n classBases:bs classRest:c                       -> [#classdecl, n, bs, c],
   varDecl      = "var" "name":n sc                                                   -> [#var, n, null],
 
+  srcElems     = stmt*:ss                                                            -> [#begin].concat(ss),
+
   topElem      = funcDecl
                | classDecl
                | "ometa" -> [#ometa],
-  srcElems     = srcElem*:ss                                                         -> [#begin].concat(ss),
-
   topLevel     = topElem*:es spaces /* end */                                              -> [#top].concat(es)
 }
 
