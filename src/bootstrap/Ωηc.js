@@ -14,7 +14,7 @@ function translateCode(s) {
 	throw objectThatDelegatesTo(fail, {errorPos: i}) 
     });
 
-    sys.puts(sys.inspect(tree));
+    sys.puts(sys.inspect(tree, false, 100));
 
     return OMetaWinxedTranslator.match(tree, "trans", undefined, function(m, i) {
 	sys.debug(sys.inspect([m, i]));
