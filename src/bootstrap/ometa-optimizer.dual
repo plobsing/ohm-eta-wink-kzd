@@ -1,7 +1,7 @@
 // TODO: turn off the "seq" inliner when G.seq !== OMeta.seq (will require some refactoring)
 // TODO: add a factorizing optimization (will make jumptables more useful)
 
-ometa BSNullOptimization {
+ometa NullOptimization {
   setHelped = !(this._didSomething = true),
   helped    = ?this._didSomething,
   trans     = [:t ?(this[t] != undefined) apply(t):ans] -> ans,
@@ -27,7 +27,7 @@ ometa BSNullOptimization {
   Rule       :name :ls trans:body          -> ['Rule', name, ls, body]
 }
 
-ometa BSAssociativeOptimization <: BSNullOptimization {
+ometa AssociativeOptimization <: NullOptimization {
   And trans:x end           setHelped -> x,
   And transInside('And'):xs           -> ['And'].concat(xs),
   Or  trans:x end           setHelped -> x,
@@ -40,31 +40,32 @@ ometa BSAssociativeOptimization <: BSNullOptimization {
                  |                                                            -> []
 }
 
-ometa BSSeqInliner <: BSNullOptimization {
+ometa SeqInliner <: NullOptimization {
   App        = 'seq' :s end seqString(s):cs setHelped -> ['And'].concat(cs).concat([['Act', s]])
              | :rule anything*:args                   -> ['App', rule].concat(args),
-  inlineChar = BSOMetaParser.eChar:c ~end             -> ['App', 'exactly', c.toProgramString()],
+  inlineChar = OMetaParser.eChar:c ~end             -> ['App', 'exactly', c.toProgramString()],
   seqString  = &(:s ?(typeof s === 'string'))
                  ( ['"'  inlineChar*:cs '"' ]         -> cs
                  | ['\'' inlineChar*:cs '\'']         -> cs
                  )
 }
 
-ometa BSJumpTableOptimization <: BSNullOptimization {
+ometa JumpTableOptimization <: NullOptimization {
   Or  (jtChoices('Or')  | trans)*:cs -> ['Or'].concat(cs),
   XOr (jtChoices('XOr') | trans)*:cs -> ['XOr'].concat(cs),
-  quotedString  = &string [ '"'  (BSOMetaParser.eChar:c ~end -> c)*:cs '"'
-                          | '\'' (BSOMetaParser.eChar:c ~end -> c)*:cs '\'']               -> cs.join(''),
+  quotedString  = &string [ '"'  (OMetaParser.eChar:c ~end -> c)*:cs '"'
+                          | '\'' (OMetaParser.eChar:c ~end -> c)*:cs '\'']               -> cs.join(''),
   jtChoice      = ['And' ['App' 'exactly' quotedString:x] anything*:rest]                  -> [x, ['And'].concat(rest)]
                 |        ['App' 'exactly' quotedString:x]                                  -> [x, ['Act', x.toProgramString()]],
   jtChoices :op = jtChoice:c {new JumpTable(op, c)}:jt (jtChoice:c {jt.add(c)})* setHelped -> jt.toTree()
 }
 
-ometa BSOMetaOptimizer {
+ometa OMetaOptimizer {
   optimizeGrammar = ['Grammar' :n :sn optimizeRule*:rs]          -> ['Grammar', n, sn].concat(rs),
-  optimizeRule    = :r (BSSeqInliner.optimize(r):r | empty)
-                       ( BSAssociativeOptimization.optimize(r):r
-                       | BSJumpTableOptimization.optimize(r):r
+  optimizeRule    = :r (SeqInliner.optimize(r):r | empty)
+                       ( AssociativeOptimization.optimize(r):r
+                       | JumpTableOptimization.optimize(r):r
                        )*                                        -> r
 }
 
+// vim: sts=2 sw=2 et ft=javascript :

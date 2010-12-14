@@ -146,7 +146,7 @@ ometa WinxedParser <: Parser {
   topLevel     = srcElems:r spaces end                                               -> r
 }
 
-ometa BSSemActionParser <: WinxedParser {
+ometa WinxedSemActionParser <: WinxedParser {
   curlySemAction = "{" expr:r sc "}" spaces                                  -> r
                  | "{" (stmt:s &stmt -> s)*:ss
                        ( expr:r sc -> [#return, r] | stmt):s {ss.push(s)}
@@ -208,3 +208,5 @@ ometa WinxedTranslator {
   case     trans:x trans:y                              -> ('case ' + x + ': '+ y),
   default          trans:y                              -> ('default: ' + y)
 }
+
+// vim: sts=2 sw=2 et ft=javascript :

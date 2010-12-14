@@ -1,9 +1,10 @@
-ometa BSOMetaJSParser <: BSJSParser {
-  srcElem = spaces BSOMetaParser.grammar:r sc -> r
+ometa OMetaWinxedParser <: WinxedParser {
+  srcElem = spaces OMetaParser.grammar:r sc -> r
           | ^srcElem
 }
 
-ometa BSOMetaJSTranslator <: BSJSTranslator {
-  Grammar = BSOMetaTranslator.Grammar
+ometa OMetaWinxedTranslator <: WinxedTranslator {
+  Grammar = OMetaTranslator.Grammar
 }
 
+// vim: sts=2 sw=2 et ft=javascript :
