@@ -1,3 +1,4 @@
+/* ometa-optimizer */
 JumpTable = function(choiceOp, choice) {
   this.choiceOp = choiceOp
   this.choices = {}

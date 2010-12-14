@@ -14,39 +14,45 @@ OMJS_FILES = \
     ometa-js/bs-ometa-optimizer.js \
     ometa-js/ometa-rhino.js
 
-STAGE0_FILES = \
-    ojs.capo.js \
+JS_GRAMMARS = \
     winxed-compiler.js \
     ometa-compiler.js \
-    ometa-winxed-compiler.js \
+    ometa-winxed-compiler.js
+
+WX_GRAMMARS = \
+    winxed-compiler.winxed \
+    ometa-compiler.winxed \
+    ometa-winxed-compiler.winxed
+
+STAGE0_FILES = \
+    ojs.capo.js \
+    $(JS_GRAMMARS) \
     ojs.coda.js
 
 STAGE1_FILES = \
     Ωη.capo.winxed \
-    winxed-compiler.winxed \
-    ometa-compiler.winxed \
-    ometa-winxed-compiler.winxed \
+    $(WX_GRAMMARS) \
     Ωη.coda.winxed
 
 GEN_FILES = \
-    $(STAGE0_FILES) \
-    $(STAGE1_FILES) \
+    $(JS_GRAMMARS) \
+    $(WX_GRAMMARS) \
     ometa-js.js \
     stage0.js
 
 %.ojs: %.dual
 	$(CPP) $(OJS_CPP_FLAGS)  $< $@
 
-%.Ωη: %.dual
-	$(CPP) $(OWX_CPP_FLAGS) $< $@
-
 %.js: %.ojs ometa-js.js ojsc.js
 	$(NODE) ojsc.js $<
+
+%.Ωη: %.dual
+	$(CPP) $(OWX_CPP_FLAGS) $< $@
 
 %.winxed: %.Ωη stage0.js Ωηc.js
 	$(NODE) Ωηc.js $<
 
-default: winxed-compiler.js
+default: $(STAGE0_FILES)
 
 clean:
 	rm -rf $(GEN_FILES)
