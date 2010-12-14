@@ -7,3 +7,5 @@ src/bootstrap/ometa-compiler.js
 src/bootstrap/ometa-compiler.winxed
 src/bootstrap/ometa-winxed-compiler.js
 src/bootstrap/ometa-winxed-compiler.winxed
+src/bootstrap/ometa-optimizer.js
+src/bootstrap/ometa-optimizer.winxed
