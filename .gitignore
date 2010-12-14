@@ -1,4 +1,9 @@
 src/bootstrap/ometa-js.js
+src/bootstrap/stage0.js
+src/bootstrap/stage1.winxed
 src/bootstrap/winxed-compiler.js
+src/bootstrap/winxed-compiler.winxed
 src/bootstrap/ometa-compiler.js
+src/bootstrap/ometa-compiler.winxed
 src/bootstrap/ometa-winxed-compiler.js
+src/bootstrap/ometa-winxed-compiler.winxed
