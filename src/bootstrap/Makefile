@@ -5,6 +5,8 @@ CPP_FLAGS     = -E -P
 OJS_CPP_FLAGS = -DJS     -DUNDEF=undefined -DSELF=this
 OWX_CPP_FLAGS = -DWINXED -DUNDEF=null      -DSELF=self
 
+# types of files
+
 OMJS_FILES = \
     ometa-js/lib.js \
     ometa-js/ometa-base.js \
@@ -43,6 +45,9 @@ GEN_FILES = \
     ometa-js.js \
     stage0.js
 
+
+# suffix rules
+
 %.ojs: %.dual
 	$(CPP) $(CPP_FLAGS) $(OJS_CPP_FLAGS)  $< $@
 
@@ -55,10 +60,16 @@ GEN_FILES = \
 %.winxed: %.Ωη stage0.js Ωηc.js
 	$(NODE) Ωηc.js $<
 
-default: $(STAGE0_FILES)
+
+# magic targets
+
+default: stage0.js stage1.winxed
 
 clean:
 	rm -rf $(GEN_FILES)
+
+
+# specialised rules
 
 ometa-js.js: $(OMJS_FILES)
 	cat $^ > $@
