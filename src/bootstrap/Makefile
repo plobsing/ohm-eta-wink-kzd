@@ -7,15 +7,16 @@ OWX_CPP_FLAGS = -DWINXED -DUNDEF=null      -DSELF=self
 
 # types of files
 
-OMJS_FILES = \
+OMJS_LIB = \
     ometa-js/lib.js \
     ometa-js/ometa-base.js \
-    ometa-js/parser.js \
+    ometa-js/parser.js
+
+OMJS_GRAMMARS = \
     ometa-js/bs-js-compiler.js \
     ometa-js/bs-ometa-compiler.js \
     ometa-js/bs-ometa-js-compiler.js \
-    ometa-js/bs-ometa-optimizer.js \
-    ometa-js/ometa-rhino.js
+    ometa-js/bs-ometa-optimizer.js 
 
 JS_GRAMMARS = \
     winxed-compiler.js \
@@ -29,8 +30,13 @@ WX_GRAMMARS = \
     ometa-winxed-compiler.winxed \
     ometa-optimizer.winxed
 
+OMJS_FILES = \
+    $(OMJS_LIB) \
+    $(OMJS_GRAMMARS)
+
 STAGE0_FILES = \
     ojs.capo.js \
+    $(OMJS_LIB) \
     $(JS_GRAMMARS) \
     ojs.coda.js
 
