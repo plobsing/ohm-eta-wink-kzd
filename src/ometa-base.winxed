@@ -97,6 +97,21 @@ class OMInputStreamProxy : OMInputStream {
 class OMeta {
   var input;
   var fail;
+  var stash;
+
+  function init[vtable]() {
+    using static fail;
+    self.fail  = fail;
+    self.stash = {};
+  }
+
+  function get_pmc_keyed_str[vtable](string k) {
+    return self.stash[k];
+  }
+
+  function set_pmc_keyed_str[vtable](string k, var v) {
+    self.stash[k] = v;
+  }
 
   function _apply(string rule) {
     using static fail;
