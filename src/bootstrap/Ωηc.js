@@ -6,7 +6,6 @@ WINXED = 1;
 require.paths.push(__dirname);
 load = function () { /* ignore (used in OMeta/JS) */ };
 
-require('ometa-js');
 require('stage0');
 
 var fs  = require('fs');
