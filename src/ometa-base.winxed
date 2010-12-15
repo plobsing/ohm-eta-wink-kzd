@@ -4,8 +4,11 @@ function fail[anon, immediate]() {
   return Error('failed match');
 }
 
-function call_rule[anon](var _self, var rule) {
-  return callmethodwithargs(_self, rule, []);
+function is_sequenceable[anon](var x) {
+  if (x instanceof String || x instanceof Array)
+    return true;
+  else
+    return false;
 }
 
 function typeof[anon](var o) {
@@ -69,13 +72,14 @@ class ListOMInputStream : OMInputStream {
   }
   function head() { return self.hd; }
   function tail() {
+    using static makeListOMInputStream;
     if (!self.tl)
       self.tl = makeListOMInputStream(self.lst, self.idx + 1);
     return self.tl;
   }
 }
 
-function makeListOMInputStream(var lst, var idx) {
+function makeListOMInputStream[anon](var lst, var idx) {
   string klass = idx < elements(lst) ? 'ListOMInputStream' : 'OMInputStreamEnd';
   return get_class(klass).new( lst:[named('lst')], idx:[named('idx')] );
 }
@@ -96,17 +100,17 @@ class OMeta {
 
   function _apply(string rule) {
     using static fail;
-    using static call_rule;
     var memoRec = self.input.memo[rule];
     if (memoRec == null) {
       var origInput = self.input;
       var failer    = new Failer();
+      var method;
 
-      try       { find_method(self, rule); }
+      try       { method = find_method(self, rule); }
       catch (e) { die('tried to apply undefined rule "' + rule + '"'); }
 
       self.input.memo[rule] = failer;
-      var ans               = call_rule(self, rule);
+      var ans               = callmethodwithargs(self, method, []);
       self.input.memo[rule] = memoRec
                             = { 'ans': result, 'nextInput': self.input };
 
@@ -115,7 +119,7 @@ class OMeta {
 	while (true) {
 	  try {
 	    self.input = origInput;
-	    var ans = call_rule(self, rule);
+	    var ans = callmethodwithargs(self, method, []);
 	    if (self.input === sentinel)
 	      throw fail;
 	    memoRec['ans']       = ans;
@@ -136,14 +140,17 @@ class OMeta {
   }
 
   function _applyWithArgs(string rule, var args[slurpy]) {
-    using static call_rule;
     for (int i = elements(args) - 1; i >= 0; i--)
       self._prependInput(args[i]);
-    return call_rule(self, rule);
+    var method = find_method(self, rule);
+    return callmethodwithargs(self, rule, []);
   }
 
-  function _superApplyWithArgs(var recv, var args[slurpy]) {
-    die("TODO");
+  function _superApplyWithArgs(string super_name, string rule, var args[slurpy]) {
+    for (int i = elems(args) - 1; i >= 0; i--)
+      self._prependInput(args[i]);
+    var method = find_method(super_name, rule);
+    return callmethodwithargs(self, method, []);
   }
 
   function _prependInput(var v) {
@@ -163,9 +170,8 @@ class OMeta {
 
   function _not(var x) {
     using static fail;
-    using static call_rule;
     var origInput = self.input;
-    try       { call_rule(self, x); }
+    try       { callmethodwithargs(self, x, []); }
     catch (e) {
       if (e !== fail)
 	throw e;
@@ -176,21 +182,19 @@ class OMeta {
   }
 
   function _lookahead(var x) {
-    using static call_rule;
     var origInput = self.input;
-    var result    = call_rule(self, x);
+    var result    = callmethodwithargs(self, x, []);
     self.input    = origInput;
     return result;
   }
 
   function _or(var args[slurpy]) {
     using static fail;
-    using static call_rule;
     var origInput = self.input;
     for (var x in args) {
       try {
 	self.input = origInput;
-	return call_rule(self, x);
+	return callmethodwithargs(self, x, []);
       } catch (e) {
 	if (e !== fail)
 	  throw e;
@@ -201,14 +205,13 @@ class OMeta {
 
   function _xor(string rule_name, var args[slurpy]) {
     using static fail;
-    using static call_rule;
     var origInput = self.input;
     var ans;
     var newInput;
     for (var x in args) {
       try {
 	self.input = origInput;
-	ans = call_rule(self, x);
+	ans = callmethodwithargs(self, x, []);
 	if (newInput)
 	  die('more than one choice matched by "exclusive-OR" in ' + rule_name);
 	newInput = self.input;
@@ -231,10 +234,9 @@ class OMeta {
 
   function _opt(var x) {
     using static fail;
-    using static call_rule;
     var origInput = self.input;
     var ans;
-    try       { ans = call_rule(self, x); }
+    try       { ans = callmethodwithargs(self, x, []); }
     catch (e) {
       if (e !== fail)
 	throw e;
@@ -245,11 +247,10 @@ class OMeta {
 
   function _many(var x, var first[optional], int has_first[opt_flag]) {
     using static fail;
-    using static call_rule;
     var ans = has_first ? [first] : [];
     while (true) {
       var origInput = self.input;
-      try	{ call_rule(self, x); }
+      try	{ callmethodwithargs(self, x, []); }
       catch (e) {
 	if (e !== fail)
 	  throw e;
@@ -260,20 +261,35 @@ class OMeta {
   }
 
   function _many1(var x) {
-    using static call_rule;
-    return self._many(x, call_rule(self, x));
+    return self._many(x, callmethodwithargs(self, x, []));
+  }
+
+  function _form(var x) {
+    using static fail;
+    using static is_sequenceable;
+    using static toOMInputStream;
+    var v = self._apply('anything');
+    if (!is_sequenceable(v))
+      throw fail;
+    var origInput = self.input;
+    {
+      self.input = toOMInputStream(v);
+      var r = callmethodwithargs(self, x, []);
+      self._apply('end');
+    }
+    self.input = origInput;
+    return v;
   }
 
   function _consumedBy(var x) {
     var origInput = self.input;
-    call_rule(self, x);
+    callmethodwithargs(self, x, []);
     return origInput.upTo(self.input);
   }
 
   function _idxConsumedBy(var x) {
-    using static call_rule;
     var origInput = self.input;
-    call_rule(self, x);
+    callmethodwithargs(self, x, []);
     return {
       'fromIdx': origInput.idx,
       'toIdx':   self.input.idx
@@ -417,10 +433,12 @@ class OMeta {
   }
 
   function match(obj, rule, args[optional], matchFailed[optional]) {
+    using static makeListOMInputStream;
     return self._genericMatch( makeListOMInputStream([obj]), rule, args, matchFailed );
   }
 
   function matchAll(list, rule, args[optional], matchFailed[optional]) {
+    using static makeListOMInputStream;
     return self._genericMatch( makeListOMInputStream(list), rule, args, matchFailed );
   }
 }
