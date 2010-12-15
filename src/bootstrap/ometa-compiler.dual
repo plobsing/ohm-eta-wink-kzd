@@ -110,7 +110,8 @@ ometa OMetaTranslator {
              trans*:rules                  -> ['class ', name, ' : ', sName, ' {', rules.join(''), '}'].join(''),
   intPart  = [:mode transFn:part]          -> (mode.toProgramString()  + "," + part),
   jtCase   = [:x trans:e]                  -> [x.toProgramString(), e],
-  locals   = [ (string:v -> ('var ' + v + ';'))+:vs ] -> vs                                          .join('')
+  local    = string:v                      -> ['var', v, ';'].join(''),
+  locals   = [ local+:vs ] -> vs                                          .join('')
            | []                            -> '',
   trans    = [:t apply(t):ans]             -> ans,
   transFn  = trans:x                       -> ['(function(){return ', x, ';})']                                     .join('')
