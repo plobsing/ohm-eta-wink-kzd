@@ -2,6 +2,9 @@
 
 require.paths.push(__dirname);
 
+/* compiling javascript */
+WINXED = 0;
+
 load = function () {
     /*
      * ignore load()

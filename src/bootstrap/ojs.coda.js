@@ -10,10 +10,14 @@ WinxedParser._isKeyword = function(k) { return this.keywords.hasOwnProperty(k) }
 /* ometa-compiler */
 OMetaTranslator.jumpTableCode = function(cases) {
   var buf = new StringBuffer()
-  buf.nextPutAll("(function(){switch(this._apply('anything')){")
+  buf.nextPutAll("(function(){switch(" +
+    ( WINXED ? "self" : "this" ) +
+    "._apply('anything')){")
   for (var i = 0; i < cases.length; i += 1)
     buf.nextPutAll("case " + cases[i][0] + ":return " + cases[i][1] + ";")
-  buf.nextPutAll("default: throw fail}}).call(this)")
+  buf.nextPutAll("default: throw fail}}).call(" +
+    ( WINXED ? "self" : "this" ) +
+    ")")
   return buf.contents()
 }
 

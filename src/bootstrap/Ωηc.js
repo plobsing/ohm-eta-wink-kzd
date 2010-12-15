@@ -1,7 +1,11 @@
 /* node.js based OMeta/Winxed -> Winxed compiler for bootstrapping */
 
+/* compiling winxed (not javascript) */
+WINXED = 1;
+
 require.paths.push(__dirname);
 load = function () { /* ignore (used in OMeta/JS) */ };
+
 require('ometa-js');
 require('stage0');
 
