@@ -152,9 +152,9 @@ ometa WinxedParser <: Parser {
 }
 
 ometa WinxedSemActionParser <: WinxedParser {
-  curlySemAction = "{" expr:r sc "}" spaces                                  -> r
-                 | "{" (stmt:s &stmt -> s)*:ss
-                       ( expr:r sc -> [#return, r] | stmt):s {ss.push(s)}
+  curlySemAction = "{" expr:r "}" spaces                                     -> r
+                 | "{" (stmt:s &(expr | stmt) -> s)*:ss
+                       ( expr:r -> [#return, r] | stmt):s {ss.push(s)}
                    "}" spaces                                                -> [#call,
                                                                                       [#anonfunc, ['self'], [#begin].concat(ss)],
                                                                                       [#self]],
