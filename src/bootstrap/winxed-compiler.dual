@@ -6,7 +6,7 @@ ometa WinxedParser <: Parser {
   nameFirst    = letter | '_',
   nameRest     = nameFirst | digit,
   iName        = firstAndRest(#nameFirst, #nameRest):r                               -> r.join(''),
-  isKeyword :x = ?WinxedParser._isKeyword(x),
+  isKeyword :x = ?SELF._isKeyword(x),
   name         = iName:n ~isKeyword(n)                                               -> [#name, n],
   keyword      = iName:k isKeyword(k)                                                -> [k, k],
   hexDigit     = char:x {SELF['hexDigits'].indexOf(x.toLowerCase())}:v ?(v >= 0)     -> v,
@@ -130,7 +130,7 @@ ometa WinxedParser <: Parser {
                | "throw" spacesNoNl expr:e sc                                        -> [#throw, e]
                | "try" block:t "catch" "(" "name":e ")" block:c                      -> [#try, t, e, c]
                | "return" ( expr
-                          | empty -> [#get, 'undefined'] ):e sc                      -> [#return, e]
+                          | empty -> [#get, UNDEF] ):e sc                            -> [#return, e]
                | expr:e sc                                                           -> e
                | ";"                                                                 -> [#get, "null"],
   classRest    = "{" classElem*:es "}"                                               -> [#begin].concat(es),
@@ -187,6 +187,7 @@ ometa WinxedTranslator {
   binop    :op trans:x trans:y                          -> ('(' + x + ' ' + op + ' ' + y + ')'),
   preop    :op trans:x                                  -> (op + x),
   postop   :op trans:x                                  -> (x + op),
+  return   UNDEF                                        -> 'return',
   return   trans:x                                      -> ('return ' + x),
   if       trans:cond curlyTrans:t curlyTrans:e         -> ('if(' + cond + ')' + t + 'else' + e),
   condExpr trans:cond trans:t trans:e                   -> ('(' + cond + '?' + t + ':' + e + ')'),
