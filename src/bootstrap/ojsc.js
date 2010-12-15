@@ -13,6 +13,20 @@ require('ometa-js');
 var fs  = require('fs');
     sys = require('sys');
 
+translateCode = function(s) {
+  var tree = BSOMetaJSParser.matchAll(s, "topLevel", undefined, function(m, i) {
+      sys.debug(sys.inspect([m, i]));
+      throw objectThatDelegatesTo(fail, {errorPos: i})
+  });
+
+  var translationError = function(m, i) {
+    alert("Translation error - please tell Alex about this!");
+    throw fail
+  };
+
+  return BSOMetaJSTranslator.match(tree, "trans", undefined, translationError)
+}
+
 process.argv.forEach( function (srcfile, idx, ary) {
     if (idx < 2)
 	return;
