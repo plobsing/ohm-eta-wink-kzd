@@ -1,8 +1,8 @@
 /* winxed-compiler */
 function keywords_hash[anon, immediate]() {
-  var keywords = ["break", "case", "catch", "continue", "default", "delete", "do", "else",
-                  "finally", "for", "function", "if", "in", "instanceof", "new", "return", "switch",
-                  "this", "throw", "try", "typeof", "var", "void", "while", "with", "ometa", "class"];
+  var keywords = ["break", "case", "catch", "continue", "default", "do", "else",
+                  "for", "function", "if", "in", "instanceof", "new", "return", "switch",
+                  "self", "throw", "try", "var", "while", "ometa", "class"];
   var hsh = {};
   for (string k in keywords)
     hsh[k] = k;
