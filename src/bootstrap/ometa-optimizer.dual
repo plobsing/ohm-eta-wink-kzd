@@ -46,7 +46,7 @@ ometa SeqInliner <: NullOptimization {
   App        = 'seq' :s end seqString(s):cs setHelped -> ['And'].concat(cs).concat([['Act', s]])
              | :rule anything*:args                   -> ['App', rule].concat(args),
   inlineChar = OMetaParser.eChar:c ~end             -> ['App', 'exactly', c.toProgramString()],
-  seqString  = &(:s ?(typeof s === 'string'))
+  seqString  = &(:s ?(ISSTR(s)))
                  ( ['"'  inlineChar*:cs '"' ]         -> cs
                  | ['\'' inlineChar*:cs '\'']         -> cs
                  )
