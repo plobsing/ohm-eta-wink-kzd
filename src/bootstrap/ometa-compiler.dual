@@ -107,7 +107,7 @@ ometa OMetaTranslator {
   Grammar    :name :sName
              {SELF.name = name}
              {SELF.sName = sName}
-             trans*:rules                  -> ['class ', name, ' : ', sName, ' {', rules.join(','), '}'].join(''),
+             trans*:rules                  -> ['class ', name, ' : ', sName, ' {', rules.join(''), '}'].join(''),
   intPart  = [:mode transFn:part]          -> (mode.toProgramString()  + "," + part),
   jtCase   = [:x trans:e]                  -> [x.toProgramString(), e],
   locals   = [ (string:v -> ('var ' + v + ';'))+:vs ] -> vs                                          .join('')
