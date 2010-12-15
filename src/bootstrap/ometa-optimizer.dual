@@ -1,3 +1,5 @@
+#include "dual-defines.inc"
+
 // TODO: turn off the "seq" inliner when G.seq !== OMeta.seq (will require some refactoring)
 // TODO: add a factorizing optimization (will make jumptables more useful)
 

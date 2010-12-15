@@ -1,3 +1,5 @@
+#include "dual-defines.inc"
+
 ometa OMetaParser <: Parser {
   fromTo :x :y   = seq(x) (~seq(y) char)* seq(y), 
   space          = ^space | fromTo('//', '\n') | fromTo('/*', '*/'),

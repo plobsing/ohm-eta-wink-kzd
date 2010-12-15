@@ -2,8 +2,8 @@ NODE = node
 CPP  = cpp
 
 CPP_FLAGS     = -E -P
-OJS_CPP_FLAGS = -DJS     -DUNDEF=undefined -DSELF=this
-OWX_CPP_FLAGS = -DWINXED -DUNDEF=null      -DSELF=self
+OJS_CPP_FLAGS = -DJS
+OWX_CPP_FLAGS = -DWINXED
 
 # types of files
 

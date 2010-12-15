@@ -1,3 +1,5 @@
+#include "dual-defines.inc"
+
 ometa OMetaWinxedParser <: WinxedParser {
   topElem = spaces OMetaParser.grammar:r -> r
           | ^topElem

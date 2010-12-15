@@ -1,3 +1,5 @@
+#include "dual-defines.inc"
+
 ometa WinxedParser <: Parser {
   fromTo :x :y = seq(x) (~seq(y) char)* seq(y), 
   space        = ^space | fromTo('//', '\n') | fromTo('/*', '*/'),
@@ -165,7 +167,7 @@ ometa WinxedTranslator {
   curlyTrans     = [#begin curlyTrans:r]                -> r
                  | [#begin blockSemiTrans*:rs]          -> ('{' + rs.join('') + '}')
                  | blockSemiTrans:r                     -> ('{' + r + '}'),
-  blockSemiTrans = trans:x ( (?(x[x.length - 1] == '}') -> x
+  blockSemiTrans = trans:x ( (?(x[STRLEN(x) - 1] == '}') -> x
                              | empty                    -> (x + ';')
                              )
                            ):r                          -> r,
@@ -197,7 +199,7 @@ ometa WinxedTranslator {
   top      trans*:xs                                    -> xs.join(''),
   anonfunc :args         curlyTrans:body                -> ('(function (' + args.join(',') + ')' + body + ')'),
   funcdecl  :name :args  curlyTrans:body                -> ('function ' + name + '(' + args.join(',') + ')' + body),
-  classdecl :name :bases curlyTrans:body                -> ('class ' + name + (bases.length > 0 ? ':' + bases.join(',') : '') + body),
+  classdecl :name :bases curlyTrans:body                -> ('class ' + name + (STRLEN(bases) > 0 ? ':' + bases.join(',') : '') + body),
 
   call     trans:fn trans*:args                         -> (fn + '(' + args.join(',') + ')'),
   send     :msg trans:recv trans*:args                  -> (recv + '.' + msg + '(' + args.join(',') + ')'),
