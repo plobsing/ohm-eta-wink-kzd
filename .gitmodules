@@ -1,3 +1,3 @@
-[submodule "src/bootstrap/ometa-js"]
-	path = src/bootstrap/ometa-js
+[submodule "src/ometa-js"]
+	path = src/ometa-js
 	url = http://github.com/alexwarth/ometa-js.git
