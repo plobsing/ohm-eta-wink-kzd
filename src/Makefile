@@ -12,6 +12,10 @@ OMJS_LIB = \
     ometa-js/ometa-base.js \
     ometa-js/parser.js
 
+OMWX_LIB = \
+    ometa-base.winxed \
+    parser.winxed
+
 OMJS_GRAMMARS = \
     ometa-js/bs-js-compiler.js \
     ometa-js/bs-ometa-compiler.js \
@@ -34,6 +38,10 @@ OMJS_FILES = \
     $(OMJS_LIB) \
     $(OMJS_GRAMMARS)
 
+OMWX_FILES = \
+    $(OMWX_LIB) \
+    $(WX_GRAMMARS)
+
 STAGE0_FILES = \
     ojs.capo.js \
     $(OMJS_LIB) \
@@ -42,7 +50,7 @@ STAGE0_FILES = \
 
 STAGE1_FILES = \
     Ωη.capo.winxed \
-    $(WX_GRAMMARS) \
+    $(OMWX_FILES) \
     Ωη.coda.winxed
 
 GEN_FILES = \
