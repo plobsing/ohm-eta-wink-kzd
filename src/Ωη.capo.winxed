@@ -1,0 +1,32 @@
+/* ometa-optimizer */
+class JumpTable {
+  var choiceOp;
+  var choices;
+  var choice;
+
+  function init[vtable] () {
+    self.choices = {};
+    self.add(self.choice);
+    self.choice = null;
+  }
+
+  function add(var choice) {
+    string c = choice[0];
+    var    t = choice[1];
+    if (self.choices[c]) {
+      if (self.choices[c][0] == self.choiceOp)
+	self.choices[c].push(t);
+      else
+	self.choices[c] = [self.choiceOp, self.choices[c], t];
+    } else {
+      self.choices[c] = t;
+    }
+  }
+
+  function toTree() {
+    var r = ['JumpTable'];
+    for (var k in self.choices)
+      r.push([k, self.choices[k]]);
+  }
+}
+

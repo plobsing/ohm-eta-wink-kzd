@@ -1,0 +1,36 @@
+/* winxed-compiler */
+function keywords_hash[anon, immediate]() {
+  var keywords = ["break", "case", "catch", "continue", "default", "delete", "do", "else",
+                  "finally", "for", "function", "if", "in", "instanceof", "new", "return", "switch",
+                  "this", "throw", "try", "typeof", "var", "void", "while", "with", "ometa", "class"];
+  var hsh = {};
+  for (string k in keywords)
+    hsh[k] = k;
+}
+
+class WinxedParser {
+  function _isKeyword(string k) {
+    using static keywords_hash;
+    return keywords_hash[k] ? true : false;
+  }
+}
+
+/* ometa-compiler */
+class OMetaTranslator {
+  function jumpTableCode(var cases) {
+    var buf = new StringBuilder;
+    buf.push("(function(){switch(self._apply('anything')){");
+    for (var x in cases)
+      buf.push("case " + x[0] + ":return " + x[1] + ";");
+    buf.push("default: throw self.fail;}}.call(self)");
+    return str(buf);
+  }
+}
+
+/* ometa-optimizer */
+class NullOptimization {
+  function initialize() {
+    self['_didSomething'] = false;
+  }
+}
+
