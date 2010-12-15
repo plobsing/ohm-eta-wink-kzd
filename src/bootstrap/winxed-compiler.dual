@@ -106,7 +106,7 @@ ometa WinxedParser <: Parser {
   stmt         = block
                | varInit
                | "if" "(" expr:c ")" stmt:t ( "else" stmt
-                                            | empty -> [#get, 'undefined'] ):f       -> [#if, c, t, f]
+                                            | empty -> [#get, ''] ):f                -> [#if, c, t, f]
                | "while" "(" expr:c ")" stmt:s                                       -> [#while,   c, s]
                | "do" stmt:s "while" "(" expr:c ")" sc                               -> [#doWhile, s, c]
                | "for" "(" ( varInit

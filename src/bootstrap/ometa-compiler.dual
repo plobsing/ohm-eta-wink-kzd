@@ -55,8 +55,8 @@ ometa OMetaParser <: Parser {
                  | "&" expr1:x                                         -> [#Lookahead, x]
                  | expr1,
   expr1          = application 
-                 | ( keyword('undefined') | keyword('nil')
-                   | keyword('true')      | keyword('false') ):x       -> [#App, #exactly, x]
+                 | ( keyword('null') | keyword('true') | keyword('false')):x
+                                                                       -> [#App, #exactly, x]
                  | spaces (characters | sCharacters | string | number)
                  | "["  expr:x "]"                                     -> [#Form,      x]
                  | "<"  expr:x ">"                                     -> [#ConsBy,    x]
@@ -89,7 +89,7 @@ ometa OMetaTranslator {
                                            -> ['self._xor(', xs.join(','), ')']                                    .join(''),
   And        notLast(#trans)*:xs trans:y
              {xs.push('return ' + y)}      -> ['(function(){', xs.join(';'), ';}).call(self)']                      .join(''),
-  And                                      -> 'undefined',
+  And                                      -> '',
   Opt        transFn:x                     -> ['self._opt(',           x, ')']                                     .join(''),
   Many       transFn:x                     -> ['self._many(',          x, ')']                                     .join(''),
   Many1      transFn:x                     -> ['self._many1(',         x, ')']                                     .join(''),
