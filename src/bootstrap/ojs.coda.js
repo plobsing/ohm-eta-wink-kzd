@@ -15,7 +15,9 @@ OMetaTranslator.jumpTableCode = function(cases) {
     "._apply('anything')){")
   for (var i = 0; i < cases.length; i += 1)
     buf.nextPutAll("case " + cases[i][0] + ":return " + cases[i][1] + ";")
-  buf.nextPutAll("default: throw fail}}).call(" +
+  buf.nextPutAll("default: throw " +
+    ( WINXED ? "self.fail" : "fail" ) +
+    "}}).call(" +
     ( WINXED ? "self" : "this" ) +
     ")")
   return buf.contents()

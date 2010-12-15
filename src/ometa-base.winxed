@@ -92,6 +92,7 @@ class OMInputStreamProxy : OMInputStream {
 
 class OMeta {
   var input;
+  var fail;
 
   function _apply(string rule) {
     using static fail;
@@ -395,7 +396,7 @@ class OMeta {
   function _genericMatch(var input, var rule, var args, var matchFailed) {
     using static fail;
     using static typeof;
-    var m = typeof(self).new( input[named('input')] );
+    var m = typeof(self).new( input[named('input')], fail[named('fail')] );
     try {
       if (args == null)
 	return m._apply(rule);
