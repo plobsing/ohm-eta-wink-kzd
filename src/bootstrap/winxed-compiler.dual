@@ -146,7 +146,7 @@ ometa WinxedParser <: Parser {
   topElem      = funcDecl
                | classDecl
                | "ometa" -> [#ometa],
-  topLevel     = topElem*:es spaces /* end */                                              -> [#top].concat(es)
+  topLevel     = topElem*:es spaces end                                              -> [#top].concat(es)
 }
 
 ometa WinxedSemActionParser <: WinxedParser {
@@ -161,10 +161,14 @@ ometa WinxedSemActionParser <: WinxedParser {
 }
 
 ometa WinxedTranslator {
-  trans      = [:t apply(t):ans]                    -> ans,
-  curlyTrans = [#begin curlyTrans:r]                -> r
-             | [#begin (trans:r -> (r + ';'))*:rs]  -> ('{' + rs.join('') + '}')
-             | trans:r                              -> ('{' + r + ';}'),
+  trans          = [:t apply(t):ans]                    -> ans,
+  curlyTrans     = [#begin curlyTrans:r]                -> r
+                 | [#begin blockSemiTrans*:rs]          -> ('{' + rs.join('') + '}')
+                 | blockSemiTrans:r                     -> ('{' + r + '}'),
+  blockSemiTrans = trans:x ( (?(x[x.length - 1] == '}') -> x
+                             | empty                    -> (x + ';')
+                             )
+                           ):r                          -> r,
 
   self                                                  -> 'self',
   break                                                 -> 'break',
@@ -189,11 +193,7 @@ ometa WinxedTranslator {
   for      trans:init trans:cond trans:upd
            curlyTrans:body                              -> ('for(' + init + ';' + cond + ';' + upd + ')' + body),
   forIn    trans:x trans:arr curlyTrans:body            -> ('for(' + x + ' in ' + arr + ')' + body),
-  begin    (trans:x
-              (?(x[x.length - 1] == '}')          -> x
-              | empty                             -> (x  + ';')
-              )
-           )*:xs                                        -> ('{' + xs.join('') + '}'),
+  begin    blockSemiTrans*:xs                           -> ('{' + xs.join('') + '}'),
   top      trans*:xs                                    -> xs.join(''),
   anonfunc :args         curlyTrans:body                -> ('(function (' + args.join(',') + ')' + body + ')'),
   funcdecl  :name :args  curlyTrans:body                -> ('function ' + name + '(' + args.join(',') + ')' + body),
