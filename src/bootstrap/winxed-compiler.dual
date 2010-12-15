@@ -7,7 +7,7 @@ ometa WinxedParser <: Parser {
   nameRest     = nameFirst | digit,
   iName        = firstAndRest(#nameFirst, #nameRest):r                               -> r.join(''),
   isKeyword :x = ?WinxedParser._isKeyword(x),
-  name         = iName:n ~isKeyword(n)                                               -> [#name, n=='self' ? '$elf' : n],
+  name         = iName:n ~isKeyword(n)                                               -> [#name, n],
   keyword      = iName:k isKeyword(k)                                                -> [k, k],
   hexDigit     = char:x {SELF['hexDigits'].indexOf(x.toLowerCase())}:v ?(v >= 0)     -> v,
   hexLit       = hexLit:n hexDigit:d                                                 -> (n * 16 + d)
