@@ -1,0 +1,31 @@
+
+function main(argv) {
+    using extern Test.More;
+    using Test.More.plan;
+    using Test.More.ok;
+    using Test.More.is;
+
+    plan(3);
+    var a = new A();
+
+    ok(!throws( function () {a.matchAll('4', 'rule');} ), 'accept a digit');
+    ok(!throws( function () {a.matchAll('Q', 'rule');} ), 'accept a letter');
+    ok( throws( function () {a.matchAll('&', 'rule');} ), 'reject non-alphanum');
+
+    is( a.matchAll('5', 'rule'), 'digit'  );
+    is( a.matchAll('q', 'rule'), 'letter' );
+}
+
+function throws (f) {
+    try {
+	f();
+	return false;
+    } catch (e) {
+	return true;
+    }
+}
+
+ometa A {
+    rule digit  -> #digit,
+    rule letter -> #letter
+}
