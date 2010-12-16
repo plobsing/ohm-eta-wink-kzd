@@ -80,9 +80,11 @@ class ListOMInputStream : OMInputStream {
 }
 
 function makeListOMInputStream[anon](var lst) {
-  int idx = 0;
-  string klass = idx < elements(lst) ? 'ListOMInputStream' : 'OMInputStreamEnd';
-  return get_class(klass).new( lst:[named('lst')], idx:[named('idx')] );
+  int idx   = 0;
+  var klass = get_class(idx < elements(lst) ? 'ListOMInputStream' : 'OMInputStreamEnd');
+  // XXX workaround buggy tailcall into native methods
+  var obj   = klass.new( lst:[named('lst')], idx:[named('idx')] );
+  return obj;
 }
 
 // XXX delegation in stead of inheritance
