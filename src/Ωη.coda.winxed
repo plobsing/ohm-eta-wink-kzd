@@ -3,7 +3,7 @@ function keywords_hash[anon, immediate]() {
   var keywords = ["break", "case", "catch", "continue", "default", "do", "else",
                   "for", "function", "if", "in", "instanceof", "new", "return", "switch",
                   "self", "throw", "try", "var", "while", "ometa", "class", "using",
-		  "extern", "static"];
+		  "extern", "static", "string", "int", "num" ];
   var hsh = {};
   for (string k in keywords)
     hsh[k] = k;
