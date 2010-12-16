@@ -88,7 +88,7 @@ ometa OMetaTranslator {
   XOr        transFn*:xs                       {xs.unshift((SELF['name'] + "." + SELF['rName']).toProgramString())}
                                            -> ['self._xor(', xs.join(','), ')']                                    .join(''),
   And        notLast(#trans)*:xs trans:y
-             {xs.push('return ' + y)}      -> ['(function(){', xs.join(';'), ';}).call(self)']                      .join(''),
+             {xs.push('return ' + y)}      -> ['(function(var self){', xs.join(';'), ';})(self)']                      .join(''),
   And                                      -> '',
   Opt        transFn:x                     -> ['self._opt(',           x, ')']                                     .join(''),
   Many       transFn:x                     -> ['self._many(',          x, ')']                                     .join(''),
@@ -117,7 +117,7 @@ ometa OMetaTranslator {
   locals   = !(SELF['seen'] = {}) [ local+:vs ] -> vs                                          .join('')
            | []                            -> '',
   trans    = [:t apply(t):ans]             -> ans,
-  transFn  = trans:x                       -> ['(function(){return ', x, ';})']                                     .join('')
+  transFn  = trans:x                       -> ['(function(var self){return ', x, ';})']                                     .join('')
 }
 
 // vim: sts=2 sw=2 et ft=javascript : 

@@ -19,10 +19,10 @@ class WinxedParser {
 class OMetaTranslator {
   function jumpTableCode(var cases) {
     var buf = new StringBuilder;
-    buf.push("(function(){switch(self._apply('anything')){");
+    buf.push("(function(var self){switch(self._apply('anything')){");
     for (var x in cases)
       buf.push("case " + x[0] + ":return " + x[1] + ";");
-    buf.push("default: throw self.fail;}}.call(self)");
+    buf.push("default: throw self.fail;}})(self)");
     return str(buf);
   }
 }
