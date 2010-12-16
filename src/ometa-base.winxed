@@ -389,23 +389,23 @@ class OMeta {
     return c;
   }
 
-  function space() { return self._cclass_pred(CCLASS_WHITESPACE); }
+  function space() { return self._cclass_char(CCLASS_WHITESPACE); }
 
   function spaces() {
     return self._many( function (var _self) { return _self._apply('space'); } );
   }
 
-  function digit() { return self._cclass_pred(CCLASS_NUMERIC); }
+  function digit() { return self._cclass_char(CCLASS_NUMERIC); }
 
-  function hexdigit() { return self._cclass_pred(CCLASS_HEXADECIMAL); }
+  function hexdigit() { return self._cclass_char(CCLASS_HEXADECIMAL); }
 
-  function lower() { return self._cclass_pred(CCLASS_LOWERCASE); }
+  function lower() { return self._cclass_char(CCLASS_LOWERCASE); }
 
-  function upper() { return self._cclass_pred(CCLASS_UPPERCASE); }
+  function upper() { return self._cclass_char(CCLASS_UPPERCASE); }
 
-  function letter() { return self._cclass_pred(CCLASS_ALPHABETIC); }
+  function letter() { return self._cclass_char(CCLASS_ALPHABETIC); }
 
-  function letterOrDigit() { return self._cclass_pred(CCLASS_ALPHANUMERIC); }
+  function letterOrDigit() { return self._cclass_char(CCLASS_ALPHANUMERIC); }
 
   function firstAndRest() {
     var first = self._apply('anything');
