@@ -206,7 +206,7 @@ ometa WinxedTranslator {
   send     :msg trans:recv trans*:args                  -> (recv + '.' + msg + '(' + args.join(',') + ')'),
   new      :cls trans:arg                               -> ('new ' + cls + '(' + arg + ')'),
   var      :type :name                                  -> (type + ' ' + name),
-  varinit  :type :name :init                            -> (type + ' ' + name + ' = ' + init),
+  varinit  :type :name trans:init                       -> (type + ' ' + name + ' = ' + init),
   throw    trans:x                                      -> ('throw ' + x),
   try      curlyTrans:x :name curlyTrans:c              -> ('try ' + x + 'catch(' + name + ')' + c),
   json     trans*:props                                 -> ('({' + props.join(',') + '})'),
