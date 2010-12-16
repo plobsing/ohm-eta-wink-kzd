@@ -128,7 +128,7 @@ class OMeta {
 
       self.input.memo[rule] = failer;
       var ans               = callmethodwithargs(self, method, []);
-      self.input.memo[rule] = memoRec
+      origInput.memo[rule]  = memoRec
                             = { 'ans': ans, 'nextInput': self.input };
 
       if (failer.used) {
