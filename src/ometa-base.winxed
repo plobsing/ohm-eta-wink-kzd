@@ -67,20 +67,19 @@ class OMInputStreamEnd : OMInputStream {
 }
 
 class ListOMInputStream : OMInputStream {
-  function init[vtable]() {
+  function init_pmc[vtable](var v) {
     self.hd = self.lst[self.idx];
   }
   function head() { return self.hd; }
   function tail() {
     using static makeListOMInputStream;
-    if (!self.tl)
+    if (self.tl == null)
       self.tl = makeListOMInputStream(self.lst, self.idx + 1);
     return self.tl;
   }
 }
 
-function makeListOMInputStream[anon](var lst) {
-  int idx   = 0;
+function makeListOMInputStream[anon](var lst, int idx[optional]) {
   var klass = get_class(idx < elements(lst) ? 'ListOMInputStream' : 'OMInputStreamEnd');
   // XXX workaround buggy tailcall into native methods
   var obj   = klass.new( lst:[named('lst')], idx:[named('idx')] );
@@ -102,7 +101,7 @@ class OMeta {
   var fail;
   var stash;
 
-  function init[vtable]() {
+  function init_pmc[vtable](var v) {
     using static fail;
     self.fail  = fail;
     self.stash = {};
@@ -130,7 +129,7 @@ class OMeta {
       self.input.memo[rule] = failer;
       var ans               = callmethodwithargs(self, method, []);
       self.input.memo[rule] = memoRec
-                            = { 'ans': result, 'nextInput': self.input };
+                            = { 'ans': ans, 'nextInput': self.input };
 
       if (failer.used) {
 	var sentinel = self.input;
