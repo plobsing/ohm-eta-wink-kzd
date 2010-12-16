@@ -31,6 +31,8 @@ ometa WinxedParser <: Parser {
   token :tt    = tok:t ?(t[0] == tt)                                                 -> t[1],
   spacesNoNl   = (~'\n' space)*,
 
+  nameTok      = "name",
+
   expr         = orExpr:e ( "?"   expr:t   ":" expr:f                                -> [#condExpr, e, t, f]
                           | "="   expr:rhs                                           -> [#set,  e, rhs]
                           | "+="  expr:rhs                                           -> [#mset, e, "+",  rhs]
@@ -132,9 +134,11 @@ ometa WinxedParser <: Parser {
                | "return" ( expr
                           | empty -> [#get, UNDEF] ):e sc                            -> [#return, e]
                | expr:e sc                                                           -> e
+               | "using" "extern":t       listOf(#nameTok, '.'):fqn sc               -> [#using, fqn.join('.'), t]
+               | "using" ( "static" | empty -> UNDEF ):t "name":n   sc               -> [#using, n, t]
                | ";"                                                                 -> [#get, "null"],
   classRest    = "{" classElem*:es "}"                                               -> [#begin].concat(es),
-  classBases   = ":" listOf(#name, ","):bs                                           -> bs,
+  classBases   = ":" listOf(#nameTok, ","):bs                                        -> bs,
   classBases   = empty                                                               -> [],
   classVar     = var:v ?(v[0] == 'var') sc                                           -> [#var].concat(v),
   classElem    = funcDecl
@@ -196,6 +200,8 @@ ometa WinxedTranslator {
   for      trans:init trans:cond trans:upd
            curlyTrans:body                              -> ('for(' + init + ';' + cond + ';' + upd + ')' + body),
   forIn    trans:x trans:arr curlyTrans:body            -> ('for(' + x + ' in ' + arr + ')' + body),
+  using    :name UNDEF                                  -> ('using ' + name),
+  using    :name :type                                  -> ('using ' + type + ' ' + name),
   begin    blockSemiTrans*:xs                           -> ('{' + xs.join('') + '}'),
   top      trans*:xs                                    -> xs.join(''),
   anonfunc :args         curlyTrans:body                -> ('(function (' + args.join(',') + ')' + body + ')'),
