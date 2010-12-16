@@ -134,8 +134,9 @@ ometa WinxedParser <: Parser {
                | "return" ( expr
                           | empty -> [#get, UNDEF] ):e sc                            -> [#return, e]
                | expr:e sc                                                           -> e
-               | "using" "extern":t       listOf(#nameTok, '.'):fqn sc               -> [#using, fqn.join('.'), t]
-               | "using" ( "static" | empty -> UNDEF ):t "name":n   sc               -> [#using, n, t]
+               | "using" "static":t "name":n                  sc                     -> [#using, n, t]
+               | "using" "extern":t listOf(#nameTok, '.'):fqn sc                     -> [#using, fqn.join('.'), t]
+               | "using"            listOf(#nameTok, '.'):fqn sc                     -> [#using, fqn.join('.'), UNDEF]
                | ";"                                                                 -> [#get, "null"],
   classRest    = "{" classElem*:es "}"                                               -> [#begin].concat(es),
   classBases   = ":" listOf(#nameTok, ","):bs                                        -> bs,
