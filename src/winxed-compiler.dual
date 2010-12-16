@@ -104,7 +104,7 @@ ometa WinxedParser <: Parser {
                        | empty -> [#get, 'null'] ):i                                 -> [#varinit].concat(v).concat([i]),
   varNoInit    = var:v                                                               -> [#var].concat(v),
   stmt         = block
-               | varInit
+               | varInit:r sc                                                        -> r
                | "if" "(" expr:c ")" stmt:t ( "else" stmt
                                             | empty -> [#get, ''] ):f                -> [#if, c, t, f]
                | "while" "(" expr:c ")" stmt:s                                       -> [#while,   c, s]
