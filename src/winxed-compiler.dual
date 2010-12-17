@@ -145,7 +145,15 @@ ometa WinxedParser <: Parser {
   classElem    = funcDecl
                | classVar,
 
-  funcDecl     = "function" "name":n funcRest:f                                      -> [#funcdecl, n].concat(f),
+  flag         = "name":n ( "(" expr:arg ")" -> arg
+                          | empty            -> UNDEF
+                          ):b                                                        -> [#flag, n, b],
+  flagsList    = "[" listOf(#flag, ','):fs "]"                                       -> [#flaglist].concat(fs),
+
+  funcDecl     = "function" "name":n 
+                      ( flagsList
+                      | empty       -> UNDEF
+                      ):flags        funcRest:f                                      -> [#funcdecl, n, flags].concat(f),
   classDecl    = "class"    "name":n classBases:bs classRest:c                       -> [#classdecl, n, bs, c],
 
   srcElems     = stmt*:ss                                                            -> [#begin].concat(ss),
@@ -205,8 +213,12 @@ ometa WinxedTranslator {
   using    :name :type                                  -> ('using ' + type + ' ' + name),
   begin    blockSemiTrans*:xs                           -> ('{' + xs.join('') + '}'),
   top      trans*:xs                                    -> xs.join(''),
-  anonfunc :args         curlyTrans:body                -> ('(function (' + args.join(',') + ')' + body + ')'),
-  funcdecl  :name :args  curlyTrans:body                -> ('function ' + name + '(' + args.join(',') + ')' + body),
+  flag     :name UNDEF                                  -> name,
+  flag     :name :arg                                   -> (name + '(' + arg + ')'),
+  flaglist trans*:fs                                    -> fs.join(','),
+  anonfunc :args                    curlyTrans:body     -> ('(function (' + args.join(',') + ')' + body + ')'),
+  funcdecl  :name UNDEF       :args curlyTrans:body     -> ('function ' + name +                '(' + args.join(',') + ')' + body),
+  funcdecl  :name trans:flags :args curlyTrans:body     -> ('function ' + name + '[' + flags + '](' + args.join(',') + ')' + body),
   classdecl :name :bases curlyTrans:body                -> ('class ' + name + (STRLEN(bases) > 0 ? ':' + bases.join(',') : '') + body),
 
   call     trans:fn trans*:args                         -> (fn + '(' + args.join(',') + ')'),
