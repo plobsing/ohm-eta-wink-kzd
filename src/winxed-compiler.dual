@@ -96,7 +96,8 @@ ometa WinxedParser <: Parser {
   json         = "{" listOf(#jsonBinding, ','):bs "}"                                -> [#json].concat(bs),
   jsonBinding  = jsonPropName:n ":" expr:v                                           -> [#binding, n, v],
   jsonPropName = "name" | "number" | "string",
-  formal       = spaces "name",
+  formal       = "name"
+               | var:v -> v.join(' '),
   anonFunc     = "function" funcRest:f                                               -> [#anonfunc].concat(f),
   funcRest     = "(" listOf(#formal, ','):fs ")" "{" srcElems:ss "}"                 -> [fs, ss],
   sc           = ";",
