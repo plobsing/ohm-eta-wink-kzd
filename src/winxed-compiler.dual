@@ -80,7 +80,7 @@ ometa WinxedParser <: Parser {
                             ),
   primExpr     = primExpr:p ( "[" expr:i "]"                                         -> [#getp, i, p]
                             | "." "name":m "(" listOf(#expr, ','):as ")"             -> [#send, m, p].concat(as)
-                            | "." "name":f                                           -> [#geta, f, p]
+                            | "." "name":f                                           -> [#geta, [#get, f], p]
                             | "(" listOf(#expr, ','):as ")"                          -> [#call, p].concat(as)
                             )
                | primExprHd,
