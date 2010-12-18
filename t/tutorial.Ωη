@@ -57,7 +57,7 @@ ometa Calc {
 
 function interpreter_test(string targ) {
   var m = new Calc;
-  return m.matchAll(targ, expr);
+  return m.matchAll(targ, 'expr');
 }
 
 // parser and simple interpreter combo
@@ -75,8 +75,6 @@ ometa CalcParser {
            | number:n                 -> ['num', n],
   expr     = addExpr
 }
-
-tree = CalcParser.matchAll('6*(4+3)', 'expr') 
 
 ometa CalcInterpreter {
   interp = ['num' anything:x]        -> x
@@ -111,8 +109,6 @@ ometa MLishCalcCompiler {
   comp ['div' comp:x comp:y] -> ('(' + x + '/' + y + ')')
 }
 
-code = CalcCompiler.match(tree, 'comp')
-
 // a neat trick: dispatch on node tags using higher-order rule "apply"
 ometa TrickyCalcCompiler {
   comp [anything:t apply(t):ans] -> ans,
@@ -123,11 +119,10 @@ ometa TrickyCalcCompiler {
   div  comp:x comp:y             -> ('(' + x + '/' + y + ')')
 }
 
-code = CalcCompiler.match(tree, 'comp')
-
 function compilers_test(string targ) {
   var parse  = new CalcParser;
   var tree   = parse.matchAll(targ, 'expr');
+  var compile;
 
   compile    = new CalcCompiler;
   var vanila = compile.match(tree, 'comp');
