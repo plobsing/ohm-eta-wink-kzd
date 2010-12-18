@@ -160,7 +160,7 @@ class OMeta {
     for (int i = elements(args) - 1; i >= 0; i--)
       self._prependInput(args[i]);
     var method = find_method(self, rule);
-    return callmethodwithargs(self, rule, []);
+    return callmethodwithargs(self, method, []);
   }
 
   function _superApplyWithArgs(string super_name, string rule, var args[slurpy]) {
@@ -171,7 +171,7 @@ class OMeta {
   }
 
   function _prependInput(var v) {
-    self.input = OMInputStream(v, self.input);
+    self.input = new 'OMInputStream'({ 'hd':v, 'tl':self.input });
   }
 
   function memoizeParameterizedRules() {
