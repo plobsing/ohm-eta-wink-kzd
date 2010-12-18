@@ -36,7 +36,14 @@ ometa L {
 
 function recognizer_test(string targ) {
   var m = new L;
-  return m.matchAll(targ, 'expr');
+  try {
+    m.matchAll(targ, 'expr');
+    return true;
+  } catch (e) {
+    if (e !== m.fail)
+      throw e;
+    return false;
+  }
 }
 
 // a recognizer that also interprets
