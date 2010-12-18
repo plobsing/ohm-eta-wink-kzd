@@ -91,6 +91,7 @@ ometa WinxedParser <: Parser {
                | "string":s                                                          -> [#string, s]
                | anonFunc
                | "new" "name":n "(" ( expr | empty -> UNDEF ):e ")"                  -> [#new, n, e]
+               | "new" "name":n                                                      -> [#new, n, UNDEF]
                | "[" listOf(#expr, ','):es "]"                                       -> [#arr].concat(es)
                | json,
   json         = "{" listOf(#jsonBinding, ','):bs "}"                                -> [#json].concat(bs),
