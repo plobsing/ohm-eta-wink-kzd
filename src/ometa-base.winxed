@@ -101,6 +101,11 @@ class OMeta {
   var fail;
   var stash;
 
+  function init[vtable]() {
+    using static fail;
+    self.fail = fail;
+  }
+
   function init_pmc[vtable](var v) {
     using static fail;
     self.fail  = fail;
