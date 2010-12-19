@@ -171,7 +171,8 @@ class OMeta {
   function _superApplyWithArgs(string super_name, string rule, var args[slurpy]) {
     for (int i = elements(args) - 1; i >= 0; i--)
       self._prependInput(args[i]);
-    var method = find_method(super_name, rule);
+    var klass  = get_class(super_name);
+    var method = klass.find_method(rule);
     return callmethodwithargs(self, method, []);
   }
 
