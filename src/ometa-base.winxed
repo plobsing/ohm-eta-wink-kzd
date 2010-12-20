@@ -290,13 +290,13 @@ class OMeta {
   function _form(var x) {
     using static fail;
     using static is_sequenceable;
-    using static toOMInputStream;
+    using static makeListOMInputStream;
     var v = self._apply('anything');
     if (!is_sequenceable(v))
       throw fail;
     var origInput = self.input;
     {
-      self.input = toOMInputStream(v);
+      self.input = makeListOMInputStream(v);
       var r = callmethodwithargs(self, x, []);
       self._apply('end');
     }
