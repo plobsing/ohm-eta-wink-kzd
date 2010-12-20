@@ -356,8 +356,7 @@ class OMeta {
   function exactly() {
     using static fail;
     var wanted = self._apply('anything');
-    // XXX not sure if === is as useful in winxed
-    if (self._apply('anything') === wanted)
+    if (self._apply('anything') == wanted)
       return wanted;
     throw fail;
   }
