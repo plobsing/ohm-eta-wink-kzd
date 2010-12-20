@@ -29,7 +29,6 @@ ometa WinxedParser <: Parser {
   tok          = spaces (name | keyword | number | str | special),
   toks         = token*:ts spaces end                                                -> ts,
   token :tt    = tok:t ?(t[0] == tt)                                                 -> t[1],
-  spacesNoNl   = (~'\n' space)*,
 
   nameTok      = "name",
 
@@ -74,8 +73,8 @@ ometa WinxedParser <: Parser {
                | "--"     postfix:p                                                  -> [#preop, "--",       p]
                | "!"      unary:p                                                    -> [#unop,  "!",        p]
                | postfix,
-  postfix      = primExpr:p ( spacesNoNl "++"                                        -> [#postop, "++", p]
-                            | spacesNoNl "--"                                        -> [#postop, "--", p]
+  postfix      = primExpr:p ( "++"                                                   -> [#postop, "++", p]
+                            | "--"                                                   -> [#postop, "--", p]
                             | empty                                                  -> p
                             ),
   primExpr     = primExpr:p ( "[" expr:i "]"                                         -> [#getp, i, p]
@@ -131,7 +130,7 @@ ometa WinxedParser <: Parser {
                  "}"                                                                 -> [#switch, e].concat(cs)
                | "break" sc                                                          -> [#break]
                | "continue" sc                                                       -> [#continue]
-               | "throw" spacesNoNl expr:e sc                                        -> [#throw, e]
+               | "throw" expr:e sc                                                   -> [#throw, e]
                | "try" block:t "catch" "(" "name":e ")" block:c                      -> [#try, t, e, c]
                | "return" ( expr
                           | empty -> [#get, UNDEF] ):e sc                            -> [#return, e]
