@@ -7,8 +7,8 @@ ometa WinxedParser <: Parser {
   nameRest     = nameFirst | digit,
   iName        = firstAndRest(#nameFirst, #nameRest):r                               -> r.join(''),
   isKeyword :x = ?SELF._isKeyword(x),
-  name         = iName:n ~isKeyword(n)                                               -> [#name, n],
   keyword      = iName:k isKeyword(k)                                                -> [k, k],
+  nameTok      = iName:n                                                             -> [#name, n],
   hexDigit     = char:x {SELF['hexDigits'].indexOf(x.toLowerCase())}:v ?(v >= 0)     -> v,
   hexLit       = hexLit:n hexDigit:d                                                 -> (n * 16 + d)
                | hexDigit,
@@ -26,11 +26,11 @@ ometa WinxedParser <: Parser {
                  | '+'   | ``--'' | ``-='' | '-'     | ``*='' | '*'     | ``/=''
                  | '/'   | ``%='' | '%'    | ``&&='' | ``&&'' | ``||='' | ``||''
                  | '.'   | '!'                                                   ):s -> [s, s],
-  tok          = spaces (name | keyword | number | str | special),
+  tok          = spaces (keyword | nameTok | number | str | special),
   toks         = token*:ts spaces end                                                -> ts,
   token :tt    = tok:t ?(t[0] == tt)                                                 -> t[1],
 
-  nameTok      = "name",
+  name         = "name",
 
   expr         = orExpr:e ( "?"   expr:t   ":" expr:f                                -> [#condExpr, e, t, f]
                           | "="   expr:rhs                                           -> [#set,  e, rhs]
@@ -135,12 +135,12 @@ ometa WinxedParser <: Parser {
                | "return" ( expr
                           | empty -> [#get, UNDEF] ):e sc                            -> [#return, e]
                | expr:e sc                                                           -> e
-               | "using" "static":t "name":n                  sc                     -> [#using, n, t]
-               | "using" "extern":t listOf(#nameTok, '.'):fqn sc                     -> [#using, fqn.join('.'), t]
-               | "using"            listOf(#nameTok, '.'):fqn sc                     -> [#using, fqn.join('.'), UNDEF]
+               | "using" "static":t "name":n               sc                        -> [#using, n, t]
+               | "using" "extern":t listOf(#name, '.'):fqn sc                        -> [#using, fqn.join('.'), t]
+               | "using"            listOf(#name, '.'):fqn sc                        -> [#using, fqn.join('.'), UNDEF]
                | ";"                                                                 -> [#get, "null"],
   classRest    = "{" classElem*:es "}"                                               -> [#begin].concat(es),
-  classBases   = ":" listOf(#nameTok, ","):bs                                        -> bs,
+  classBases   = ":" listOf(#name, ","):bs                                           -> bs,
   classBases   = empty                                                               -> [],
   classVar     = var:v ?(v[0] == 'var') sc                                           -> [#var].concat(v),
   classElem    = funcDecl
