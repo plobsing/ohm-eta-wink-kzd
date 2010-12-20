@@ -30,7 +30,7 @@ ometa WinxedParser <: Parser {
   toks         = token*:ts spaces end                                                -> ts,
   token :tt    = tok:t ?(t[0] == tt)                                                 -> t[1],
 
-  name         = "name",
+  name         = spaces nameTok:t                                                    -> t[1],
 
   expr         = orExpr:e ( "?"   expr:t   ":" expr:f                                -> [#condExpr, e, t, f]
                           | "="   expr:rhs                                           -> [#set,  e, rhs]
