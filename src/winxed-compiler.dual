@@ -78,31 +78,31 @@ ometa WinxedParser <: Parser {
                             | empty                                                  -> p
                             ),
   primExpr     = primExpr:p ( "[" expr:i "]"                                         -> [#getp, i, p]
-                            | "." "name":m "(" listOf(#expr, ','):as ")"             -> [#send, m, p].concat(as)
-                            | "." "name":f                                           -> [#geta, [#get, f], p]
+                            | "." name:m "(" listOf(#expr, ','):as ")"               -> [#send, m, p].concat(as)
+                            | "." name:f                                             -> [#geta, [#get, f], p]
                             | "(" listOf(#expr, ','):as ")"                          -> [#call, p].concat(as)
                             )
                | primExprHd,
   primExprHd   = "(" expr:e ")"                                                      -> e
                | "self"                                                              -> [#self]
-               | "name":n                                                            -> [#get, n]
+               | name:n                                                              -> [#get, n]
                | "number":n                                                          -> [#number, n]
                | "string":s                                                          -> [#string, s]
                | anonFunc
-               | "new" "name":n "(" ( expr | empty -> UNDEF ):e ")"                  -> [#new, n, e]
-               | "new" "name":n                                                      -> [#new, n, UNDEF]
+               | "new" name:n "(" ( expr | empty -> UNDEF ):e ")"                    -> [#new, n, e]
+               | "new" name:n                                                        -> [#new, n, UNDEF]
                | "[" listOf(#expr, ','):es "]"                                       -> [#arr].concat(es)
                | json,
   json         = "{" listOf(#jsonBinding, ','):bs "}"                                -> [#json].concat(bs),
   jsonBinding  = jsonPropName:n ":" expr:v                                           -> [#binding, n, v],
-  jsonPropName = "name" | "number" | "string",
-  formal       = "name"
+  jsonPropName = name | "number" | "string",
+  formal       = name
                | var:v -> v.join(' '),
   anonFunc     = "function" funcRest:f                                               -> [#anonfunc].concat(f),
   funcRest     = "(" listOf(#formal, ','):fs ")" "{" srcElems:ss "}"                 -> [fs, ss],
   sc           = ";",
   block        = "{" srcElems:ss "}"                                                 -> ss,
-  var          = ("var"|"string"|"int"|"num"):t "name":n                             -> [t, n],
+  var          = ("var"|"string"|"int"|"num"):t name:n                               -> [t, n],
   varInit      = var:v ( "=" expr
                        | empty -> [#get, 'null'] ):i                                 -> [#varinit].concat(v).concat([i]),
   varNoInit    = var:v                                                               -> [#var].concat(v),
@@ -131,11 +131,11 @@ ometa WinxedParser <: Parser {
                | "break" sc                                                          -> [#break]
                | "continue" sc                                                       -> [#continue]
                | "throw" expr:e sc                                                   -> [#throw, e]
-               | "try" block:t "catch" "(" "name":e ")" block:c                      -> [#try, t, e, c]
+               | "try" block:t "catch" "(" name:e ")" block:c                        -> [#try, t, e, c]
                | "return" ( expr
                           | empty -> [#get, UNDEF] ):e sc                            -> [#return, e]
                | expr:e sc                                                           -> e
-               | "using" "static":t "name":n               sc                        -> [#using, n, t]
+               | "using" "static":t name:n               sc                          -> [#using, n, t]
                | "using" "extern":t listOf(#name, '.'):fqn sc                        -> [#using, fqn.join('.'), t]
                | "using"            listOf(#name, '.'):fqn sc                        -> [#using, fqn.join('.'), UNDEF]
                | ";"                                                                 -> [#get, "null"],
@@ -146,16 +146,16 @@ ometa WinxedParser <: Parser {
   classElem    = funcDecl
                | classVar,
 
-  flag         = "name":n ( "(" expr:arg ")" -> arg
-                          | empty            -> UNDEF
-                          ):b                                                        -> [#flag, n, b],
+  flag         = name:n ( "(" expr:arg ")" -> arg
+                        | empty            -> UNDEF
+                        ):b                                                          -> [#flag, n, b],
   flagsList    = "[" listOf(#flag, ','):fs "]"                                       -> [#flaglist].concat(fs),
 
-  funcDecl     = "function" "name":n 
+  funcDecl     = "function" name:n 
                       ( flagsList
                       | empty       -> UNDEF
                       ):flags        funcRest:f                                      -> [#funcdecl, n, flags].concat(f),
-  classDecl    = "class"    "name":n classBases:bs classRest:c                       -> [#classdecl, n, bs, c],
+  classDecl    = "class"    name:n classBases:bs classRest:c                         -> [#classdecl, n, bs, c],
 
   srcElems     = stmt*:ss                                                            -> [#begin].concat(ss),
 
