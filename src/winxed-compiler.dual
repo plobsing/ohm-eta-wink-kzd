@@ -85,19 +85,19 @@ ometa WinxedParser <: Parser {
                | primExprHd,
   primExprHd   = "(" expr:e ")"                                                      -> e
                | "self"                                                              -> [#self]
-               | name:n                                                              -> [#get, n]
                | "number":n                                                          -> [#number, n]
                | "string":s                                                          -> [#string, s]
                | anonFunc
                | "new" name:n "(" ( expr | empty -> UNDEF ):e ")"                    -> [#new, n, e]
                | "new" name:n                                                        -> [#new, n, UNDEF]
                | "[" listOf(#expr, ','):es "]"                                       -> [#arr].concat(es)
-               | json,
+               | json
+               | name:n                                                              -> [#get, n],
   json         = "{" listOf(#jsonBinding, ','):bs "}"                                -> [#json].concat(bs),
   jsonBinding  = jsonPropName:n ":" expr:v                                           -> [#binding, n, v],
-  jsonPropName = name | "number" | "string",
-  formal       = name
-               | var:v -> v.join(' '),
+  jsonPropName = "number" | "string" | name,
+  formal       = var:v -> v.join(' ')
+               | name,
   anonFunc     = "function" funcRest:f                                               -> [#anonfunc].concat(f),
   funcRest     = "(" listOf(#formal, ','):fs ")" "{" srcElems:ss "}"                 -> [fs, ss],
   sc           = ";",
