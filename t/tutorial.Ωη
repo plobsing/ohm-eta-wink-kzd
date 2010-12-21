@@ -95,7 +95,7 @@ function tree_interp_test(string targ) {
   var parse  = new CalcParser;
   var tree   = parse.matchAll(targ, 'expr');
   var interp = new CalcInterpreter;
-  return interp.matchAll(tree, 'interp');
+  return interp.match(tree, 'interp');
 }
 
 // we can write a "compiler" instead
