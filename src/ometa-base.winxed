@@ -5,7 +5,7 @@ function fail[anon, immediate]() {
 }
 
 function is_sequenceable[anon](var x) {
-  if (x instanceof String || x instanceof Array)
+  if (x instanceof String || x instanceof ResizablePMCArray)
     return true;
   else
     return false;
