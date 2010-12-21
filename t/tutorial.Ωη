@@ -1,6 +1,6 @@
 function main[main] (var argv) {
   string expr    = '6*(4+3)';
-  int    result  = 6*(4+3);
+  int    result  =  6*(4+3);
   string invalid = 'fhqwhgads';
 
   using extern Test.More;
@@ -48,7 +48,7 @@ function recognizer_test(string targ) {
 
 // a recognizer that also interprets
 ometa Calc {
-  digit    = ^digit:d                 -> d.digitValue(),
+  digit    = ^digit:d                 -> ( int(d) ),
   number   = number:n digit:d         -> (n * 10 + d)
            | digit,
   addExpr  = addExpr:x '+' mulExpr:y  -> (x + y)
@@ -69,7 +69,7 @@ function interpreter_test(string targ) {
 
 // parser and simple interpreter combo
 ometa CalcParser {
-  digit    = ^digit:d                 -> d.digitValue(),
+  digit    = ^digit:d                 -> int(d),
   number   = number:n digit:d         -> (n * 10 + d)
            | digit,
   addExpr  = addExpr:x '+' mulExpr:y  -> ['add', x, y]
