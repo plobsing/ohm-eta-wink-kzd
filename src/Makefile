@@ -1,5 +1,7 @@
-NODE = node
-CPP  = cpp
+NODE   = node
+CPP    = cpp
+WINXED = winxed
+PARROT = parrot
 
 CPP_FLAGS     = -E -P
 OJS_CPP_FLAGS = -DJS
@@ -74,6 +76,11 @@ GEN_FILES = \
 %.winxed: %.Ωη stage0.js Ωηc.js
 	$(NODE) Ωηc.js $<
 
+%.pir: %.winxed
+	$(WINXED) -c $<
+
+%.pbc: %.pir
+	$(PARROT) -o $@ $<
 
 # magic targets
 
