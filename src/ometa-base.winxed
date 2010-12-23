@@ -91,7 +91,7 @@ class OMInputStreamProxy : OMInputStream {
   var target;
   function tail() {
     var tail = self.target.tail();
-    var proxy = new OMInputStreamProxy({ 'target': self.target.tail });
+    var proxy = new 'OMInputStreamProxy'({ 'target': self.target.tail });
     return proxy;
   }
 }
@@ -346,7 +346,7 @@ class OMeta {
   function foreign() {
     var g      = self._apply('anything');
     var r      = self._apply('anything');
-    var proxy  = new OMInputStreamProxy({ 'target': self.input });
+    var proxy  = new 'OMInputStreamProxy'({ 'target': self.input });
     var gi     = g.new( proxy:[named('input')] );
     var ans    = gi._apply(r);
     self.input = gi.input.target;
