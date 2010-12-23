@@ -1,0 +1,54 @@
+/* winxed based OMeta/Winxed -> Winxed compiler both partially and fully bootstrapped */
+
+function main[main](var argv) {
+  argv.shift(); // ignore program name
+  for (string srcfile in argv) {
+    if (substr(srcfile, length(srcfile) - 3) != ".Ωη") {
+      warn("Ignoring file of unknown type `" + srcfile + "'\n");
+      continue;
+    }
+
+    string destfile = substr(srcfile, 0, length(srcfile) - 3) + '.st2.winxed';
+    warn(srcfile + " -> " + destfile + "\n");
+
+    string src  = slurpfile(srcfile);
+    string code = translateCode(src);
+    dumpfile(destfile, code);
+  }
+}
+
+function translateCode(string s) {
+  using extern stage1;
+  using extern dumper;
+
+  var tree = (new OMetaWinxedParser).matchAll(s, 'topLevel', null, function(var m, int i) {
+      say('parse error at index ' + string(i));
+      _dumper(m);
+      throw m.fail;
+  });
+
+  _dumper(tree);
+
+  return (new OMetaWinxedTranslator).match(tree, 'trans', null, function(var m, int i) {
+      say("translation error (shouldn't happen) at index " + string(i));
+      _dumper(m);
+      throw m.fail;
+  });
+}
+
+function warn(string msg) {
+  getinterp().stderr_handle().puts(msg);
+}
+
+function slurpfile(string filename) {
+  var fh = new FileHandle;
+  fh.open(filename, 'r');
+  return fh.readall();
+}
+
+function dumpfile(string filename, string content) {
+  var fh = new FileHandle;
+  fh.open(filename, 'w');
+  fh.print(content);
+  fh.close();
+}
