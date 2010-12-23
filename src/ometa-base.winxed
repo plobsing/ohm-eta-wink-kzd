@@ -347,7 +347,7 @@ class OMeta {
     var g      = self._apply('anything');
     var r      = self._apply('anything');
     var proxy  = new 'OMInputStreamProxy'({ 'target': self.input });
-    var gi     = g.new( proxy:[named('input')] );
+    var gi     = get_class(g).new( proxy:[named('input')] );
     var ans    = gi._apply(r);
     self.input = gi.input.target;
     return ans;
