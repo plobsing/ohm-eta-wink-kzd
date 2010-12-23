@@ -75,7 +75,10 @@ GEN_FILES = \
     $(WX_ST1_GRAMMARS) \
     $(WX_ST2_GRAMMARS) \
     ometa-js.js \
-    stage0.js
+    stage0.js \
+    stage1.winxed \
+    stage1.pir \
+    stage1.pbc \
 
 # suffix rules
 
