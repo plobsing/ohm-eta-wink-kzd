@@ -30,19 +30,29 @@ JS_GRAMMARS = \
     ometa-winxed-compiler.js \
     ometa-optimizer.js
 
-WX_GRAMMARS = \
-    winxed-compiler.winxed \
-    ometa-compiler.winxed \
-    ometa-winxed-compiler.winxed \
-    ometa-optimizer.winxed
+WX_ST1_GRAMMARS = \
+    winxed-compiler.st1.winxed \
+    ometa-compiler.st1.winxed \
+    ometa-winxed-compiler.st1.winxed \
+    ometa-optimizer.st1.winxed
+
+WX_ST2_GRAMMARS = \
+    winxed-compiler.st2.winxed \
+    ometa-compiler.st2.winxed \
+    ometa-winxed-compiler.st2.winxed \
+    ometa-optimizer.st2.winxed
 
 OMJS_FILES = \
     $(OMJS_LIB) \
     $(OMJS_GRAMMARS)
 
-OMWX_FILES = \
+OMWX_ST1_FILES = \
     $(OMWX_LIB) \
-    $(WX_GRAMMARS)
+    $(WX_ST1_GRAMMARS)
+
+OMWX_ST2_FILES = \
+    $(OMWX_LIB) \
+    $(WX_ST2_GRAMMARS)
 
 STAGE0_FILES = \
     ojs.capo.js \
@@ -52,15 +62,20 @@ STAGE0_FILES = \
 
 STAGE1_FILES = \
     Ωη.capo.winxed \
-    $(OMWX_FILES) \
+    $(OMWX_ST1_FILES) \
+    Ωη.coda.winxed
+
+STAGE2_FILES = \
+    Ωη.capo.winxed \
+    $(OMWX_ST2_FILES) \
     Ωη.coda.winxed
 
 GEN_FILES = \
     $(JS_GRAMMARS) \
-    $(WX_GRAMMARS) \
+    $(WX_ST1_GRAMMARS) \
+    $(WX_ST2_GRAMMARS) \
     ometa-js.js \
     stage0.js
-
 
 # suffix rules
 
@@ -73,8 +88,11 @@ GEN_FILES = \
 %.Ωη: %.dual
 	$(CPP) $(CPP_FLAGS) $(OWX_CPP_FLAGS) $< $@
 
-%.winxed: %.Ωη stage0.js Ωηc.js
+%.st1.winxed: %.Ωη stage0.js Ωηc.js
 	$(NODE) Ωηc.js $<
+
+%.st2.winxed: %.Ωη stage1.pbc ometac.winxed
+	$(WINXED) ometac.winxed $<
 
 %.pir: %.winxed
 	$(WINXED) -c $<
@@ -88,7 +106,6 @@ default: stage0.js stage1.winxed
 
 clean:
 	rm -rf $(GEN_FILES)
-
 
 # specialised rules
 
