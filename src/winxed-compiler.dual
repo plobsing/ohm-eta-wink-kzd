@@ -5,7 +5,7 @@ ometa WinxedParser <: Parser {
   space        = ^space | fromTo('//', '\n') | fromTo('/*', '*/'),
   nameFirst    = letter | '_',
   nameRest     = nameFirst | digit,
-  iName        = firstAndRest(#nameFirst, #nameRest):r                               -> r.join(''),
+  iName        = firstAndRest(#nameFirst, #nameRest):r                               -> JOIN(r, ''),
   isKeyword :x = ?SELF._isKeyword(x),
   keyword      = iName:k isKeyword(k)                                                -> [k, k],
   nameTok      = iName:n                                                             -> [#name, n],
@@ -13,12 +13,12 @@ ometa WinxedParser <: Parser {
   hexLit       = hexLit:n hexDigit:d                                                 -> (n * 16 + d)
                | hexDigit,
   number       = ``0x'' hexLit:n                                                     -> [#number, n]
-               | digit+:ws ('.' digit+ | empty -> []):fs                             -> [#number, parseFloat(ws.join('') + '.' +
-                                                                                                             fs.join(''))],
+               | digit+:ws ('.' digit+ | empty -> []):fs                             -> [#number, parseFloat(JOIN(ws, '') + '.' +
+                                                                                                             JOIN(fs, ''))],
   escapeChar   = '\\' char:c                                                         -> unescape('\\' + c),
-  str          = seq('"""')  (escapeChar | ~seq('"""') char)*:cs seq('"""')          -> [#str, cs.join('')]
-               | '\'' (escapeChar | ~'\'' char)*:cs '\''                             -> [#str, cs.join('')]
-               | '"'  (escapeChar | ~'"'  char)*:cs '"'                              -> [#str, cs.join('')]
+  str          = seq('"""')  (escapeChar | ~seq('"""') char)*:cs seq('"""')          -> [#str, JOIN(cs, '')]
+               | '\'' (escapeChar | ~'\'' char)*:cs '\''                             -> [#str, JOIN(cs, '')]
+               | '"'  (escapeChar | ~'"'  char)*:cs '"'                              -> [#str, JOIN(cs, '')]
                | ('#' | '`') iName:n                                                 -> [#str, n],
   special      = ( '('   | ')'    | '{'    | '}'     | '['    | ']'     | ','    
                  | ';'   | '?'    | ':'    | ``!=='' | ``!='' | ``==='' | ``==''
@@ -96,7 +96,7 @@ ometa WinxedParser <: Parser {
   json         = "{" listOf(#jsonBinding, ','):bs "}"                                -> [#json].concat(bs),
   jsonBinding  = jsonPropName:n ":" expr:v                                           -> [#binding, n, v],
   jsonPropName = "number" | "str" | name,
-  formal       = var:v -> v.join(' ')
+  formal       = var:v -> JOIN(v, ' ')
                | name,
   anonFunc     = "function" funcRest:f                                               -> [#anonfunc].concat(f),
   funcRest     = "(" listOf(#formal, ','):fs ")" "{" srcElems:ss "}"                 -> [fs, ss],
@@ -136,8 +136,8 @@ ometa WinxedParser <: Parser {
                           | empty -> [#get, UNDEF] ):e sc                            -> [#return, e]
                | expr:e sc                                                           -> e
                | "using" "static":t name:n               sc                          -> [#using, n, t]
-               | "using" "extern":t listOf(#name, '.'):fqn sc                        -> [#using, fqn.join('.'), t]
-               | "using"            listOf(#name, '.'):fqn sc                        -> [#using, fqn.join('.'), UNDEF]
+               | "using" "extern":t listOf(#name, '.'):fqn sc                        -> [#using, JOIN(fqn, '.'), t]
+               | "using"            listOf(#name, '.'):fqn sc                        -> [#using, JOIN(fqn, '.'), UNDEF]
                | ";"                                                                 -> [#get, "null"],
   classRest    = "{" classElem*:es "}"                                               -> [#begin].concat(es),
   classBases   = ":" listOf(#name, ","):bs                                           -> bs,
@@ -179,7 +179,7 @@ ometa WinxedSemActionParser <: WinxedParser {
 ometa WinxedTranslator {
   trans          = [:t apply(t):ans]                    -> ans,
   curlyTrans     = [#begin curlyTrans:r]                -> r
-                 | [#begin blockSemiTrans*:rs]          -> ('{' + rs.join('') + '}')
+                 | [#begin blockSemiTrans*:rs]          -> ('{' + JOIN(rs, '') + '}')
                  | blockSemiTrans:r                     -> ('{' + r + '}'),
   blockSemiTrans = trans:x ( (?(x[STRLEN(x) - 1] == '}') -> x
                              | empty                    -> (x + ';')
@@ -191,7 +191,7 @@ ometa WinxedTranslator {
   continue                                              -> 'continue',
   number   :n                                           -> ('(' + n + ')'),
   string   :s                                           -> s.toProgramString(),
-  arr      trans*:xs                                    -> ('[' + xs.join(',') + ']'),
+  arr      trans*:xs                                    -> ('[' + JOIN(xs, ',') + ']'),
   unop     :op trans:x                                  -> ('(' + op + ' ' + x + ')'),
   getp     trans:fd trans:x                             -> (x + '[' + fd + ']'),
   geta     trans:fd trans:x                             -> (x + '.' + fd),
@@ -212,27 +212,27 @@ ometa WinxedTranslator {
   forIn    trans:x trans:arr curlyTrans:body            -> ('for(' + x + ' in ' + arr + ')' + body),
   using    :name UNDEF                                  -> ('using ' + name),
   using    :name :type                                  -> ('using ' + type + ' ' + name),
-  begin    blockSemiTrans*:xs                           -> ('{' + xs.join('') + '}'),
-  top      trans*:xs                                    -> xs.join(''),
+  begin    blockSemiTrans*:xs                           -> ('{' + JOIN(xs, '') + '}'),
+  top      trans*:xs                                    -> JOIN(xs, ''),
   flag     :name UNDEF                                  -> name,
   flag     :name :arg                                   -> (name + '(' + arg + ')'),
-  flaglist trans*:fs                                    -> fs.join(','),
-  anonfunc :args                    curlyTrans:body     -> ('(function (' + args.join(',') + ')' + body + ')'),
-  funcdecl  :name UNDEF       :args curlyTrans:body     -> ('function ' + name +                '(' + args.join(',') + ')' + body),
-  funcdecl  :name trans:flags :args curlyTrans:body     -> ('function ' + name + '[' + flags + '](' + args.join(',') + ')' + body),
-  classdecl :name :bases curlyTrans:body                -> ('class ' + name + (STRLEN(bases) > 0 ? ':' + bases.join(',') : '') + body),
+  flaglist trans*:fs                                    -> JOIN(fs, ','),
+  anonfunc :args                    curlyTrans:body     -> ('(function (' +                           JOIN(args, ',') + ')' + body + ')'),
+  funcdecl  :name UNDEF       :args curlyTrans:body     -> ('function ' + name +                '(' + JOIN(args, ',') + ')' + body),
+  funcdecl  :name trans:flags :args curlyTrans:body     -> ('function ' + name + '[' + flags + '](' + JOIN(args, ',') + ')' + body),
+  classdecl :name :bases curlyTrans:body                -> ('class ' + name + (STRLEN(bases) > 0 ? ':' + JOIN(bases, ',') : '') + body),
 
-  call     trans:fn trans*:args                         -> (fn + '(' + args.join(',') + ')'),
-  send     :msg trans:recv trans*:args                  -> (recv + '.' + msg + '(' + args.join(',') + ')'),
+  call     trans:fn trans*:args                         -> (fn + '(' + JOIN(args, ',') + ')'),
+  send     :msg trans:recv trans*:args                  -> (recv + '.' + msg + '(' + JOIN(args, ',') + ')'),
   new      :cls UNDEF                                   -> ('new ' + cls + '()'),
   new      :cls trans:arg                               -> ('new ' + cls + '(' + arg + ')'),
   var      :type :name                                  -> (type + ' ' + name),
   varinit  :type :name trans:init                       -> (type + ' ' + name + ' = ' + init),
   throw    trans:x                                      -> ('throw ' + x),
   try      curlyTrans:x :name curlyTrans:c              -> ('try ' + x + 'catch(' + name + ')' + c),
-  json     trans*:props                                 -> ('({' + props.join(',') + '})'),
+  json     trans*:props                                 -> ('({' + JOIN(props, ',') + '})'),
   binding  :name trans:val                              -> (name.toProgramString() + ': ' + val),
-  switch   trans:x trans*:cases                         -> ('switch(' + x + '){' + cases.join(';') + '}'),
+  switch   trans:x trans*:cases                         -> ('switch(' + x + '){' + JOIN(cases, ';') + '}'),
   case     trans:x trans:y                              -> ('case ' + x + ': '+ y),
   default          trans:y                              -> ('default: ' + y)
 }

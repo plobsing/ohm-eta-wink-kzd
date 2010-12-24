@@ -56,7 +56,7 @@ ometa JumpTableOptimization <: NullOptimization {
   Or  (jtChoices('Or')  | trans)*:cs -> ['Or'].concat(cs),
   XOr (jtChoices('XOr') | trans)*:cs -> ['XOr'].concat(cs),
   quotedString  = &string [ '"'  (OMetaParser.eChar:c ~end -> c)*:cs '"'
-                          | '\'' (OMetaParser.eChar:c ~end -> c)*:cs '\'']               -> cs.join(''),
+                          | '\'' (OMetaParser.eChar:c ~end -> c)*:cs '\'']               -> JOIN(cs, ''),
   jtChoice      = ['And' ['App' 'exactly' quotedString:x] anything*:rest]                  -> [x, ['And'].concat(rest)]
                 |        ['App' 'exactly' quotedString:x]                                  -> [x, ['Act', x.toProgramString()]],
   jtChoices :op = jtChoice:c {JUMPTABLE(op, c)}:jt (jtChoice:c {jt.add(c)})* setHelped -> jt.toTree()
