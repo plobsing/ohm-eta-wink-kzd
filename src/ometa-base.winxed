@@ -91,7 +91,7 @@ class OMInputStreamProxy : OMInputStream {
   var target;
   function tail() {
     var tail = self.target.tail();
-    var proxy = new 'OMInputStreamProxy'({ 'target': self.target.tail });
+    var proxy = new 'OMInputStreamProxy'({ 'target': self.target.tail() });
     return proxy;
   }
 }
