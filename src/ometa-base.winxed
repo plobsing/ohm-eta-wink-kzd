@@ -115,7 +115,15 @@ class OMeta {
     self.stash = {};
   }
 
+  function get_pmc_keyed[vtable](var k) {
+    return self.stash[k];
+  }
+
   function get_pmc_keyed_str[vtable](string k) {
+    return self.stash[k];
+  }
+
+  function set_pmc_keyed[vtable](var k) {
     return self.stash[k];
   }
 
