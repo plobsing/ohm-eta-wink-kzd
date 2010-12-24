@@ -89,6 +89,9 @@ function makeListOMInputStream[anon](var lst, int idx[optional]) {
 // XXX delegation in stead of inheritance
 class OMInputStreamProxy : OMInputStream {
   var target;
+  function head() { return self.target.head(); }
+  function type() { return self.target.type(); }
+  function upTo() { return self.target.upTo(); }
   function tail() {
     var tail = self.target.tail();
     var proxy = new 'OMInputStreamProxy'({ 'target': self.target.tail() });
