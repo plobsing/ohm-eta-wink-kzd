@@ -100,7 +100,7 @@ function tree_interp_test(string targ) {
 
 // we can write a "compiler" instead
 ometa CalcCompiler {
-  comp    = ['num' anything:x]    -> x.toString()
+  comp    = ['num' anything:x]    -> string(x)
           | ['add' comp:x comp:y] -> ('(' + x + '+' + y + ')')
           | ['sub' comp:x comp:y] -> ('(' + x + '-' + y + ')')
           | ['mul' comp:x comp:y] -> ('(' + x + '*' + y + ')')
@@ -109,7 +109,7 @@ ometa CalcCompiler {
 
 // spice things up with ML-like syntax
 ometa MLishCalcCompiler {
-  comp ['num' anything:x]    -> x.toString(),
+  comp ['num' anything:x]    -> string(x),
   comp ['add' comp:x comp:y] -> ('(' + x + '+' + y + ')'),
   comp ['sub' comp:x comp:y] -> ('(' + x + '-' + y + ')'),
   comp ['mul' comp:x comp:y] -> ('(' + x + '*' + y + ')'),
@@ -119,7 +119,7 @@ ometa MLishCalcCompiler {
 // a neat trick: dispatch on node tags using higher-order rule "apply"
 ometa TrickyCalcCompiler {
   comp [anything:t apply(t):ans] -> ans,
-  num  anything:x                -> x.toString(),
+  num  anything:x                -> string(x),
   add  comp:x comp:y             -> ('(' + x + '+' + y + ')'),
   sub  comp:x comp:y             -> ('(' + x + '-' + y + ')'),
   mul  comp:x comp:y             -> ('(' + x + '*' + y + ')'),
