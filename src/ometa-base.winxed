@@ -447,10 +447,13 @@ class OMeta {
     using static typeof;
     var m = typeof(self).new( input:[named('input')], fail:[named('fail')] );
     try {
+      // XXX workaround parrot bug: method tailcall in try
+      var result;
       if (args == null)
-	return m._apply(rule);
+	result = m._apply(rule);
       else
-	return m._applyWithArgs(rule, args:[flat]);
+	result = m._applyWithArgs(rule, args:[flat]);
+      return result;
     } catch (e) {
       if (e === fail && matchFailed != null) {
 	var input = m.input;
@@ -459,7 +462,7 @@ class OMeta {
 	    input = input.tl;
 	  --input.idx;
 	}
-	return matchFaile(m, input.idx);
+	return matchFailed(m, input.idx);
       }
       throw e;
     }
