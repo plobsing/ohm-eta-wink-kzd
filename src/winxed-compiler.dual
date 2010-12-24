@@ -16,10 +16,10 @@ ometa WinxedParser <: Parser {
                | digit+:ws ('.' digit+ | empty -> []):fs                             -> [#number, parseFloat(ws.join('') + '.' +
                                                                                                              fs.join(''))],
   escapeChar   = '\\' char:c                                                         -> unescape('\\' + c),
-  str          = seq('"""')  (escapeChar | ~seq('"""') char)*:cs seq('"""')          -> [#string, cs.join('')]
-               | '\'' (escapeChar | ~'\'' char)*:cs '\''                             -> [#string, cs.join('')]
-               | '"'  (escapeChar | ~'"'  char)*:cs '"'                              -> [#string, cs.join('')]
-               | ('#' | '`') iName:n                                                 -> [#string, n],
+  str          = seq('"""')  (escapeChar | ~seq('"""') char)*:cs seq('"""')          -> [#str, cs.join('')]
+               | '\'' (escapeChar | ~'\'' char)*:cs '\''                             -> [#str, cs.join('')]
+               | '"'  (escapeChar | ~'"'  char)*:cs '"'                              -> [#str, cs.join('')]
+               | ('#' | '`') iName:n                                                 -> [#str, n],
   special      = ( '('   | ')'    | '{'    | '}'     | '['    | ']'     | ','    
                  | ';'   | '?'    | ':'    | ``!=='' | ``!='' | ``==='' | ``==''
                  | ``='' | ``>='' | '>'    | ``<=''  | '<'    | ``++''  | ``+=''
@@ -86,7 +86,7 @@ ometa WinxedParser <: Parser {
   primExprHd   = "(" expr:e ")"                                                      -> e
                | "self"                                                              -> [#self]
                | "number":n                                                          -> [#number, n]
-               | "string":s                                                          -> [#string, s]
+               | "str":s                                                             -> [#string, s]
                | anonFunc
                | "new" name:n "(" ( expr | empty -> UNDEF ):e ")"                    -> [#new, n, e]
                | "new" name:n                                                        -> [#new, n, UNDEF]
@@ -95,7 +95,7 @@ ometa WinxedParser <: Parser {
                | name:n                                                              -> [#get, n],
   json         = "{" listOf(#jsonBinding, ','):bs "}"                                -> [#json].concat(bs),
   jsonBinding  = jsonPropName:n ":" expr:v                                           -> [#binding, n, v],
-  jsonPropName = "number" | "string" | name,
+  jsonPropName = "number" | "str" | name,
   formal       = var:v -> v.join(' ')
                | name,
   anonFunc     = "function" funcRest:f                                               -> [#anonfunc].concat(f),
