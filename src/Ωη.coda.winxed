@@ -7,6 +7,8 @@ function keywords_hash[anon, immediate]() {
   var hsh = {};
   for (string k in keywords)
     hsh[k] = k;
+
+  return hsh;
 }
 
 // class WinxedParser { /* re-open class */
