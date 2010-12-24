@@ -1,6 +1,6 @@
 function main[main] (var argv) {
-  string expr    = '6*(4+3)';
-  int    result  =  6*(4+3);
+  string expr    = '(6*(4+3))';
+  int    result  =  (6*(4+3));
   string invalid = 'fhqwhgads';
 
   using extern Test.More;
