@@ -101,29 +101,29 @@ function tree_interp_test(string targ) {
 // we can write a "compiler" instead
 ometa CalcCompiler {
   comp    = ['num' anything:x]    -> string(x)
-          | ['add' comp:x comp:y] -> ('(' + x + '+' + y + ')')
-          | ['sub' comp:x comp:y] -> ('(' + x + '-' + y + ')')
-          | ['mul' comp:x comp:y] -> ('(' + x + '*' + y + ')')
-          | ['div' comp:x comp:y] -> ('(' + x + '/' + y + ')')
+          | ['add' comp:x comp:y] -> ('(' + string(x) + '+' + string(y) + ')')
+          | ['sub' comp:x comp:y] -> ('(' + string(x) + '-' + string(y) + ')')
+          | ['mul' comp:x comp:y] -> ('(' + string(x) + '*' + string(y) + ')')
+          | ['div' comp:x comp:y] -> ('(' + string(x) + '/' + string(y) + ')')
 }
 
 // spice things up with ML-like syntax
 ometa MLishCalcCompiler {
   comp ['num' anything:x]    -> string(x),
-  comp ['add' comp:x comp:y] -> ('(' + x + '+' + y + ')'),
-  comp ['sub' comp:x comp:y] -> ('(' + x + '-' + y + ')'),
-  comp ['mul' comp:x comp:y] -> ('(' + x + '*' + y + ')'),
-  comp ['div' comp:x comp:y] -> ('(' + x + '/' + y + ')')
+  comp ['add' comp:x comp:y] -> ('(' + string(x) + '+' + string(y) + ')'),
+  comp ['sub' comp:x comp:y] -> ('(' + string(x) + '-' + string(y) + ')'),
+  comp ['mul' comp:x comp:y] -> ('(' + string(x) + '*' + string(y) + ')'),
+  comp ['div' comp:x comp:y] -> ('(' + string(x) + '/' + string(y) + ')')
 }
 
 // a neat trick: dispatch on node tags using higher-order rule "apply"
 ometa TrickyCalcCompiler {
   comp [anything:t apply(t):ans] -> ans,
   num  anything:x                -> string(x),
-  add  comp:x comp:y             -> ('(' + x + '+' + y + ')'),
-  sub  comp:x comp:y             -> ('(' + x + '-' + y + ')'),
-  mul  comp:x comp:y             -> ('(' + x + '*' + y + ')'),
-  div  comp:x comp:y             -> ('(' + x + '/' + y + ')')
+  add  comp:x comp:y             -> ('(' + string(x) + '+' + string(y) + ')'),
+  sub  comp:x comp:y             -> ('(' + string(x) + '-' + string(y) + ')'),
+  mul  comp:x comp:y             -> ('(' + string(x) + '*' + string(y) + ')'),
+  div  comp:x comp:y             -> ('(' + string(x) + '/' + string(y) + ')')
 }
 
 function compilers_test(string targ) {
