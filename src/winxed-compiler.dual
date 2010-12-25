@@ -13,7 +13,7 @@ ometa WinxedParser <: Parser {
   hexLit       = hexLit:n hexDigit:d                                                 -> (n * 16 + d)
                | hexDigit,
   number       = ``0x'' hexLit:n                                                     -> [#number, n]
-               | digit+:ws ('.' digit+ | empty -> []):fs                             -> [#number, parseFloat(JOIN(ws, '') + '.' +
+               | digit+:ws ('.' digit+ | empty -> []):fs                             -> [#number, PARSEFLOAT(JOIN(ws, '') + '.' +
                                                                                                              JOIN(fs, ''))],
   escapeChar   = '\\' char:c                                                         -> unescape('\\' + c),
   str          = seq('"""')  (escapeChar | ~seq('"""') char)*:cs seq('"""')          -> [#str, JOIN(cs, '')]
