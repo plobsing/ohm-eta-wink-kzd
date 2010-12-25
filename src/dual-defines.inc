@@ -6,6 +6,7 @@
   #define JUMPTABLE(op, choice) (new JumpTable(op, choice))
   #define JOIN(x, sep) (x.join(sep))
   #define PARSEFLOAT parseFloat
+  #define CONCAT concat
 #else /* WINXED */
   #define UNDEF null
   #define SELF  self
@@ -14,4 +15,5 @@
   #define JUMPTABLE(op, choice) (new JumpTable({ 'choiceOp': op, 'choice': choice }))
   #define JOIN(x, sep) join(sep, x)
   #define PARSEFLOAT float
+  #define CONCAT append
 #endif

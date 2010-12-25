@@ -9,12 +9,12 @@ ometa NullOptimization {
   trans     = [:t ?(SELF[t] != UNDEF) apply(t):ans] -> ans,
   optimize  = trans:x helped                         -> x,
 
-  App        :rule anything*:args          -> ['App', rule].concat(args),
+  App        :rule anything*:args          -> ['App', rule].CONCAT(args),
   Act        :expr                         -> ['Act', expr],
   Pred       :expr                         -> ['Pred', expr],
-  Or         trans*:xs                     -> ['Or'].concat(xs),
-  XOr        trans*:xs                     -> ['XOr'].concat(xs),
-  And        trans*:xs                     -> ['And'].concat(xs),
+  Or         trans*:xs                     -> ['Or'].CONCAT(xs),
+  XOr        trans*:xs                     -> ['XOr'].CONCAT(xs),
+  And        trans*:xs                     -> ['And'].CONCAT(xs),
   Opt        trans:x                       -> ['Opt',  x],
   Many       trans:x                       -> ['Many',  x],
   Many1      trans:x                       -> ['Many1', x],
@@ -24,27 +24,27 @@ ometa NullOptimization {
   Form       trans:x                       -> ['Form',      x],
   ConsBy     trans:x                       -> ['ConsBy',    x],
   IdxConsBy  trans:x                       -> ['IdxConsBy', x],
-  JumpTable  ([:c trans:e] -> [c, e])*:ces -> ['JumpTable'].concat(ces),
-  Interleave ([:m trans:p] -> [m, p])*:xs  -> ['Interleave'].concat(xs),
+  JumpTable  ([:c trans:e] -> [c, e])*:ces -> ['JumpTable'].CONCAT(ces),
+  Interleave ([:m trans:p] -> [m, p])*:xs  -> ['Interleave'].CONCAT(xs),
   Rule       :name :ls trans:body          -> ['Rule', name, ls, body]
 }
 
 ometa AssociativeOptimization <: NullOptimization {
   And trans:x end           setHelped -> x,
-  And transInside('And'):xs           -> ['And'].concat(xs),
+  And transInside('And'):xs           -> ['And'].CONCAT(xs),
   Or  trans:x end           setHelped -> x,
-  Or  transInside('Or'):xs            -> ['Or'].concat(xs),
+  Or  transInside('Or'):xs            -> ['Or'].CONCAT(xs),
   XOr trans:x end           setHelped -> x,
-  XOr transInside('XOr'):xs           -> ['XOr'].concat(xs),
+  XOr transInside('XOr'):xs           -> ['XOr'].CONCAT(xs),
 
-  transInside :t = [exactly(t) transInside(t):xs] transInside(t):ys setHelped -> xs.concat(ys)
-                 | trans:x                        transInside(t):xs           -> [x].concat(xs)
+  transInside :t = [exactly(t) transInside(t):xs] transInside(t):ys setHelped -> xs.CONCAT(ys)
+                 | trans:x                        transInside(t):xs           -> [x].CONCAT(xs)
                  |                                                            -> []
 }
 
 ometa SeqInliner <: NullOptimization {
-  App        = 'seq' :s end seqString(s):cs setHelped -> ['And'].concat(cs).concat([['Act', s]])
-             | :rule anything*:args                   -> ['App', rule].concat(args),
+  App        = 'seq' :s end seqString(s):cs setHelped -> ['And'].CONCAT(cs).CONCAT([['Act', s]])
+             | :rule anything*:args                   -> ['App', rule].CONCAT(args),
   inlineChar = OMetaParser.eChar:c ~end             -> ['App', 'exactly', c.toProgramString()],
   seqString  = &(:s ?(ISSTR(s)))
                  ( ['"'  inlineChar*:cs '"' ]         -> cs
@@ -53,17 +53,17 @@ ometa SeqInliner <: NullOptimization {
 }
 
 ometa JumpTableOptimization <: NullOptimization {
-  Or  (jtChoices('Or')  | trans)*:cs -> ['Or'].concat(cs),
-  XOr (jtChoices('XOr') | trans)*:cs -> ['XOr'].concat(cs),
+  Or  (jtChoices('Or')  | trans)*:cs -> ['Or'].CONCAT(cs),
+  XOr (jtChoices('XOr') | trans)*:cs -> ['XOr'].CONCAT(cs),
   quotedString  = &string [ '"'  (OMetaParser.eChar:c ~end -> c)*:cs '"'
                           | '\'' (OMetaParser.eChar:c ~end -> c)*:cs '\'']               -> JOIN(cs, ''),
-  jtChoice      = ['And' ['App' 'exactly' quotedString:x] anything*:rest]                  -> [x, ['And'].concat(rest)]
+  jtChoice      = ['And' ['App' 'exactly' quotedString:x] anything*:rest]                  -> [x, ['And'].CONCAT(rest)]
                 |        ['App' 'exactly' quotedString:x]                                  -> [x, ['Act', x.toProgramString()]],
   jtChoices :op = jtChoice:c {JUMPTABLE(op, c)}:jt (jtChoice:c {jt.add(c)})* setHelped -> jt.toTree()
 }
 
 ometa OMetaOptimizer {
-  optimizeGrammar = ['Grammar' :n :sn optimizeRule*:rs]          -> ['Grammar', n, sn].concat(rs),
+  optimizeGrammar = ['Grammar' :n :sn optimizeRule*:rs]          -> ['Grammar', n, sn].CONCAT(rs),
   optimizeRule    = :r (SeqInliner.optimize(r):r | empty)
                        ( AssociativeOptimization.optimize(r):r
                        | JumpTableOptimization.optimize(r):r

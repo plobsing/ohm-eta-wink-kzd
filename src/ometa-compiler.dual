@@ -17,9 +17,9 @@ ometa OMetaParser <: Parser {
   keyword :xs    = token(xs) ~letterOrDigit                            -> xs,
   args           = '(' listOf(#hostExpr, ','):xs ")"                   -> xs
                  | empty                                               -> [],
-  application    = "^"          name:rule args:as                      -> [#App, "super",                    "'" + rule + "'"].concat(as)
-                 | name:grm "." name:rule args:as                      -> [#App, "foreign", "'" + grm + "'", "'" + rule + "'"].concat(as)
-                 |              name:rule args:as                      -> [#App, rule].concat(as),
+  application    = "^"          name:rule args:as                      -> [#App, "super",                    "'" + rule + "'"].CONCAT(as)
+                 | name:grm "." name:rule args:as                      -> [#App, "foreign", "'" + grm + "'", "'" + rule + "'"].CONCAT(as)
+                 |              name:rule args:as                      -> [#App, rule].CONCAT(as),
   hostExpr       = WinxedSemActionParser.expr:r                           WinxedTranslator.trans(r),
   curlyHostExpr  = WinxedSemActionParser.curlySemAction:r                 WinxedTranslator.trans(r),
   primHostExpr   = WinxedSemActionParser.semAction:r                      WinxedTranslator.trans(r),
@@ -28,10 +28,10 @@ ometa OMetaParser <: Parser {
                  | "!"  atomicHostExpr:x                               -> [#Act, x],
   arrSemAction   = "->" atomicHostExpr:x                               -> [#Act, x],
   semPred        = "?"  atomicHostExpr:x                               -> [#Pred, x],
-  expr           = expr5(true):x ("|"  expr5(true))+:xs                -> [#Or,  x].concat(xs)
-                 | expr5(true):x ("||" expr5(true))+:xs                -> [#XOr, x].concat(xs)
+  expr           = expr5(true):x ("|"  expr5(true))+:xs                -> [#Or,  x].CONCAT(xs)
+                 | expr5(true):x ("||" expr5(true))+:xs                -> [#XOr, x].CONCAT(xs)
                  | expr5(false),
-  expr5 :ne      = interleavePart:x ("&&" interleavePart)+:xs          -> [#Interleave, x].concat(xs)
+  expr5 :ne      = interleavePart:x ("&&" interleavePart)+:xs          -> [#Interleave, x].CONCAT(xs)
                  | expr4(ne),
   interleavePart = "(" expr4(true):part ")"                            -> ["1", part]
                  | expr4(true):part modedIPart(part),
@@ -39,9 +39,9 @@ ometa OMetaParser <: Parser {
                  | [#And [#Many1 :part]]                               -> ["+", part]
                  | [#And [#Opt   :part]]                               -> ["?", part]
                  | :part                                               -> ["1", part],
-  expr4 :ne      =                expr3*:xs arrSemAction:act           -> [#And].concat(xs).concat([act])
-                 | ?ne            expr3+:xs                            -> [#And].concat(xs)
-                 | ?(ne == false) expr3*:xs                            -> [#And].concat(xs),
+  expr4 :ne      =                expr3*:xs arrSemAction:act           -> [#And].CONCAT(xs).CONCAT([act])
+                 | ?ne            expr3+:xs                            -> [#And].CONCAT(xs)
+                 | ?(ne == false) expr3*:xs                            -> [#And].CONCAT(xs),
   optIter :x     = '*'                                                 -> [#Many,  x]
                  | '+'                                                 -> [#Many1, x]
                  | '?'                                                 -> [#Opt,   x]
@@ -65,14 +65,14 @@ ometa OMetaParser <: Parser {
   ruleName       = name
                  | spaces tsString,
   rule           = &(ruleName:n) !(SELF['locals'] = ['fromIdx=self.input.idx'])
-                     rulePart(n):x ("," rulePart(n))*:xs               -> [#Rule, n, SELF['locals'], [#Or, x].concat(xs)],
+                     rulePart(n):x ("," rulePart(n))*:xs               -> [#Rule, n, SELF['locals'], [#Or, x].CONCAT(xs)],
   rulePart :rn   = ruleName:n ?(n == rn) expr4:b1 ( "=" expr:b2        -> [#And, b1, b2]
                                                   | empty              -> b1
                                                   ),
   grammar        = keyword('ometa') name:n
                      ( "<:" name | empty -> 'OMeta' ):sn
                      "{" listOf(#rule, ','):rs "}"                        OMetaOptimizer.optimizeGrammar(
-                                                                            [#Grammar, n, sn].concat(rs)
+                                                                            [#Grammar, n, sn].CONCAT(rs)
                                                                           )
 }
 
