@@ -284,7 +284,7 @@ class OMeta {
     var ans = has_first ? [first] : [];
     while (true) {
       var origInput = self.input;
-      try	{ callmethodwithargs(self, x, []); }
+      try	{ ans.push(callmethodwithargs(self, x, [])); }
       catch (e) {
 	if (e !== fail)
 	  throw e;
