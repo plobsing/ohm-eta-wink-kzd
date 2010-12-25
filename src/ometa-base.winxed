@@ -123,8 +123,8 @@ class OMeta {
     return self.stash[k];
   }
 
-  function set_pmc_keyed[vtable](var k) {
-    return self.stash[k];
+  function set_pmc_keyed[vtable](var k, var v) {
+    self.stash[k] = v;
   }
 
   function set_pmc_keyed_str[vtable](string k, var v) {
