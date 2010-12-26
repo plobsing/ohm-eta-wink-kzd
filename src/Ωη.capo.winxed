@@ -1,3 +1,40 @@
+/* lib abstraction */
+function escapeStringFor[anon, immediate]() {
+  var ret = new 'FixedStringArray'(256);
+
+  for (int c = 0; c < elements(ret); c++)
+    ret[c] = chr(c);
+  ret[ord("\\")] = "\\\\";
+  ret[ord('"' )] = '\\"';
+  ret[ord("'" )] = "\\'";
+  ret[ord("\r")] = "\\r";
+  ret[ord("\n")] = "\\n";
+  ret[ord("\t")] = "\\t";
+
+  return ret;
+}
+
+function toProgramString(string x) {
+  using static escapeStringFor;
+  int charCode = ord(x);
+  return charCode > 255 ? chr(charCode) : escapeStringFor[charCode];
+}
+
+function unescape(string x) {
+  if (substr(x, 0, 1) == "\\") {
+    string c;
+    switch (c = substr(x, 1, 1)) {
+      case "\\": return "\\";
+      case "r":  return "\r";
+      case "n":  return "\n";
+      case "t":  return "\t";
+      default:   return c;
+    }
+  } else {
+    return x;
+  }
+}
+
 /* ometa-optimizer */
 class JumpTable {
   var choiceOp;

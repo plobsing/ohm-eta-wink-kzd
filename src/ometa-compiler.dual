@@ -10,9 +10,9 @@ ometa OMetaParser <: Parser {
   eChar          = '\\' char:c                                         -> unescape('\\' +c)
                  | char,
   tsString       = '\'' (~'\'' eChar)*:xs '\''                         -> JOIN(xs, ''),
-  characters     = '`' '`' (~('\'' '\'') eChar)*:xs '\'' '\''          -> [#App, #seq,     JOIN(xs, '').toProgramString()],
-  sCharacters    = '"'     (~'"'         eChar)*:xs '"'                -> [#App, #token,   JOIN(xs, '').toProgramString()],
-  string         = (('#' | '`') tsName | tsString):xs                  -> [#App, #exactly, xs.toProgramString()],
+  characters     = '`' '`' (~('\'' '\'') eChar)*:xs '\'' '\''          -> [#App, #seq,     toProgramString(JOIN(xs, ''))],
+  sCharacters    = '"'     (~'"'         eChar)*:xs '"'                -> [#App, #token,   toProgramString(JOIN(xs, ''))],
+  string         = (('#' | '`') tsName | tsString):xs                  -> [#App, #exactly, toProgramString(xs)],
   number         = ('-' | empty -> ''):sign digit+:ds                  -> [#App, #exactly, sign + JOIN(ds, '')],
   keyword :xs    = token(xs) ~letterOrDigit                            -> xs,
   args           = '(' listOf(#hostExpr, ','):xs ")"                   -> xs
@@ -85,7 +85,7 @@ ometa OMetaTranslator {
   Act        :expr                         -> expr,
   Pred       :expr                         -> ('self._pred(' + expr + ')'),
   Or         transFn*:xs                   -> ('self._or(' +  JOIN(xs, ',') + ')'),
-  XOr        transFn*:xs                       {xs.unshift((SELF['name'] + "." + SELF['rName']).toProgramString())}
+  XOr        transFn*:xs                       {xs.unshift(toProgramString(SELF['name'] + "." + SELF['rName']))}
                                            -> ('self._xor(' + JOIN(xs, ',') + ')'),
   And        notLast(#trans)*:xs trans:y
              {xs.push('return ' + y)}      -> ('(function(var self){' + JOIN(xs, ';') + ';})(self)'),
@@ -108,8 +108,8 @@ ometa OMetaTranslator {
              {SELF['name']  = name}
              {SELF['sName'] = sName}
              trans*:rules                  -> ('class ' + name + ' : ' + sName + ' {' + JOIN(rules, '') + '}'),
-  intPart  = [:mode transFn:part]          -> (mode.toProgramString()  + "," + part),
-  jtCase   = [:x trans:e]                  -> [x.toProgramString(), e],
+  intPart  = [:mode transFn:part]          -> (toProgramString(mode)  + "," + part),
+  jtCase   = [:x trans:e]                  -> [toProgramString(x), e],
 
   local    = string:n ( ?(SELF['seen'][n])        -> ''
                       | !(SELF['seen'][n] = true) -> ('volatile var ' + n + ' ;')

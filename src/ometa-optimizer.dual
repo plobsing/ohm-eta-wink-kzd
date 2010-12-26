@@ -45,7 +45,7 @@ ometa AssociativeOptimization <: NullOptimization {
 ometa SeqInliner <: NullOptimization {
   App        = 'seq' :s end seqString(s):cs setHelped -> ['And'].CONCAT(cs).CONCAT([['Act', s]])
              | :rule anything*:args                   -> ['App', rule].CONCAT(args),
-  inlineChar = OMetaParser.eChar:c ~end             -> ['App', 'exactly', c.toProgramString()],
+  inlineChar = OMetaParser.eChar:c ~end               -> ['App', 'exactly', toProgramString(c)],
   seqString  = &(:s ?(ISSTR(s)))
                  ( ['"'  inlineChar*:cs '"' ]         -> cs
                  | ['\'' inlineChar*:cs '\'']         -> cs
@@ -58,7 +58,7 @@ ometa JumpTableOptimization <: NullOptimization {
   quotedString  = &string [ '"'  (OMetaParser.eChar:c ~end -> c)*:cs '"'
                           | '\'' (OMetaParser.eChar:c ~end -> c)*:cs '\'']               -> JOIN(cs, ''),
   jtChoice      = ['And' ['App' 'exactly' quotedString:x] anything*:rest]                  -> [x, ['And'].CONCAT(rest)]
-                |        ['App' 'exactly' quotedString:x]                                  -> [x, ['Act', x.toProgramString()]],
+                |        ['App' 'exactly' quotedString:x]                                  -> [x, ['Act', toProgramString(x)]],
   jtChoices :op = jtChoice:c {JUMPTABLE(op, c)}:jt (jtChoice:c {jt.add(c)})* setHelped -> jt.toTree()
 }
 

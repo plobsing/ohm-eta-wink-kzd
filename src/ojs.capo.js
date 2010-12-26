@@ -1,3 +1,8 @@
+/* lib abstraction */
+toProgramString = function (x) {
+  return x.toProgramString();
+}
+
 /* ometa-optimizer */
 JumpTable = function(choiceOp, choice) {
   this.choiceOp = choiceOp
