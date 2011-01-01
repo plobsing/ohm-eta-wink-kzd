@@ -14,10 +14,19 @@ function escapeStringFor[anon, immediate]() {
   return ret;
 }
 
-function toProgramString(string x) {
+function escapeChar(string x) {
   using static escapeStringFor;
   int charCode = ord(x);
   return charCode > 255 ? chr(charCode) : escapeStringFor[charCode];
+}
+
+function toProgramString(string x) {
+  var cs = new StringBuilder;
+  for (string c in x) {
+    c = escapeChar(c);
+    ${ push cs, c };
+  }
+  return string(cs);
 }
 
 function unescape(string x) {
