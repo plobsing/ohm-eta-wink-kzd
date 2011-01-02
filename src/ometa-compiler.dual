@@ -111,12 +111,12 @@ ometa OMetaTranslator {
   intPart  = [:mode transFn:part]          -> (toProgramString(mode)  + "," + part),
   jtCase   = [:x trans:e]                  -> [toProgramString(x), e],
 
-  local    = string:n ( ?(SELF['seen'][n])        -> ''
-                      | !(SELF['seen'][n] = true) -> ('volatile var ' + n + ' ;')
+  local    = string:n ( ?( SELF['seen'][n] != UNDEF ) -> ''
+                      | !( SELF['seen'][n]  = true  ) -> ('volatile var ' + n + ' ;')
                       ),
-
   locals   = !(SELF['seen'] = {}) [ local+:vs ] -> JOIN(vs, '')
            | []                            -> '',
+
   trans    = [:t apply(t):ans]             -> ans,
   transFn  = trans:x                       -> ('(function(var self){return ' + x + ';})')
 }
