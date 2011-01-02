@@ -437,7 +437,7 @@ class OMeta {
 
   function notLast() {
     var rule = self._apply('anything');
-    var ans  = self._apply('rule');
+    var ans  = self._apply(rule);
     self._lookahead(function (var _self) { return _self._apply(rule); });
     return ans;
   }
