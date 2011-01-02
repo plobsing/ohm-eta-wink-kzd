@@ -80,45 +80,45 @@ ometa OMetaParser <: Parser {
 // (Note that the "=" in a rule definition is optional, so you can give your rules an "ML feel".)
 ometa OMetaTranslator {
   App        'super' anything+:args        -> ('self._superApplyWithArgs("' + SELF['sName'] + '",' + JOIN(args, ',') + ')'),
-  App        :rule   anything+:args        -> ('self._applyWithArgs("' + rule + '",' +               JOIN(args, ',') + ')'),
-  App        :rule                         -> ('self._apply("' + rule + '")'),
+  App        :rule   anything+:args        -> ('self._applyWithArgs("' + string(rule) + '",' +               JOIN(args, ',') + ')'),
+  App        :rule                         -> ('self._apply("' + string(rule) + '")'),
   Act        :expr                         -> expr,
   Pred       :expr                         -> ('self._pred(' + expr + ')'),
   Or         transFn*:xs                   -> ('self._or(' +  JOIN(xs, ',') + ')'),
   XOr        transFn*:xs                       {xs.unshift(toProgramString(SELF['name'] + "." + SELF['rName']))}
                                            -> ('self._xor(' + JOIN(xs, ',') + ')'),
   And        notLast(#trans)*:xs trans:y
-             {xs.push('return ' + y)}      -> ('(function(var self){' + JOIN(xs, ';') + ';})(self)'),
+             {xs.push('return ' + string(y))}      -> ('(function(var self){' + JOIN(xs, ';') + ';})(self)'),
   And                                      -> '',
-  Opt        transFn:x                     -> ('self._opt(' +           x + ')'),
-  Many       transFn:x                     -> ('self._many(' +          x + ')'),
-  Many1      transFn:x                     -> ('self._many1(' +         x + ')'),
-  Set        :n trans:v                    -> (n + '=' + v),
-  Not        transFn:x                     -> ('self._not(' +           x + ')'),
-  Lookahead  transFn:x                     -> ('self._lookahead(' +     x + ')'),
-  Form       transFn:x                     -> ('self._form(' +          x + ')'),
-  ConsBy     transFn:x                     -> ('self._consumedBy(' +    x + ')'),
-  IdxConsBy  transFn:x                     -> ('self._idxConsumedBy(' + x + ')'),
+  Opt        transFn:x                     -> ('self._opt(' +           string(x) + ')'),
+  Many       transFn:x                     -> ('self._many(' +          string(x) + ')'),
+  Many1      transFn:x                     -> ('self._many1(' +         string(x) + ')'),
+  Not        transFn:x                     -> ('self._not(' +           string(x) + ')'),
+  Lookahead  transFn:x                     -> ('self._lookahead(' +     string(x) + ')'),
+  Form       transFn:x                     -> ('self._form(' +          string(x) + ')'),
+  ConsBy     transFn:x                     -> ('self._consumedBy(' +    string(x) + ')'),
+  IdxConsBy  transFn:x                     -> ('self._idxConsumedBy(' + string(x) + ')'),
+  Set        :n trans:v                    -> (string(n) + '=' + string(v)),
   JumpTable  jtCase*:cases                 -> SELF.jumpTableCode(cases),
   Interleave intPart*:xs                   -> ('self._interleave(' + JOIN(xs, ',') + ')'),
   
   Rule       :name {SELF['rName'] = name}
-             locals:ls trans:body          -> ('function ' + name + '(){' + ls + 'return ' + body + ';}'),
+             locals:ls trans:body          -> ('function ' + string(name) + '(){' + string(ls) + 'return ' + string(body) + ';}'),
   Grammar    :name :sName
              {SELF['name']  = name}
              {SELF['sName'] = sName}
-             trans*:rules                  -> ('class ' + name + ' : ' + sName + ' {' + JOIN(rules, '') + '}'),
-  intPart  = [:mode transFn:part]          -> (toProgramString(mode)  + "," + part),
+             trans*:rules                  -> ('class ' + string(name) + ' : ' + string(sName) + ' {' + JOIN(rules, '') + '}'),
+  intPart  = [:mode transFn:part]          -> (toProgramString(mode)  + "," + string(part)),
   jtCase   = [:x trans:e]                  -> [toProgramString(x), e],
 
   local    = string:n ( ?( SELF['seen'][n] != UNDEF ) -> ''
-                      | !( SELF['seen'][n]  = true  ) -> ('volatile var ' + n + ' ;')
+                      | !( SELF['seen'][n]  = true  ) -> ('volatile var ' + string(n) + ' ;')
                       ),
   locals   = !(SELF['seen'] = {}) [ local+:vs ] -> JOIN(vs, '')
            | []                            -> '',
 
   trans    = [:t apply(t):ans]             -> ans,
-  transFn  = trans:x                       -> ('(function(var self){return ' + x + ';})')
+  transFn  = trans:x                       -> ('(function(var self){return ' + string(x) + ';})')
 }
 
 // vim: sts=2 sw=2 et ft=javascript nowrap : 

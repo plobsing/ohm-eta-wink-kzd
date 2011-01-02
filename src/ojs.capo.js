@@ -3,6 +3,11 @@ toProgramString = function (x) {
   return x.toProgramString();
 }
 
+/* winxed emulation */
+string = function (x) {
+    return '' + x;
+}
+
 /* ometa-optimizer */
 JumpTable = function(choiceOp, choice) {
   this.choiceOp = choiceOp
