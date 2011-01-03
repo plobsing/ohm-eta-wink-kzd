@@ -7,7 +7,7 @@ ometa OMetaParser <: Parser {
   nameRest       = nameFirst | digit,
   tsName         = firstAndRest(#nameFirst, #nameRest):xs              -> JOIN(xs, ''),
   name           = spaces tsName,
-  eChar          = '\\' char:c                                         -> unescape('\\' +c)
+  eChar          = '\\' char:c                                         -> unescape('\\' + string(c))
                  | char,
   tsString       = '\'' (~'\'' eChar)*:xs '\''                         -> JOIN(xs, ''),
   characters     = '`' '`' (~('\'' '\'') eChar)*:xs '\'' '\''          -> [#App, #seq,     toProgramString(JOIN(xs, ''))],
@@ -17,8 +17,8 @@ ometa OMetaParser <: Parser {
   keyword :xs    = token(xs) ~letterOrDigit                            -> xs,
   args           = '(' listOf(#hostExpr, ','):xs ")"                   -> xs
                  | empty                                               -> [],
-  application    = "^"          name:rule args:as                      -> [#App, "super",                    "'" + rule + "'"].CONCAT(as)
-                 | name:grm "." name:rule args:as                      -> [#App, "foreign", "'" + grm + "'", "'" + rule + "'"].CONCAT(as)
+  application    = "^"          name:rule args:as                      -> [#App, "super",                       "'" + string(rule) + "'"].CONCAT(as)
+                 | name:grm "." name:rule args:as                      -> [#App, "foreign", "'" + string(grm) + "'", "'" + string(rule) + "'"].CONCAT(as)
                  |              name:rule args:as                      -> [#App, rule].CONCAT(as),
   hostExpr       = WinxedSemActionParser.expr:r                           WinxedTranslator.trans(r),
   curlyHostExpr  = WinxedSemActionParser.curlySemAction:r                 WinxedTranslator.trans(r),
@@ -79,9 +79,9 @@ ometa OMetaParser <: Parser {
 // By dispatching on the head of a list, the following idiom allows translators to avoid doing a linear search.
 // (Note that the "=" in a rule definition is optional, so you can give your rules an "ML feel".)
 ometa OMetaTranslator {
-  App        'super' anything+:args        -> ('self._superApplyWithArgs("' + SELF['sName'] + '",' + JOIN(args, ',') + ')'),
-  App        :rule   anything+:args        -> ('self._applyWithArgs("' + string(rule) + '",' +               JOIN(args, ',') + ')'),
-  App        :rule                         -> ('self._apply("' + string(rule) + '")'),
+  App        'super' anything+:args        -> ('self._superApplyWithArgs("' + string(SELF['sName']) + '",' + JOIN(args, ',') + ')'),
+  App        :rule   anything+:args        -> ('self._applyWithArgs("'      + string(rule)  + '",' + JOIN(args, ',') + ')'),
+  App        :rule                         -> ('self._apply("'              + string(rule) + '")'),
   Act        :expr                         -> expr,
   Pred       :expr                         -> ('self._pred(' + expr + ')'),
   Or         transFn*:xs                   -> ('self._or(' +  JOIN(xs, ',') + ')'),

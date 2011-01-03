@@ -4,12 +4,12 @@ function escapeStringFor[anon, immediate]() {
 
   for (int c = 0; c < elements(ret); c++)
     ret[c] = chr(c);
-  ret[ord("\\")] = "\\\\";
-  ret[ord('"' )] = '\\"';
+  ret[ord("\\")] = '\\';
+  ret[ord('"' )] = '\"';
   ret[ord("'" )] = "\\'";
-  ret[ord("\r")] = "\\r";
-  ret[ord("\n")] = "\\n";
-  ret[ord("\t")] = "\\t";
+  ret[ord("\r")] = '\r';
+  ret[ord("\n")] = '\n';
+  ret[ord("\t")] = '\t';
 
   return ret;
 }
@@ -22,17 +22,19 @@ function escapeChar(string x) {
 
 function toProgramString(string x) {
   var cs = new StringBuilder;
+  ${ push cs, '"' };
   for (string c in x) {
     c = escapeChar(c);
     ${ push cs, c };
   }
+  ${ push cs, '"' };
   return string(cs);
 }
 
 function unescape(string x) {
   if (substr(x, 0, 1) == "\\") {
-    string c;
-    switch (c = substr(x, 1, 1)) {
+    string c = substr(x, 1, 1);
+    switch (c) {
       case "\\": return "\\";
       case "r":  return "\r";
       case "n":  return "\n";
