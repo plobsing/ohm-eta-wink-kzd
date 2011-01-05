@@ -43,7 +43,9 @@ function load[anon, load]() {
 /* ometa-optimizer */
 // class NullOptimization { /* re-open class */
 function nullopt_init_pmc[method](var pmc) {
-  self['_didSomething'] = false;
+  // XXX workaround set_integer_keyed winxed optimization
+  var x = false;
+  self['_didSomething'] = x;
 }
 
 function load[anon, load]() {
