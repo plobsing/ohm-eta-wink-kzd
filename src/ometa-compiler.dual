@@ -83,7 +83,7 @@ ometa OMetaTranslator {
   App        :rule   anything+:args        -> ('self._applyWithArgs("'      + string(rule)  + '",' + JOIN(args, ',') + ')'),
   App        :rule                         -> ('self._apply("'              + string(rule) + '")'),
   Act        :expr                         -> expr,
-  Pred       :expr                         -> ('self._pred(' + expr + ')'),
+  Pred       :expr                         -> ('self._pred(' + string(expr) + ')'),
   Or         transFn*:xs                   -> ('self._or(' +  JOIN(xs, ',') + ')'),
   XOr        transFn*:xs                       {xs.unshift(toProgramString(SELF['name'] + "." + SELF['rName']))}
                                            -> ('self._xor(' + JOIN(xs, ',') + ')'),
