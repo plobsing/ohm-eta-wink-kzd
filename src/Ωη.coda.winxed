@@ -42,13 +42,13 @@ function load[anon, load]() {
 
 /* ometa-optimizer */
 // class NullOptimization { /* re-open class */
-function init_pmc[method](var pmc) {
+function nullopt_init_pmc[method](var pmc) {
   self['_didSomething'] = false;
 }
 
 function load[anon, load]() {
-  using static init_pmc;
-  get_class('NullOptimization').add_vtable_override('init_pmc', init_pmc);
+  using static nullopt_init_pmc;
+  get_class('NullOptimization').add_vtable_override('init_pmc', nullopt_init_pmc);
 }
 // } /* end class NullOptimization
 
