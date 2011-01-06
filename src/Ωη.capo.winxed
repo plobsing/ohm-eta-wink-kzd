@@ -52,7 +52,7 @@ class JumpTable {
   var choices;
   var choice;
 
-  function init[vtable] () {
+  function init_pmc[vtable](var init) {
     self.choices = {};
     self.add(self.choice);
     self.choice = null;

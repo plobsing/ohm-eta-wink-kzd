@@ -12,7 +12,7 @@
   #define SELF  self
   #define STRLEN(x) length(x)
   #define ISSTR(x)  (x instanceof 'String')
-  #define JUMPTABLE(op, choice) (new JumpTable({ 'choiceOp': op, 'choice': choice }))
+  #define JUMPTABLE(op, choice) (new 'JumpTable'({ 'choiceOp': op, 'choice': choice }))
   #define JOIN(x, sep) join(sep, x)
   #define PARSEFLOAT float
   #define CONCAT append
