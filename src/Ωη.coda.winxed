@@ -27,11 +27,13 @@ function load[anon, load]() {
 // class OMetaTranslator { /* re-open class */
 function jumpTableCode[method](var cases) {
   var buf = new StringBuilder;
-  buf.push("(function(var self){switch(self._apply('anything')){");
-  for (var x in cases)
-    buf.push("case " + x[0] + ":return " + x[1] + ";");
-  buf.push("default: throw self.fail;}})(self)");
-  return str(buf);
+  ${ push buf, "(function(var self){switch(self._apply('anything')){" };
+  for (var x in cases) {
+    string s = "case " + string(x[0]) + ":return " + string(x[1]) + ";";
+    ${ push buf, s };
+  }
+  ${ push buf, "default: throw self.fail;}})(self)" };
+  return string(buf);
 }
 
 function load[anon, load]() {
