@@ -8,6 +8,10 @@ string = function (x) {
     return '' + x;
 }
 
+find_method = function(self, name) {
+    return self[name];
+}
+
 /* ometa-optimizer */
 JumpTable = function(choiceOp, choice) {
   this.choiceOp = choiceOp

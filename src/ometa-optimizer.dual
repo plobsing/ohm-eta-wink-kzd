@@ -6,7 +6,7 @@
 ometa NullOptimization {
   setHelped = !(SELF['_didSomething'] = true),
   helped    = ?SELF['_didSomething'],
-  trans     = [:t ?(SELF[t] != UNDEF) apply(t):ans] -> ans,
+  trans     = [:t ?(find_method(SELF, t) != UNDEF) apply(t):ans] -> ans,
   optimize  = trans:x helped                         -> x,
 
   App        :rule anything*:args          -> ['App', rule].CONCAT(args),
