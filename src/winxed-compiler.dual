@@ -88,7 +88,9 @@ ometa WinxedParser <: Parser {
                | "number":n                                                          -> [#number, n]
                | "str":s                                                             -> [#string, s]
                | anonFunc
-               | "new" name:n "(" ( expr | empty -> UNDEF ):e ")"                    -> [#new, n, e]
+               | "new" ( name
+                       | "str":s -> toProgramString(s) ):cls
+                   "(" ( expr | empty -> UNDEF ):e ")"                               -> [#new, cls, e]
                | "new" name:n                                                        -> [#new, n, UNDEF]
                | "[" listOf(#expr, ','):es "]"                                       -> [#arr].CONCAT(es)
                | json
