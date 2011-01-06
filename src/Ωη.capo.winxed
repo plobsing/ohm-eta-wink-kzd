@@ -75,6 +75,7 @@ class JumpTable {
     var r = ['JumpTable'];
     for (var k in self.choices)
       r.push([k, self.choices[k]]);
+    return r;
   }
 }
 
