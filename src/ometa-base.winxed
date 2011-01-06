@@ -127,6 +127,10 @@ class OMeta {
     return self.stash[k];
   }
 
+  function get_integer_keyed[vtable](var k) {
+    return int(self.stash[k]);
+  }
+
   function set_pmc_keyed[vtable](var k, var v) {
     self.stash[k] = v;
   }
@@ -136,6 +140,10 @@ class OMeta {
   }
 
   function set_string_keyed[vtable](var k, string v) {
+    self.stash[k] = v;
+  }
+
+  function set_integer_keyed[vtable](var k, int v) {
     self.stash[k] = v;
   }
 
