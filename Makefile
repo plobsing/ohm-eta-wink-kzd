@@ -1,10 +1,10 @@
 # programs used in build (edit if appropriate)
-NODE    = node
-CPP     = cpp
+NODE          = node
+CPP           = cpp
 PARROT_CONFIG = parrot_config
-PARROT  = parrot
-WINXED  = winxed
-INSTALL = install
+PARROT        = parrot
+WINXED        = winxed
+INSTALL       = install
 
 # programs required by bootstrap makefile
 export CPP
@@ -14,13 +14,27 @@ export PARROT
 
 
 # read parrot configuration
-OMETAC_EXE = Ωη$(shell $(PARROT_CONFIG) exe)
-LIBDIR = $(shell $(PARROT_CONFIG) libdir)
-BINDIR = $(shell $(PARROT_CONFIG) bindir)
+EXE        = $(shell $(PARROT_CONFIG) exe)
+OMETAC_EXE = Ωη$(EXE)
+LIBDIR     = $(shell $(PARROT_CONFIG) libdir)
+BINDIR     = $(shell $(PARROT_CONFIG) bindir)
+PBC2EXE    = $(BINDIR)/pbc_to_exe$(EXE)
 
 .PHONY: build install bootstrap
 
 build: blib/ometa-winxed-compiler.pbc blib/ometa-winxed.pbc bin/$(OMETAC_EXE)
+
+blib/ometa-winxed-compiler.pbc: src/ometa-winxed-compiler.pir
+	$(PARROT) -o $@ $^
+
+blib/ometa-winxed.pbc: src/ometa-winxed.pir
+	$(PARROT) -o $@ $^
+
+bin/$(OMETAC_EXE): src/ometac.winxed
+	$(WINXED) -c src/ometac.winxed
+	$(PARROT) -o src/ometac.pbc src/ometac.pir
+	$(PBC2EXE) src/ometac.pbc
+	cp src/ometac$(EXE) $@
 
 install:
 	$(INSTALL) blib/ometa-winxed.pbc          $(LIBDIR)
