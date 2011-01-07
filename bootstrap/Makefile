@@ -1,8 +1,3 @@
-NODE   = node
-CPP    = cpp
-WINXED = winxed
-PARROT = parrot
-
 CPP_FLAGS     = -E -P
 OJS_CPP_FLAGS = -DJS
 OWX_CPP_FLAGS = -DWINXED
@@ -50,8 +45,8 @@ OMWX_ST1_FILES = \
     $(OMWX_LIB) \
     $(WX_ST1_GRAMMARS)
 
+# stage2 separates runtime and compiler for separate use
 OMWX_ST2_FILES = \
-    $(OMWX_LIB) \
     $(WX_ST2_GRAMMARS)
 
 STAGE0_FILES = \
@@ -119,4 +114,7 @@ stage0.js: $(STAGE0_FILES)
 	cat $^ > $@
 
 stage1.winxed: $(STAGE1_FILES)
+	cat $^ > $@
+
+stage2.winxed: $(STAGE2_FILES)
 	cat $^ > $@
