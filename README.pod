@@ -116,6 +116,7 @@ OMeta/JS  L<http://github.com/alexwarth/ometa-js/>
 =head1 LICENSE
 
 Copyright (c) 2010-2011 Peter Lobsinger  <plobsing@gmail.com>
+
 Copyright (c) 2007-2010 Alessandro Warth <awarth@cs.ucla.edu>
 
 Permission is hereby granted, free of charge, to any person
