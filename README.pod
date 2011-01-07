@@ -1,0 +1,142 @@
+=encoding utf8
+
+=head1 NAME
+
+Ωη;)XD - OMeta for Winxed
+
+=head1 DESCRIPTION
+
+Ωη;)XD (pronounced ohm-eta-wink-kzd) is an OMeta implementation using Winxed as
+a host language.
+
+=head2 OMeta
+
+OMeta is an object-oriented language for pattern matching, based on Parsing
+Expression Grammars (PEG), but generalized to arbitrary ordered iterable
+containers. It supports left-recursion through packrat memoization, except in
+cases where such memoization would be costly for little gain; specifically,
+parent-rule and parameterized-rule applications are not memoized and do not
+support left-recursion.
+
+=head2 Winxed
+
+Winxed is a programming language targetting the Parrot Virtual Machine. It
+maps fairly closely to the underlying VM semantics while providing a
+JavaScript-like syntax.
+
+=head2 Usage
+
+=head3 Command Line Use
+
+Ωη;)XD programs and modules can be compiled down to Winxed or executed directly
+using the C<Ωη> tool.
+
+  # directly execute
+  > Ωη mygrammar.Ωη
+
+  # compile a grammar to winxed
+  > Ωη -o mygrammar.winxed mygrammar.Ωη
+
+=head3 Programmatic Use
+
+Ωη;)XD grammars are compiled to classes which must be instantiated to be used
+for matching. Matching is done via the C<match> and C<matchAll> methods which
+take for arguments a rule name, an input, and optionally rule parameters and a
+failed match handler function. Results are returned, failures raise exceptions.
+
+C<match> and C<matchAll> differ in how they treat their inputs. C<matchAll>
+expects an iterable input to match against directly, while C<match> will wrap
+its argument in an iterable object before attempting the match.
+
+Here is an example Winxed program that uses an Ωη;)XD grammar.
+
+  function main(var argv) {
+    using extern ometa-base; // Ωη runtime library
+    using extern mygrammar;  // pre-compiled grammar
+
+    var grammar = new MyGrammar();
+
+    // match some simple rules
+    try { grammar.matchAll('StringRule', "Test String"); } catch (e) { say("Oops match failed"); }
+    try { grammar.matchAll('ListRule',   [ '+', 1, 2 ]); } catch (e) { say("Oops match failed"); }
+
+    // these two are the same
+    try { grammar.matchAll('ListRule',   [ 'Test String' ]); } catch (e) { say("Oops match failed"): }
+    try { grammar.match(   'ListRule',     'Test String'  ); } catch (e) { say("Oops match failed"); }
+  }
+
+Here is a sample grammar that might be used in the previous example.
+
+  ometa MyGrammar {
+      StringRule = 'Test String',
+      ListRule   = [ '+' digit+ ]
+                 | [ StringRule ]
+  }
+
+=head2 Differences from OMeta/JS
+
+Since Winxed is a different language from JavaScript, there are some slight
+differences between the Winxed and JavaScript implementations of OMeta. Some of
+the most important differences are listed below:
+
+=over
+
+=item State
+
+In JavaScript, methods, fields, and associative-array access share the same
+slots which are vivified on assignment. In Winxed, methods, fields, and
+associative-array access are disjoint, methods are not assignable, and
+assignment to missing fields causes an exception.
+
+Therefore, the recommended means of tracking state in the Winxed implementation
+is to use associative-array access exclusively. Names can be chosen arbitrarily
+without fear that these will conflict with rule names, or the underlying
+workings of the grammar.
+
+=item Concatenation
+
+In Winxed, as in JavaScript, string concatenation is done via the '+' operator.
+The difference, however is that while JavaScript overloads this operator
+dynamically, Winxed overloads this operator statically. To achieve string
+concatenation in stead of numeric addition, variables often must be coerced to
+strings (using the C<string()> builtin) before concatenation.
+
+=back
+
+=head1 SEE ALSO
+
+Winxed    L<http://winxed.org>
+
+Parrot VM L<http://parrot.org>
+
+OMeta     L<http://tinlizzie.org/ometa/>
+
+OMeta/JS  L<http://github.com/alexwarth/ometa-js/>
+
+=head1 LICENSE
+
+Copyright (c) 2010-2011 Peter Lobsinger  <plobsing@gmail.com>
+Copyright (c) 2007-2010 Alessandro Warth <awarth@cs.ucla.edu>
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+=cut
