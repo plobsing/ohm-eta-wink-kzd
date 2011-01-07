@@ -1972,4 +1972,109 @@ addattribute $P0, 'fail'
 .annotate 'line', 105
 addattribute $P0, 'stash'
 .end
+.namespace [ 'Parser' ]
+
+.sub 'listOf' :subid('WSubId_9') :method
+
+.annotate 'line', 499
+.lex '__WLEX_1', $P1
+.lex '__WLEX_2', $P2
+# Body
+# {
+.annotate 'line', 500
+# var rule: $P1
+$P1 = self.'_apply'('anything')
+.annotate 'line', 501
+# var delim: $P2
+$P2 = self.'_apply'('anything')
+.annotate 'line', 502
+.const 'Sub' $P4 = 'WSubId_10'
+newclosure $P3, $P4
+.annotate 'line', 510
+.const 'Sub' $P6 = 'WSubId_12'
+newclosure $P5, $P6
+.annotate 'line', 502
+.tailcall self.'_or'($P3, $P5)
+# }
+.annotate 'line', 512
+
+.end # listOf
+
+
+.sub '' :anon :subid('WSubId_10') :outer('WSubId_9')
+.param pmc __ARG_1
+
+.annotate 'line', 502
+$P2 = find_lex '__WLEX_1'
+$P3 = find_lex '__WLEX_2'
+# Body
+# {
+.annotate 'line', 503
+# var ans: $P1
+$P1 = __ARG_1.'_apply'($P2)
+.annotate 'line', 504
+.const 'Sub' $P5 = 'WSubId_11'
+newclosure $P4, $P5
+.annotate 'line', 504
+.tailcall __ARG_1.'_many'($P4, $P1)
+# }
+.annotate 'line', 509
+
+.end # WSubId_10
+
+
+.sub '' :anon :subid('WSubId_11') :outer('WSubId_10')
+.param pmc __ARG_2
+
+.annotate 'line', 504
+$P1 = find_lex '__WLEX_2'
+$P2 = find_lex '__WLEX_1'
+# Body
+# {
+.annotate 'line', 505
+__ARG_2.'_applyWithArgs'('token', $P1)
+.annotate 'line', 506
+.tailcall __ARG_2.'_apply'($P2)
+# }
+.annotate 'line', 507
+
+.end # WSubId_11
+
+
+.sub '' :anon :subid('WSubId_12') :outer('WSubId_9')
+.param pmc __ARG_3
+
+.annotate 'line', 510
+# Body
+# {
+root_new $P1, ['parrot';'ResizablePMCArray']
+.return($P1)
+# }
+
+.end # WSubId_12
+
+
+.sub 'token' :method
+
+.annotate 'line', 513
+# Body
+# {
+.annotate 'line', 514
+# var cs: $P1
+$P1 = self.'_apply'('anything')
+.annotate 'line', 515
+self.'_apply'('spaces')
+.annotate 'line', 516
+.tailcall self.'_applyWithArgs'('seq', $P1)
+# }
+.annotate 'line', 517
+
+.end # token
+
+.sub Winxed_class_init :anon :load :init
+newclass $P0, [ 'Parser' ]
+.annotate 'line', 498
+get_class $P1, [ 'OMeta' ]
+addparent $P0, $P1
+.end
 # End generated code
