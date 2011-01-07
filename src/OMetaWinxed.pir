@@ -4,7 +4,7 @@
 
 .sub 'fail' :anon :immediate
 
-.annotate 'file', 'bootstrap/ometa-base.winxed'
+.annotate 'file', 'ometa-base.winxed'
 .annotate 'line', 3
 # Body
 # {
