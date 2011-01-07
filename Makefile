@@ -44,4 +44,4 @@ install:
 bootstrap:
 	cd bootstrap; $(MAKE) stage2.pir
 	cp bootstrap/stage2.pir src/ometa-winxed-compiler.pir
-	$(WINXED) -o src/ometa-winxed.pir -c bootstrap/ometa-base.winxed bootstrap/parser.winxed
+	$(WINXED) -o src/ometa-winxed.pir -c bootstrap/ometa-base.winxed

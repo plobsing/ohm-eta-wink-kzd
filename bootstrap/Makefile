@@ -10,8 +10,7 @@ OMJS_LIB = \
     ometa-js/parser.js
 
 OMWX_LIB = \
-    ometa-base.winxed \
-    parser.winxed
+    ometa-base.winxed
 
 OMJS_GRAMMARS = \
     ometa-js/bs-js-compiler.js \
