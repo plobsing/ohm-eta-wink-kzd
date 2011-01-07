@@ -1,0 +1,68 @@
+
+function getopt[anon, immediate]() {
+  using extern Getopt.Obj;
+  var getopt = new Getopt.Obj;
+  ${ push getopt, 'output|o=s' };
+  return getopt;
+}
+
+function main[main](var argv) {
+  // ignore argv[0]
+  argv.shift(); 
+
+  using static getopt;
+  var opts  = getopt.get_options(argv);
+  var files = argv;
+
+  string outfile;
+  int    execute;
+  if (opts['output'] != null) {
+    outfile = opts['output'];
+    execute = false;
+  } else {
+    outfile = '__ometa_winxed__eval__.winxed';
+    execute = true;
+  }
+
+  using extern OMetaWinxed;
+  using extern OMetaWinxed.Compiler;
+
+  var outh = new FileHandle;
+  outh.open(outfile, 'w');
+  outh.print('function __load__[anon, load, init]() { using extern OMetaWinxed; }');
+
+  for (string infile in files) {
+    var inh = new FileHandle;
+    inh.open(infile, 'r');
+    string source = inh.readall();
+    inh.close();
+    var tree      = (new OMetaWinxedParser).matchAll(source, 'topLevel', null, function(var m, int i) {
+	say('parse error at index ' + string(i));
+	throw m.fail;
+    });
+    string output = (new OMetaWinxedTranslator).match(tree, 'trans', null, function(var m, int i) {
+	say("translation error (shouldn't happen) at index " + string(i));
+	throw m.fail;
+    });
+    outh.print(output);
+  }
+  outh.close();
+
+  if (execute) {
+    var os = getOS();
+    spawnw(['winxed', outfile]);
+    os.rm(outfile);
+  }
+}
+
+function getOS() {
+  var os;
+  try {
+    loadlib('os');
+    os = new 'OS';
+  }
+  catch() { }
+  for (;;)
+    yield os;
+}
+
