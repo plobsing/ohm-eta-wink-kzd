@@ -20,21 +20,26 @@ LIBDIR     = $(shell $(PARROT_CONFIG) libdir)
 BINDIR     = $(shell $(PARROT_CONFIG) bindir)
 PBC2EXE    = $(BINDIR)/pbc_to_exe$(EXE)
 
-.PHONY: build install bootstrap
+BLIB_DIRS  = blib blib/OMetaWinxed bin
+
+.PHONY: build install bootstrap blib-dirs
 
 build: blib/OMetaWinxed/Compiler.pbc blib/OMetaWinxed.pbc bin/$(OMETAC_EXE)
 
-blib/OMetaWinxed/Compiler.pbc: src/OMetaWinxed/Compiler.pir
-	$(PARROT) -o $@ $^
+blib/OMetaWinxed/Compiler.pbc: src/OMetaWinxed/Compiler.pir blib-dirs
+	$(PARROT) -o $@ $<
 
-blib/OMetaWinxed.pbc: src/OMetaWinxed.pir
-	$(PARROT) -o $@ $^
+blib/OMetaWinxed.pbc: src/OMetaWinxed.pir blib-dirs
+	$(PARROT) -o $@ $<
 
-bin/$(OMETAC_EXE): src/ometac.winxed
+bin/$(OMETAC_EXE): src/ometac.winxed blib-dirs
 	$(WINXED) -c src/ometac.winxed
 	$(PARROT) -o src/ometac.pbc src/ometac.pir
 	$(PBC2EXE) src/ometac.pbc
 	cp src/ometac$(EXE) $@
+
+blib-dirs:
+	mkdir -p blib blib/OMetaWinxed bin
 
 install:
 	$(INSTALL) blib/OMetaWinxed.pbc          $(LIBDIR)
