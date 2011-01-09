@@ -8222,11 +8222,18 @@ $P1 = find_lex '__WLEX_1'
 find_lex $P1, '__WLEX_1'
 set $S1, $P1
 # predefined length
-length $I3, $S1
-sub $I2, $I3, 1
-$P2 = $P1[$I2]
-set $S2, $P2
-iseq $I1, $S2, "}"
+length $I2, $S1
+isgt $I1, $I2, 0
+unless $I1 goto __label_0
+find_lex $P1, '__WLEX_1'
+set $S2, $P1
+# predefined length
+length $I4, $S2
+sub $I3, $I4, 1
+$P2 = $P1[$I3]
+set $S3, $P2
+iseq $I1, $S3, "}"
+__label_0:
 __ARG_3.'_pred'($I1)
 find_lex $P1, '__WLEX_1'
 .return($P1)

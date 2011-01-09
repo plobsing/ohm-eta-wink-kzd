@@ -183,8 +183,9 @@ ometa WinxedTranslator {
   curlyTrans     = [#begin curlyTrans:r]                -> r
                  | [#begin blockSemiTrans*:rs]          -> ('{' + JOIN(rs, '') + '}')
                  | blockSemiTrans:r                     -> ('{' + string(r) + '}'),
-  blockSemiTrans = trans:x ( (?(x[STRLEN(x) - 1] == '}') -> x
-                             | empty                    -> (string(x) + ';')
+  blockSemiTrans = trans:x ( (?(STRLEN(x) > 0 &&
+                                x[STRLEN(x) - 1] == '}') -> x
+                             | empty                     -> (string(x) + ';')
                              )
                            ):r                          -> r,
 
