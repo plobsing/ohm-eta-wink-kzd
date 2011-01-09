@@ -37,6 +37,9 @@ using the C<Ωη> tool.
   # compile a grammar to winxed
   > Ωη -o mygrammar.winxed mygrammar.Ωη
 
+  # more options exist
+  > Ωη --help
+
 =head3 Programmatic Use
 
 Ωη;)XD grammars are compiled to classes which must be instantiated to be used
@@ -51,7 +54,6 @@ its argument in an iterable object before attempting the match.
 Here is an example Winxed program that uses an Ωη;)XD grammar.
 
   function main(var argv) {
-    using extern ometa-base; // Ωη runtime library
     using extern mygrammar;  // pre-compiled grammar
 
     var grammar = new MyGrammar();
