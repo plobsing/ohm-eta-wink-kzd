@@ -1,17 +1,9 @@
 
-function getopt[anon, immediate]() {
-  using extern Getopt.Obj;
-  var getopt = new Getopt.Obj;
-  ${ push getopt, 'output|o=s' };
-  return getopt;
-}
-
 function main[main](var argv) {
   // ignore argv[0]
   argv.shift(); 
 
-  using static getopt;
-  var opts  = getopt.get_options(argv);
+  var opts  = getGetopt().get_options(argv);
   var files = argv;
 
   string outfile;
@@ -53,6 +45,14 @@ function main[main](var argv) {
     spawnw(['winxed', outfile]);
     os.rm(outfile);
   }
+}
+
+function getGetopt() {
+  using extern Getopt.Obj;
+  var getopt = new Getopt.Obj;
+  ${ push getopt, 'output|o=s' };
+  for (;;)
+    yield getopt;
 }
 
 function getOS() {
