@@ -2,55 +2,31 @@
 
 =head1 NAME
 
-src/bootstrap/README.pod - bootstrapping plan
+bootstrap/README.pod - bootstrapping plan
 
-=head1 STEPS
+=head1 OVERVIEW
+
+Ωη;)XD is bootstrapped from OMeta/JS (using node.js). All bootstrap stages use
+the same grammar files for their sources (*.dual). The differences between
+JavaScript and Winxed are bridged using the C pre-processor as well as
+language-specific headers and footers maintained in separate files (capo and
+coda).
+
+There are 3 bootstrap stages:
 
 =over
 
-=item Build stage0 compiler using ojsc.js
+=item stage0
 
-Outputs:
+An Ωη;)XD compiler in JavaScript, created by C<ojsc> (the OMeta/JS compiler)
 
-src/bootstrap/stage0/winxed-compiler.js
+=item stage1
 
-src/bootstrap/stage0/ometa-compiler.js
+An Ωη;)XD compiler in Winxed, created by C<Ωηc.js> (wrapper around stage0)
 
-src/bootstrap/stage0/ometa-winxed-compiler.js
+=item stage2
 
-src/bootstrap/Ωηc.js
-
-=item Build stage1 compiler using Ωηc.js
-
-Outputs:
-
-src/bootstrap/stage1/winxed-compiler.winxed
-
-src/bootstrap/stage1/ometa-compiler.winxed
-
-src/bootstrap/stage1/ometa-winxed-compiler.winxed
-
-src/bootstrap/Ωηc.winxed
-
-=item Build stage2 compiler using Ωηc.winxed
-
-Outputs
-
-src/winxed-compiler.winxed
-
-src/ometa-compiler.winxed
-
-src/ometa-winxed-compiler.winxed
-
-src/Ωηc.winxed
-
-=item Run normal build
-
-Outputs
-
-ometa-winxed.pbc
-
-Ωηc.exe
+An Ωη;)XD compiler in Winxed, created by C<ometac.winxed> (wrapper around stage1)
 
 =back
 
