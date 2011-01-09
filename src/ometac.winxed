@@ -1,3 +1,5 @@
+$include_const 'iglobals.pasm';
+$include_const 'libpaths.pasm';
 
 function main[main](var argv) {
   // ignore argv[0]
@@ -5,6 +7,12 @@ function main[main](var argv) {
 
   var opts  = getGetopt().get_options(argv);
   var files = argv;
+
+  if (opts['help']
+  || opts['usage']
+  || elements(files) == 0)
+    usage_exit();
+
 
   string outfile;
   int    execute;
@@ -14,6 +22,12 @@ function main[main](var argv) {
   } else {
     outfile = '__ometa_winxed__eval__.winxed';
     execute = true;
+  }
+
+  if (opts['lib-path']) {
+    var newpath = opts['lib-path'];
+    var libpath = getinterp()[IGLOBALS_LIB_PATHS][PARROT_LIB_PATH_LIBRARY];
+    ${ push libpath, newpath };
   }
 
   using extern OMetaWinxed;
@@ -42,7 +56,19 @@ function main[main](var argv) {
 
   if (execute) {
     var os = getOS();
-    spawnw(['winxed', outfile]);
+    var argv = ['winxed'];
+    if (opts['lib-path']) {
+      string libpath = opts['lib-path'];
+      ${ push argv, '-L'    };
+      ${ push argv, libpath };
+    }
+    if (opts['inc-path']) {
+      string incpath = opts['inc-path'];
+      ${ push argv, '-I'    };
+      ${ push argv, incpath };
+    }
+    ${ push argv, outfile };
+    spawnw(argv);
     os.rm(outfile);
   }
 }
@@ -50,9 +76,26 @@ function main[main](var argv) {
 function getGetopt() {
   using extern Getopt.Obj;
   var getopt = new Getopt.Obj;
-  ${ push getopt, 'output|o=s' };
+  ${ push getopt, 'output|o=s'   }; 
+  ${ push getopt, 'lib-path|L=s' }; 
+  ${ push getopt, 'inc-path|I=s' }; 
+  ${ push getopt, 'help|h'       }; 
+  ${ push getopt, 'usage'        }; 
   for (;;)
     yield getopt;
+}
+
+function usage_exit() {
+  say(
+"Usage: Ωη [options] [files]\n" +
+"   Available options:\n" +
+"     -o --output	  Compile to winxed file\n" +
+"     -L --lib-path 	  Add to parrot library search path\n" +
+"     -I --inc-path 	  Add to parrot include search path\n" +
+"     -h --help --usage	  Print this message\n"
+  );
+
+  exit(0);
 }
 
 function getOS() {
