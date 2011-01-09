@@ -222,7 +222,8 @@ ometa WinxedTranslator {
   anonfunc :args                    curlyTrans:body     -> ('(function (' +                                           JOIN(args, ',') + ')' + string(body) + ')'),
   funcdecl  :name UNDEF       :args curlyTrans:body     -> ('function ' + string(name) +                        '(' + JOIN(args, ',') + ')' + string(body)),
   funcdecl  :name trans:flags :args curlyTrans:body     -> ('function ' + string(name) + '[' + string(flags) + '](' + JOIN(args, ',') + ')' + string(body)),
-  classdecl :name :bases curlyTrans:body                -> ('class '    + string(name) + (STRLEN(bases) > 0 ? ':' + JOIN(bases, ',') : '')  + string(body)),
+  classdecl :name []     curlyTrans:body                -> ('class '    + string(name)                           + string(body)),
+  classdecl :name :bases curlyTrans:body                -> ('class '    + string(name) + ':' + JOIN(bases, ',')  + string(body)),
 
   call     trans:fn trans*:args                         -> (string(fn)   +                     '(' + JOIN(args, ',') + ')'),
   send     :msg trans:recv trans*:args                  -> (string(recv) + '.' + string(msg) + '(' + JOIN(args, ',') + ')'),

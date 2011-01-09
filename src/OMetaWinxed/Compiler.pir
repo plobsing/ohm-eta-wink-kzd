@@ -9837,14 +9837,15 @@ getattribute $P5, self, 'input'
 getattribute $P1, $P5, 'idx'
 # var name: $P2
 null $P2
-# var bases: $P3
+# var body: $P3
 null $P3
-# var body: $P4
+# var bases: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_497'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_497'
+newclosure $P5, $P6
+.const 'Sub' $P8 = 'WSubId_500'
+newclosure $P7, $P8
+.tailcall self.'_or'($P5, $P7)
 # }
 
 .end # classdecl
@@ -9855,45 +9856,107 @@ $P5 = $P6(self)
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
-$P3 = find_lex '__WLEX_3'
 # Body
 # {
-$P1 = __ARG_1.'_apply'("anything")
-store_lex '__WLEX_1', $P1
-$P2 = __ARG_1.'_apply'("anything")
-store_lex '__WLEX_2', $P2
-$P3 = __ARG_1.'_apply'("curlyTrans")
-store_lex '__WLEX_3', $P3
-# predefined string
-find_lex $P1, '__WLEX_1'
-set $S1, $P1
-find_lex $P2, '__WLEX_2'
-set $S3, $P2
-# predefined length
-length $I1, $S3
-le $I1, 0, __label_1
-find_lex $P2, '__WLEX_2'
-# predefined join
-join $S4, ",", $P2
-concat $S0, ":", $S4
-set $S2, $S0
-goto __label_0
-__label_1:
-set $S2, ""
-__label_0:
-# predefined string
-find_lex $P3, '__WLEX_3'
-set $S5, $P3
-concat $S6, "class ", $S1
-concat $S6, $S6, $S2
-concat $S6, $S6, $S5
-.return($S6)
+.const 'Sub' $P5 = 'WSubId_498'
+newclosure $P4, $P5
+$P3 = $P4(__ARG_1)
+.return($P3)
 # }
 
 .end # WSubId_497
 
 
-.sub 'call' :subid('WSubId_498') :method
+.sub '' :anon :subid('WSubId_498') :outer('WSubId_497')
+.param pmc __ARG_2
+
+$P1 = find_lex '__WLEX_1'
+$P2 = find_lex '__WLEX_2'
+# Body
+# {
+$P1 = __ARG_2.'_apply'("anything")
+store_lex '__WLEX_1', $P1
+.const 'Sub' $P4 = 'WSubId_499'
+newclosure $P3, $P4
+__ARG_2.'_form'($P3)
+$P2 = __ARG_2.'_apply'("curlyTrans")
+store_lex '__WLEX_2', $P2
+# predefined string
+find_lex $P1, '__WLEX_1'
+set $S1, $P1
+# predefined string
+find_lex $P2, '__WLEX_2'
+set $S2, $P2
+concat $S3, "class ", $S1
+concat $S3, $S3, $S2
+.return($S3)
+# }
+
+.end # WSubId_498
+
+
+.sub '' :anon :subid('WSubId_499') :outer('WSubId_498')
+.param pmc __ARG_3
+
+# Body
+# {
+.return()
+# }
+
+.end # WSubId_499
+
+
+.sub '' :anon :subid('WSubId_500') :outer('WSubId_496')
+.param pmc __ARG_4
+
+$P1 = find_lex '__WLEX_1'
+$P2 = find_lex '__WLEX_3'
+$P3 = find_lex '__WLEX_2'
+# Body
+# {
+.const 'Sub' $P6 = 'WSubId_501'
+newclosure $P5, $P6
+$P4 = $P5(__ARG_4)
+.return($P4)
+# }
+
+.end # WSubId_500
+
+
+.sub '' :anon :subid('WSubId_501') :outer('WSubId_500')
+.param pmc __ARG_5
+
+$P1 = find_lex '__WLEX_1'
+$P2 = find_lex '__WLEX_3'
+$P3 = find_lex '__WLEX_2'
+# Body
+# {
+$P1 = __ARG_5.'_apply'("anything")
+store_lex '__WLEX_1', $P1
+$P2 = __ARG_5.'_apply'("anything")
+store_lex '__WLEX_3', $P2
+$P3 = __ARG_5.'_apply'("curlyTrans")
+store_lex '__WLEX_2', $P3
+# predefined string
+find_lex $P1, '__WLEX_1'
+set $S1, $P1
+find_lex $P2, '__WLEX_3'
+# predefined join
+join $S2, ",", $P2
+# predefined string
+find_lex $P3, '__WLEX_2'
+set $S3, $P3
+concat $S4, "class ", $S1
+concat $S4, $S4, ":"
+concat $S4, $S4, $S2
+concat $S4, $S4, $S3
+.return($S4)
+# }
+
+.end # WSubId_501
+
+
+.sub 'call' :subid('WSubId_502') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -9906,7 +9969,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var args: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_499'
+.const 'Sub' $P6 = 'WSubId_503'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -9915,7 +9978,7 @@ $P4 = $P5(self)
 .end # call
 
 
-.sub '' :anon :subid('WSubId_499') :outer('WSubId_498')
+.sub '' :anon :subid('WSubId_503') :outer('WSubId_502')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -9924,7 +9987,7 @@ $P2 = find_lex '__WLEX_2'
 # {
 $P1 = __ARG_1.'_apply'("trans")
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P4 = 'WSubId_500'
+.const 'Sub' $P4 = 'WSubId_504'
 newclosure $P3, $P4
 $P2 = __ARG_1.'_many'($P3)
 store_lex '__WLEX_2', $P2
@@ -9940,10 +10003,10 @@ concat $S3, $S3, ")"
 .return($S3)
 # }
 
-.end # WSubId_499
+.end # WSubId_503
 
 
-.sub '' :anon :subid('WSubId_500') :outer('WSubId_499')
+.sub '' :anon :subid('WSubId_504') :outer('WSubId_503')
 .param pmc __ARG_2
 
 # Body
@@ -9951,10 +10014,10 @@ concat $S3, $S3, ")"
 .tailcall __ARG_2.'_apply'("trans")
 # }
 
-.end # WSubId_500
+.end # WSubId_504
 
 
-.sub 'send' :subid('WSubId_501') :method
+.sub 'send' :subid('WSubId_505') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -9970,7 +10033,7 @@ null $P2
 null $P3
 # var args: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_502'
+.const 'Sub' $P7 = 'WSubId_506'
 newclosure $P6, $P7
 $P5 = $P6(self)
 .return($P5)
@@ -9979,7 +10042,7 @@ $P5 = $P6(self)
 .end # send
 
 
-.sub '' :anon :subid('WSubId_502') :outer('WSubId_501')
+.sub '' :anon :subid('WSubId_506') :outer('WSubId_505')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -9991,7 +10054,7 @@ $P1 = __ARG_1.'_apply'("anything")
 store_lex '__WLEX_1', $P1
 $P2 = __ARG_1.'_apply'("trans")
 store_lex '__WLEX_2', $P2
-.const 'Sub' $P5 = 'WSubId_503'
+.const 'Sub' $P5 = 'WSubId_507'
 newclosure $P4, $P5
 $P3 = __ARG_1.'_many'($P4)
 store_lex '__WLEX_3', $P3
@@ -10012,10 +10075,10 @@ concat $S4, $S4, ")"
 .return($S4)
 # }
 
-.end # WSubId_502
+.end # WSubId_506
 
 
-.sub '' :anon :subid('WSubId_503') :outer('WSubId_502')
+.sub '' :anon :subid('WSubId_507') :outer('WSubId_506')
 .param pmc __ARG_2
 
 # Body
@@ -10023,10 +10086,10 @@ concat $S4, $S4, ")"
 .tailcall __ARG_2.'_apply'("trans")
 # }
 
-.end # WSubId_503
+.end # WSubId_507
 
 
-.sub 'new' :subid('WSubId_504') :method
+.sub 'new' :subid('WSubId_508') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -10039,9 +10102,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var arg: $P3
 null $P3
-.const 'Sub' $P5 = 'WSubId_505'
+.const 'Sub' $P5 = 'WSubId_509'
 newclosure $P4, $P5
-.const 'Sub' $P7 = 'WSubId_507'
+.const 'Sub' $P7 = 'WSubId_511'
 newclosure $P6, $P7
 .tailcall self.'_or'($P4, $P6)
 # }
@@ -10049,22 +10112,22 @@ newclosure $P6, $P7
 .end # new
 
 
-.sub '' :anon :subid('WSubId_505') :outer('WSubId_504')
+.sub '' :anon :subid('WSubId_509') :outer('WSubId_508')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_506'
+.const 'Sub' $P4 = 'WSubId_510'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_1)
 .return($P2)
 # }
 
-.end # WSubId_505
+.end # WSubId_509
 
 
-.sub '' :anon :subid('WSubId_506') :outer('WSubId_505')
+.sub '' :anon :subid('WSubId_510') :outer('WSubId_509')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -10081,26 +10144,26 @@ concat $S2, $S2, "()"
 .return($S2)
 # }
 
-.end # WSubId_506
+.end # WSubId_510
 
 
-.sub '' :anon :subid('WSubId_507') :outer('WSubId_504')
+.sub '' :anon :subid('WSubId_511') :outer('WSubId_508')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_508'
+.const 'Sub' $P5 = 'WSubId_512'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_3)
 .return($P3)
 # }
 
-.end # WSubId_507
+.end # WSubId_511
 
 
-.sub '' :anon :subid('WSubId_508') :outer('WSubId_507')
+.sub '' :anon :subid('WSubId_512') :outer('WSubId_511')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_1'
@@ -10124,10 +10187,10 @@ concat $S3, $S3, ")"
 .return($S3)
 # }
 
-.end # WSubId_508
+.end # WSubId_512
 
 
-.sub 'var' :subid('WSubId_509') :method
+.sub 'var' :subid('WSubId_513') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -10140,7 +10203,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var name: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_510'
+.const 'Sub' $P6 = 'WSubId_514'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -10149,7 +10212,7 @@ $P4 = $P5(self)
 .end # var
 
 
-.sub '' :anon :subid('WSubId_510') :outer('WSubId_509')
+.sub '' :anon :subid('WSubId_514') :outer('WSubId_513')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -10171,10 +10234,10 @@ concat $S3, $S3, $S2
 .return($S3)
 # }
 
-.end # WSubId_510
+.end # WSubId_514
 
 
-.sub 'varinit' :subid('WSubId_511') :method
+.sub 'varinit' :subid('WSubId_515') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -10190,7 +10253,7 @@ null $P2
 null $P3
 # var init: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_512'
+.const 'Sub' $P7 = 'WSubId_516'
 newclosure $P6, $P7
 $P5 = $P6(self)
 .return($P5)
@@ -10199,7 +10262,7 @@ $P5 = $P6(self)
 .end # varinit
 
 
-.sub '' :anon :subid('WSubId_512') :outer('WSubId_511')
+.sub '' :anon :subid('WSubId_516') :outer('WSubId_515')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -10229,10 +10292,10 @@ concat $S4, $S4, $S3
 .return($S4)
 # }
 
-.end # WSubId_512
+.end # WSubId_516
 
 
-.sub 'throw' :subid('WSubId_513') :method
+.sub 'throw' :subid('WSubId_517') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -10242,7 +10305,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_514'
+.const 'Sub' $P5 = 'WSubId_518'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -10251,7 +10314,7 @@ $P3 = $P4(self)
 .end # throw
 
 
-.sub '' :anon :subid('WSubId_514') :outer('WSubId_513')
+.sub '' :anon :subid('WSubId_518') :outer('WSubId_517')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -10266,10 +10329,10 @@ concat $S2, "throw ", $S1
 .return($S2)
 # }
 
-.end # WSubId_514
+.end # WSubId_518
 
 
-.sub 'try' :subid('WSubId_515') :method
+.sub 'try' :subid('WSubId_519') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -10285,7 +10348,7 @@ null $P2
 null $P3
 # var c: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_516'
+.const 'Sub' $P7 = 'WSubId_520'
 newclosure $P6, $P7
 $P5 = $P6(self)
 .return($P5)
@@ -10294,7 +10357,7 @@ $P5 = $P6(self)
 .end # try
 
 
-.sub '' :anon :subid('WSubId_516') :outer('WSubId_515')
+.sub '' :anon :subid('WSubId_520') :outer('WSubId_519')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -10325,10 +10388,10 @@ concat $S4, $S4, $S3
 .return($S4)
 # }
 
-.end # WSubId_516
+.end # WSubId_520
 
 
-.sub 'json' :subid('WSubId_517') :method
+.sub 'json' :subid('WSubId_521') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -10338,7 +10401,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var props: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_518'
+.const 'Sub' $P5 = 'WSubId_522'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -10347,13 +10410,13 @@ $P3 = $P4(self)
 .end # json
 
 
-.sub '' :anon :subid('WSubId_518') :outer('WSubId_517')
+.sub '' :anon :subid('WSubId_522') :outer('WSubId_521')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_519'
+.const 'Sub' $P3 = 'WSubId_523'
 newclosure $P2, $P3
 $P1 = __ARG_1.'_many'($P2)
 store_lex '__WLEX_1', $P1
@@ -10365,10 +10428,10 @@ concat $S2, $S2, "})"
 .return($S2)
 # }
 
-.end # WSubId_518
+.end # WSubId_522
 
 
-.sub '' :anon :subid('WSubId_519') :outer('WSubId_518')
+.sub '' :anon :subid('WSubId_523') :outer('WSubId_522')
 .param pmc __ARG_2
 
 # Body
@@ -10376,10 +10439,10 @@ concat $S2, $S2, "})"
 .tailcall __ARG_2.'_apply'("trans")
 # }
 
-.end # WSubId_519
+.end # WSubId_523
 
 
-.sub 'binding' :subid('WSubId_520') :method
+.sub 'binding' :subid('WSubId_524') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -10392,7 +10455,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var val: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_521'
+.const 'Sub' $P6 = 'WSubId_525'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -10401,7 +10464,7 @@ $P4 = $P5(self)
 .end # binding
 
 
-.sub '' :anon :subid('WSubId_521') :outer('WSubId_520')
+.sub '' :anon :subid('WSubId_525') :outer('WSubId_524')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -10424,10 +10487,10 @@ concat $S3, $S3, $S2
 .return($S3)
 # }
 
-.end # WSubId_521
+.end # WSubId_525
 
 
-.sub 'switch' :subid('WSubId_522') :method
+.sub 'switch' :subid('WSubId_526') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -10440,7 +10503,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var cases: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_523'
+.const 'Sub' $P6 = 'WSubId_527'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -10449,7 +10512,7 @@ $P4 = $P5(self)
 .end # switch
 
 
-.sub '' :anon :subid('WSubId_523') :outer('WSubId_522')
+.sub '' :anon :subid('WSubId_527') :outer('WSubId_526')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -10458,7 +10521,7 @@ $P2 = find_lex '__WLEX_2'
 # {
 $P1 = __ARG_1.'_apply'("trans")
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P4 = 'WSubId_524'
+.const 'Sub' $P4 = 'WSubId_528'
 newclosure $P3, $P4
 $P2 = __ARG_1.'_many'($P3)
 store_lex '__WLEX_2', $P2
@@ -10475,10 +10538,10 @@ concat $S3, $S3, "}"
 .return($S3)
 # }
 
-.end # WSubId_523
+.end # WSubId_527
 
 
-.sub '' :anon :subid('WSubId_524') :outer('WSubId_523')
+.sub '' :anon :subid('WSubId_528') :outer('WSubId_527')
 .param pmc __ARG_2
 
 # Body
@@ -10486,10 +10549,10 @@ concat $S3, $S3, "}"
 .tailcall __ARG_2.'_apply'("trans")
 # }
 
-.end # WSubId_524
+.end # WSubId_528
 
 
-.sub 'case' :subid('WSubId_525') :method
+.sub 'case' :subid('WSubId_529') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -10502,7 +10565,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var y: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_526'
+.const 'Sub' $P6 = 'WSubId_530'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -10511,7 +10574,7 @@ $P4 = $P5(self)
 .end # case
 
 
-.sub '' :anon :subid('WSubId_526') :outer('WSubId_525')
+.sub '' :anon :subid('WSubId_530') :outer('WSubId_529')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -10534,10 +10597,10 @@ concat $S3, $S3, $S2
 .return($S3)
 # }
 
-.end # WSubId_526
+.end # WSubId_530
 
 
-.sub 'default' :subid('WSubId_527') :method
+.sub 'default' :subid('WSubId_531') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -10547,7 +10610,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var y: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_528'
+.const 'Sub' $P5 = 'WSubId_532'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -10556,7 +10619,7 @@ $P3 = $P4(self)
 .end # default
 
 
-.sub '' :anon :subid('WSubId_528') :outer('WSubId_527')
+.sub '' :anon :subid('WSubId_532') :outer('WSubId_531')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -10571,7 +10634,7 @@ concat $S2, "default: ", $S1
 .return($S2)
 # }
 
-.end # WSubId_528
+.end # WSubId_532
 
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'WinxedTranslator' ]
@@ -10580,7 +10643,7 @@ addparent $P0, $P1
 .end
 .namespace [ 'OMetaParser' ]
 
-.sub 'fromTo' :subid('WSubId_529') :method
+.sub 'fromTo' :subid('WSubId_533') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -10593,7 +10656,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var y: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_530'
+.const 'Sub' $P6 = 'WSubId_534'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -10602,7 +10665,7 @@ $P4 = $P5(self)
 .end # fromTo
 
 
-.sub '' :anon :subid('WSubId_530') :outer('WSubId_529')
+.sub '' :anon :subid('WSubId_534') :outer('WSubId_533')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -10615,47 +10678,47 @@ $P2 = __ARG_1.'_apply'("anything")
 store_lex '__WLEX_2', $P2
 find_lex $P1, '__WLEX_1'
 __ARG_1.'_applyWithArgs'("seq", $P1)
-.const 'Sub' $P4 = 'WSubId_531'
+.const 'Sub' $P4 = 'WSubId_535'
 newclosure $P3, $P4
 __ARG_1.'_many'($P3)
 find_lex $P2, '__WLEX_2'
 .tailcall __ARG_1.'_applyWithArgs'("seq", $P2)
 # }
 
-.end # WSubId_530
+.end # WSubId_534
 
 
-.sub '' :anon :subid('WSubId_531') :outer('WSubId_530')
+.sub '' :anon :subid('WSubId_535') :outer('WSubId_534')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_532'
+.const 'Sub' $P4 = 'WSubId_536'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_2)
 .return($P2)
 # }
 
-.end # WSubId_531
+.end # WSubId_535
 
 
-.sub '' :anon :subid('WSubId_532') :outer('WSubId_531')
+.sub '' :anon :subid('WSubId_536') :outer('WSubId_535')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_533'
+.const 'Sub' $P3 = 'WSubId_537'
 newclosure $P2, $P3
 __ARG_3.'_not'($P2)
 .tailcall __ARG_3.'_apply'("char")
 # }
 
-.end # WSubId_532
+.end # WSubId_536
 
 
-.sub '' :anon :subid('WSubId_533') :outer('WSubId_532')
+.sub '' :anon :subid('WSubId_537') :outer('WSubId_536')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_2'
@@ -10665,62 +10728,10 @@ find_lex $P1, '__WLEX_2'
 .tailcall __ARG_4.'_applyWithArgs'("seq", $P1)
 # }
 
-.end # WSubId_533
-
-
-.sub 'space' :subid('WSubId_534') :method
-
-# Body
-# {
-# var fromIdx: $P1
-getattribute $P2, self, 'input'
-getattribute $P1, $P2, 'idx'
-.const 'Sub' $P3 = 'WSubId_535'
-newclosure $P2, $P3
-.const 'Sub' $P5 = 'WSubId_536'
-newclosure $P4, $P5
-.const 'Sub' $P7 = 'WSubId_537'
-newclosure $P6, $P7
-.tailcall self.'_or'($P2, $P4, $P6)
-# }
-
-.end # space
-
-
-.sub '' :anon :subid('WSubId_535') :outer('WSubId_534')
-.param pmc __ARG_1
-
-# Body
-# {
-.tailcall __ARG_1.'_superApplyWithArgs'("Parser", 'space')
-# }
-
-.end # WSubId_535
-
-
-.sub '' :anon :subid('WSubId_536') :outer('WSubId_534')
-.param pmc __ARG_2
-
-# Body
-# {
-.tailcall __ARG_2.'_applyWithArgs'("fromTo", "//", "\n")
-# }
-
-.end # WSubId_536
-
-
-.sub '' :anon :subid('WSubId_537') :outer('WSubId_534')
-.param pmc __ARG_3
-
-# Body
-# {
-.tailcall __ARG_3.'_applyWithArgs'("fromTo", "/*", "*/")
-# }
-
 .end # WSubId_537
 
 
-.sub 'nameFirst' :subid('WSubId_538') :method
+.sub 'space' :subid('WSubId_538') :method
 
 # Body
 # {
@@ -10729,12 +10740,14 @@ getattribute $P2, self, 'input'
 getattribute $P1, $P2, 'idx'
 .const 'Sub' $P3 = 'WSubId_539'
 newclosure $P2, $P3
-.const 'Sub' $P5 = 'WSubId_541'
+.const 'Sub' $P5 = 'WSubId_540'
 newclosure $P4, $P5
-.tailcall self.'_or'($P2, $P4)
+.const 'Sub' $P7 = 'WSubId_541'
+newclosure $P6, $P7
+.tailcall self.'_or'($P2, $P4, $P6)
 # }
 
-.end # nameFirst
+.end # space
 
 
 .sub '' :anon :subid('WSubId_539') :outer('WSubId_538')
@@ -10742,16 +10755,66 @@ newclosure $P4, $P5
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_540'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_1)
-.return($P1)
+.tailcall __ARG_1.'_superApplyWithArgs'("Parser", 'space')
 # }
 
 .end # WSubId_539
 
 
-.sub '' :anon :subid('WSubId_540') :outer('WSubId_539')
+.sub '' :anon :subid('WSubId_540') :outer('WSubId_538')
+.param pmc __ARG_2
+
+# Body
+# {
+.tailcall __ARG_2.'_applyWithArgs'("fromTo", "//", "\n")
+# }
+
+.end # WSubId_540
+
+
+.sub '' :anon :subid('WSubId_541') :outer('WSubId_538')
+.param pmc __ARG_3
+
+# Body
+# {
+.tailcall __ARG_3.'_applyWithArgs'("fromTo", "/*", "*/")
+# }
+
+.end # WSubId_541
+
+
+.sub 'nameFirst' :subid('WSubId_542') :method
+
+# Body
+# {
+# var fromIdx: $P1
+getattribute $P2, self, 'input'
+getattribute $P1, $P2, 'idx'
+.const 'Sub' $P3 = 'WSubId_543'
+newclosure $P2, $P3
+.const 'Sub' $P5 = 'WSubId_545'
+newclosure $P4, $P5
+.tailcall self.'_or'($P2, $P4)
+# }
+
+.end # nameFirst
+
+
+.sub '' :anon :subid('WSubId_543') :outer('WSubId_542')
+.param pmc __ARG_1
+
+# Body
+# {
+.const 'Sub' $P3 = 'WSubId_544'
+newclosure $P2, $P3
+$P1 = $P2(__ARG_1)
+.return($P1)
+# }
+
+.end # WSubId_543
+
+
+.sub '' :anon :subid('WSubId_544') :outer('WSubId_543')
 .param pmc __ARG_2
 
 # Body
@@ -10774,10 +10837,10 @@ throw $P2
 __label_0: # switch end
 # }
 
-.end # WSubId_540
+.end # WSubId_544
 
 
-.sub '' :anon :subid('WSubId_541') :outer('WSubId_538')
+.sub '' :anon :subid('WSubId_545') :outer('WSubId_542')
 .param pmc __ARG_3
 
 # Body
@@ -10785,19 +10848,19 @@ __label_0: # switch end
 .tailcall __ARG_3.'_apply'("letter")
 # }
 
-.end # WSubId_541
+.end # WSubId_545
 
 
-.sub 'nameRest' :subid('WSubId_542') :method
+.sub 'nameRest' :subid('WSubId_546') :method
 
 # Body
 # {
 # var fromIdx: $P1
 getattribute $P2, self, 'input'
 getattribute $P1, $P2, 'idx'
-.const 'Sub' $P3 = 'WSubId_543'
+.const 'Sub' $P3 = 'WSubId_547'
 newclosure $P2, $P3
-.const 'Sub' $P5 = 'WSubId_544'
+.const 'Sub' $P5 = 'WSubId_548'
 newclosure $P4, $P5
 .tailcall self.'_or'($P2, $P4)
 # }
@@ -10805,7 +10868,7 @@ newclosure $P4, $P5
 .end # nameRest
 
 
-.sub '' :anon :subid('WSubId_543') :outer('WSubId_542')
+.sub '' :anon :subid('WSubId_547') :outer('WSubId_546')
 .param pmc __ARG_1
 
 # Body
@@ -10813,10 +10876,10 @@ newclosure $P4, $P5
 .tailcall __ARG_1.'_apply'("nameFirst")
 # }
 
-.end # WSubId_543
+.end # WSubId_547
 
 
-.sub '' :anon :subid('WSubId_544') :outer('WSubId_542')
+.sub '' :anon :subid('WSubId_548') :outer('WSubId_546')
 .param pmc __ARG_2
 
 # Body
@@ -10824,10 +10887,10 @@ newclosure $P4, $P5
 .tailcall __ARG_2.'_apply'("digit")
 # }
 
-.end # WSubId_544
+.end # WSubId_548
 
 
-.sub 'tsName' :subid('WSubId_545') :method
+.sub 'tsName' :subid('WSubId_549') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -10837,7 +10900,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_546'
+.const 'Sub' $P5 = 'WSubId_550'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -10846,7 +10909,7 @@ $P3 = $P4(self)
 .end # tsName
 
 
-.sub '' :anon :subid('WSubId_546') :outer('WSubId_545')
+.sub '' :anon :subid('WSubId_550') :outer('WSubId_549')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -10860,17 +10923,17 @@ join $S1, "", $P1
 .return($S1)
 # }
 
-.end # WSubId_546
+.end # WSubId_550
 
 
-.sub 'name' :subid('WSubId_547') :method
+.sub 'name' :subid('WSubId_551') :method
 
 # Body
 # {
 # var fromIdx: $P1
 getattribute $P2, self, 'input'
 getattribute $P1, $P2, 'idx'
-.const 'Sub' $P4 = 'WSubId_548'
+.const 'Sub' $P4 = 'WSubId_552'
 newclosure $P3, $P4
 $P2 = $P3(self)
 .return($P2)
@@ -10879,7 +10942,7 @@ $P2 = $P3(self)
 .end # name
 
 
-.sub '' :anon :subid('WSubId_548') :outer('WSubId_547')
+.sub '' :anon :subid('WSubId_552') :outer('WSubId_551')
 .param pmc __ARG_1
 
 # Body
@@ -10888,10 +10951,10 @@ __ARG_1.'_apply'("spaces")
 .tailcall __ARG_1.'_apply'("tsName")
 # }
 
-.end # WSubId_548
+.end # WSubId_552
 
 
-.sub 'eChar' :subid('WSubId_549') :method
+.sub 'eChar' :subid('WSubId_553') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -10901,9 +10964,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var c: $P2
 null $P2
-.const 'Sub' $P4 = 'WSubId_550'
+.const 'Sub' $P4 = 'WSubId_554'
 newclosure $P3, $P4
-.const 'Sub' $P6 = 'WSubId_553'
+.const 'Sub' $P6 = 'WSubId_557'
 newclosure $P5, $P6
 .tailcall self.'_or'($P3, $P5)
 # }
@@ -10911,22 +10974,22 @@ newclosure $P5, $P6
 .end # eChar
 
 
-.sub '' :anon :subid('WSubId_550') :outer('WSubId_549')
+.sub '' :anon :subid('WSubId_554') :outer('WSubId_553')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_551'
+.const 'Sub' $P4 = 'WSubId_555'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_1)
 .return($P2)
 # }
 
-.end # WSubId_550
+.end # WSubId_554
 
 
-.sub '' :anon :subid('WSubId_551') :outer('WSubId_550')
+.sub '' :anon :subid('WSubId_555') :outer('WSubId_554')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -10939,7 +11002,7 @@ if $S1 == $S2 goto __label_2
 goto __label_1
 # switch
 __label_2: # case
-.const 'Sub' $P5 = 'WSubId_552'
+.const 'Sub' $P5 = 'WSubId_556'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_2)
 .return($P3)
@@ -10949,10 +11012,10 @@ throw $P6
 __label_0: # switch end
 # }
 
-.end # WSubId_551
+.end # WSubId_555
 
 
-.sub '' :anon :subid('WSubId_552') :outer('WSubId_551')
+.sub '' :anon :subid('WSubId_556') :outer('WSubId_555')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
@@ -10967,10 +11030,10 @@ concat $S2, "\\", $S1
 .tailcall 'unescape'($S2)
 # }
 
-.end # WSubId_552
+.end # WSubId_556
 
 
-.sub '' :anon :subid('WSubId_553') :outer('WSubId_549')
+.sub '' :anon :subid('WSubId_557') :outer('WSubId_553')
 .param pmc __ARG_4
 
 # Body
@@ -10978,10 +11041,10 @@ concat $S2, "\\", $S1
 .tailcall __ARG_4.'_apply'("char")
 # }
 
-.end # WSubId_553
+.end # WSubId_557
 
 
-.sub 'tsString' :subid('WSubId_554') :method
+.sub 'tsString' :subid('WSubId_558') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -10991,7 +11054,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_555'
+.const 'Sub' $P5 = 'WSubId_559'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -11000,14 +11063,14 @@ $P3 = $P4(self)
 .end # tsString
 
 
-.sub '' :anon :subid('WSubId_555') :outer('WSubId_554')
+.sub '' :anon :subid('WSubId_559') :outer('WSubId_558')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
 __ARG_1.'_applyWithArgs'("exactly", "\'")
-.const 'Sub' $P3 = 'WSubId_556'
+.const 'Sub' $P3 = 'WSubId_560'
 newclosure $P2, $P3
 $P1 = __ARG_1.'_many'($P2)
 store_lex '__WLEX_1', $P1
@@ -11018,38 +11081,38 @@ join $S1, "", $P1
 .return($S1)
 # }
 
-.end # WSubId_555
+.end # WSubId_559
 
 
-.sub '' :anon :subid('WSubId_556') :outer('WSubId_555')
+.sub '' :anon :subid('WSubId_560') :outer('WSubId_559')
 .param pmc __ARG_2
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_557'
+.const 'Sub' $P3 = 'WSubId_561'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_2)
 .return($P1)
 # }
 
-.end # WSubId_556
+.end # WSubId_560
 
 
-.sub '' :anon :subid('WSubId_557') :outer('WSubId_556')
+.sub '' :anon :subid('WSubId_561') :outer('WSubId_560')
 .param pmc __ARG_3
 
 # Body
 # {
-.const 'Sub' $P2 = 'WSubId_558'
+.const 'Sub' $P2 = 'WSubId_562'
 newclosure $P1, $P2
 __ARG_3.'_not'($P1)
 .tailcall __ARG_3.'_apply'("eChar")
 # }
 
-.end # WSubId_557
+.end # WSubId_561
 
 
-.sub '' :anon :subid('WSubId_558') :outer('WSubId_557')
+.sub '' :anon :subid('WSubId_562') :outer('WSubId_561')
 .param pmc __ARG_4
 
 # Body
@@ -11057,10 +11120,10 @@ __ARG_3.'_not'($P1)
 .tailcall __ARG_4.'_applyWithArgs'("exactly", "\'")
 # }
 
-.end # WSubId_558
+.end # WSubId_562
 
 
-.sub 'characters' :subid('WSubId_559') :method
+.sub 'characters' :subid('WSubId_563') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -11070,7 +11133,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_560'
+.const 'Sub' $P5 = 'WSubId_564'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -11079,7 +11142,7 @@ $P3 = $P4(self)
 .end # characters
 
 
-.sub '' :anon :subid('WSubId_560') :outer('WSubId_559')
+.sub '' :anon :subid('WSubId_564') :outer('WSubId_563')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -11087,7 +11150,7 @@ $P1 = find_lex '__WLEX_1'
 # {
 __ARG_1.'_applyWithArgs'("exactly", "`")
 __ARG_1.'_applyWithArgs'("exactly", "`")
-.const 'Sub' $P3 = 'WSubId_561'
+.const 'Sub' $P3 = 'WSubId_565'
 newclosure $P2, $P3
 $P1 = __ARG_1.'_many'($P2)
 store_lex '__WLEX_1', $P1
@@ -11106,52 +11169,52 @@ $P2.'push'($P4)
 .return($P2)
 # }
 
-.end # WSubId_560
+.end # WSubId_564
 
 
-.sub '' :anon :subid('WSubId_561') :outer('WSubId_560')
+.sub '' :anon :subid('WSubId_565') :outer('WSubId_564')
 .param pmc __ARG_2
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_562'
+.const 'Sub' $P3 = 'WSubId_566'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_2)
 .return($P1)
 # }
 
-.end # WSubId_561
+.end # WSubId_565
 
 
-.sub '' :anon :subid('WSubId_562') :outer('WSubId_561')
+.sub '' :anon :subid('WSubId_566') :outer('WSubId_565')
 .param pmc __ARG_3
 
 # Body
 # {
-.const 'Sub' $P2 = 'WSubId_563'
+.const 'Sub' $P2 = 'WSubId_567'
 newclosure $P1, $P2
 __ARG_3.'_not'($P1)
 .tailcall __ARG_3.'_apply'("eChar")
 # }
 
-.end # WSubId_562
+.end # WSubId_566
 
 
-.sub '' :anon :subid('WSubId_563') :outer('WSubId_562')
+.sub '' :anon :subid('WSubId_567') :outer('WSubId_566')
 .param pmc __ARG_4
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_564'
+.const 'Sub' $P3 = 'WSubId_568'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_4)
 .return($P1)
 # }
 
-.end # WSubId_563
+.end # WSubId_567
 
 
-.sub '' :anon :subid('WSubId_564') :outer('WSubId_563')
+.sub '' :anon :subid('WSubId_568') :outer('WSubId_567')
 .param pmc __ARG_5
 
 # Body
@@ -11160,10 +11223,10 @@ __ARG_5.'_applyWithArgs'("exactly", "\'")
 .tailcall __ARG_5.'_applyWithArgs'("exactly", "\'")
 # }
 
-.end # WSubId_564
+.end # WSubId_568
 
 
-.sub 'sCharacters' :subid('WSubId_565') :method
+.sub 'sCharacters' :subid('WSubId_569') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -11173,7 +11236,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_566'
+.const 'Sub' $P5 = 'WSubId_570'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -11182,14 +11245,14 @@ $P3 = $P4(self)
 .end # sCharacters
 
 
-.sub '' :anon :subid('WSubId_566') :outer('WSubId_565')
+.sub '' :anon :subid('WSubId_570') :outer('WSubId_569')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
 __ARG_1.'_applyWithArgs'("exactly", "\"")
-.const 'Sub' $P3 = 'WSubId_567'
+.const 'Sub' $P3 = 'WSubId_571'
 newclosure $P2, $P3
 $P1 = __ARG_1.'_many'($P2)
 store_lex '__WLEX_1', $P1
@@ -11207,38 +11270,38 @@ $P2.'push'($P4)
 .return($P2)
 # }
 
-.end # WSubId_566
+.end # WSubId_570
 
 
-.sub '' :anon :subid('WSubId_567') :outer('WSubId_566')
+.sub '' :anon :subid('WSubId_571') :outer('WSubId_570')
 .param pmc __ARG_2
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_568'
+.const 'Sub' $P3 = 'WSubId_572'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_2)
 .return($P1)
 # }
 
-.end # WSubId_567
+.end # WSubId_571
 
 
-.sub '' :anon :subid('WSubId_568') :outer('WSubId_567')
+.sub '' :anon :subid('WSubId_572') :outer('WSubId_571')
 .param pmc __ARG_3
 
 # Body
 # {
-.const 'Sub' $P2 = 'WSubId_569'
+.const 'Sub' $P2 = 'WSubId_573'
 newclosure $P1, $P2
 __ARG_3.'_not'($P1)
 .tailcall __ARG_3.'_apply'("eChar")
 # }
 
-.end # WSubId_568
+.end # WSubId_572
 
 
-.sub '' :anon :subid('WSubId_569') :outer('WSubId_568')
+.sub '' :anon :subid('WSubId_573') :outer('WSubId_572')
 .param pmc __ARG_4
 
 # Body
@@ -11246,10 +11309,10 @@ __ARG_3.'_not'($P1)
 .tailcall __ARG_4.'_applyWithArgs'("exactly", "\"")
 # }
 
-.end # WSubId_569
+.end # WSubId_573
 
 
-.sub 'string' :subid('WSubId_570') :method
+.sub 'string' :subid('WSubId_574') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -11259,7 +11322,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_571'
+.const 'Sub' $P5 = 'WSubId_575'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -11268,15 +11331,15 @@ $P3 = $P4(self)
 .end # string
 
 
-.sub '' :anon :subid('WSubId_571') :outer('WSubId_570')
+.sub '' :anon :subid('WSubId_575') :outer('WSubId_574')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_572'
+.const 'Sub' $P3 = 'WSubId_576'
 newclosure $P2, $P3
-.const 'Sub' $P5 = 'WSubId_575'
+.const 'Sub' $P5 = 'WSubId_579'
 newclosure $P4, $P5
 $P1 = __ARG_1.'_or'($P2, $P4)
 store_lex '__WLEX_1', $P1
@@ -11291,38 +11354,38 @@ $P2.'push'($P4)
 .return($P2)
 # }
 
-.end # WSubId_571
+.end # WSubId_575
 
 
-.sub '' :anon :subid('WSubId_572') :outer('WSubId_571')
+.sub '' :anon :subid('WSubId_576') :outer('WSubId_575')
 .param pmc __ARG_2
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_573'
+.const 'Sub' $P3 = 'WSubId_577'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_2)
 .return($P1)
 # }
 
-.end # WSubId_572
+.end # WSubId_576
 
 
-.sub '' :anon :subid('WSubId_573') :outer('WSubId_572')
+.sub '' :anon :subid('WSubId_577') :outer('WSubId_576')
 .param pmc __ARG_3
 
 # Body
 # {
-.const 'Sub' $P2 = 'WSubId_574'
+.const 'Sub' $P2 = 'WSubId_578'
 newclosure $P1, $P2
 $P1(__ARG_3)
 .tailcall __ARG_3.'_apply'("tsName")
 # }
 
-.end # WSubId_573
+.end # WSubId_577
 
 
-.sub '' :anon :subid('WSubId_574') :outer('WSubId_573')
+.sub '' :anon :subid('WSubId_578') :outer('WSubId_577')
 .param pmc __ARG_4
 
 # Body
@@ -11345,10 +11408,10 @@ throw $P2
 __label_0: # switch end
 # }
 
-.end # WSubId_574
+.end # WSubId_578
 
 
-.sub '' :anon :subid('WSubId_575') :outer('WSubId_571')
+.sub '' :anon :subid('WSubId_579') :outer('WSubId_575')
 .param pmc __ARG_5
 
 # Body
@@ -11356,10 +11419,10 @@ __label_0: # switch end
 .tailcall __ARG_5.'_apply'("tsString")
 # }
 
-.end # WSubId_575
+.end # WSubId_579
 
 
-.sub 'number' :subid('WSubId_576') :method
+.sub 'number' :subid('WSubId_580') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -11372,7 +11435,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var ds: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_577'
+.const 'Sub' $P6 = 'WSubId_581'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -11381,20 +11444,20 @@ $P4 = $P5(self)
 .end # number
 
 
-.sub '' :anon :subid('WSubId_577') :outer('WSubId_576')
+.sub '' :anon :subid('WSubId_581') :outer('WSubId_580')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_578'
+.const 'Sub' $P4 = 'WSubId_582'
 newclosure $P3, $P4
-.const 'Sub' $P6 = 'WSubId_580'
+.const 'Sub' $P6 = 'WSubId_584'
 newclosure $P5, $P6
 $P1 = __ARG_1.'_or'($P3, $P5)
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P4 = 'WSubId_582'
+.const 'Sub' $P4 = 'WSubId_586'
 newclosure $P3, $P4
 $P2 = __ARG_1.'_many1'($P3)
 store_lex '__WLEX_2', $P2
@@ -11415,24 +11478,24 @@ $P5.'push'($P6)
 .return($P5)
 # }
 
-.end # WSubId_577
+.end # WSubId_581
 
 
-.sub '' :anon :subid('WSubId_578') :outer('WSubId_577')
+.sub '' :anon :subid('WSubId_582') :outer('WSubId_581')
 .param pmc __ARG_2
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_579'
+.const 'Sub' $P3 = 'WSubId_583'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_2)
 .return($P1)
 # }
 
-.end # WSubId_578
+.end # WSubId_582
 
 
-.sub '' :anon :subid('WSubId_579') :outer('WSubId_578')
+.sub '' :anon :subid('WSubId_583') :outer('WSubId_582')
 .param pmc __ARG_3
 
 # Body
@@ -11451,24 +11514,24 @@ throw $P2
 __label_0: # switch end
 # }
 
-.end # WSubId_579
+.end # WSubId_583
 
 
-.sub '' :anon :subid('WSubId_580') :outer('WSubId_577')
+.sub '' :anon :subid('WSubId_584') :outer('WSubId_581')
 .param pmc __ARG_4
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_581'
+.const 'Sub' $P3 = 'WSubId_585'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_4)
 .return($P1)
 # }
 
-.end # WSubId_580
+.end # WSubId_584
 
 
-.sub '' :anon :subid('WSubId_581') :outer('WSubId_580')
+.sub '' :anon :subid('WSubId_585') :outer('WSubId_584')
 .param pmc __ARG_5
 
 # Body
@@ -11477,10 +11540,10 @@ __ARG_5.'_apply'("empty")
 .return("")
 # }
 
-.end # WSubId_581
+.end # WSubId_585
 
 
-.sub '' :anon :subid('WSubId_582') :outer('WSubId_577')
+.sub '' :anon :subid('WSubId_586') :outer('WSubId_581')
 .param pmc __ARG_6
 
 # Body
@@ -11488,10 +11551,10 @@ __ARG_5.'_apply'("empty")
 .tailcall __ARG_6.'_apply'("digit")
 # }
 
-.end # WSubId_582
+.end # WSubId_586
 
 
-.sub 'keyword' :subid('WSubId_583') :method
+.sub 'keyword' :subid('WSubId_587') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -11501,7 +11564,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_584'
+.const 'Sub' $P5 = 'WSubId_588'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -11510,7 +11573,7 @@ $P3 = $P4(self)
 .end # keyword
 
 
-.sub '' :anon :subid('WSubId_584') :outer('WSubId_583')
+.sub '' :anon :subid('WSubId_588') :outer('WSubId_587')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -11520,17 +11583,17 @@ $P1 = __ARG_1.'_apply'("anything")
 store_lex '__WLEX_1', $P1
 find_lex $P1, '__WLEX_1'
 __ARG_1.'_applyWithArgs'("token", $P1)
-.const 'Sub' $P3 = 'WSubId_585'
+.const 'Sub' $P3 = 'WSubId_589'
 newclosure $P2, $P3
 __ARG_1.'_not'($P2)
 find_lex $P1, '__WLEX_1'
 .return($P1)
 # }
 
-.end # WSubId_584
+.end # WSubId_588
 
 
-.sub '' :anon :subid('WSubId_585') :outer('WSubId_584')
+.sub '' :anon :subid('WSubId_589') :outer('WSubId_588')
 .param pmc __ARG_2
 
 # Body
@@ -11538,10 +11601,10 @@ find_lex $P1, '__WLEX_1'
 .tailcall __ARG_2.'_apply'("letterOrDigit")
 # }
 
-.end # WSubId_585
+.end # WSubId_589
 
 
-.sub 'args' :subid('WSubId_586') :method
+.sub 'args' :subid('WSubId_590') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -11551,9 +11614,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P4 = 'WSubId_587'
+.const 'Sub' $P4 = 'WSubId_591'
 newclosure $P3, $P4
-.const 'Sub' $P6 = 'WSubId_590'
+.const 'Sub' $P6 = 'WSubId_594'
 newclosure $P5, $P6
 .tailcall self.'_or'($P3, $P5)
 # }
@@ -11561,22 +11624,22 @@ newclosure $P5, $P6
 .end # args
 
 
-.sub '' :anon :subid('WSubId_587') :outer('WSubId_586')
+.sub '' :anon :subid('WSubId_591') :outer('WSubId_590')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_588'
+.const 'Sub' $P4 = 'WSubId_592'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_1)
 .return($P2)
 # }
 
-.end # WSubId_587
+.end # WSubId_591
 
 
-.sub '' :anon :subid('WSubId_588') :outer('WSubId_587')
+.sub '' :anon :subid('WSubId_592') :outer('WSubId_591')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -11589,7 +11652,7 @@ if $S1 == $S2 goto __label_2
 goto __label_1
 # switch
 __label_2: # case
-.const 'Sub' $P5 = 'WSubId_589'
+.const 'Sub' $P5 = 'WSubId_593'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_2)
 .return($P3)
@@ -11599,10 +11662,10 @@ throw $P6
 __label_0: # switch end
 # }
 
-.end # WSubId_588
+.end # WSubId_592
 
 
-.sub '' :anon :subid('WSubId_589') :outer('WSubId_588')
+.sub '' :anon :subid('WSubId_593') :outer('WSubId_592')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
@@ -11615,24 +11678,24 @@ find_lex $P1, '__WLEX_1'
 .return($P1)
 # }
 
-.end # WSubId_589
+.end # WSubId_593
 
 
-.sub '' :anon :subid('WSubId_590') :outer('WSubId_586')
+.sub '' :anon :subid('WSubId_594') :outer('WSubId_590')
 .param pmc __ARG_4
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_591'
+.const 'Sub' $P3 = 'WSubId_595'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_4)
 .return($P1)
 # }
 
-.end # WSubId_590
+.end # WSubId_594
 
 
-.sub '' :anon :subid('WSubId_591') :outer('WSubId_590')
+.sub '' :anon :subid('WSubId_595') :outer('WSubId_594')
 .param pmc __ARG_5
 
 # Body
@@ -11642,10 +11705,10 @@ root_new $P1, ['parrot';'ResizablePMCArray']
 .return($P1)
 # }
 
-.end # WSubId_591
+.end # WSubId_595
 
 
-.sub 'application' :subid('WSubId_592') :method
+.sub 'application' :subid('WSubId_596') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -11661,11 +11724,11 @@ null $P2
 null $P3
 # var grm: $P4
 null $P4
-.const 'Sub' $P6 = 'WSubId_593'
+.const 'Sub' $P6 = 'WSubId_597'
 newclosure $P5, $P6
-.const 'Sub' $P8 = 'WSubId_595'
+.const 'Sub' $P8 = 'WSubId_599'
 newclosure $P7, $P8
-.const 'Sub' $P10 = 'WSubId_597'
+.const 'Sub' $P10 = 'WSubId_601'
 newclosure $P9, $P10
 .tailcall self.'_or'($P5, $P7, $P9)
 # }
@@ -11673,23 +11736,23 @@ newclosure $P9, $P10
 .end # application
 
 
-.sub '' :anon :subid('WSubId_593') :outer('WSubId_592')
+.sub '' :anon :subid('WSubId_597') :outer('WSubId_596')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_594'
+.const 'Sub' $P5 = 'WSubId_598'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_1)
 .return($P3)
 # }
 
-.end # WSubId_593
+.end # WSubId_597
 
 
-.sub '' :anon :subid('WSubId_594') :outer('WSubId_593')
+.sub '' :anon :subid('WSubId_598') :outer('WSubId_597')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -11717,10 +11780,10 @@ find_lex $P2, '__WLEX_2'
 .tailcall $P3.'append'($P2)
 # }
 
-.end # WSubId_594
+.end # WSubId_598
 
 
-.sub '' :anon :subid('WSubId_595') :outer('WSubId_592')
+.sub '' :anon :subid('WSubId_599') :outer('WSubId_596')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_3'
@@ -11728,16 +11791,16 @@ $P2 = find_lex '__WLEX_1'
 $P3 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_596'
+.const 'Sub' $P6 = 'WSubId_600'
 newclosure $P5, $P6
 $P4 = $P5(__ARG_3)
 .return($P4)
 # }
 
-.end # WSubId_595
+.end # WSubId_599
 
 
-.sub '' :anon :subid('WSubId_596') :outer('WSubId_595')
+.sub '' :anon :subid('WSubId_600') :outer('WSubId_599')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_3'
@@ -11775,26 +11838,26 @@ find_lex $P3, '__WLEX_2'
 .tailcall $P4.'append'($P3)
 # }
 
-.end # WSubId_596
+.end # WSubId_600
 
 
-.sub '' :anon :subid('WSubId_597') :outer('WSubId_592')
+.sub '' :anon :subid('WSubId_601') :outer('WSubId_596')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_598'
+.const 'Sub' $P5 = 'WSubId_602'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_5)
 .return($P3)
 # }
 
-.end # WSubId_597
+.end # WSubId_601
 
 
-.sub '' :anon :subid('WSubId_598') :outer('WSubId_597')
+.sub '' :anon :subid('WSubId_602') :outer('WSubId_601')
 .param pmc __ARG_6
 
 $P1 = find_lex '__WLEX_1'
@@ -11814,78 +11877,10 @@ find_lex $P2, '__WLEX_2'
 .tailcall $P3.'append'($P2)
 # }
 
-.end # WSubId_598
-
-
-.sub 'hostExpr' :subid('WSubId_599') :method
-
-.lex '__WLEX_1', $P2
-# Body
-# {
-# var fromIdx: $P1
-getattribute $P3, self, 'input'
-getattribute $P1, $P3, 'idx'
-# var r: $P2
-null $P2
-.const 'Sub' $P5 = 'WSubId_600'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
-# }
-
-.end # hostExpr
-
-
-.sub '' :anon :subid('WSubId_600') :outer('WSubId_599')
-.param pmc __ARG_1
-
-$P1 = find_lex '__WLEX_1'
-# Body
-# {
-$P1 = __ARG_1.'_applyWithArgs'("foreign", 'WinxedSemActionParser', 'expr')
-store_lex '__WLEX_1', $P1
-find_lex $P1, '__WLEX_1'
-.tailcall __ARG_1.'_applyWithArgs'("foreign", 'WinxedTranslator', 'trans', $P1)
-# }
-
-.end # WSubId_600
-
-
-.sub 'curlyHostExpr' :subid('WSubId_601') :method
-
-.lex '__WLEX_1', $P2
-# Body
-# {
-# var fromIdx: $P1
-getattribute $P3, self, 'input'
-getattribute $P1, $P3, 'idx'
-# var r: $P2
-null $P2
-.const 'Sub' $P5 = 'WSubId_602'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
-# }
-
-.end # curlyHostExpr
-
-
-.sub '' :anon :subid('WSubId_602') :outer('WSubId_601')
-.param pmc __ARG_1
-
-$P1 = find_lex '__WLEX_1'
-# Body
-# {
-$P1 = __ARG_1.'_applyWithArgs'("foreign", 'WinxedSemActionParser', 'curlySemAction')
-store_lex '__WLEX_1', $P1
-find_lex $P1, '__WLEX_1'
-.tailcall __ARG_1.'_applyWithArgs'("foreign", 'WinxedTranslator', 'trans', $P1)
-# }
-
 .end # WSubId_602
 
 
-.sub 'primHostExpr' :subid('WSubId_603') :method
+.sub 'hostExpr' :subid('WSubId_603') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -11901,10 +11896,78 @@ $P3 = $P4(self)
 .return($P3)
 # }
 
-.end # primHostExpr
+.end # hostExpr
 
 
 .sub '' :anon :subid('WSubId_604') :outer('WSubId_603')
+.param pmc __ARG_1
+
+$P1 = find_lex '__WLEX_1'
+# Body
+# {
+$P1 = __ARG_1.'_applyWithArgs'("foreign", 'WinxedSemActionParser', 'expr')
+store_lex '__WLEX_1', $P1
+find_lex $P1, '__WLEX_1'
+.tailcall __ARG_1.'_applyWithArgs'("foreign", 'WinxedTranslator', 'trans', $P1)
+# }
+
+.end # WSubId_604
+
+
+.sub 'curlyHostExpr' :subid('WSubId_605') :method
+
+.lex '__WLEX_1', $P2
+# Body
+# {
+# var fromIdx: $P1
+getattribute $P3, self, 'input'
+getattribute $P1, $P3, 'idx'
+# var r: $P2
+null $P2
+.const 'Sub' $P5 = 'WSubId_606'
+newclosure $P4, $P5
+$P3 = $P4(self)
+.return($P3)
+# }
+
+.end # curlyHostExpr
+
+
+.sub '' :anon :subid('WSubId_606') :outer('WSubId_605')
+.param pmc __ARG_1
+
+$P1 = find_lex '__WLEX_1'
+# Body
+# {
+$P1 = __ARG_1.'_applyWithArgs'("foreign", 'WinxedSemActionParser', 'curlySemAction')
+store_lex '__WLEX_1', $P1
+find_lex $P1, '__WLEX_1'
+.tailcall __ARG_1.'_applyWithArgs'("foreign", 'WinxedTranslator', 'trans', $P1)
+# }
+
+.end # WSubId_606
+
+
+.sub 'primHostExpr' :subid('WSubId_607') :method
+
+.lex '__WLEX_1', $P2
+# Body
+# {
+# var fromIdx: $P1
+getattribute $P3, self, 'input'
+getattribute $P1, $P3, 'idx'
+# var r: $P2
+null $P2
+.const 'Sub' $P5 = 'WSubId_608'
+newclosure $P4, $P5
+$P3 = $P4(self)
+.return($P3)
+# }
+
+.end # primHostExpr
+
+
+.sub '' :anon :subid('WSubId_608') :outer('WSubId_607')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -11916,19 +11979,19 @@ find_lex $P1, '__WLEX_1'
 .tailcall __ARG_1.'_applyWithArgs'("foreign", 'WinxedTranslator', 'trans', $P1)
 # }
 
-.end # WSubId_604
+.end # WSubId_608
 
 
-.sub 'atomicHostExpr' :subid('WSubId_605') :method
+.sub 'atomicHostExpr' :subid('WSubId_609') :method
 
 # Body
 # {
 # var fromIdx: $P1
 getattribute $P2, self, 'input'
 getattribute $P1, $P2, 'idx'
-.const 'Sub' $P3 = 'WSubId_606'
+.const 'Sub' $P3 = 'WSubId_610'
 newclosure $P2, $P3
-.const 'Sub' $P5 = 'WSubId_607'
+.const 'Sub' $P5 = 'WSubId_611'
 newclosure $P4, $P5
 .tailcall self.'_or'($P2, $P4)
 # }
@@ -11936,7 +11999,7 @@ newclosure $P4, $P5
 .end # atomicHostExpr
 
 
-.sub '' :anon :subid('WSubId_606') :outer('WSubId_605')
+.sub '' :anon :subid('WSubId_610') :outer('WSubId_609')
 .param pmc __ARG_1
 
 # Body
@@ -11944,10 +12007,10 @@ newclosure $P4, $P5
 .tailcall __ARG_1.'_apply'("curlyHostExpr")
 # }
 
-.end # WSubId_606
+.end # WSubId_610
 
 
-.sub '' :anon :subid('WSubId_607') :outer('WSubId_605')
+.sub '' :anon :subid('WSubId_611') :outer('WSubId_609')
 .param pmc __ARG_2
 
 # Body
@@ -11955,10 +12018,10 @@ newclosure $P4, $P5
 .tailcall __ARG_2.'_apply'("primHostExpr")
 # }
 
-.end # WSubId_607
+.end # WSubId_611
 
 
-.sub 'semAction' :subid('WSubId_608') :method
+.sub 'semAction' :subid('WSubId_612') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -11968,9 +12031,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P4 = 'WSubId_609'
+.const 'Sub' $P4 = 'WSubId_613'
 newclosure $P3, $P4
-.const 'Sub' $P6 = 'WSubId_611'
+.const 'Sub' $P6 = 'WSubId_615'
 newclosure $P5, $P6
 .tailcall self.'_or'($P3, $P5)
 # }
@@ -11978,22 +12041,22 @@ newclosure $P5, $P6
 .end # semAction
 
 
-.sub '' :anon :subid('WSubId_609') :outer('WSubId_608')
+.sub '' :anon :subid('WSubId_613') :outer('WSubId_612')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_610'
+.const 'Sub' $P4 = 'WSubId_614'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_1)
 .return($P2)
 # }
 
-.end # WSubId_609
+.end # WSubId_613
 
 
-.sub '' :anon :subid('WSubId_610') :outer('WSubId_609')
+.sub '' :anon :subid('WSubId_614') :outer('WSubId_613')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -12009,25 +12072,25 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_610
+.end # WSubId_614
 
 
-.sub '' :anon :subid('WSubId_611') :outer('WSubId_608')
+.sub '' :anon :subid('WSubId_615') :outer('WSubId_612')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_612'
+.const 'Sub' $P4 = 'WSubId_616'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_3)
 .return($P2)
 # }
 
-.end # WSubId_611
+.end # WSubId_615
 
 
-.sub '' :anon :subid('WSubId_612') :outer('WSubId_611')
+.sub '' :anon :subid('WSubId_616') :outer('WSubId_615')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_1'
@@ -12044,10 +12107,10 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_612
+.end # WSubId_616
 
 
-.sub 'arrSemAction' :subid('WSubId_613') :method
+.sub 'arrSemAction' :subid('WSubId_617') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -12057,7 +12120,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_614'
+.const 'Sub' $P5 = 'WSubId_618'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -12066,7 +12129,7 @@ $P3 = $P4(self)
 .end # arrSemAction
 
 
-.sub '' :anon :subid('WSubId_614') :outer('WSubId_613')
+.sub '' :anon :subid('WSubId_618') :outer('WSubId_617')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -12083,10 +12146,10 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_614
+.end # WSubId_618
 
 
-.sub 'semPred' :subid('WSubId_615') :method
+.sub 'semPred' :subid('WSubId_619') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -12096,7 +12159,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_616'
+.const 'Sub' $P5 = 'WSubId_620'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -12105,7 +12168,7 @@ $P3 = $P4(self)
 .end # semPred
 
 
-.sub '' :anon :subid('WSubId_616') :outer('WSubId_615')
+.sub '' :anon :subid('WSubId_620') :outer('WSubId_619')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -12122,10 +12185,10 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_616
+.end # WSubId_620
 
 
-.sub 'expr' :subid('WSubId_617') :method
+.sub 'expr' :subid('WSubId_621') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -12138,11 +12201,11 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var xs: $P3
 null $P3
-.const 'Sub' $P5 = 'WSubId_618'
+.const 'Sub' $P5 = 'WSubId_622'
 newclosure $P4, $P5
-.const 'Sub' $P7 = 'WSubId_622'
+.const 'Sub' $P7 = 'WSubId_626'
 newclosure $P6, $P7
-.const 'Sub' $P9 = 'WSubId_626'
+.const 'Sub' $P9 = 'WSubId_630'
 newclosure $P8, $P9
 .tailcall self.'_or'($P4, $P6, $P8)
 # }
@@ -12150,23 +12213,23 @@ newclosure $P8, $P9
 .end # expr
 
 
-.sub '' :anon :subid('WSubId_618') :outer('WSubId_617')
+.sub '' :anon :subid('WSubId_622') :outer('WSubId_621')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_619'
+.const 'Sub' $P5 = 'WSubId_623'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_1)
 .return($P3)
 # }
 
-.end # WSubId_618
+.end # WSubId_622
 
 
-.sub '' :anon :subid('WSubId_619') :outer('WSubId_618')
+.sub '' :anon :subid('WSubId_623') :outer('WSubId_622')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -12175,7 +12238,7 @@ $P2 = find_lex '__WLEX_2'
 # {
 $P1 = __ARG_2.'_applyWithArgs'("expr5", 1)
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P4 = 'WSubId_620'
+.const 'Sub' $P4 = 'WSubId_624'
 newclosure $P3, $P4
 $P2 = __ARG_2.'_many1'($P3)
 store_lex '__WLEX_2', $P2
@@ -12188,24 +12251,24 @@ find_lex $P2, '__WLEX_2'
 .tailcall $P3.'append'($P2)
 # }
 
-.end # WSubId_619
+.end # WSubId_623
 
 
-.sub '' :anon :subid('WSubId_620') :outer('WSubId_619')
+.sub '' :anon :subid('WSubId_624') :outer('WSubId_623')
 .param pmc __ARG_3
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_621'
+.const 'Sub' $P3 = 'WSubId_625'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_3)
 .return($P1)
 # }
 
-.end # WSubId_620
+.end # WSubId_624
 
 
-.sub '' :anon :subid('WSubId_621') :outer('WSubId_620')
+.sub '' :anon :subid('WSubId_625') :outer('WSubId_624')
 .param pmc __ARG_4
 
 # Body
@@ -12214,26 +12277,26 @@ __ARG_4.'_applyWithArgs'("token", "|")
 .tailcall __ARG_4.'_applyWithArgs'("expr5", 1)
 # }
 
-.end # WSubId_621
+.end # WSubId_625
 
 
-.sub '' :anon :subid('WSubId_622') :outer('WSubId_617')
+.sub '' :anon :subid('WSubId_626') :outer('WSubId_621')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_623'
+.const 'Sub' $P5 = 'WSubId_627'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_5)
 .return($P3)
 # }
 
-.end # WSubId_622
+.end # WSubId_626
 
 
-.sub '' :anon :subid('WSubId_623') :outer('WSubId_622')
+.sub '' :anon :subid('WSubId_627') :outer('WSubId_626')
 .param pmc __ARG_6
 
 $P1 = find_lex '__WLEX_1'
@@ -12242,7 +12305,7 @@ $P2 = find_lex '__WLEX_2'
 # {
 $P1 = __ARG_6.'_applyWithArgs'("expr5", 1)
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P4 = 'WSubId_624'
+.const 'Sub' $P4 = 'WSubId_628'
 newclosure $P3, $P4
 $P2 = __ARG_6.'_many1'($P3)
 store_lex '__WLEX_2', $P2
@@ -12255,24 +12318,24 @@ find_lex $P2, '__WLEX_2'
 .tailcall $P3.'append'($P2)
 # }
 
-.end # WSubId_623
+.end # WSubId_627
 
 
-.sub '' :anon :subid('WSubId_624') :outer('WSubId_623')
+.sub '' :anon :subid('WSubId_628') :outer('WSubId_627')
 .param pmc __ARG_7
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_625'
+.const 'Sub' $P3 = 'WSubId_629'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_7)
 .return($P1)
 # }
 
-.end # WSubId_624
+.end # WSubId_628
 
 
-.sub '' :anon :subid('WSubId_625') :outer('WSubId_624')
+.sub '' :anon :subid('WSubId_629') :outer('WSubId_628')
 .param pmc __ARG_8
 
 # Body
@@ -12281,10 +12344,10 @@ __ARG_8.'_applyWithArgs'("token", "||")
 .tailcall __ARG_8.'_applyWithArgs'("expr5", 1)
 # }
 
-.end # WSubId_625
+.end # WSubId_629
 
 
-.sub '' :anon :subid('WSubId_626') :outer('WSubId_617')
+.sub '' :anon :subid('WSubId_630') :outer('WSubId_621')
 .param pmc __ARG_9
 
 # Body
@@ -12292,10 +12355,10 @@ __ARG_8.'_applyWithArgs'("token", "||")
 .tailcall __ARG_9.'_applyWithArgs'("expr5", 0)
 # }
 
-.end # WSubId_626
+.end # WSubId_630
 
 
-.sub 'expr5' :subid('WSubId_627') :method
+.sub 'expr5' :subid('WSubId_631') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -12311,7 +12374,7 @@ null $P2
 null $P3
 # var xs: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_628'
+.const 'Sub' $P7 = 'WSubId_632'
 newclosure $P6, $P7
 $P5 = $P6(self)
 .return($P5)
@@ -12320,7 +12383,7 @@ $P5 = $P6(self)
 .end # expr5
 
 
-.sub '' :anon :subid('WSubId_628') :outer('WSubId_627')
+.sub '' :anon :subid('WSubId_632') :outer('WSubId_631')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -12330,33 +12393,33 @@ $P3 = find_lex '__WLEX_3'
 # {
 $P1 = __ARG_1.'_apply'("anything")
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P5 = 'WSubId_629'
+.const 'Sub' $P5 = 'WSubId_633'
 newclosure $P4, $P5
-.const 'Sub' $P7 = 'WSubId_633'
+.const 'Sub' $P7 = 'WSubId_637'
 newclosure $P6, $P7
 .tailcall __ARG_1.'_or'($P4, $P6)
 # }
 
-.end # WSubId_628
+.end # WSubId_632
 
 
-.sub '' :anon :subid('WSubId_629') :outer('WSubId_628')
+.sub '' :anon :subid('WSubId_633') :outer('WSubId_632')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_630'
+.const 'Sub' $P5 = 'WSubId_634'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_2)
 .return($P3)
 # }
 
-.end # WSubId_629
+.end # WSubId_633
 
 
-.sub '' :anon :subid('WSubId_630') :outer('WSubId_629')
+.sub '' :anon :subid('WSubId_634') :outer('WSubId_633')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_2'
@@ -12365,7 +12428,7 @@ $P2 = find_lex '__WLEX_3'
 # {
 $P1 = __ARG_3.'_apply'("interleavePart")
 store_lex '__WLEX_2', $P1
-.const 'Sub' $P4 = 'WSubId_631'
+.const 'Sub' $P4 = 'WSubId_635'
 newclosure $P3, $P4
 $P2 = __ARG_3.'_many1'($P3)
 store_lex '__WLEX_3', $P2
@@ -12378,24 +12441,24 @@ find_lex $P2, '__WLEX_3'
 .tailcall $P3.'append'($P2)
 # }
 
-.end # WSubId_630
+.end # WSubId_634
 
 
-.sub '' :anon :subid('WSubId_631') :outer('WSubId_630')
+.sub '' :anon :subid('WSubId_635') :outer('WSubId_634')
 .param pmc __ARG_4
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_632'
+.const 'Sub' $P3 = 'WSubId_636'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_4)
 .return($P1)
 # }
 
-.end # WSubId_631
+.end # WSubId_635
 
 
-.sub '' :anon :subid('WSubId_632') :outer('WSubId_631')
+.sub '' :anon :subid('WSubId_636') :outer('WSubId_635')
 .param pmc __ARG_5
 
 # Body
@@ -12404,10 +12467,10 @@ __ARG_5.'_applyWithArgs'("token", "&&")
 .tailcall __ARG_5.'_apply'("interleavePart")
 # }
 
-.end # WSubId_632
+.end # WSubId_636
 
 
-.sub '' :anon :subid('WSubId_633') :outer('WSubId_628')
+.sub '' :anon :subid('WSubId_637') :outer('WSubId_632')
 .param pmc __ARG_6
 
 $P1 = find_lex '__WLEX_1'
@@ -12417,10 +12480,10 @@ find_lex $P1, '__WLEX_1'
 .tailcall __ARG_6.'_applyWithArgs'("expr4", $P1)
 # }
 
-.end # WSubId_633
+.end # WSubId_637
 
 
-.sub 'interleavePart' :subid('WSubId_634') :method
+.sub 'interleavePart' :subid('WSubId_638') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -12430,9 +12493,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var part: $P2
 null $P2
-.const 'Sub' $P4 = 'WSubId_635'
+.const 'Sub' $P4 = 'WSubId_639'
 newclosure $P3, $P4
-.const 'Sub' $P6 = 'WSubId_637'
+.const 'Sub' $P6 = 'WSubId_641'
 newclosure $P5, $P6
 .tailcall self.'_or'($P3, $P5)
 # }
@@ -12440,22 +12503,22 @@ newclosure $P5, $P6
 .end # interleavePart
 
 
-.sub '' :anon :subid('WSubId_635') :outer('WSubId_634')
+.sub '' :anon :subid('WSubId_639') :outer('WSubId_638')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_636'
+.const 'Sub' $P4 = 'WSubId_640'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_1)
 .return($P2)
 # }
 
-.end # WSubId_635
+.end # WSubId_639
 
 
-.sub '' :anon :subid('WSubId_636') :outer('WSubId_635')
+.sub '' :anon :subid('WSubId_640') :outer('WSubId_639')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -12473,25 +12536,25 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_636
+.end # WSubId_640
 
 
-.sub '' :anon :subid('WSubId_637') :outer('WSubId_634')
+.sub '' :anon :subid('WSubId_641') :outer('WSubId_638')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_638'
+.const 'Sub' $P4 = 'WSubId_642'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_3)
 .return($P2)
 # }
 
-.end # WSubId_637
+.end # WSubId_641
 
 
-.sub '' :anon :subid('WSubId_638') :outer('WSubId_637')
+.sub '' :anon :subid('WSubId_642') :outer('WSubId_641')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_1'
@@ -12503,10 +12566,10 @@ find_lex $P1, '__WLEX_1'
 .tailcall __ARG_4.'_applyWithArgs'("modedIPart", $P1)
 # }
 
-.end # WSubId_638
+.end # WSubId_642
 
 
-.sub 'modedIPart' :subid('WSubId_639') :method
+.sub 'modedIPart' :subid('WSubId_643') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -12516,13 +12579,13 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var part: $P2
 null $P2
-.const 'Sub' $P4 = 'WSubId_640'
+.const 'Sub' $P4 = 'WSubId_644'
 newclosure $P3, $P4
-.const 'Sub' $P6 = 'WSubId_646'
+.const 'Sub' $P6 = 'WSubId_650'
 newclosure $P5, $P6
-.const 'Sub' $P8 = 'WSubId_652'
+.const 'Sub' $P8 = 'WSubId_656'
 newclosure $P7, $P8
-.const 'Sub' $P10 = 'WSubId_658'
+.const 'Sub' $P10 = 'WSubId_662'
 newclosure $P9, $P10
 .tailcall self.'_or'($P3, $P5, $P7, $P9)
 # }
@@ -12530,28 +12593,28 @@ newclosure $P9, $P10
 .end # modedIPart
 
 
-.sub '' :anon :subid('WSubId_640') :outer('WSubId_639')
+.sub '' :anon :subid('WSubId_644') :outer('WSubId_643')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_641'
+.const 'Sub' $P4 = 'WSubId_645'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_1)
 .return($P2)
 # }
 
-.end # WSubId_640
+.end # WSubId_644
 
 
-.sub '' :anon :subid('WSubId_641') :outer('WSubId_640')
+.sub '' :anon :subid('WSubId_645') :outer('WSubId_644')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_642'
+.const 'Sub' $P3 = 'WSubId_646'
 newclosure $P2, $P3
 __ARG_2.'_form'($P2)
 root_new $P2, ['parrot';'ResizablePMCArray']
@@ -12562,55 +12625,55 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_641
+.end # WSubId_645
 
 
-.sub '' :anon :subid('WSubId_642') :outer('WSubId_641')
+.sub '' :anon :subid('WSubId_646') :outer('WSubId_645')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_643'
+.const 'Sub' $P4 = 'WSubId_647'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_3)
 .return($P2)
 # }
 
-.end # WSubId_642
+.end # WSubId_646
 
 
-.sub '' :anon :subid('WSubId_643') :outer('WSubId_642')
+.sub '' :anon :subid('WSubId_647') :outer('WSubId_646')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
 __ARG_4.'_applyWithArgs'("exactly", "And")
-.const 'Sub' $P3 = 'WSubId_644'
+.const 'Sub' $P3 = 'WSubId_648'
 newclosure $P2, $P3
 .tailcall __ARG_4.'_form'($P2)
 # }
 
-.end # WSubId_643
+.end # WSubId_647
 
 
-.sub '' :anon :subid('WSubId_644') :outer('WSubId_643')
+.sub '' :anon :subid('WSubId_648') :outer('WSubId_647')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_645'
+.const 'Sub' $P4 = 'WSubId_649'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_5)
 .return($P2)
 # }
 
-.end # WSubId_644
+.end # WSubId_648
 
 
-.sub '' :anon :subid('WSubId_645') :outer('WSubId_644')
+.sub '' :anon :subid('WSubId_649') :outer('WSubId_648')
 .param pmc __ARG_6
 
 $P1 = find_lex '__WLEX_1'
@@ -12622,31 +12685,31 @@ store_lex '__WLEX_1', $P1
 .return($P1)
 # }
 
-.end # WSubId_645
+.end # WSubId_649
 
 
-.sub '' :anon :subid('WSubId_646') :outer('WSubId_639')
+.sub '' :anon :subid('WSubId_650') :outer('WSubId_643')
 .param pmc __ARG_7
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_647'
+.const 'Sub' $P4 = 'WSubId_651'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_7)
 .return($P2)
 # }
 
-.end # WSubId_646
+.end # WSubId_650
 
 
-.sub '' :anon :subid('WSubId_647') :outer('WSubId_646')
+.sub '' :anon :subid('WSubId_651') :outer('WSubId_650')
 .param pmc __ARG_8
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_648'
+.const 'Sub' $P3 = 'WSubId_652'
 newclosure $P2, $P3
 __ARG_8.'_form'($P2)
 root_new $P2, ['parrot';'ResizablePMCArray']
@@ -12657,55 +12720,55 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_647
+.end # WSubId_651
 
 
-.sub '' :anon :subid('WSubId_648') :outer('WSubId_647')
+.sub '' :anon :subid('WSubId_652') :outer('WSubId_651')
 .param pmc __ARG_9
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_649'
+.const 'Sub' $P4 = 'WSubId_653'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_9)
 .return($P2)
 # }
 
-.end # WSubId_648
+.end # WSubId_652
 
 
-.sub '' :anon :subid('WSubId_649') :outer('WSubId_648')
+.sub '' :anon :subid('WSubId_653') :outer('WSubId_652')
 .param pmc __ARG_10
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
 __ARG_10.'_applyWithArgs'("exactly", "And")
-.const 'Sub' $P3 = 'WSubId_650'
+.const 'Sub' $P3 = 'WSubId_654'
 newclosure $P2, $P3
 .tailcall __ARG_10.'_form'($P2)
 # }
 
-.end # WSubId_649
+.end # WSubId_653
 
 
-.sub '' :anon :subid('WSubId_650') :outer('WSubId_649')
+.sub '' :anon :subid('WSubId_654') :outer('WSubId_653')
 .param pmc __ARG_11
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_651'
+.const 'Sub' $P4 = 'WSubId_655'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_11)
 .return($P2)
 # }
 
-.end # WSubId_650
+.end # WSubId_654
 
 
-.sub '' :anon :subid('WSubId_651') :outer('WSubId_650')
+.sub '' :anon :subid('WSubId_655') :outer('WSubId_654')
 .param pmc __ARG_12
 
 $P1 = find_lex '__WLEX_1'
@@ -12717,31 +12780,31 @@ store_lex '__WLEX_1', $P1
 .return($P1)
 # }
 
-.end # WSubId_651
+.end # WSubId_655
 
 
-.sub '' :anon :subid('WSubId_652') :outer('WSubId_639')
+.sub '' :anon :subid('WSubId_656') :outer('WSubId_643')
 .param pmc __ARG_13
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_653'
+.const 'Sub' $P4 = 'WSubId_657'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_13)
 .return($P2)
 # }
 
-.end # WSubId_652
+.end # WSubId_656
 
 
-.sub '' :anon :subid('WSubId_653') :outer('WSubId_652')
+.sub '' :anon :subid('WSubId_657') :outer('WSubId_656')
 .param pmc __ARG_14
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_654'
+.const 'Sub' $P3 = 'WSubId_658'
 newclosure $P2, $P3
 __ARG_14.'_form'($P2)
 root_new $P2, ['parrot';'ResizablePMCArray']
@@ -12752,55 +12815,55 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_653
+.end # WSubId_657
 
 
-.sub '' :anon :subid('WSubId_654') :outer('WSubId_653')
+.sub '' :anon :subid('WSubId_658') :outer('WSubId_657')
 .param pmc __ARG_15
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_655'
+.const 'Sub' $P4 = 'WSubId_659'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_15)
 .return($P2)
 # }
 
-.end # WSubId_654
+.end # WSubId_658
 
 
-.sub '' :anon :subid('WSubId_655') :outer('WSubId_654')
+.sub '' :anon :subid('WSubId_659') :outer('WSubId_658')
 .param pmc __ARG_16
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
 __ARG_16.'_applyWithArgs'("exactly", "And")
-.const 'Sub' $P3 = 'WSubId_656'
+.const 'Sub' $P3 = 'WSubId_660'
 newclosure $P2, $P3
 .tailcall __ARG_16.'_form'($P2)
 # }
 
-.end # WSubId_655
+.end # WSubId_659
 
 
-.sub '' :anon :subid('WSubId_656') :outer('WSubId_655')
+.sub '' :anon :subid('WSubId_660') :outer('WSubId_659')
 .param pmc __ARG_17
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_657'
+.const 'Sub' $P4 = 'WSubId_661'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_17)
 .return($P2)
 # }
 
-.end # WSubId_656
+.end # WSubId_660
 
 
-.sub '' :anon :subid('WSubId_657') :outer('WSubId_656')
+.sub '' :anon :subid('WSubId_661') :outer('WSubId_660')
 .param pmc __ARG_18
 
 $P1 = find_lex '__WLEX_1'
@@ -12812,25 +12875,25 @@ store_lex '__WLEX_1', $P1
 .return($P1)
 # }
 
-.end # WSubId_657
+.end # WSubId_661
 
 
-.sub '' :anon :subid('WSubId_658') :outer('WSubId_639')
+.sub '' :anon :subid('WSubId_662') :outer('WSubId_643')
 .param pmc __ARG_19
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_659'
+.const 'Sub' $P4 = 'WSubId_663'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_19)
 .return($P2)
 # }
 
-.end # WSubId_658
+.end # WSubId_662
 
 
-.sub '' :anon :subid('WSubId_659') :outer('WSubId_658')
+.sub '' :anon :subid('WSubId_663') :outer('WSubId_662')
 .param pmc __ARG_20
 
 $P1 = find_lex '__WLEX_1'
@@ -12846,10 +12909,10 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_659
+.end # WSubId_663
 
 
-.sub 'expr4' :subid('WSubId_660') :method
+.sub 'expr4' :subid('WSubId_664') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -12865,7 +12928,7 @@ null $P2
 null $P3
 # var act: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_661'
+.const 'Sub' $P7 = 'WSubId_665'
 newclosure $P6, $P7
 $P5 = $P6(self)
 .return($P5)
@@ -12874,7 +12937,7 @@ $P5 = $P6(self)
 .end # expr4
 
 
-.sub '' :anon :subid('WSubId_661') :outer('WSubId_660')
+.sub '' :anon :subid('WSubId_665') :outer('WSubId_664')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -12884,42 +12947,42 @@ $P3 = find_lex '__WLEX_3'
 # {
 $P1 = __ARG_1.'_apply'("anything")
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P5 = 'WSubId_662'
+.const 'Sub' $P5 = 'WSubId_666'
 newclosure $P4, $P5
-.const 'Sub' $P7 = 'WSubId_665'
+.const 'Sub' $P7 = 'WSubId_669'
 newclosure $P6, $P7
-.const 'Sub' $P9 = 'WSubId_668'
+.const 'Sub' $P9 = 'WSubId_672'
 newclosure $P8, $P9
 .tailcall __ARG_1.'_or'($P4, $P6, $P8)
 # }
 
-.end # WSubId_661
+.end # WSubId_665
 
 
-.sub '' :anon :subid('WSubId_662') :outer('WSubId_661')
+.sub '' :anon :subid('WSubId_666') :outer('WSubId_665')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_663'
+.const 'Sub' $P5 = 'WSubId_667'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_2)
 .return($P3)
 # }
 
-.end # WSubId_662
+.end # WSubId_666
 
 
-.sub '' :anon :subid('WSubId_663') :outer('WSubId_662')
+.sub '' :anon :subid('WSubId_667') :outer('WSubId_666')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_664'
+.const 'Sub' $P4 = 'WSubId_668'
 newclosure $P3, $P4
 $P1 = __ARG_3.'_many'($P3)
 store_lex '__WLEX_2', $P1
@@ -12936,10 +12999,10 @@ $P6.'push'($P2)
 .tailcall $P3.'append'($P6)
 # }
 
-.end # WSubId_663
+.end # WSubId_667
 
 
-.sub '' :anon :subid('WSubId_664') :outer('WSubId_663')
+.sub '' :anon :subid('WSubId_668') :outer('WSubId_667')
 .param pmc __ARG_4
 
 # Body
@@ -12947,26 +13010,26 @@ $P6.'push'($P2)
 .tailcall __ARG_4.'_apply'("expr3")
 # }
 
-.end # WSubId_664
+.end # WSubId_668
 
 
-.sub '' :anon :subid('WSubId_665') :outer('WSubId_661')
+.sub '' :anon :subid('WSubId_669') :outer('WSubId_665')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_666'
+.const 'Sub' $P5 = 'WSubId_670'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_5)
 .return($P3)
 # }
 
-.end # WSubId_665
+.end # WSubId_669
 
 
-.sub '' :anon :subid('WSubId_666') :outer('WSubId_665')
+.sub '' :anon :subid('WSubId_670') :outer('WSubId_669')
 .param pmc __ARG_6
 
 $P1 = find_lex '__WLEX_1'
@@ -12975,7 +13038,7 @@ $P2 = find_lex '__WLEX_2'
 # {
 find_lex $P1, '__WLEX_1'
 __ARG_6.'_pred'($P1)
-.const 'Sub' $P4 = 'WSubId_667'
+.const 'Sub' $P4 = 'WSubId_671'
 newclosure $P3, $P4
 $P2 = __ARG_6.'_many1'($P3)
 store_lex '__WLEX_2', $P2
@@ -12986,10 +13049,10 @@ find_lex $P2, '__WLEX_2'
 .tailcall $P3.'append'($P2)
 # }
 
-.end # WSubId_666
+.end # WSubId_670
 
 
-.sub '' :anon :subid('WSubId_667') :outer('WSubId_666')
+.sub '' :anon :subid('WSubId_671') :outer('WSubId_670')
 .param pmc __ARG_7
 
 # Body
@@ -12997,26 +13060,26 @@ find_lex $P2, '__WLEX_2'
 .tailcall __ARG_7.'_apply'("expr3")
 # }
 
-.end # WSubId_667
+.end # WSubId_671
 
 
-.sub '' :anon :subid('WSubId_668') :outer('WSubId_661')
+.sub '' :anon :subid('WSubId_672') :outer('WSubId_665')
 .param pmc __ARG_8
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_669'
+.const 'Sub' $P5 = 'WSubId_673'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_8)
 .return($P3)
 # }
 
-.end # WSubId_668
+.end # WSubId_672
 
 
-.sub '' :anon :subid('WSubId_669') :outer('WSubId_668')
+.sub '' :anon :subid('WSubId_673') :outer('WSubId_672')
 .param pmc __ARG_9
 
 $P1 = find_lex '__WLEX_1'
@@ -13027,7 +13090,7 @@ find_lex $P1, '__WLEX_1'
 set $I2, $P1
 iseq $I1, $I2, 0
 __ARG_9.'_pred'($I1)
-.const 'Sub' $P4 = 'WSubId_670'
+.const 'Sub' $P4 = 'WSubId_674'
 newclosure $P3, $P4
 $P2 = __ARG_9.'_many'($P3)
 store_lex '__WLEX_2', $P2
@@ -13038,10 +13101,10 @@ find_lex $P2, '__WLEX_2'
 .tailcall $P3.'append'($P2)
 # }
 
-.end # WSubId_669
+.end # WSubId_673
 
 
-.sub '' :anon :subid('WSubId_670') :outer('WSubId_669')
+.sub '' :anon :subid('WSubId_674') :outer('WSubId_673')
 .param pmc __ARG_10
 
 # Body
@@ -13049,10 +13112,10 @@ find_lex $P2, '__WLEX_2'
 .tailcall __ARG_10.'_apply'("expr3")
 # }
 
-.end # WSubId_670
+.end # WSubId_674
 
 
-.sub 'optIter' :subid('WSubId_671') :method
+.sub 'optIter' :subid('WSubId_675') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -13062,7 +13125,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_672'
+.const 'Sub' $P5 = 'WSubId_676'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -13071,7 +13134,7 @@ $P3 = $P4(self)
 .end # optIter
 
 
-.sub '' :anon :subid('WSubId_672') :outer('WSubId_671')
+.sub '' :anon :subid('WSubId_676') :outer('WSubId_675')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -13079,32 +13142,32 @@ $P1 = find_lex '__WLEX_1'
 # {
 $P1 = __ARG_1.'_apply'("anything")
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P3 = 'WSubId_673'
+.const 'Sub' $P3 = 'WSubId_677'
 newclosure $P2, $P3
-.const 'Sub' $P5 = 'WSubId_675'
+.const 'Sub' $P5 = 'WSubId_679'
 newclosure $P4, $P5
 .tailcall __ARG_1.'_or'($P2, $P4)
 # }
 
-.end # WSubId_672
+.end # WSubId_676
 
 
-.sub '' :anon :subid('WSubId_673') :outer('WSubId_672')
+.sub '' :anon :subid('WSubId_677') :outer('WSubId_676')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_674'
+.const 'Sub' $P4 = 'WSubId_678'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_2)
 .return($P2)
 # }
 
-.end # WSubId_673
+.end # WSubId_677
 
 
-.sub '' :anon :subid('WSubId_674') :outer('WSubId_673')
+.sub '' :anon :subid('WSubId_678') :outer('WSubId_677')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
@@ -13147,25 +13210,25 @@ throw $P9
 __label_0: # switch end
 # }
 
-.end # WSubId_674
+.end # WSubId_678
 
 
-.sub '' :anon :subid('WSubId_675') :outer('WSubId_672')
+.sub '' :anon :subid('WSubId_679') :outer('WSubId_676')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_676'
+.const 'Sub' $P4 = 'WSubId_680'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_4)
 .return($P2)
 # }
 
-.end # WSubId_675
+.end # WSubId_679
 
 
-.sub '' :anon :subid('WSubId_676') :outer('WSubId_675')
+.sub '' :anon :subid('WSubId_680') :outer('WSubId_679')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_1'
@@ -13176,10 +13239,10 @@ find_lex $P1, '__WLEX_1'
 .return($P1)
 # }
 
-.end # WSubId_676
+.end # WSubId_680
 
 
-.sub 'optBind' :subid('WSubId_677') :method
+.sub 'optBind' :subid('WSubId_681') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -13192,7 +13255,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var n: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_678'
+.const 'Sub' $P6 = 'WSubId_682'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -13201,7 +13264,7 @@ $P4 = $P5(self)
 .end # optBind
 
 
-.sub '' :anon :subid('WSubId_678') :outer('WSubId_677')
+.sub '' :anon :subid('WSubId_682') :outer('WSubId_681')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -13210,33 +13273,33 @@ $P2 = find_lex '__WLEX_2'
 # {
 $P1 = __ARG_1.'_apply'("anything")
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P4 = 'WSubId_679'
+.const 'Sub' $P4 = 'WSubId_683'
 newclosure $P3, $P4
-.const 'Sub' $P6 = 'WSubId_683'
+.const 'Sub' $P6 = 'WSubId_687'
 newclosure $P5, $P6
 .tailcall __ARG_1.'_or'($P3, $P5)
 # }
 
-.end # WSubId_678
+.end # WSubId_682
 
 
-.sub '' :anon :subid('WSubId_679') :outer('WSubId_678')
+.sub '' :anon :subid('WSubId_683') :outer('WSubId_682')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_680'
+.const 'Sub' $P5 = 'WSubId_684'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_2)
 .return($P3)
 # }
 
-.end # WSubId_679
+.end # WSubId_683
 
 
-.sub '' :anon :subid('WSubId_680') :outer('WSubId_679')
+.sub '' :anon :subid('WSubId_684') :outer('WSubId_683')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_2'
@@ -13250,7 +13313,7 @@ if $S1 == $S2 goto __label_2
 goto __label_1
 # switch
 __label_2: # case
-.const 'Sub' $P6 = 'WSubId_681'
+.const 'Sub' $P6 = 'WSubId_685'
 newclosure $P5, $P6
 $P4 = $P5(__ARG_3)
 .return($P4)
@@ -13260,10 +13323,10 @@ throw $P7
 __label_0: # switch end
 # }
 
-.end # WSubId_680
+.end # WSubId_684
 
 
-.sub '' :anon :subid('WSubId_681') :outer('WSubId_680')
+.sub '' :anon :subid('WSubId_685') :outer('WSubId_684')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_2'
@@ -13272,16 +13335,16 @@ $P2 = find_lex '__WLEX_1'
 # {
 $P1 = __ARG_4.'_apply'("name")
 store_lex '__WLEX_2', $P1
-.const 'Sub' $P5 = 'WSubId_682'
+.const 'Sub' $P5 = 'WSubId_686'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_4)
 .return($P3)
 # }
 
-.end # WSubId_681
+.end # WSubId_685
 
 
-.sub '' :anon :subid('WSubId_682') :outer('WSubId_681')
+.sub '' :anon :subid('WSubId_686') :outer('WSubId_685')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_2'
@@ -13301,25 +13364,25 @@ $P3.'push'($P2)
 .return($P3)
 # }
 
-.end # WSubId_682
+.end # WSubId_686
 
 
-.sub '' :anon :subid('WSubId_683') :outer('WSubId_678')
+.sub '' :anon :subid('WSubId_687') :outer('WSubId_682')
 .param pmc __ARG_6
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_684'
+.const 'Sub' $P4 = 'WSubId_688'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_6)
 .return($P2)
 # }
 
-.end # WSubId_683
+.end # WSubId_687
 
 
-.sub '' :anon :subid('WSubId_684') :outer('WSubId_683')
+.sub '' :anon :subid('WSubId_688') :outer('WSubId_687')
 .param pmc __ARG_7
 
 $P1 = find_lex '__WLEX_1'
@@ -13330,10 +13393,10 @@ find_lex $P1, '__WLEX_1'
 .return($P1)
 # }
 
-.end # WSubId_684
+.end # WSubId_688
 
 
-.sub 'expr3' :subid('WSubId_685') :method
+.sub 'expr3' :subid('WSubId_689') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P4
@@ -13349,11 +13412,11 @@ null $P2
 null $P3
 # var e: $P4
 null $P4
-.const 'Sub' $P6 = 'WSubId_686'
+.const 'Sub' $P6 = 'WSubId_690'
 newclosure $P5, $P6
-.const 'Sub' $P8 = 'WSubId_689'
+.const 'Sub' $P8 = 'WSubId_693'
 newclosure $P7, $P8
-.const 'Sub' $P10 = 'WSubId_694'
+.const 'Sub' $P10 = 'WSubId_698'
 newclosure $P9, $P10
 .tailcall self.'_or'($P5, $P7, $P9)
 # }
@@ -13361,22 +13424,22 @@ newclosure $P9, $P10
 .end # expr3
 
 
-.sub '' :anon :subid('WSubId_686') :outer('WSubId_685')
+.sub '' :anon :subid('WSubId_690') :outer('WSubId_689')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_687'
+.const 'Sub' $P4 = 'WSubId_691'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_1)
 .return($P2)
 # }
 
-.end # WSubId_686
+.end # WSubId_690
 
 
-.sub '' :anon :subid('WSubId_687') :outer('WSubId_686')
+.sub '' :anon :subid('WSubId_691') :outer('WSubId_690')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -13385,16 +13448,16 @@ $P1 = find_lex '__WLEX_1'
 __ARG_2.'_applyWithArgs'("token", ":")
 $P1 = __ARG_2.'_apply'("name")
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P4 = 'WSubId_688'
+.const 'Sub' $P4 = 'WSubId_692'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_2)
 .return($P2)
 # }
 
-.end # WSubId_687
+.end # WSubId_691
 
 
-.sub '' :anon :subid('WSubId_688') :outer('WSubId_687')
+.sub '' :anon :subid('WSubId_692') :outer('WSubId_691')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
@@ -13417,35 +13480,35 @@ $P2.'push'($P4)
 .return($P2)
 # }
 
-.end # WSubId_688
+.end # WSubId_692
 
 
-.sub '' :anon :subid('WSubId_689') :outer('WSubId_685')
+.sub '' :anon :subid('WSubId_693') :outer('WSubId_689')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_690'
+.const 'Sub' $P5 = 'WSubId_694'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_4)
 .return($P3)
 # }
 
-.end # WSubId_689
+.end # WSubId_693
 
 
-.sub '' :anon :subid('WSubId_690') :outer('WSubId_689')
+.sub '' :anon :subid('WSubId_694') :outer('WSubId_693')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_691'
+.const 'Sub' $P4 = 'WSubId_695'
 newclosure $P3, $P4
-.const 'Sub' $P6 = 'WSubId_693'
+.const 'Sub' $P6 = 'WSubId_697'
 newclosure $P5, $P6
 $P1 = __ARG_5.'_or'($P3, $P5)
 store_lex '__WLEX_2', $P1
@@ -13453,25 +13516,25 @@ find_lex $P1, '__WLEX_2'
 .tailcall __ARG_5.'_applyWithArgs'("optBind", $P1)
 # }
 
-.end # WSubId_690
+.end # WSubId_694
 
 
-.sub '' :anon :subid('WSubId_691') :outer('WSubId_690')
+.sub '' :anon :subid('WSubId_695') :outer('WSubId_694')
 .param pmc __ARG_6
 
 $P1 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_692'
+.const 'Sub' $P4 = 'WSubId_696'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_6)
 .return($P2)
 # }
 
-.end # WSubId_691
+.end # WSubId_695
 
 
-.sub '' :anon :subid('WSubId_692') :outer('WSubId_691')
+.sub '' :anon :subid('WSubId_696') :outer('WSubId_695')
 .param pmc __ARG_7
 
 $P1 = find_lex '__WLEX_3'
@@ -13483,10 +13546,10 @@ find_lex $P1, '__WLEX_3'
 .tailcall __ARG_7.'_applyWithArgs'("optIter", $P1)
 # }
 
-.end # WSubId_692
+.end # WSubId_696
 
 
-.sub '' :anon :subid('WSubId_693') :outer('WSubId_690')
+.sub '' :anon :subid('WSubId_697') :outer('WSubId_694')
 .param pmc __ARG_8
 
 # Body
@@ -13494,10 +13557,10 @@ find_lex $P1, '__WLEX_3'
 .tailcall __ARG_8.'_apply'("semAction")
 # }
 
-.end # WSubId_693
+.end # WSubId_697
 
 
-.sub '' :anon :subid('WSubId_694') :outer('WSubId_685')
+.sub '' :anon :subid('WSubId_698') :outer('WSubId_689')
 .param pmc __ARG_9
 
 # Body
@@ -13505,10 +13568,10 @@ find_lex $P1, '__WLEX_3'
 .tailcall __ARG_9.'_apply'("semPred")
 # }
 
-.end # WSubId_694
+.end # WSubId_698
 
 
-.sub 'expr2' :subid('WSubId_695') :method
+.sub 'expr2' :subid('WSubId_699') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -13518,11 +13581,11 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P4 = 'WSubId_696'
+.const 'Sub' $P4 = 'WSubId_700'
 newclosure $P3, $P4
-.const 'Sub' $P6 = 'WSubId_698'
+.const 'Sub' $P6 = 'WSubId_702'
 newclosure $P5, $P6
-.const 'Sub' $P8 = 'WSubId_700'
+.const 'Sub' $P8 = 'WSubId_704'
 newclosure $P7, $P8
 .tailcall self.'_or'($P3, $P5, $P7)
 # }
@@ -13530,22 +13593,22 @@ newclosure $P7, $P8
 .end # expr2
 
 
-.sub '' :anon :subid('WSubId_696') :outer('WSubId_695')
+.sub '' :anon :subid('WSubId_700') :outer('WSubId_699')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_697'
+.const 'Sub' $P4 = 'WSubId_701'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_1)
 .return($P2)
 # }
 
-.end # WSubId_696
+.end # WSubId_700
 
 
-.sub '' :anon :subid('WSubId_697') :outer('WSubId_696')
+.sub '' :anon :subid('WSubId_701') :outer('WSubId_700')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -13562,25 +13625,25 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_697
+.end # WSubId_701
 
 
-.sub '' :anon :subid('WSubId_698') :outer('WSubId_695')
+.sub '' :anon :subid('WSubId_702') :outer('WSubId_699')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_699'
+.const 'Sub' $P4 = 'WSubId_703'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_3)
 .return($P2)
 # }
 
-.end # WSubId_698
+.end # WSubId_702
 
 
-.sub '' :anon :subid('WSubId_699') :outer('WSubId_698')
+.sub '' :anon :subid('WSubId_703') :outer('WSubId_702')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_1'
@@ -13597,10 +13660,10 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_699
+.end # WSubId_703
 
 
-.sub '' :anon :subid('WSubId_700') :outer('WSubId_695')
+.sub '' :anon :subid('WSubId_704') :outer('WSubId_699')
 .param pmc __ARG_5
 
 # Body
@@ -13608,10 +13671,10 @@ $P2.'push'($P1)
 .tailcall __ARG_5.'_apply'("expr1")
 # }
 
-.end # WSubId_700
+.end # WSubId_704
 
 
-.sub 'expr1' :subid('WSubId_701') :method
+.sub 'expr1' :subid('WSubId_705') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -13621,19 +13684,19 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P4 = 'WSubId_702'
+.const 'Sub' $P4 = 'WSubId_706'
 newclosure $P3, $P4
-.const 'Sub' $P6 = 'WSubId_703'
+.const 'Sub' $P6 = 'WSubId_707'
 newclosure $P5, $P6
-.const 'Sub' $P8 = 'WSubId_708'
+.const 'Sub' $P8 = 'WSubId_712'
 newclosure $P7, $P8
-.const 'Sub' $P10 = 'WSubId_714'
+.const 'Sub' $P10 = 'WSubId_718'
 newclosure $P9, $P10
-.const 'Sub' $P12 = 'WSubId_716'
+.const 'Sub' $P12 = 'WSubId_720'
 newclosure $P11, $P12
-.const 'Sub' $P14 = 'WSubId_718'
+.const 'Sub' $P14 = 'WSubId_722'
 newclosure $P13, $P14
-.const 'Sub' $P16 = 'WSubId_720'
+.const 'Sub' $P16 = 'WSubId_724'
 newclosure $P15, $P16
 .tailcall self.'_or'($P3, $P5, $P7, $P9, $P11, $P13, $P15)
 # }
@@ -13641,7 +13704,7 @@ newclosure $P15, $P16
 .end # expr1
 
 
-.sub '' :anon :subid('WSubId_702') :outer('WSubId_701')
+.sub '' :anon :subid('WSubId_706') :outer('WSubId_705')
 .param pmc __ARG_1
 
 # Body
@@ -13649,35 +13712,35 @@ newclosure $P15, $P16
 .tailcall __ARG_1.'_apply'("application")
 # }
 
-.end # WSubId_702
+.end # WSubId_706
 
 
-.sub '' :anon :subid('WSubId_703') :outer('WSubId_701')
+.sub '' :anon :subid('WSubId_707') :outer('WSubId_705')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_704'
+.const 'Sub' $P4 = 'WSubId_708'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_2)
 .return($P2)
 # }
 
-.end # WSubId_703
+.end # WSubId_707
 
 
-.sub '' :anon :subid('WSubId_704') :outer('WSubId_703')
+.sub '' :anon :subid('WSubId_708') :outer('WSubId_707')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_705'
+.const 'Sub' $P3 = 'WSubId_709'
 newclosure $P2, $P3
-.const 'Sub' $P5 = 'WSubId_706'
+.const 'Sub' $P5 = 'WSubId_710'
 newclosure $P4, $P5
-.const 'Sub' $P7 = 'WSubId_707'
+.const 'Sub' $P7 = 'WSubId_711'
 newclosure $P6, $P7
 $P1 = __ARG_3.'_or'($P2, $P4, $P6)
 store_lex '__WLEX_1', $P1
@@ -13691,10 +13754,10 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_704
+.end # WSubId_708
 
 
-.sub '' :anon :subid('WSubId_705') :outer('WSubId_704')
+.sub '' :anon :subid('WSubId_709') :outer('WSubId_708')
 .param pmc __ARG_4
 
 # Body
@@ -13702,10 +13765,10 @@ $P2.'push'($P1)
 .tailcall __ARG_4.'_applyWithArgs'("keyword", "null")
 # }
 
-.end # WSubId_705
+.end # WSubId_709
 
 
-.sub '' :anon :subid('WSubId_706') :outer('WSubId_704')
+.sub '' :anon :subid('WSubId_710') :outer('WSubId_708')
 .param pmc __ARG_5
 
 # Body
@@ -13713,10 +13776,10 @@ $P2.'push'($P1)
 .tailcall __ARG_5.'_applyWithArgs'("keyword", "true")
 # }
 
-.end # WSubId_706
+.end # WSubId_710
 
 
-.sub '' :anon :subid('WSubId_707') :outer('WSubId_704')
+.sub '' :anon :subid('WSubId_711') :outer('WSubId_708')
 .param pmc __ARG_6
 
 # Body
@@ -13724,44 +13787,44 @@ $P2.'push'($P1)
 .tailcall __ARG_6.'_applyWithArgs'("keyword", "false")
 # }
 
-.end # WSubId_707
+.end # WSubId_711
 
 
-.sub '' :anon :subid('WSubId_708') :outer('WSubId_701')
+.sub '' :anon :subid('WSubId_712') :outer('WSubId_705')
 .param pmc __ARG_7
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_709'
+.const 'Sub' $P3 = 'WSubId_713'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_7)
 .return($P1)
 # }
 
-.end # WSubId_708
+.end # WSubId_712
 
 
-.sub '' :anon :subid('WSubId_709') :outer('WSubId_708')
+.sub '' :anon :subid('WSubId_713') :outer('WSubId_712')
 .param pmc __ARG_8
 
 # Body
 # {
 __ARG_8.'_apply'("spaces")
-.const 'Sub' $P2 = 'WSubId_710'
+.const 'Sub' $P2 = 'WSubId_714'
 newclosure $P1, $P2
-.const 'Sub' $P4 = 'WSubId_711'
+.const 'Sub' $P4 = 'WSubId_715'
 newclosure $P3, $P4
-.const 'Sub' $P6 = 'WSubId_712'
+.const 'Sub' $P6 = 'WSubId_716'
 newclosure $P5, $P6
-.const 'Sub' $P8 = 'WSubId_713'
+.const 'Sub' $P8 = 'WSubId_717'
 newclosure $P7, $P8
 .tailcall __ARG_8.'_or'($P1, $P3, $P5, $P7)
 # }
 
-.end # WSubId_709
+.end # WSubId_713
 
 
-.sub '' :anon :subid('WSubId_710') :outer('WSubId_709')
+.sub '' :anon :subid('WSubId_714') :outer('WSubId_713')
 .param pmc __ARG_9
 
 # Body
@@ -13769,10 +13832,10 @@ newclosure $P7, $P8
 .tailcall __ARG_9.'_apply'("characters")
 # }
 
-.end # WSubId_710
+.end # WSubId_714
 
 
-.sub '' :anon :subid('WSubId_711') :outer('WSubId_709')
+.sub '' :anon :subid('WSubId_715') :outer('WSubId_713')
 .param pmc __ARG_10
 
 # Body
@@ -13780,10 +13843,10 @@ newclosure $P7, $P8
 .tailcall __ARG_10.'_apply'("sCharacters")
 # }
 
-.end # WSubId_711
+.end # WSubId_715
 
 
-.sub '' :anon :subid('WSubId_712') :outer('WSubId_709')
+.sub '' :anon :subid('WSubId_716') :outer('WSubId_713')
 .param pmc __ARG_11
 
 # Body
@@ -13791,10 +13854,10 @@ newclosure $P7, $P8
 .tailcall __ARG_11.'_apply'("string")
 # }
 
-.end # WSubId_712
+.end # WSubId_716
 
 
-.sub '' :anon :subid('WSubId_713') :outer('WSubId_709')
+.sub '' :anon :subid('WSubId_717') :outer('WSubId_713')
 .param pmc __ARG_12
 
 # Body
@@ -13802,25 +13865,25 @@ newclosure $P7, $P8
 .tailcall __ARG_12.'_apply'("number")
 # }
 
-.end # WSubId_713
+.end # WSubId_717
 
 
-.sub '' :anon :subid('WSubId_714') :outer('WSubId_701')
+.sub '' :anon :subid('WSubId_718') :outer('WSubId_705')
 .param pmc __ARG_13
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_715'
+.const 'Sub' $P4 = 'WSubId_719'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_13)
 .return($P2)
 # }
 
-.end # WSubId_714
+.end # WSubId_718
 
 
-.sub '' :anon :subid('WSubId_715') :outer('WSubId_714')
+.sub '' :anon :subid('WSubId_719') :outer('WSubId_718')
 .param pmc __ARG_14
 
 $P1 = find_lex '__WLEX_1'
@@ -13838,25 +13901,25 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_715
+.end # WSubId_719
 
 
-.sub '' :anon :subid('WSubId_716') :outer('WSubId_701')
+.sub '' :anon :subid('WSubId_720') :outer('WSubId_705')
 .param pmc __ARG_15
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_717'
+.const 'Sub' $P4 = 'WSubId_721'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_15)
 .return($P2)
 # }
 
-.end # WSubId_716
+.end # WSubId_720
 
 
-.sub '' :anon :subid('WSubId_717') :outer('WSubId_716')
+.sub '' :anon :subid('WSubId_721') :outer('WSubId_720')
 .param pmc __ARG_16
 
 $P1 = find_lex '__WLEX_1'
@@ -13874,25 +13937,25 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_717
+.end # WSubId_721
 
 
-.sub '' :anon :subid('WSubId_718') :outer('WSubId_701')
+.sub '' :anon :subid('WSubId_722') :outer('WSubId_705')
 .param pmc __ARG_17
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_719'
+.const 'Sub' $P4 = 'WSubId_723'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_17)
 .return($P2)
 # }
 
-.end # WSubId_718
+.end # WSubId_722
 
 
-.sub '' :anon :subid('WSubId_719') :outer('WSubId_718')
+.sub '' :anon :subid('WSubId_723') :outer('WSubId_722')
 .param pmc __ARG_18
 
 $P1 = find_lex '__WLEX_1'
@@ -13910,25 +13973,25 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_719
+.end # WSubId_723
 
 
-.sub '' :anon :subid('WSubId_720') :outer('WSubId_701')
+.sub '' :anon :subid('WSubId_724') :outer('WSubId_705')
 .param pmc __ARG_19
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_721'
+.const 'Sub' $P4 = 'WSubId_725'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_19)
 .return($P2)
 # }
 
-.end # WSubId_720
+.end # WSubId_724
 
 
-.sub '' :anon :subid('WSubId_721') :outer('WSubId_720')
+.sub '' :anon :subid('WSubId_725') :outer('WSubId_724')
 .param pmc __ARG_20
 
 $P1 = find_lex '__WLEX_1'
@@ -13942,19 +14005,19 @@ find_lex $P1, '__WLEX_1'
 .return($P1)
 # }
 
-.end # WSubId_721
+.end # WSubId_725
 
 
-.sub 'ruleName' :subid('WSubId_722') :method
+.sub 'ruleName' :subid('WSubId_726') :method
 
 # Body
 # {
 # var fromIdx: $P1
 getattribute $P2, self, 'input'
 getattribute $P1, $P2, 'idx'
-.const 'Sub' $P3 = 'WSubId_723'
+.const 'Sub' $P3 = 'WSubId_727'
 newclosure $P2, $P3
-.const 'Sub' $P5 = 'WSubId_724'
+.const 'Sub' $P5 = 'WSubId_728'
 newclosure $P4, $P5
 .tailcall self.'_or'($P2, $P4)
 # }
@@ -13962,7 +14025,7 @@ newclosure $P4, $P5
 .end # ruleName
 
 
-.sub '' :anon :subid('WSubId_723') :outer('WSubId_722')
+.sub '' :anon :subid('WSubId_727') :outer('WSubId_726')
 .param pmc __ARG_1
 
 # Body
@@ -13970,24 +14033,24 @@ newclosure $P4, $P5
 .tailcall __ARG_1.'_apply'("name")
 # }
 
-.end # WSubId_723
+.end # WSubId_727
 
 
-.sub '' :anon :subid('WSubId_724') :outer('WSubId_722')
+.sub '' :anon :subid('WSubId_728') :outer('WSubId_726')
 .param pmc __ARG_2
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_725'
+.const 'Sub' $P3 = 'WSubId_729'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_2)
 .return($P1)
 # }
 
-.end # WSubId_724
+.end # WSubId_728
 
 
-.sub '' :anon :subid('WSubId_725') :outer('WSubId_724')
+.sub '' :anon :subid('WSubId_729') :outer('WSubId_728')
 .param pmc __ARG_3
 
 # Body
@@ -13996,10 +14059,10 @@ __ARG_3.'_apply'("spaces")
 .tailcall __ARG_3.'_apply'("tsString")
 # }
 
-.end # WSubId_725
+.end # WSubId_729
 
 
-.sub 'rule' :subid('WSubId_726') :method
+.sub 'rule' :subid('WSubId_730') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -14015,7 +14078,7 @@ null $P2
 null $P3
 # var xs: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_727'
+.const 'Sub' $P7 = 'WSubId_731'
 newclosure $P6, $P7
 $P5 = $P6(self)
 .return($P5)
@@ -14024,7 +14087,7 @@ $P5 = $P6(self)
 .end # rule
 
 
-.sub '' :anon :subid('WSubId_727') :outer('WSubId_726')
+.sub '' :anon :subid('WSubId_731') :outer('WSubId_730')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -14032,7 +14095,7 @@ $P2 = find_lex '__WLEX_2'
 $P3 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_728'
+.const 'Sub' $P5 = 'WSubId_732'
 newclosure $P4, $P5
 __ARG_1.'_lookahead'($P4)
 root_new $P4, ['parrot';'ResizablePMCArray']
@@ -14042,7 +14105,7 @@ __ARG_1["locals"] = $P4
 find_lex $P1, '__WLEX_1'
 $P2 = __ARG_1.'_applyWithArgs'("rulePart", $P1)
 store_lex '__WLEX_2', $P2
-.const 'Sub' $P7 = 'WSubId_729'
+.const 'Sub' $P7 = 'WSubId_733'
 newclosure $P6, $P7
 $P3 = __ARG_1.'_many'($P6)
 store_lex '__WLEX_3', $P3
@@ -14064,10 +14127,10 @@ $P6.'push'($P9)
 .return($P6)
 # }
 
-.end # WSubId_727
+.end # WSubId_731
 
 
-.sub '' :anon :subid('WSubId_728') :outer('WSubId_727')
+.sub '' :anon :subid('WSubId_732') :outer('WSubId_731')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -14078,25 +14141,25 @@ store_lex '__WLEX_1', $P1
 .return($P1)
 # }
 
-.end # WSubId_728
+.end # WSubId_732
 
 
-.sub '' :anon :subid('WSubId_729') :outer('WSubId_727')
+.sub '' :anon :subid('WSubId_733') :outer('WSubId_731')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_730'
+.const 'Sub' $P4 = 'WSubId_734'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_3)
 .return($P2)
 # }
 
-.end # WSubId_729
+.end # WSubId_733
 
 
-.sub '' :anon :subid('WSubId_730') :outer('WSubId_729')
+.sub '' :anon :subid('WSubId_734') :outer('WSubId_733')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_1'
@@ -14107,10 +14170,10 @@ find_lex $P1, '__WLEX_1'
 .tailcall __ARG_4.'_applyWithArgs'("rulePart", $P1)
 # }
 
-.end # WSubId_730
+.end # WSubId_734
 
 
-.sub 'rulePart' :subid('WSubId_731') :method
+.sub 'rulePart' :subid('WSubId_735') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -14129,7 +14192,7 @@ null $P3
 null $P4
 # var b2: $P5
 null $P5
-.const 'Sub' $P8 = 'WSubId_732'
+.const 'Sub' $P8 = 'WSubId_736'
 newclosure $P7, $P8
 $P6 = $P7(self)
 .return($P6)
@@ -14138,7 +14201,7 @@ $P6 = $P7(self)
 .end # rulePart
 
 
-.sub '' :anon :subid('WSubId_732') :outer('WSubId_731')
+.sub '' :anon :subid('WSubId_736') :outer('WSubId_735')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -14157,33 +14220,33 @@ iseq $I1, $P2, $P1
 __ARG_1.'_pred'($I1)
 $P3 = __ARG_1.'_apply'("expr4")
 store_lex '__WLEX_3', $P3
-.const 'Sub' $P6 = 'WSubId_733'
+.const 'Sub' $P6 = 'WSubId_737'
 newclosure $P5, $P6
-.const 'Sub' $P8 = 'WSubId_735'
+.const 'Sub' $P8 = 'WSubId_739'
 newclosure $P7, $P8
 .tailcall __ARG_1.'_or'($P5, $P7)
 # }
 
-.end # WSubId_732
+.end # WSubId_736
 
 
-.sub '' :anon :subid('WSubId_733') :outer('WSubId_732')
+.sub '' :anon :subid('WSubId_737') :outer('WSubId_736')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_4'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_734'
+.const 'Sub' $P5 = 'WSubId_738'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_2)
 .return($P3)
 # }
 
-.end # WSubId_733
+.end # WSubId_737
 
 
-.sub '' :anon :subid('WSubId_734') :outer('WSubId_733')
+.sub '' :anon :subid('WSubId_738') :outer('WSubId_737')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_4'
@@ -14203,25 +14266,25 @@ $P3.'push'($P1)
 .return($P3)
 # }
 
-.end # WSubId_734
+.end # WSubId_738
 
 
-.sub '' :anon :subid('WSubId_735') :outer('WSubId_732')
+.sub '' :anon :subid('WSubId_739') :outer('WSubId_736')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_736'
+.const 'Sub' $P4 = 'WSubId_740'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_4)
 .return($P2)
 # }
 
-.end # WSubId_735
+.end # WSubId_739
 
 
-.sub '' :anon :subid('WSubId_736') :outer('WSubId_735')
+.sub '' :anon :subid('WSubId_740') :outer('WSubId_739')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_3'
@@ -14232,10 +14295,10 @@ find_lex $P1, '__WLEX_3'
 .return($P1)
 # }
 
-.end # WSubId_736
+.end # WSubId_740
 
 
-.sub 'grammar' :subid('WSubId_737') :method
+.sub 'grammar' :subid('WSubId_741') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -14251,7 +14314,7 @@ null $P2
 null $P3
 # var rs: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_738'
+.const 'Sub' $P7 = 'WSubId_742'
 newclosure $P6, $P7
 $P5 = $P6(self)
 .return($P5)
@@ -14260,7 +14323,7 @@ $P5 = $P6(self)
 .end # grammar
 
 
-.sub '' :anon :subid('WSubId_738') :outer('WSubId_737')
+.sub '' :anon :subid('WSubId_742') :outer('WSubId_741')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -14271,9 +14334,9 @@ $P3 = find_lex '__WLEX_3'
 __ARG_1.'_applyWithArgs'("keyword", "ometa")
 $P1 = __ARG_1.'_apply'("name")
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P5 = 'WSubId_739'
+.const 'Sub' $P5 = 'WSubId_743'
 newclosure $P4, $P5
-.const 'Sub' $P7 = 'WSubId_741'
+.const 'Sub' $P7 = 'WSubId_745'
 newclosure $P6, $P7
 $P2 = __ARG_1.'_or'($P4, $P6)
 store_lex '__WLEX_2', $P2
@@ -14293,24 +14356,24 @@ $P4 = $P5.'append'($P3)
 .tailcall __ARG_1.'_applyWithArgs'("foreign", 'OMetaOptimizer', 'optimizeGrammar', $P4)
 # }
 
-.end # WSubId_738
+.end # WSubId_742
 
 
-.sub '' :anon :subid('WSubId_739') :outer('WSubId_738')
+.sub '' :anon :subid('WSubId_743') :outer('WSubId_742')
 .param pmc __ARG_2
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_740'
+.const 'Sub' $P3 = 'WSubId_744'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_2)
 .return($P1)
 # }
 
-.end # WSubId_739
+.end # WSubId_743
 
 
-.sub '' :anon :subid('WSubId_740') :outer('WSubId_739')
+.sub '' :anon :subid('WSubId_744') :outer('WSubId_743')
 .param pmc __ARG_3
 
 # Body
@@ -14319,24 +14382,24 @@ __ARG_3.'_applyWithArgs'("token", "<:")
 .tailcall __ARG_3.'_apply'("name")
 # }
 
-.end # WSubId_740
+.end # WSubId_744
 
 
-.sub '' :anon :subid('WSubId_741') :outer('WSubId_738')
+.sub '' :anon :subid('WSubId_745') :outer('WSubId_742')
 .param pmc __ARG_4
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_742'
+.const 'Sub' $P3 = 'WSubId_746'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_4)
 .return($P1)
 # }
 
-.end # WSubId_741
+.end # WSubId_745
 
 
-.sub '' :anon :subid('WSubId_742') :outer('WSubId_741')
+.sub '' :anon :subid('WSubId_746') :outer('WSubId_745')
 .param pmc __ARG_5
 
 # Body
@@ -14345,7 +14408,7 @@ __ARG_5.'_apply'("empty")
 .return("OMeta")
 # }
 
-.end # WSubId_742
+.end # WSubId_746
 
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'OMetaParser' ]
@@ -14354,7 +14417,7 @@ addparent $P0, $P1
 .end
 .namespace [ 'OMetaTranslator' ]
 
-.sub 'App' :subid('WSubId_743') :method
+.sub 'App' :subid('WSubId_747') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -14367,11 +14430,11 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var rule: $P3
 null $P3
-.const 'Sub' $P5 = 'WSubId_744'
+.const 'Sub' $P5 = 'WSubId_748'
 newclosure $P4, $P5
-.const 'Sub' $P7 = 'WSubId_748'
+.const 'Sub' $P7 = 'WSubId_752'
 newclosure $P6, $P7
-.const 'Sub' $P9 = 'WSubId_751'
+.const 'Sub' $P9 = 'WSubId_755'
 newclosure $P8, $P9
 .tailcall self.'_or'($P4, $P6, $P8)
 # }
@@ -14379,22 +14442,22 @@ newclosure $P8, $P9
 .end # App
 
 
-.sub '' :anon :subid('WSubId_744') :outer('WSubId_743')
+.sub '' :anon :subid('WSubId_748') :outer('WSubId_747')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_745'
+.const 'Sub' $P4 = 'WSubId_749'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_1)
 .return($P2)
 # }
 
-.end # WSubId_744
+.end # WSubId_748
 
 
-.sub '' :anon :subid('WSubId_745') :outer('WSubId_744')
+.sub '' :anon :subid('WSubId_749') :outer('WSubId_748')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -14407,7 +14470,7 @@ if $S1 == $S2 goto __label_2
 goto __label_1
 # switch
 __label_2: # case
-.const 'Sub' $P5 = 'WSubId_746'
+.const 'Sub' $P5 = 'WSubId_750'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_2)
 .return($P3)
@@ -14417,16 +14480,16 @@ throw $P6
 __label_0: # switch end
 # }
 
-.end # WSubId_745
+.end # WSubId_749
 
 
-.sub '' :anon :subid('WSubId_746') :outer('WSubId_745')
+.sub '' :anon :subid('WSubId_750') :outer('WSubId_749')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_747'
+.const 'Sub' $P3 = 'WSubId_751'
 newclosure $P2, $P3
 $P1 = __ARG_3.'_many1'($P2)
 store_lex '__WLEX_1', $P1
@@ -14442,10 +14505,10 @@ concat $S3, $S3, ")"
 .return($S3)
 # }
 
-.end # WSubId_746
+.end # WSubId_750
 
 
-.sub '' :anon :subid('WSubId_747') :outer('WSubId_746')
+.sub '' :anon :subid('WSubId_751') :outer('WSubId_750')
 .param pmc __ARG_4
 
 # Body
@@ -14453,26 +14516,26 @@ concat $S3, $S3, ")"
 .tailcall __ARG_4.'_apply'("anything")
 # }
 
-.end # WSubId_747
+.end # WSubId_751
 
 
-.sub '' :anon :subid('WSubId_748') :outer('WSubId_743')
+.sub '' :anon :subid('WSubId_752') :outer('WSubId_747')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_749'
+.const 'Sub' $P5 = 'WSubId_753'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_5)
 .return($P3)
 # }
 
-.end # WSubId_748
+.end # WSubId_752
 
 
-.sub '' :anon :subid('WSubId_749') :outer('WSubId_748')
+.sub '' :anon :subid('WSubId_753') :outer('WSubId_752')
 .param pmc __ARG_6
 
 $P1 = find_lex '__WLEX_2'
@@ -14481,7 +14544,7 @@ $P2 = find_lex '__WLEX_1'
 # {
 $P1 = __ARG_6.'_apply'("anything")
 store_lex '__WLEX_2', $P1
-.const 'Sub' $P4 = 'WSubId_750'
+.const 'Sub' $P4 = 'WSubId_754'
 newclosure $P3, $P4
 $P2 = __ARG_6.'_many1'($P3)
 store_lex '__WLEX_1', $P2
@@ -14498,10 +14561,10 @@ concat $S3, $S3, ")"
 .return($S3)
 # }
 
-.end # WSubId_749
+.end # WSubId_753
 
 
-.sub '' :anon :subid('WSubId_750') :outer('WSubId_749')
+.sub '' :anon :subid('WSubId_754') :outer('WSubId_753')
 .param pmc __ARG_7
 
 # Body
@@ -14509,25 +14572,25 @@ concat $S3, $S3, ")"
 .tailcall __ARG_7.'_apply'("anything")
 # }
 
-.end # WSubId_750
+.end # WSubId_754
 
 
-.sub '' :anon :subid('WSubId_751') :outer('WSubId_743')
+.sub '' :anon :subid('WSubId_755') :outer('WSubId_747')
 .param pmc __ARG_8
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_752'
+.const 'Sub' $P4 = 'WSubId_756'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_8)
 .return($P2)
 # }
 
-.end # WSubId_751
+.end # WSubId_755
 
 
-.sub '' :anon :subid('WSubId_752') :outer('WSubId_751')
+.sub '' :anon :subid('WSubId_756') :outer('WSubId_755')
 .param pmc __ARG_9
 
 $P1 = find_lex '__WLEX_2'
@@ -14543,10 +14606,10 @@ concat $S2, $S2, "\")"
 .return($S2)
 # }
 
-.end # WSubId_752
+.end # WSubId_756
 
 
-.sub 'Act' :subid('WSubId_753') :method
+.sub 'Act' :subid('WSubId_757') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -14556,7 +14619,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var expr: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_754'
+.const 'Sub' $P5 = 'WSubId_758'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -14565,7 +14628,7 @@ $P3 = $P4(self)
 .end # Act
 
 
-.sub '' :anon :subid('WSubId_754') :outer('WSubId_753')
+.sub '' :anon :subid('WSubId_758') :outer('WSubId_757')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -14577,10 +14640,10 @@ find_lex $P1, '__WLEX_1'
 .return($P1)
 # }
 
-.end # WSubId_754
+.end # WSubId_758
 
 
-.sub 'Pred' :subid('WSubId_755') :method
+.sub 'Pred' :subid('WSubId_759') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -14590,7 +14653,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var expr: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_756'
+.const 'Sub' $P5 = 'WSubId_760'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -14599,7 +14662,7 @@ $P3 = $P4(self)
 .end # Pred
 
 
-.sub '' :anon :subid('WSubId_756') :outer('WSubId_755')
+.sub '' :anon :subid('WSubId_760') :outer('WSubId_759')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -14615,10 +14678,10 @@ concat $S2, $S2, ")"
 .return($S2)
 # }
 
-.end # WSubId_756
+.end # WSubId_760
 
 
-.sub 'Or' :subid('WSubId_757') :method
+.sub 'Or' :subid('WSubId_761') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -14628,7 +14691,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_758'
+.const 'Sub' $P5 = 'WSubId_762'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -14637,13 +14700,13 @@ $P3 = $P4(self)
 .end # Or
 
 
-.sub '' :anon :subid('WSubId_758') :outer('WSubId_757')
+.sub '' :anon :subid('WSubId_762') :outer('WSubId_761')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_759'
+.const 'Sub' $P3 = 'WSubId_763'
 newclosure $P2, $P3
 $P1 = __ARG_1.'_many'($P2)
 store_lex '__WLEX_1', $P1
@@ -14655,10 +14718,10 @@ concat $S2, $S2, ")"
 .return($S2)
 # }
 
-.end # WSubId_758
+.end # WSubId_762
 
 
-.sub '' :anon :subid('WSubId_759') :outer('WSubId_758')
+.sub '' :anon :subid('WSubId_763') :outer('WSubId_762')
 .param pmc __ARG_2
 
 # Body
@@ -14666,10 +14729,10 @@ concat $S2, $S2, ")"
 .tailcall __ARG_2.'_apply'("transFn")
 # }
 
-.end # WSubId_759
+.end # WSubId_763
 
 
-.sub 'XOr' :subid('WSubId_760') :method
+.sub 'XOr' :subid('WSubId_764') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -14679,7 +14742,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_761'
+.const 'Sub' $P5 = 'WSubId_765'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -14688,13 +14751,13 @@ $P3 = $P4(self)
 .end # XOr
 
 
-.sub '' :anon :subid('WSubId_761') :outer('WSubId_760')
+.sub '' :anon :subid('WSubId_765') :outer('WSubId_764')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_762'
+.const 'Sub' $P3 = 'WSubId_766'
 newclosure $P2, $P3
 $P1 = __ARG_1.'_many'($P2)
 store_lex '__WLEX_1', $P1
@@ -14716,10 +14779,10 @@ concat $S2, $S2, ")"
 .return($S2)
 # }
 
-.end # WSubId_761
+.end # WSubId_765
 
 
-.sub '' :anon :subid('WSubId_762') :outer('WSubId_761')
+.sub '' :anon :subid('WSubId_766') :outer('WSubId_765')
 .param pmc __ARG_2
 
 # Body
@@ -14727,10 +14790,10 @@ concat $S2, $S2, ")"
 .tailcall __ARG_2.'_apply'("transFn")
 # }
 
-.end # WSubId_762
+.end # WSubId_766
 
 
-.sub 'And' :subid('WSubId_763') :method
+.sub 'And' :subid('WSubId_767') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -14743,9 +14806,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var y: $P3
 null $P3
-.const 'Sub' $P5 = 'WSubId_764'
+.const 'Sub' $P5 = 'WSubId_768'
 newclosure $P4, $P5
-.const 'Sub' $P7 = 'WSubId_767'
+.const 'Sub' $P7 = 'WSubId_771'
 newclosure $P6, $P7
 .tailcall self.'_or'($P4, $P6)
 # }
@@ -14753,30 +14816,30 @@ newclosure $P6, $P7
 .end # And
 
 
-.sub '' :anon :subid('WSubId_764') :outer('WSubId_763')
+.sub '' :anon :subid('WSubId_768') :outer('WSubId_767')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_765'
+.const 'Sub' $P5 = 'WSubId_769'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_1)
 .return($P3)
 # }
 
-.end # WSubId_764
+.end # WSubId_768
 
 
-.sub '' :anon :subid('WSubId_765') :outer('WSubId_764')
+.sub '' :anon :subid('WSubId_769') :outer('WSubId_768')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_766'
+.const 'Sub' $P4 = 'WSubId_770'
 newclosure $P3, $P4
 $P1 = __ARG_2.'_many'($P3)
 store_lex '__WLEX_1', $P1
@@ -14796,10 +14859,10 @@ concat $S2, $S2, ";})(self)"
 .return($S2)
 # }
 
-.end # WSubId_765
+.end # WSubId_769
 
 
-.sub '' :anon :subid('WSubId_766') :outer('WSubId_765')
+.sub '' :anon :subid('WSubId_770') :outer('WSubId_769')
 .param pmc __ARG_3
 
 # Body
@@ -14807,10 +14870,10 @@ concat $S2, $S2, ";})(self)"
 .tailcall __ARG_3.'_applyWithArgs'("notLast", "trans")
 # }
 
-.end # WSubId_766
+.end # WSubId_770
 
 
-.sub '' :anon :subid('WSubId_767') :outer('WSubId_763')
+.sub '' :anon :subid('WSubId_771') :outer('WSubId_767')
 .param pmc __ARG_4
 
 # Body
@@ -14818,86 +14881,10 @@ concat $S2, $S2, ";})(self)"
 .return("")
 # }
 
-.end # WSubId_767
-
-
-.sub 'Opt' :subid('WSubId_768') :method
-
-.lex '__WLEX_1', $P2
-# Body
-# {
-# var fromIdx: $P1
-getattribute $P3, self, 'input'
-getattribute $P1, $P3, 'idx'
-# var x: $P2
-null $P2
-.const 'Sub' $P5 = 'WSubId_769'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
-# }
-
-.end # Opt
-
-
-.sub '' :anon :subid('WSubId_769') :outer('WSubId_768')
-.param pmc __ARG_1
-
-$P1 = find_lex '__WLEX_1'
-# Body
-# {
-$P1 = __ARG_1.'_apply'("transFn")
-store_lex '__WLEX_1', $P1
-# predefined string
-find_lex $P1, '__WLEX_1'
-set $S1, $P1
-concat $S2, "self._opt(", $S1
-concat $S2, $S2, ")"
-.return($S2)
-# }
-
-.end # WSubId_769
-
-
-.sub 'Many' :subid('WSubId_770') :method
-
-.lex '__WLEX_1', $P2
-# Body
-# {
-# var fromIdx: $P1
-getattribute $P3, self, 'input'
-getattribute $P1, $P3, 'idx'
-# var x: $P2
-null $P2
-.const 'Sub' $P5 = 'WSubId_771'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
-# }
-
-.end # Many
-
-
-.sub '' :anon :subid('WSubId_771') :outer('WSubId_770')
-.param pmc __ARG_1
-
-$P1 = find_lex '__WLEX_1'
-# Body
-# {
-$P1 = __ARG_1.'_apply'("transFn")
-store_lex '__WLEX_1', $P1
-# predefined string
-find_lex $P1, '__WLEX_1'
-set $S1, $P1
-concat $S2, "self._many(", $S1
-concat $S2, $S2, ")"
-.return($S2)
-# }
-
 .end # WSubId_771
 
 
-.sub 'Many1' :subid('WSubId_772') :method
+.sub 'Opt' :subid('WSubId_772') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -14913,7 +14900,7 @@ $P3 = $P4(self)
 .return($P3)
 # }
 
-.end # Many1
+.end # Opt
 
 
 .sub '' :anon :subid('WSubId_773') :outer('WSubId_772')
@@ -14927,7 +14914,7 @@ store_lex '__WLEX_1', $P1
 # predefined string
 find_lex $P1, '__WLEX_1'
 set $S1, $P1
-concat $S2, "self._many1(", $S1
+concat $S2, "self._opt(", $S1
 concat $S2, $S2, ")"
 .return($S2)
 # }
@@ -14935,7 +14922,7 @@ concat $S2, $S2, ")"
 .end # WSubId_773
 
 
-.sub 'Not' :subid('WSubId_774') :method
+.sub 'Many' :subid('WSubId_774') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -14951,7 +14938,7 @@ $P3 = $P4(self)
 .return($P3)
 # }
 
-.end # Not
+.end # Many
 
 
 .sub '' :anon :subid('WSubId_775') :outer('WSubId_774')
@@ -14965,7 +14952,7 @@ store_lex '__WLEX_1', $P1
 # predefined string
 find_lex $P1, '__WLEX_1'
 set $S1, $P1
-concat $S2, "self._not(", $S1
+concat $S2, "self._many(", $S1
 concat $S2, $S2, ")"
 .return($S2)
 # }
@@ -14973,7 +14960,7 @@ concat $S2, $S2, ")"
 .end # WSubId_775
 
 
-.sub 'Lookahead' :subid('WSubId_776') :method
+.sub 'Many1' :subid('WSubId_776') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -14989,7 +14976,7 @@ $P3 = $P4(self)
 .return($P3)
 # }
 
-.end # Lookahead
+.end # Many1
 
 
 .sub '' :anon :subid('WSubId_777') :outer('WSubId_776')
@@ -15003,7 +14990,7 @@ store_lex '__WLEX_1', $P1
 # predefined string
 find_lex $P1, '__WLEX_1'
 set $S1, $P1
-concat $S2, "self._lookahead(", $S1
+concat $S2, "self._many1(", $S1
 concat $S2, $S2, ")"
 .return($S2)
 # }
@@ -15011,7 +14998,7 @@ concat $S2, $S2, ")"
 .end # WSubId_777
 
 
-.sub 'Form' :subid('WSubId_778') :method
+.sub 'Not' :subid('WSubId_778') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -15027,7 +15014,7 @@ $P3 = $P4(self)
 .return($P3)
 # }
 
-.end # Form
+.end # Not
 
 
 .sub '' :anon :subid('WSubId_779') :outer('WSubId_778')
@@ -15041,7 +15028,7 @@ store_lex '__WLEX_1', $P1
 # predefined string
 find_lex $P1, '__WLEX_1'
 set $S1, $P1
-concat $S2, "self._form(", $S1
+concat $S2, "self._not(", $S1
 concat $S2, $S2, ")"
 .return($S2)
 # }
@@ -15049,7 +15036,7 @@ concat $S2, $S2, ")"
 .end # WSubId_779
 
 
-.sub 'ConsBy' :subid('WSubId_780') :method
+.sub 'Lookahead' :subid('WSubId_780') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -15065,7 +15052,7 @@ $P3 = $P4(self)
 .return($P3)
 # }
 
-.end # ConsBy
+.end # Lookahead
 
 
 .sub '' :anon :subid('WSubId_781') :outer('WSubId_780')
@@ -15079,7 +15066,7 @@ store_lex '__WLEX_1', $P1
 # predefined string
 find_lex $P1, '__WLEX_1'
 set $S1, $P1
-concat $S2, "self._consumedBy(", $S1
+concat $S2, "self._lookahead(", $S1
 concat $S2, $S2, ")"
 .return($S2)
 # }
@@ -15087,7 +15074,7 @@ concat $S2, $S2, ")"
 .end # WSubId_781
 
 
-.sub 'IdxConsBy' :subid('WSubId_782') :method
+.sub 'Form' :subid('WSubId_782') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -15103,10 +15090,86 @@ $P3 = $P4(self)
 .return($P3)
 # }
 
-.end # IdxConsBy
+.end # Form
 
 
 .sub '' :anon :subid('WSubId_783') :outer('WSubId_782')
+.param pmc __ARG_1
+
+$P1 = find_lex '__WLEX_1'
+# Body
+# {
+$P1 = __ARG_1.'_apply'("transFn")
+store_lex '__WLEX_1', $P1
+# predefined string
+find_lex $P1, '__WLEX_1'
+set $S1, $P1
+concat $S2, "self._form(", $S1
+concat $S2, $S2, ")"
+.return($S2)
+# }
+
+.end # WSubId_783
+
+
+.sub 'ConsBy' :subid('WSubId_784') :method
+
+.lex '__WLEX_1', $P2
+# Body
+# {
+# var fromIdx: $P1
+getattribute $P3, self, 'input'
+getattribute $P1, $P3, 'idx'
+# var x: $P2
+null $P2
+.const 'Sub' $P5 = 'WSubId_785'
+newclosure $P4, $P5
+$P3 = $P4(self)
+.return($P3)
+# }
+
+.end # ConsBy
+
+
+.sub '' :anon :subid('WSubId_785') :outer('WSubId_784')
+.param pmc __ARG_1
+
+$P1 = find_lex '__WLEX_1'
+# Body
+# {
+$P1 = __ARG_1.'_apply'("transFn")
+store_lex '__WLEX_1', $P1
+# predefined string
+find_lex $P1, '__WLEX_1'
+set $S1, $P1
+concat $S2, "self._consumedBy(", $S1
+concat $S2, $S2, ")"
+.return($S2)
+# }
+
+.end # WSubId_785
+
+
+.sub 'IdxConsBy' :subid('WSubId_786') :method
+
+.lex '__WLEX_1', $P2
+# Body
+# {
+# var fromIdx: $P1
+getattribute $P3, self, 'input'
+getattribute $P1, $P3, 'idx'
+# var x: $P2
+null $P2
+.const 'Sub' $P5 = 'WSubId_787'
+newclosure $P4, $P5
+$P3 = $P4(self)
+.return($P3)
+# }
+
+.end # IdxConsBy
+
+
+.sub '' :anon :subid('WSubId_787') :outer('WSubId_786')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -15122,10 +15185,10 @@ concat $S2, $S2, ")"
 .return($S2)
 # }
 
-.end # WSubId_783
+.end # WSubId_787
 
 
-.sub 'Set' :subid('WSubId_784') :method
+.sub 'Set' :subid('WSubId_788') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -15138,7 +15201,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var v: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_785'
+.const 'Sub' $P6 = 'WSubId_789'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -15147,7 +15210,7 @@ $P4 = $P5(self)
 .end # Set
 
 
-.sub '' :anon :subid('WSubId_785') :outer('WSubId_784')
+.sub '' :anon :subid('WSubId_789') :outer('WSubId_788')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -15169,10 +15232,10 @@ concat $S3, $S3, $S2
 .return($S3)
 # }
 
-.end # WSubId_785
+.end # WSubId_789
 
 
-.sub 'JumpTable' :subid('WSubId_786') :method
+.sub 'JumpTable' :subid('WSubId_790') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -15182,7 +15245,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var cases: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_787'
+.const 'Sub' $P5 = 'WSubId_791'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -15191,13 +15254,13 @@ $P3 = $P4(self)
 .end # JumpTable
 
 
-.sub '' :anon :subid('WSubId_787') :outer('WSubId_786')
+.sub '' :anon :subid('WSubId_791') :outer('WSubId_790')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_788'
+.const 'Sub' $P3 = 'WSubId_792'
 newclosure $P2, $P3
 $P1 = __ARG_1.'_many'($P2)
 store_lex '__WLEX_1', $P1
@@ -15205,10 +15268,10 @@ find_lex $P1, '__WLEX_1'
 .tailcall __ARG_1.'jumpTableCode'($P1)
 # }
 
-.end # WSubId_787
+.end # WSubId_791
 
 
-.sub '' :anon :subid('WSubId_788') :outer('WSubId_787')
+.sub '' :anon :subid('WSubId_792') :outer('WSubId_791')
 .param pmc __ARG_2
 
 # Body
@@ -15216,10 +15279,10 @@ find_lex $P1, '__WLEX_1'
 .tailcall __ARG_2.'_apply'("jtCase")
 # }
 
-.end # WSubId_788
+.end # WSubId_792
 
 
-.sub 'Interleave' :subid('WSubId_789') :method
+.sub 'Interleave' :subid('WSubId_793') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -15229,7 +15292,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_790'
+.const 'Sub' $P5 = 'WSubId_794'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -15238,13 +15301,13 @@ $P3 = $P4(self)
 .end # Interleave
 
 
-.sub '' :anon :subid('WSubId_790') :outer('WSubId_789')
+.sub '' :anon :subid('WSubId_794') :outer('WSubId_793')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_791'
+.const 'Sub' $P3 = 'WSubId_795'
 newclosure $P2, $P3
 $P1 = __ARG_1.'_many'($P2)
 store_lex '__WLEX_1', $P1
@@ -15256,10 +15319,10 @@ concat $S2, $S2, ")"
 .return($S2)
 # }
 
-.end # WSubId_790
+.end # WSubId_794
 
 
-.sub '' :anon :subid('WSubId_791') :outer('WSubId_790')
+.sub '' :anon :subid('WSubId_795') :outer('WSubId_794')
 .param pmc __ARG_2
 
 # Body
@@ -15267,10 +15330,10 @@ concat $S2, $S2, ")"
 .tailcall __ARG_2.'_apply'("intPart")
 # }
 
-.end # WSubId_791
+.end # WSubId_795
 
 
-.sub 'Rule' :subid('WSubId_792') :method
+.sub 'Rule' :subid('WSubId_796') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -15286,7 +15349,7 @@ null $P2
 null $P3
 # var body: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_793'
+.const 'Sub' $P7 = 'WSubId_797'
 newclosure $P6, $P7
 $P5 = $P6(self)
 .return($P5)
@@ -15295,7 +15358,7 @@ $P5 = $P6(self)
 .end # Rule
 
 
-.sub '' :anon :subid('WSubId_793') :outer('WSubId_792')
+.sub '' :anon :subid('WSubId_797') :outer('WSubId_796')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -15329,10 +15392,10 @@ concat $S4, $S4, ";}"
 .return($S4)
 # }
 
-.end # WSubId_793
+.end # WSubId_797
 
 
-.sub 'Grammar' :subid('WSubId_794') :method
+.sub 'Grammar' :subid('WSubId_798') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -15348,7 +15411,7 @@ null $P2
 null $P3
 # var rules: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_795'
+.const 'Sub' $P7 = 'WSubId_799'
 newclosure $P6, $P7
 $P5 = $P6(self)
 .return($P5)
@@ -15357,7 +15420,7 @@ $P5 = $P6(self)
 .end # Grammar
 
 
-.sub '' :anon :subid('WSubId_795') :outer('WSubId_794')
+.sub '' :anon :subid('WSubId_799') :outer('WSubId_798')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -15373,7 +15436,7 @@ find_lex $P1, '__WLEX_1'
 __ARG_1["name"] = $P1
 find_lex $P2, '__WLEX_2'
 __ARG_1["sName"] = $P2
-.const 'Sub' $P5 = 'WSubId_796'
+.const 'Sub' $P5 = 'WSubId_800'
 newclosure $P4, $P5
 $P3 = __ARG_1.'_many'($P4)
 store_lex '__WLEX_3', $P3
@@ -15395,10 +15458,10 @@ concat $S4, $S4, "}"
 .return($S4)
 # }
 
-.end # WSubId_795
+.end # WSubId_799
 
 
-.sub '' :anon :subid('WSubId_796') :outer('WSubId_795')
+.sub '' :anon :subid('WSubId_800') :outer('WSubId_799')
 .param pmc __ARG_2
 
 # Body
@@ -15406,10 +15469,10 @@ concat $S4, $S4, "}"
 .tailcall __ARG_2.'_apply'("trans")
 # }
 
-.end # WSubId_796
+.end # WSubId_800
 
 
-.sub 'intPart' :subid('WSubId_797') :method
+.sub 'intPart' :subid('WSubId_801') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -15422,7 +15485,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var part: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_798'
+.const 'Sub' $P6 = 'WSubId_802'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -15431,14 +15494,14 @@ $P4 = $P5(self)
 .end # intPart
 
 
-.sub '' :anon :subid('WSubId_798') :outer('WSubId_797')
+.sub '' :anon :subid('WSubId_802') :outer('WSubId_801')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_799'
+.const 'Sub' $P4 = 'WSubId_803'
 newclosure $P3, $P4
 __ARG_1.'_form'($P3)
 find_lex $P1, '__WLEX_1'
@@ -15452,83 +15515,6 @@ set $S2, $P2
 set $S3, $I1
 concat $S1, $S3, $S2
 .return($S1)
-# }
-
-.end # WSubId_798
-
-
-.sub '' :anon :subid('WSubId_799') :outer('WSubId_798')
-.param pmc __ARG_2
-
-$P1 = find_lex '__WLEX_1'
-$P2 = find_lex '__WLEX_2'
-# Body
-# {
-.const 'Sub' $P5 = 'WSubId_800'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
-# }
-
-.end # WSubId_799
-
-
-.sub '' :anon :subid('WSubId_800') :outer('WSubId_799')
-.param pmc __ARG_3
-
-$P1 = find_lex '__WLEX_1'
-$P2 = find_lex '__WLEX_2'
-# Body
-# {
-$P1 = __ARG_3.'_apply'("anything")
-store_lex '__WLEX_1', $P1
-$P2 = __ARG_3.'_apply'("transFn")
-store_lex '__WLEX_2', $P2
-.return($P2)
-# }
-
-.end # WSubId_800
-
-
-.sub 'jtCase' :subid('WSubId_801') :method
-
-.lex '__WLEX_1', $P2
-.lex '__WLEX_2', $P3
-# Body
-# {
-# var fromIdx: $P1
-getattribute $P4, self, 'input'
-getattribute $P1, $P4, 'idx'
-# var x: $P2
-null $P2
-# var e: $P3
-null $P3
-.const 'Sub' $P6 = 'WSubId_802'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
-# }
-
-.end # jtCase
-
-
-.sub '' :anon :subid('WSubId_802') :outer('WSubId_801')
-.param pmc __ARG_1
-
-$P1 = find_lex '__WLEX_1'
-$P2 = find_lex '__WLEX_2'
-# Body
-# {
-.const 'Sub' $P4 = 'WSubId_803'
-newclosure $P3, $P4
-__ARG_1.'_form'($P3)
-root_new $P3, ['parrot';'ResizablePMCArray']
-find_lex $P1, '__WLEX_1'
-$P5 = 'toProgramString'($P1)
-$P3.'push'($P5)
-find_lex $P2, '__WLEX_2'
-$P3.'push'($P2)
-.return($P3)
 # }
 
 .end # WSubId_802
@@ -15559,7 +15545,7 @@ $P2 = find_lex '__WLEX_2'
 # {
 $P1 = __ARG_3.'_apply'("anything")
 store_lex '__WLEX_1', $P1
-$P2 = __ARG_3.'_apply'("trans")
+$P2 = __ARG_3.'_apply'("transFn")
 store_lex '__WLEX_2', $P2
 .return($P2)
 # }
@@ -15567,38 +15553,45 @@ store_lex '__WLEX_2', $P2
 .end # WSubId_804
 
 
-.sub 'local' :subid('WSubId_805') :method
+.sub 'jtCase' :subid('WSubId_805') :method
 
 .lex '__WLEX_1', $P2
+.lex '__WLEX_2', $P3
 # Body
 # {
 # var fromIdx: $P1
-getattribute $P3, self, 'input'
-getattribute $P1, $P3, 'idx'
-# var n: $P2
+getattribute $P4, self, 'input'
+getattribute $P1, $P4, 'idx'
+# var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_806'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+# var e: $P3
+null $P3
+.const 'Sub' $P6 = 'WSubId_806'
+newclosure $P5, $P6
+$P4 = $P5(self)
+.return($P4)
 # }
 
-.end # local
+.end # jtCase
 
 
 .sub '' :anon :subid('WSubId_806') :outer('WSubId_805')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
+$P2 = find_lex '__WLEX_2'
 # Body
 # {
-$P1 = __ARG_1.'_apply'("string")
-store_lex '__WLEX_1', $P1
-.const 'Sub' $P3 = 'WSubId_807'
-newclosure $P2, $P3
-.const 'Sub' $P5 = 'WSubId_809'
-newclosure $P4, $P5
-.tailcall __ARG_1.'_or'($P2, $P4)
+.const 'Sub' $P4 = 'WSubId_807'
+newclosure $P3, $P4
+__ARG_1.'_form'($P3)
+root_new $P3, ['parrot';'ResizablePMCArray']
+find_lex $P1, '__WLEX_1'
+$P5 = 'toProgramString'($P1)
+$P3.'push'($P5)
+find_lex $P2, '__WLEX_2'
+$P3.'push'($P2)
+.return($P3)
 # }
 
 .end # WSubId_806
@@ -15608,18 +15601,88 @@ newclosure $P4, $P5
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
+$P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_808'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_2)
-.return($P2)
+.const 'Sub' $P5 = 'WSubId_808'
+newclosure $P4, $P5
+$P3 = $P4(__ARG_2)
+.return($P3)
 # }
 
 .end # WSubId_807
 
 
 .sub '' :anon :subid('WSubId_808') :outer('WSubId_807')
+.param pmc __ARG_3
+
+$P1 = find_lex '__WLEX_1'
+$P2 = find_lex '__WLEX_2'
+# Body
+# {
+$P1 = __ARG_3.'_apply'("anything")
+store_lex '__WLEX_1', $P1
+$P2 = __ARG_3.'_apply'("trans")
+store_lex '__WLEX_2', $P2
+.return($P2)
+# }
+
+.end # WSubId_808
+
+
+.sub 'local' :subid('WSubId_809') :method
+
+.lex '__WLEX_1', $P2
+# Body
+# {
+# var fromIdx: $P1
+getattribute $P3, self, 'input'
+getattribute $P1, $P3, 'idx'
+# var n: $P2
+null $P2
+.const 'Sub' $P5 = 'WSubId_810'
+newclosure $P4, $P5
+$P3 = $P4(self)
+.return($P3)
+# }
+
+.end # local
+
+
+.sub '' :anon :subid('WSubId_810') :outer('WSubId_809')
+.param pmc __ARG_1
+
+$P1 = find_lex '__WLEX_1'
+# Body
+# {
+$P1 = __ARG_1.'_apply'("string")
+store_lex '__WLEX_1', $P1
+.const 'Sub' $P3 = 'WSubId_811'
+newclosure $P2, $P3
+.const 'Sub' $P5 = 'WSubId_813'
+newclosure $P4, $P5
+.tailcall __ARG_1.'_or'($P2, $P4)
+# }
+
+.end # WSubId_810
+
+
+.sub '' :anon :subid('WSubId_811') :outer('WSubId_810')
+.param pmc __ARG_2
+
+$P1 = find_lex '__WLEX_1'
+# Body
+# {
+.const 'Sub' $P4 = 'WSubId_812'
+newclosure $P3, $P4
+$P2 = $P3(__ARG_2)
+.return($P2)
+# }
+
+.end # WSubId_811
+
+
+.sub '' :anon :subid('WSubId_812') :outer('WSubId_811')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
@@ -15634,25 +15697,25 @@ __ARG_3.'_pred'($I1)
 .return("")
 # }
 
-.end # WSubId_808
+.end # WSubId_812
 
 
-.sub '' :anon :subid('WSubId_809') :outer('WSubId_806')
+.sub '' :anon :subid('WSubId_813') :outer('WSubId_810')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_810'
+.const 'Sub' $P4 = 'WSubId_814'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_4)
 .return($P2)
 # }
 
-.end # WSubId_809
+.end # WSubId_813
 
 
-.sub '' :anon :subid('WSubId_810') :outer('WSubId_809')
+.sub '' :anon :subid('WSubId_814') :outer('WSubId_813')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_1'
@@ -15669,10 +15732,10 @@ concat $S2, $S2, " ;"
 .return($S2)
 # }
 
-.end # WSubId_810
+.end # WSubId_814
 
 
-.sub 'locals' :subid('WSubId_811') :method
+.sub 'locals' :subid('WSubId_815') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -15682,9 +15745,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var vs: $P2
 null $P2
-.const 'Sub' $P4 = 'WSubId_812'
+.const 'Sub' $P4 = 'WSubId_816'
 newclosure $P3, $P4
-.const 'Sub' $P6 = 'WSubId_816'
+.const 'Sub' $P6 = 'WSubId_820'
 newclosure $P5, $P6
 .tailcall self.'_or'($P3, $P5)
 # }
@@ -15692,22 +15755,22 @@ newclosure $P5, $P6
 .end # locals
 
 
-.sub '' :anon :subid('WSubId_812') :outer('WSubId_811')
+.sub '' :anon :subid('WSubId_816') :outer('WSubId_815')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_813'
+.const 'Sub' $P4 = 'WSubId_817'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_1)
 .return($P2)
 # }
 
-.end # WSubId_812
+.end # WSubId_816
 
 
-.sub '' :anon :subid('WSubId_813') :outer('WSubId_812')
+.sub '' :anon :subid('WSubId_817') :outer('WSubId_816')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -15715,7 +15778,7 @@ $P1 = find_lex '__WLEX_1'
 # {
 root_new $P2, ['parrot';'Hash']
 __ARG_2["seen"] = $P2
-.const 'Sub' $P3 = 'WSubId_814'
+.const 'Sub' $P3 = 'WSubId_818'
 newclosure $P2, $P3
 __ARG_2.'_form'($P2)
 find_lex $P1, '__WLEX_1'
@@ -15724,26 +15787,26 @@ join $S1, "", $P1
 .return($S1)
 # }
 
-.end # WSubId_813
+.end # WSubId_817
 
 
-.sub '' :anon :subid('WSubId_814') :outer('WSubId_813')
+.sub '' :anon :subid('WSubId_818') :outer('WSubId_817')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_815'
+.const 'Sub' $P3 = 'WSubId_819'
 newclosure $P2, $P3
 $P1 = __ARG_3.'_many1'($P2)
 store_lex '__WLEX_1', $P1
 .return($P1)
 # }
 
-.end # WSubId_814
+.end # WSubId_818
 
 
-.sub '' :anon :subid('WSubId_815') :outer('WSubId_814')
+.sub '' :anon :subid('WSubId_819') :outer('WSubId_818')
 .param pmc __ARG_4
 
 # Body
@@ -15751,38 +15814,38 @@ store_lex '__WLEX_1', $P1
 .tailcall __ARG_4.'_apply'("local")
 # }
 
-.end # WSubId_815
+.end # WSubId_819
 
 
-.sub '' :anon :subid('WSubId_816') :outer('WSubId_811')
+.sub '' :anon :subid('WSubId_820') :outer('WSubId_815')
 .param pmc __ARG_5
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_817'
+.const 'Sub' $P3 = 'WSubId_821'
 newclosure $P2, $P3
 $P1 = $P2(__ARG_5)
 .return($P1)
 # }
 
-.end # WSubId_816
+.end # WSubId_820
 
 
-.sub '' :anon :subid('WSubId_817') :outer('WSubId_816')
+.sub '' :anon :subid('WSubId_821') :outer('WSubId_820')
 .param pmc __ARG_6
 
 # Body
 # {
-.const 'Sub' $P2 = 'WSubId_818'
+.const 'Sub' $P2 = 'WSubId_822'
 newclosure $P1, $P2
 __ARG_6.'_form'($P1)
 .return("")
 # }
 
-.end # WSubId_817
+.end # WSubId_821
 
 
-.sub '' :anon :subid('WSubId_818') :outer('WSubId_817')
+.sub '' :anon :subid('WSubId_822') :outer('WSubId_821')
 .param pmc __ARG_7
 
 # Body
@@ -15790,10 +15853,10 @@ __ARG_6.'_form'($P1)
 .return()
 # }
 
-.end # WSubId_818
+.end # WSubId_822
 
 
-.sub 'trans' :subid('WSubId_819') :method
+.sub 'trans' :subid('WSubId_823') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -15806,7 +15869,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var ans: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_820'
+.const 'Sub' $P6 = 'WSubId_824'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -15815,40 +15878,40 @@ $P4 = $P5(self)
 .end # trans
 
 
-.sub '' :anon :subid('WSubId_820') :outer('WSubId_819')
+.sub '' :anon :subid('WSubId_824') :outer('WSubId_823')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_821'
+.const 'Sub' $P4 = 'WSubId_825'
 newclosure $P3, $P4
 __ARG_1.'_form'($P3)
 find_lex $P2, '__WLEX_2'
 .return($P2)
 # }
 
-.end # WSubId_820
+.end # WSubId_824
 
 
-.sub '' :anon :subid('WSubId_821') :outer('WSubId_820')
+.sub '' :anon :subid('WSubId_825') :outer('WSubId_824')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_822'
+.const 'Sub' $P5 = 'WSubId_826'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_2)
 .return($P3)
 # }
 
-.end # WSubId_821
+.end # WSubId_825
 
 
-.sub '' :anon :subid('WSubId_822') :outer('WSubId_821')
+.sub '' :anon :subid('WSubId_826') :outer('WSubId_825')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
@@ -15863,10 +15926,10 @@ store_lex '__WLEX_2', $P2
 .return($P2)
 # }
 
-.end # WSubId_822
+.end # WSubId_826
 
 
-.sub 'transFn' :subid('WSubId_823') :method
+.sub 'transFn' :subid('WSubId_827') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -15876,7 +15939,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_824'
+.const 'Sub' $P5 = 'WSubId_828'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -15885,7 +15948,7 @@ $P3 = $P4(self)
 .end # transFn
 
 
-.sub '' :anon :subid('WSubId_824') :outer('WSubId_823')
+.sub '' :anon :subid('WSubId_828') :outer('WSubId_827')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -15901,7 +15964,7 @@ concat $S2, $S2, ";})"
 .return($S2)
 # }
 
-.end # WSubId_824
+.end # WSubId_828
 
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'OMetaTranslator' ]
@@ -15910,7 +15973,7 @@ addparent $P0, $P1
 .end
 .namespace [ 'OMetaWinxedParser' ]
 
-.sub 'topElem' :subid('WSubId_825') :method
+.sub 'topElem' :subid('WSubId_829') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -15920,9 +15983,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var r: $P2
 null $P2
-.const 'Sub' $P4 = 'WSubId_826'
+.const 'Sub' $P4 = 'WSubId_830'
 newclosure $P3, $P4
-.const 'Sub' $P6 = 'WSubId_828'
+.const 'Sub' $P6 = 'WSubId_832'
 newclosure $P5, $P6
 .tailcall self.'_or'($P3, $P5)
 # }
@@ -15930,22 +15993,22 @@ newclosure $P5, $P6
 .end # topElem
 
 
-.sub '' :anon :subid('WSubId_826') :outer('WSubId_825')
+.sub '' :anon :subid('WSubId_830') :outer('WSubId_829')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_827'
+.const 'Sub' $P4 = 'WSubId_831'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_1)
 .return($P2)
 # }
 
-.end # WSubId_826
+.end # WSubId_830
 
 
-.sub '' :anon :subid('WSubId_827') :outer('WSubId_826')
+.sub '' :anon :subid('WSubId_831') :outer('WSubId_830')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -15958,10 +16021,10 @@ find_lex $P1, '__WLEX_1'
 .return($P1)
 # }
 
-.end # WSubId_827
+.end # WSubId_831
 
 
-.sub '' :anon :subid('WSubId_828') :outer('WSubId_825')
+.sub '' :anon :subid('WSubId_832') :outer('WSubId_829')
 .param pmc __ARG_3
 
 # Body
@@ -15969,7 +16032,7 @@ find_lex $P1, '__WLEX_1'
 .tailcall __ARG_3.'_superApplyWithArgs'("WinxedParser", 'topElem')
 # }
 
-.end # WSubId_828
+.end # WSubId_832
 
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'OMetaWinxedParser' ]
@@ -16025,7 +16088,7 @@ $P2 = self["_didSomething"]
 .end # helped
 
 
-.sub 'trans' :subid('WSubId_829') :method
+.sub 'trans' :subid('WSubId_833') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -16038,7 +16101,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var ans: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_830'
+.const 'Sub' $P6 = 'WSubId_834'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -16047,40 +16110,40 @@ $P4 = $P5(self)
 .end # trans
 
 
-.sub '' :anon :subid('WSubId_830') :outer('WSubId_829')
+.sub '' :anon :subid('WSubId_834') :outer('WSubId_833')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_831'
+.const 'Sub' $P4 = 'WSubId_835'
 newclosure $P3, $P4
 __ARG_1.'_form'($P3)
 find_lex $P2, '__WLEX_2'
 .return($P2)
 # }
 
-.end # WSubId_830
+.end # WSubId_834
 
 
-.sub '' :anon :subid('WSubId_831') :outer('WSubId_830')
+.sub '' :anon :subid('WSubId_835') :outer('WSubId_834')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_832'
+.const 'Sub' $P5 = 'WSubId_836'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_2)
 .return($P3)
 # }
 
-.end # WSubId_831
+.end # WSubId_835
 
 
-.sub '' :anon :subid('WSubId_832') :outer('WSubId_831')
+.sub '' :anon :subid('WSubId_836') :outer('WSubId_835')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
@@ -16102,10 +16165,10 @@ store_lex '__WLEX_2', $P2
 .return($P2)
 # }
 
-.end # WSubId_832
+.end # WSubId_836
 
 
-.sub 'optimize' :subid('WSubId_833') :method
+.sub 'optimize' :subid('WSubId_837') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -16115,7 +16178,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_834'
+.const 'Sub' $P5 = 'WSubId_838'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -16124,7 +16187,7 @@ $P3 = $P4(self)
 .end # optimize
 
 
-.sub '' :anon :subid('WSubId_834') :outer('WSubId_833')
+.sub '' :anon :subid('WSubId_838') :outer('WSubId_837')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -16137,10 +16200,10 @@ find_lex $P1, '__WLEX_1'
 .return($P1)
 # }
 
-.end # WSubId_834
+.end # WSubId_838
 
 
-.sub 'App' :subid('WSubId_835') :method
+.sub 'App' :subid('WSubId_839') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -16153,7 +16216,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var args: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_836'
+.const 'Sub' $P6 = 'WSubId_840'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -16162,7 +16225,7 @@ $P4 = $P5(self)
 .end # App
 
 
-.sub '' :anon :subid('WSubId_836') :outer('WSubId_835')
+.sub '' :anon :subid('WSubId_840') :outer('WSubId_839')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -16171,7 +16234,7 @@ $P2 = find_lex '__WLEX_2'
 # {
 $P1 = __ARG_1.'_apply'("anything")
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P4 = 'WSubId_837'
+.const 'Sub' $P4 = 'WSubId_841'
 newclosure $P3, $P4
 $P2 = __ARG_1.'_many'($P3)
 store_lex '__WLEX_2', $P2
@@ -16184,10 +16247,10 @@ find_lex $P2, '__WLEX_2'
 .tailcall $P3.'append'($P2)
 # }
 
-.end # WSubId_836
+.end # WSubId_840
 
 
-.sub '' :anon :subid('WSubId_837') :outer('WSubId_836')
+.sub '' :anon :subid('WSubId_841') :outer('WSubId_840')
 .param pmc __ARG_2
 
 # Body
@@ -16195,10 +16258,10 @@ find_lex $P2, '__WLEX_2'
 .tailcall __ARG_2.'_apply'("anything")
 # }
 
-.end # WSubId_837
+.end # WSubId_841
 
 
-.sub 'Act' :subid('WSubId_838') :method
+.sub 'Act' :subid('WSubId_842') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -16208,7 +16271,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var expr: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_839'
+.const 'Sub' $P5 = 'WSubId_843'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -16217,7 +16280,7 @@ $P3 = $P4(self)
 .end # Act
 
 
-.sub '' :anon :subid('WSubId_839') :outer('WSubId_838')
+.sub '' :anon :subid('WSubId_843') :outer('WSubId_842')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -16233,10 +16296,10 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_839
+.end # WSubId_843
 
 
-.sub 'Pred' :subid('WSubId_840') :method
+.sub 'Pred' :subid('WSubId_844') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -16246,7 +16309,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var expr: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_841'
+.const 'Sub' $P5 = 'WSubId_845'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -16255,7 +16318,7 @@ $P3 = $P4(self)
 .end # Pred
 
 
-.sub '' :anon :subid('WSubId_841') :outer('WSubId_840')
+.sub '' :anon :subid('WSubId_845') :outer('WSubId_844')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -16271,10 +16334,10 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_841
+.end # WSubId_845
 
 
-.sub 'Or' :subid('WSubId_842') :method
+.sub 'Or' :subid('WSubId_846') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -16284,7 +16347,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_843'
+.const 'Sub' $P5 = 'WSubId_847'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -16293,13 +16356,13 @@ $P3 = $P4(self)
 .end # Or
 
 
-.sub '' :anon :subid('WSubId_843') :outer('WSubId_842')
+.sub '' :anon :subid('WSubId_847') :outer('WSubId_846')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_844'
+.const 'Sub' $P3 = 'WSubId_848'
 newclosure $P2, $P3
 $P1 = __ARG_1.'_many'($P2)
 store_lex '__WLEX_1', $P1
@@ -16310,10 +16373,10 @@ find_lex $P1, '__WLEX_1'
 .tailcall $P2.'append'($P1)
 # }
 
-.end # WSubId_843
+.end # WSubId_847
 
 
-.sub '' :anon :subid('WSubId_844') :outer('WSubId_843')
+.sub '' :anon :subid('WSubId_848') :outer('WSubId_847')
 .param pmc __ARG_2
 
 # Body
@@ -16321,10 +16384,10 @@ find_lex $P1, '__WLEX_1'
 .tailcall __ARG_2.'_apply'("trans")
 # }
 
-.end # WSubId_844
+.end # WSubId_848
 
 
-.sub 'XOr' :subid('WSubId_845') :method
+.sub 'XOr' :subid('WSubId_849') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -16334,7 +16397,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_846'
+.const 'Sub' $P5 = 'WSubId_850'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -16343,13 +16406,13 @@ $P3 = $P4(self)
 .end # XOr
 
 
-.sub '' :anon :subid('WSubId_846') :outer('WSubId_845')
+.sub '' :anon :subid('WSubId_850') :outer('WSubId_849')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_847'
+.const 'Sub' $P3 = 'WSubId_851'
 newclosure $P2, $P3
 $P1 = __ARG_1.'_many'($P2)
 store_lex '__WLEX_1', $P1
@@ -16360,10 +16423,10 @@ find_lex $P1, '__WLEX_1'
 .tailcall $P2.'append'($P1)
 # }
 
-.end # WSubId_846
+.end # WSubId_850
 
 
-.sub '' :anon :subid('WSubId_847') :outer('WSubId_846')
+.sub '' :anon :subid('WSubId_851') :outer('WSubId_850')
 .param pmc __ARG_2
 
 # Body
@@ -16371,10 +16434,10 @@ find_lex $P1, '__WLEX_1'
 .tailcall __ARG_2.'_apply'("trans")
 # }
 
-.end # WSubId_847
+.end # WSubId_851
 
 
-.sub 'And' :subid('WSubId_848') :method
+.sub 'And' :subid('WSubId_852') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -16384,7 +16447,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_849'
+.const 'Sub' $P5 = 'WSubId_853'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -16393,13 +16456,13 @@ $P3 = $P4(self)
 .end # And
 
 
-.sub '' :anon :subid('WSubId_849') :outer('WSubId_848')
+.sub '' :anon :subid('WSubId_853') :outer('WSubId_852')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_850'
+.const 'Sub' $P3 = 'WSubId_854'
 newclosure $P2, $P3
 $P1 = __ARG_1.'_many'($P2)
 store_lex '__WLEX_1', $P1
@@ -16410,10 +16473,10 @@ find_lex $P1, '__WLEX_1'
 .tailcall $P2.'append'($P1)
 # }
 
-.end # WSubId_849
+.end # WSubId_853
 
 
-.sub '' :anon :subid('WSubId_850') :outer('WSubId_849')
+.sub '' :anon :subid('WSubId_854') :outer('WSubId_853')
 .param pmc __ARG_2
 
 # Body
@@ -16421,86 +16484,10 @@ find_lex $P1, '__WLEX_1'
 .tailcall __ARG_2.'_apply'("trans")
 # }
 
-.end # WSubId_850
-
-
-.sub 'Opt' :subid('WSubId_851') :method
-
-.lex '__WLEX_1', $P2
-# Body
-# {
-# var fromIdx: $P1
-getattribute $P3, self, 'input'
-getattribute $P1, $P3, 'idx'
-# var x: $P2
-null $P2
-.const 'Sub' $P5 = 'WSubId_852'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
-# }
-
-.end # Opt
-
-
-.sub '' :anon :subid('WSubId_852') :outer('WSubId_851')
-.param pmc __ARG_1
-
-$P1 = find_lex '__WLEX_1'
-# Body
-# {
-$P1 = __ARG_1.'_apply'("trans")
-store_lex '__WLEX_1', $P1
-root_new $P2, ['parrot';'ResizablePMCArray']
-box $P3, "Opt"
-$P2.'push'($P3)
-find_lex $P1, '__WLEX_1'
-$P2.'push'($P1)
-.return($P2)
-# }
-
-.end # WSubId_852
-
-
-.sub 'Many' :subid('WSubId_853') :method
-
-.lex '__WLEX_1', $P2
-# Body
-# {
-# var fromIdx: $P1
-getattribute $P3, self, 'input'
-getattribute $P1, $P3, 'idx'
-# var x: $P2
-null $P2
-.const 'Sub' $P5 = 'WSubId_854'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
-# }
-
-.end # Many
-
-
-.sub '' :anon :subid('WSubId_854') :outer('WSubId_853')
-.param pmc __ARG_1
-
-$P1 = find_lex '__WLEX_1'
-# Body
-# {
-$P1 = __ARG_1.'_apply'("trans")
-store_lex '__WLEX_1', $P1
-root_new $P2, ['parrot';'ResizablePMCArray']
-box $P3, "Many"
-$P2.'push'($P3)
-find_lex $P1, '__WLEX_1'
-$P2.'push'($P1)
-.return($P2)
-# }
-
 .end # WSubId_854
 
 
-.sub 'Many1' :subid('WSubId_855') :method
+.sub 'Opt' :subid('WSubId_855') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -16516,10 +16503,86 @@ $P3 = $P4(self)
 .return($P3)
 # }
 
-.end # Many1
+.end # Opt
 
 
 .sub '' :anon :subid('WSubId_856') :outer('WSubId_855')
+.param pmc __ARG_1
+
+$P1 = find_lex '__WLEX_1'
+# Body
+# {
+$P1 = __ARG_1.'_apply'("trans")
+store_lex '__WLEX_1', $P1
+root_new $P2, ['parrot';'ResizablePMCArray']
+box $P3, "Opt"
+$P2.'push'($P3)
+find_lex $P1, '__WLEX_1'
+$P2.'push'($P1)
+.return($P2)
+# }
+
+.end # WSubId_856
+
+
+.sub 'Many' :subid('WSubId_857') :method
+
+.lex '__WLEX_1', $P2
+# Body
+# {
+# var fromIdx: $P1
+getattribute $P3, self, 'input'
+getattribute $P1, $P3, 'idx'
+# var x: $P2
+null $P2
+.const 'Sub' $P5 = 'WSubId_858'
+newclosure $P4, $P5
+$P3 = $P4(self)
+.return($P3)
+# }
+
+.end # Many
+
+
+.sub '' :anon :subid('WSubId_858') :outer('WSubId_857')
+.param pmc __ARG_1
+
+$P1 = find_lex '__WLEX_1'
+# Body
+# {
+$P1 = __ARG_1.'_apply'("trans")
+store_lex '__WLEX_1', $P1
+root_new $P2, ['parrot';'ResizablePMCArray']
+box $P3, "Many"
+$P2.'push'($P3)
+find_lex $P1, '__WLEX_1'
+$P2.'push'($P1)
+.return($P2)
+# }
+
+.end # WSubId_858
+
+
+.sub 'Many1' :subid('WSubId_859') :method
+
+.lex '__WLEX_1', $P2
+# Body
+# {
+# var fromIdx: $P1
+getattribute $P3, self, 'input'
+getattribute $P1, $P3, 'idx'
+# var x: $P2
+null $P2
+.const 'Sub' $P5 = 'WSubId_860'
+newclosure $P4, $P5
+$P3 = $P4(self)
+.return($P3)
+# }
+
+.end # Many1
+
+
+.sub '' :anon :subid('WSubId_860') :outer('WSubId_859')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -16535,10 +16598,10 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_856
+.end # WSubId_860
 
 
-.sub 'Set' :subid('WSubId_857') :method
+.sub 'Set' :subid('WSubId_861') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -16551,7 +16614,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var v: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_858'
+.const 'Sub' $P6 = 'WSubId_862'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -16560,7 +16623,7 @@ $P4 = $P5(self)
 .end # Set
 
 
-.sub '' :anon :subid('WSubId_858') :outer('WSubId_857')
+.sub '' :anon :subid('WSubId_862') :outer('WSubId_861')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -16581,86 +16644,10 @@ $P3.'push'($P2)
 .return($P3)
 # }
 
-.end # WSubId_858
-
-
-.sub 'Not' :subid('WSubId_859') :method
-
-.lex '__WLEX_1', $P2
-# Body
-# {
-# var fromIdx: $P1
-getattribute $P3, self, 'input'
-getattribute $P1, $P3, 'idx'
-# var x: $P2
-null $P2
-.const 'Sub' $P5 = 'WSubId_860'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
-# }
-
-.end # Not
-
-
-.sub '' :anon :subid('WSubId_860') :outer('WSubId_859')
-.param pmc __ARG_1
-
-$P1 = find_lex '__WLEX_1'
-# Body
-# {
-$P1 = __ARG_1.'_apply'("trans")
-store_lex '__WLEX_1', $P1
-root_new $P2, ['parrot';'ResizablePMCArray']
-box $P3, "Not"
-$P2.'push'($P3)
-find_lex $P1, '__WLEX_1'
-$P2.'push'($P1)
-.return($P2)
-# }
-
-.end # WSubId_860
-
-
-.sub 'Lookahead' :subid('WSubId_861') :method
-
-.lex '__WLEX_1', $P2
-# Body
-# {
-# var fromIdx: $P1
-getattribute $P3, self, 'input'
-getattribute $P1, $P3, 'idx'
-# var x: $P2
-null $P2
-.const 'Sub' $P5 = 'WSubId_862'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
-# }
-
-.end # Lookahead
-
-
-.sub '' :anon :subid('WSubId_862') :outer('WSubId_861')
-.param pmc __ARG_1
-
-$P1 = find_lex '__WLEX_1'
-# Body
-# {
-$P1 = __ARG_1.'_apply'("trans")
-store_lex '__WLEX_1', $P1
-root_new $P2, ['parrot';'ResizablePMCArray']
-box $P3, "Lookahead"
-$P2.'push'($P3)
-find_lex $P1, '__WLEX_1'
-$P2.'push'($P1)
-.return($P2)
-# }
-
 .end # WSubId_862
 
 
-.sub 'Form' :subid('WSubId_863') :method
+.sub 'Not' :subid('WSubId_863') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -16676,7 +16663,7 @@ $P3 = $P4(self)
 .return($P3)
 # }
 
-.end # Form
+.end # Not
 
 
 .sub '' :anon :subid('WSubId_864') :outer('WSubId_863')
@@ -16688,7 +16675,7 @@ $P1 = find_lex '__WLEX_1'
 $P1 = __ARG_1.'_apply'("trans")
 store_lex '__WLEX_1', $P1
 root_new $P2, ['parrot';'ResizablePMCArray']
-box $P3, "Form"
+box $P3, "Not"
 $P2.'push'($P3)
 find_lex $P1, '__WLEX_1'
 $P2.'push'($P1)
@@ -16698,7 +16685,7 @@ $P2.'push'($P1)
 .end # WSubId_864
 
 
-.sub 'ConsBy' :subid('WSubId_865') :method
+.sub 'Lookahead' :subid('WSubId_865') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -16714,7 +16701,7 @@ $P3 = $P4(self)
 .return($P3)
 # }
 
-.end # ConsBy
+.end # Lookahead
 
 
 .sub '' :anon :subid('WSubId_866') :outer('WSubId_865')
@@ -16726,7 +16713,7 @@ $P1 = find_lex '__WLEX_1'
 $P1 = __ARG_1.'_apply'("trans")
 store_lex '__WLEX_1', $P1
 root_new $P2, ['parrot';'ResizablePMCArray']
-box $P3, "ConsBy"
+box $P3, "Lookahead"
 $P2.'push'($P3)
 find_lex $P1, '__WLEX_1'
 $P2.'push'($P1)
@@ -16736,7 +16723,7 @@ $P2.'push'($P1)
 .end # WSubId_866
 
 
-.sub 'IdxConsBy' :subid('WSubId_867') :method
+.sub 'Form' :subid('WSubId_867') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -16752,10 +16739,86 @@ $P3 = $P4(self)
 .return($P3)
 # }
 
-.end # IdxConsBy
+.end # Form
 
 
 .sub '' :anon :subid('WSubId_868') :outer('WSubId_867')
+.param pmc __ARG_1
+
+$P1 = find_lex '__WLEX_1'
+# Body
+# {
+$P1 = __ARG_1.'_apply'("trans")
+store_lex '__WLEX_1', $P1
+root_new $P2, ['parrot';'ResizablePMCArray']
+box $P3, "Form"
+$P2.'push'($P3)
+find_lex $P1, '__WLEX_1'
+$P2.'push'($P1)
+.return($P2)
+# }
+
+.end # WSubId_868
+
+
+.sub 'ConsBy' :subid('WSubId_869') :method
+
+.lex '__WLEX_1', $P2
+# Body
+# {
+# var fromIdx: $P1
+getattribute $P3, self, 'input'
+getattribute $P1, $P3, 'idx'
+# var x: $P2
+null $P2
+.const 'Sub' $P5 = 'WSubId_870'
+newclosure $P4, $P5
+$P3 = $P4(self)
+.return($P3)
+# }
+
+.end # ConsBy
+
+
+.sub '' :anon :subid('WSubId_870') :outer('WSubId_869')
+.param pmc __ARG_1
+
+$P1 = find_lex '__WLEX_1'
+# Body
+# {
+$P1 = __ARG_1.'_apply'("trans")
+store_lex '__WLEX_1', $P1
+root_new $P2, ['parrot';'ResizablePMCArray']
+box $P3, "ConsBy"
+$P2.'push'($P3)
+find_lex $P1, '__WLEX_1'
+$P2.'push'($P1)
+.return($P2)
+# }
+
+.end # WSubId_870
+
+
+.sub 'IdxConsBy' :subid('WSubId_871') :method
+
+.lex '__WLEX_1', $P2
+# Body
+# {
+# var fromIdx: $P1
+getattribute $P3, self, 'input'
+getattribute $P1, $P3, 'idx'
+# var x: $P2
+null $P2
+.const 'Sub' $P5 = 'WSubId_872'
+newclosure $P4, $P5
+$P3 = $P4(self)
+.return($P3)
+# }
+
+.end # IdxConsBy
+
+
+.sub '' :anon :subid('WSubId_872') :outer('WSubId_871')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -16771,10 +16834,10 @@ $P2.'push'($P1)
 .return($P2)
 # }
 
-.end # WSubId_868
+.end # WSubId_872
 
 
-.sub 'JumpTable' :subid('WSubId_869') :method
+.sub 'JumpTable' :subid('WSubId_873') :method
 
 .lex '__WLEX_1', $P4
 .lex '__WLEX_2', $P2
@@ -16790,7 +16853,7 @@ null $P2
 null $P3
 # var ces: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_870'
+.const 'Sub' $P7 = 'WSubId_874'
 newclosure $P6, $P7
 $P5 = $P6(self)
 .return($P5)
@@ -16799,7 +16862,7 @@ $P5 = $P6(self)
 .end # JumpTable
 
 
-.sub '' :anon :subid('WSubId_870') :outer('WSubId_869')
+.sub '' :anon :subid('WSubId_874') :outer('WSubId_873')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -16807,7 +16870,7 @@ $P2 = find_lex '__WLEX_2'
 $P3 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_871'
+.const 'Sub' $P5 = 'WSubId_875'
 newclosure $P4, $P5
 $P1 = __ARG_1.'_many'($P4)
 store_lex '__WLEX_1', $P1
@@ -16818,33 +16881,33 @@ find_lex $P1, '__WLEX_1'
 .tailcall $P4.'append'($P1)
 # }
 
-.end # WSubId_870
+.end # WSubId_874
 
 
-.sub '' :anon :subid('WSubId_871') :outer('WSubId_870')
+.sub '' :anon :subid('WSubId_875') :outer('WSubId_874')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_872'
+.const 'Sub' $P5 = 'WSubId_876'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_2)
 .return($P3)
 # }
 
-.end # WSubId_871
+.end # WSubId_875
 
 
-.sub '' :anon :subid('WSubId_872') :outer('WSubId_871')
+.sub '' :anon :subid('WSubId_876') :outer('WSubId_875')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_873'
+.const 'Sub' $P4 = 'WSubId_877'
 newclosure $P3, $P4
 __ARG_3.'_form'($P3)
 root_new $P3, ['parrot';'ResizablePMCArray']
@@ -16855,26 +16918,26 @@ $P3.'push'($P2)
 .return($P3)
 # }
 
-.end # WSubId_872
+.end # WSubId_876
 
 
-.sub '' :anon :subid('WSubId_873') :outer('WSubId_872')
+.sub '' :anon :subid('WSubId_877') :outer('WSubId_876')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_874'
+.const 'Sub' $P5 = 'WSubId_878'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_4)
 .return($P3)
 # }
 
-.end # WSubId_873
+.end # WSubId_877
 
 
-.sub '' :anon :subid('WSubId_874') :outer('WSubId_873')
+.sub '' :anon :subid('WSubId_878') :outer('WSubId_877')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_2'
@@ -16888,10 +16951,10 @@ store_lex '__WLEX_3', $P2
 .return($P2)
 # }
 
-.end # WSubId_874
+.end # WSubId_878
 
 
-.sub 'Interleave' :subid('WSubId_875') :method
+.sub 'Interleave' :subid('WSubId_879') :method
 
 .lex '__WLEX_1', $P4
 .lex '__WLEX_2', $P2
@@ -16907,7 +16970,7 @@ null $P2
 null $P3
 # var xs: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_876'
+.const 'Sub' $P7 = 'WSubId_880'
 newclosure $P6, $P7
 $P5 = $P6(self)
 .return($P5)
@@ -16916,7 +16979,7 @@ $P5 = $P6(self)
 .end # Interleave
 
 
-.sub '' :anon :subid('WSubId_876') :outer('WSubId_875')
+.sub '' :anon :subid('WSubId_880') :outer('WSubId_879')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -16924,7 +16987,7 @@ $P2 = find_lex '__WLEX_2'
 $P3 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_877'
+.const 'Sub' $P5 = 'WSubId_881'
 newclosure $P4, $P5
 $P1 = __ARG_1.'_many'($P4)
 store_lex '__WLEX_1', $P1
@@ -16935,33 +16998,33 @@ find_lex $P1, '__WLEX_1'
 .tailcall $P4.'append'($P1)
 # }
 
-.end # WSubId_876
+.end # WSubId_880
 
 
-.sub '' :anon :subid('WSubId_877') :outer('WSubId_876')
+.sub '' :anon :subid('WSubId_881') :outer('WSubId_880')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_878'
+.const 'Sub' $P5 = 'WSubId_882'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_2)
 .return($P3)
 # }
 
-.end # WSubId_877
+.end # WSubId_881
 
 
-.sub '' :anon :subid('WSubId_878') :outer('WSubId_877')
+.sub '' :anon :subid('WSubId_882') :outer('WSubId_881')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_879'
+.const 'Sub' $P4 = 'WSubId_883'
 newclosure $P3, $P4
 __ARG_3.'_form'($P3)
 root_new $P3, ['parrot';'ResizablePMCArray']
@@ -16972,26 +17035,26 @@ $P3.'push'($P2)
 .return($P3)
 # }
 
-.end # WSubId_878
+.end # WSubId_882
 
 
-.sub '' :anon :subid('WSubId_879') :outer('WSubId_878')
+.sub '' :anon :subid('WSubId_883') :outer('WSubId_882')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_880'
+.const 'Sub' $P5 = 'WSubId_884'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_4)
 .return($P3)
 # }
 
-.end # WSubId_879
+.end # WSubId_883
 
 
-.sub '' :anon :subid('WSubId_880') :outer('WSubId_879')
+.sub '' :anon :subid('WSubId_884') :outer('WSubId_883')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_2'
@@ -17005,10 +17068,10 @@ store_lex '__WLEX_3', $P2
 .return($P2)
 # }
 
-.end # WSubId_880
+.end # WSubId_884
 
 
-.sub 'Rule' :subid('WSubId_881') :method
+.sub 'Rule' :subid('WSubId_885') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -17024,7 +17087,7 @@ null $P2
 null $P3
 # var body: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_882'
+.const 'Sub' $P7 = 'WSubId_886'
 newclosure $P6, $P7
 $P5 = $P6(self)
 .return($P5)
@@ -17033,7 +17096,7 @@ $P5 = $P6(self)
 .end # Rule
 
 
-.sub '' :anon :subid('WSubId_882') :outer('WSubId_881')
+.sub '' :anon :subid('WSubId_886') :outer('WSubId_885')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -17059,7 +17122,7 @@ $P4.'push'($P3)
 .return($P4)
 # }
 
-.end # WSubId_882
+.end # WSubId_886
 
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'NullOptimization' ]
@@ -17068,7 +17131,7 @@ addparent $P0, $P1
 .end
 .namespace [ 'AssociativeOptimization' ]
 
-.sub 'And' :subid('WSubId_883') :method
+.sub 'And' :subid('WSubId_887') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -17081,9 +17144,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var xs: $P3
 null $P3
-.const 'Sub' $P5 = 'WSubId_884'
+.const 'Sub' $P5 = 'WSubId_888'
 newclosure $P4, $P5
-.const 'Sub' $P7 = 'WSubId_886'
+.const 'Sub' $P7 = 'WSubId_890'
 newclosure $P6, $P7
 .tailcall self.'_or'($P4, $P6)
 # }
@@ -17091,22 +17154,22 @@ newclosure $P6, $P7
 .end # And
 
 
-.sub '' :anon :subid('WSubId_884') :outer('WSubId_883')
+.sub '' :anon :subid('WSubId_888') :outer('WSubId_887')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_885'
+.const 'Sub' $P4 = 'WSubId_889'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_1)
 .return($P2)
 # }
 
-.end # WSubId_884
+.end # WSubId_888
 
 
-.sub '' :anon :subid('WSubId_885') :outer('WSubId_884')
+.sub '' :anon :subid('WSubId_889') :outer('WSubId_888')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -17120,25 +17183,25 @@ find_lex $P1, '__WLEX_1'
 .return($P1)
 # }
 
-.end # WSubId_885
+.end # WSubId_889
 
 
-.sub '' :anon :subid('WSubId_886') :outer('WSubId_883')
+.sub '' :anon :subid('WSubId_890') :outer('WSubId_887')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_887'
+.const 'Sub' $P4 = 'WSubId_891'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_3)
 .return($P2)
 # }
 
-.end # WSubId_886
+.end # WSubId_890
 
 
-.sub '' :anon :subid('WSubId_887') :outer('WSubId_886')
+.sub '' :anon :subid('WSubId_891') :outer('WSubId_890')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_2'
@@ -17153,10 +17216,10 @@ find_lex $P1, '__WLEX_2'
 .tailcall $P2.'append'($P1)
 # }
 
-.end # WSubId_887
+.end # WSubId_891
 
 
-.sub 'Or' :subid('WSubId_888') :method
+.sub 'Or' :subid('WSubId_892') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -17169,9 +17232,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var xs: $P3
 null $P3
-.const 'Sub' $P5 = 'WSubId_889'
+.const 'Sub' $P5 = 'WSubId_893'
 newclosure $P4, $P5
-.const 'Sub' $P7 = 'WSubId_891'
+.const 'Sub' $P7 = 'WSubId_895'
 newclosure $P6, $P7
 .tailcall self.'_or'($P4, $P6)
 # }
@@ -17179,22 +17242,22 @@ newclosure $P6, $P7
 .end # Or
 
 
-.sub '' :anon :subid('WSubId_889') :outer('WSubId_888')
+.sub '' :anon :subid('WSubId_893') :outer('WSubId_892')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_890'
+.const 'Sub' $P4 = 'WSubId_894'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_1)
 .return($P2)
 # }
 
-.end # WSubId_889
+.end # WSubId_893
 
 
-.sub '' :anon :subid('WSubId_890') :outer('WSubId_889')
+.sub '' :anon :subid('WSubId_894') :outer('WSubId_893')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -17208,25 +17271,25 @@ find_lex $P1, '__WLEX_1'
 .return($P1)
 # }
 
-.end # WSubId_890
+.end # WSubId_894
 
 
-.sub '' :anon :subid('WSubId_891') :outer('WSubId_888')
+.sub '' :anon :subid('WSubId_895') :outer('WSubId_892')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_892'
+.const 'Sub' $P4 = 'WSubId_896'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_3)
 .return($P2)
 # }
 
-.end # WSubId_891
+.end # WSubId_895
 
 
-.sub '' :anon :subid('WSubId_892') :outer('WSubId_891')
+.sub '' :anon :subid('WSubId_896') :outer('WSubId_895')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_2'
@@ -17241,10 +17304,10 @@ find_lex $P1, '__WLEX_2'
 .tailcall $P2.'append'($P1)
 # }
 
-.end # WSubId_892
+.end # WSubId_896
 
 
-.sub 'XOr' :subid('WSubId_893') :method
+.sub 'XOr' :subid('WSubId_897') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -17257,9 +17320,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var xs: $P3
 null $P3
-.const 'Sub' $P5 = 'WSubId_894'
+.const 'Sub' $P5 = 'WSubId_898'
 newclosure $P4, $P5
-.const 'Sub' $P7 = 'WSubId_896'
+.const 'Sub' $P7 = 'WSubId_900'
 newclosure $P6, $P7
 .tailcall self.'_or'($P4, $P6)
 # }
@@ -17267,22 +17330,22 @@ newclosure $P6, $P7
 .end # XOr
 
 
-.sub '' :anon :subid('WSubId_894') :outer('WSubId_893')
+.sub '' :anon :subid('WSubId_898') :outer('WSubId_897')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_895'
+.const 'Sub' $P4 = 'WSubId_899'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_1)
 .return($P2)
 # }
 
-.end # WSubId_894
+.end # WSubId_898
 
 
-.sub '' :anon :subid('WSubId_895') :outer('WSubId_894')
+.sub '' :anon :subid('WSubId_899') :outer('WSubId_898')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -17296,25 +17359,25 @@ find_lex $P1, '__WLEX_1'
 .return($P1)
 # }
 
-.end # WSubId_895
+.end # WSubId_899
 
 
-.sub '' :anon :subid('WSubId_896') :outer('WSubId_893')
+.sub '' :anon :subid('WSubId_900') :outer('WSubId_897')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_897'
+.const 'Sub' $P4 = 'WSubId_901'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_3)
 .return($P2)
 # }
 
-.end # WSubId_896
+.end # WSubId_900
 
 
-.sub '' :anon :subid('WSubId_897') :outer('WSubId_896')
+.sub '' :anon :subid('WSubId_901') :outer('WSubId_900')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_2'
@@ -17329,10 +17392,10 @@ find_lex $P1, '__WLEX_2'
 .tailcall $P2.'append'($P1)
 # }
 
-.end # WSubId_897
+.end # WSubId_901
 
 
-.sub 'transInside' :subid('WSubId_898') :method
+.sub 'transInside' :subid('WSubId_902') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -17351,7 +17414,7 @@ null $P3
 null $P4
 # var x: $P5
 null $P5
-.const 'Sub' $P8 = 'WSubId_899'
+.const 'Sub' $P8 = 'WSubId_903'
 newclosure $P7, $P8
 $P6 = $P7(self)
 .return($P6)
@@ -17360,7 +17423,7 @@ $P6 = $P7(self)
 .end # transInside
 
 
-.sub '' :anon :subid('WSubId_899') :outer('WSubId_898')
+.sub '' :anon :subid('WSubId_903') :outer('WSubId_902')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -17371,19 +17434,19 @@ $P4 = find_lex '__WLEX_4'
 # {
 $P1 = __ARG_1.'_apply'("anything")
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P6 = 'WSubId_900'
+.const 'Sub' $P6 = 'WSubId_904'
 newclosure $P5, $P6
-.const 'Sub' $P8 = 'WSubId_904'
+.const 'Sub' $P8 = 'WSubId_908'
 newclosure $P7, $P8
-.const 'Sub' $P10 = 'WSubId_906'
+.const 'Sub' $P10 = 'WSubId_910'
 newclosure $P9, $P10
 .tailcall __ARG_1.'_or'($P5, $P7, $P9)
 # }
 
-.end # WSubId_899
+.end # WSubId_903
 
 
-.sub '' :anon :subid('WSubId_900') :outer('WSubId_899')
+.sub '' :anon :subid('WSubId_904') :outer('WSubId_903')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -17391,16 +17454,16 @@ $P2 = find_lex '__WLEX_2'
 $P3 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_901'
+.const 'Sub' $P6 = 'WSubId_905'
 newclosure $P5, $P6
 $P4 = $P5(__ARG_2)
 .return($P4)
 # }
 
-.end # WSubId_900
+.end # WSubId_904
 
 
-.sub '' :anon :subid('WSubId_901') :outer('WSubId_900')
+.sub '' :anon :subid('WSubId_905') :outer('WSubId_904')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
@@ -17408,7 +17471,7 @@ $P2 = find_lex '__WLEX_2'
 $P3 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_902'
+.const 'Sub' $P5 = 'WSubId_906'
 newclosure $P4, $P5
 __ARG_3.'_form'($P4)
 find_lex $P1, '__WLEX_1'
@@ -17420,26 +17483,26 @@ find_lex $P3, '__WLEX_3'
 .tailcall $P2.'append'($P3)
 # }
 
-.end # WSubId_901
+.end # WSubId_905
 
 
-.sub '' :anon :subid('WSubId_902') :outer('WSubId_901')
+.sub '' :anon :subid('WSubId_906') :outer('WSubId_905')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_903'
+.const 'Sub' $P5 = 'WSubId_907'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_4)
 .return($P3)
 # }
 
-.end # WSubId_902
+.end # WSubId_906
 
 
-.sub '' :anon :subid('WSubId_903') :outer('WSubId_902')
+.sub '' :anon :subid('WSubId_907') :outer('WSubId_906')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_1'
@@ -17454,10 +17517,10 @@ store_lex '__WLEX_2', $P2
 .return($P2)
 # }
 
-.end # WSubId_903
+.end # WSubId_907
 
 
-.sub '' :anon :subid('WSubId_904') :outer('WSubId_899')
+.sub '' :anon :subid('WSubId_908') :outer('WSubId_903')
 .param pmc __ARG_6
 
 $P1 = find_lex '__WLEX_4'
@@ -17465,16 +17528,16 @@ $P2 = find_lex '__WLEX_2'
 $P3 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_905'
+.const 'Sub' $P6 = 'WSubId_909'
 newclosure $P5, $P6
 $P4 = $P5(__ARG_6)
 .return($P4)
 # }
 
-.end # WSubId_904
+.end # WSubId_908
 
 
-.sub '' :anon :subid('WSubId_905') :outer('WSubId_904')
+.sub '' :anon :subid('WSubId_909') :outer('WSubId_908')
 .param pmc __ARG_7
 
 $P1 = find_lex '__WLEX_4'
@@ -17494,10 +17557,10 @@ find_lex $P2, '__WLEX_2'
 .tailcall $P4.'append'($P2)
 # }
 
-.end # WSubId_905
+.end # WSubId_909
 
 
-.sub '' :anon :subid('WSubId_906') :outer('WSubId_899')
+.sub '' :anon :subid('WSubId_910') :outer('WSubId_903')
 .param pmc __ARG_8
 
 # Body
@@ -17506,7 +17569,7 @@ root_new $P1, ['parrot';'ResizablePMCArray']
 .return($P1)
 # }
 
-.end # WSubId_906
+.end # WSubId_910
 
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'AssociativeOptimization' ]
@@ -17515,7 +17578,7 @@ addparent $P0, $P1
 .end
 .namespace [ 'SeqInliner' ]
 
-.sub 'App' :subid('WSubId_907') :method
+.sub 'App' :subid('WSubId_911') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -17534,9 +17597,9 @@ null $P3
 null $P4
 # var args: $P5
 null $P5
-.const 'Sub' $P7 = 'WSubId_908'
+.const 'Sub' $P7 = 'WSubId_912'
 newclosure $P6, $P7
-.const 'Sub' $P9 = 'WSubId_911'
+.const 'Sub' $P9 = 'WSubId_915'
 newclosure $P8, $P9
 .tailcall self.'_or'($P6, $P8)
 # }
@@ -17544,23 +17607,23 @@ newclosure $P8, $P9
 .end # App
 
 
-.sub '' :anon :subid('WSubId_908') :outer('WSubId_907')
+.sub '' :anon :subid('WSubId_912') :outer('WSubId_911')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_909'
+.const 'Sub' $P5 = 'WSubId_913'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_1)
 .return($P3)
 # }
 
-.end # WSubId_908
+.end # WSubId_912
 
 
-.sub '' :anon :subid('WSubId_909') :outer('WSubId_908')
+.sub '' :anon :subid('WSubId_913') :outer('WSubId_912')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -17574,7 +17637,7 @@ if $S1 == $S2 goto __label_2
 goto __label_1
 # switch
 __label_2: # case
-.const 'Sub' $P6 = 'WSubId_910'
+.const 'Sub' $P6 = 'WSubId_914'
 newclosure $P5, $P6
 $P4 = $P5(__ARG_2)
 .return($P4)
@@ -17584,10 +17647,10 @@ throw $P7
 __label_0: # switch end
 # }
 
-.end # WSubId_909
+.end # WSubId_913
 
 
-.sub '' :anon :subid('WSubId_910') :outer('WSubId_909')
+.sub '' :anon :subid('WSubId_914') :outer('WSubId_913')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
@@ -17616,26 +17679,26 @@ $P6.'push'($P8)
 .tailcall $P3.'append'($P6)
 # }
 
-.end # WSubId_910
+.end # WSubId_914
 
 
-.sub '' :anon :subid('WSubId_911') :outer('WSubId_907')
+.sub '' :anon :subid('WSubId_915') :outer('WSubId_911')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_3'
 $P2 = find_lex '__WLEX_4'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_912'
+.const 'Sub' $P5 = 'WSubId_916'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_4)
 .return($P3)
 # }
 
-.end # WSubId_911
+.end # WSubId_915
 
 
-.sub '' :anon :subid('WSubId_912') :outer('WSubId_911')
+.sub '' :anon :subid('WSubId_916') :outer('WSubId_915')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_3'
@@ -17644,7 +17707,7 @@ $P2 = find_lex '__WLEX_4'
 # {
 $P1 = __ARG_5.'_apply'("anything")
 store_lex '__WLEX_3', $P1
-.const 'Sub' $P4 = 'WSubId_913'
+.const 'Sub' $P4 = 'WSubId_917'
 newclosure $P3, $P4
 $P2 = __ARG_5.'_many'($P3)
 store_lex '__WLEX_4', $P2
@@ -17657,10 +17720,10 @@ find_lex $P2, '__WLEX_4'
 .tailcall $P3.'append'($P2)
 # }
 
-.end # WSubId_912
+.end # WSubId_916
 
 
-.sub '' :anon :subid('WSubId_913') :outer('WSubId_912')
+.sub '' :anon :subid('WSubId_917') :outer('WSubId_916')
 .param pmc __ARG_6
 
 # Body
@@ -17668,10 +17731,10 @@ find_lex $P2, '__WLEX_4'
 .tailcall __ARG_6.'_apply'("anything")
 # }
 
-.end # WSubId_913
+.end # WSubId_917
 
 
-.sub 'inlineChar' :subid('WSubId_914') :method
+.sub 'inlineChar' :subid('WSubId_918') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -17681,7 +17744,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var c: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_915'
+.const 'Sub' $P5 = 'WSubId_919'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -17690,7 +17753,7 @@ $P3 = $P4(self)
 .end # inlineChar
 
 
-.sub '' :anon :subid('WSubId_915') :outer('WSubId_914')
+.sub '' :anon :subid('WSubId_919') :outer('WSubId_918')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -17698,7 +17761,7 @@ $P1 = find_lex '__WLEX_1'
 # {
 $P1 = __ARG_1.'_applyWithArgs'("foreign", 'OMetaParser', 'eChar')
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P3 = 'WSubId_916'
+.const 'Sub' $P3 = 'WSubId_920'
 newclosure $P2, $P3
 __ARG_1.'_not'($P2)
 root_new $P2, ['parrot';'ResizablePMCArray']
@@ -17712,10 +17775,10 @@ $P2.'push'($P4)
 .return($P2)
 # }
 
-.end # WSubId_915
+.end # WSubId_919
 
 
-.sub '' :anon :subid('WSubId_916') :outer('WSubId_915')
+.sub '' :anon :subid('WSubId_920') :outer('WSubId_919')
 .param pmc __ARG_2
 
 # Body
@@ -17723,10 +17786,10 @@ $P2.'push'($P4)
 .tailcall __ARG_2.'_apply'("end")
 # }
 
-.end # WSubId_916
+.end # WSubId_920
 
 
-.sub 'seqString' :subid('WSubId_917') :method
+.sub 'seqString' :subid('WSubId_921') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -17739,7 +17802,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var cs: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_918'
+.const 'Sub' $P6 = 'WSubId_922'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -17748,42 +17811,42 @@ $P4 = $P5(self)
 .end # seqString
 
 
-.sub '' :anon :subid('WSubId_918') :outer('WSubId_917')
+.sub '' :anon :subid('WSubId_922') :outer('WSubId_921')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_919'
+.const 'Sub' $P4 = 'WSubId_923'
 newclosure $P3, $P4
 __ARG_1.'_lookahead'($P3)
-.const 'Sub' $P4 = 'WSubId_921'
+.const 'Sub' $P4 = 'WSubId_925'
 newclosure $P3, $P4
-.const 'Sub' $P6 = 'WSubId_926'
+.const 'Sub' $P6 = 'WSubId_930'
 newclosure $P5, $P6
 .tailcall __ARG_1.'_or'($P3, $P5)
 # }
 
-.end # WSubId_918
+.end # WSubId_922
 
 
-.sub '' :anon :subid('WSubId_919') :outer('WSubId_918')
+.sub '' :anon :subid('WSubId_923') :outer('WSubId_922')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_920'
+.const 'Sub' $P4 = 'WSubId_924'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_2)
 .return($P2)
 # }
 
-.end # WSubId_919
+.end # WSubId_923
 
 
-.sub '' :anon :subid('WSubId_920') :outer('WSubId_919')
+.sub '' :anon :subid('WSubId_924') :outer('WSubId_923')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
@@ -17796,73 +17859,73 @@ isa $I1, $P1, "String"
 .tailcall __ARG_3.'_pred'($I1)
 # }
 
-.end # WSubId_920
+.end # WSubId_924
 
 
-.sub '' :anon :subid('WSubId_921') :outer('WSubId_918')
+.sub '' :anon :subid('WSubId_925') :outer('WSubId_922')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_922'
+.const 'Sub' $P4 = 'WSubId_926'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_4)
 .return($P2)
 # }
 
-.end # WSubId_921
+.end # WSubId_925
 
 
-.sub '' :anon :subid('WSubId_922') :outer('WSubId_921')
+.sub '' :anon :subid('WSubId_926') :outer('WSubId_925')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_923'
+.const 'Sub' $P3 = 'WSubId_927'
 newclosure $P2, $P3
 __ARG_5.'_form'($P2)
 find_lex $P1, '__WLEX_2'
 .return($P1)
 # }
 
-.end # WSubId_922
+.end # WSubId_926
 
 
-.sub '' :anon :subid('WSubId_923') :outer('WSubId_922')
+.sub '' :anon :subid('WSubId_927') :outer('WSubId_926')
 .param pmc __ARG_6
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_924'
+.const 'Sub' $P4 = 'WSubId_928'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_6)
 .return($P2)
 # }
 
-.end # WSubId_923
+.end # WSubId_927
 
 
-.sub '' :anon :subid('WSubId_924') :outer('WSubId_923')
+.sub '' :anon :subid('WSubId_928') :outer('WSubId_927')
 .param pmc __ARG_7
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
 __ARG_7.'_applyWithArgs'("exactly", "\"")
-.const 'Sub' $P3 = 'WSubId_925'
+.const 'Sub' $P3 = 'WSubId_929'
 newclosure $P2, $P3
 $P1 = __ARG_7.'_many'($P2)
 store_lex '__WLEX_2', $P1
 .tailcall __ARG_7.'_applyWithArgs'("exactly", "\"")
 # }
 
-.end # WSubId_924
+.end # WSubId_928
 
 
-.sub '' :anon :subid('WSubId_925') :outer('WSubId_924')
+.sub '' :anon :subid('WSubId_929') :outer('WSubId_928')
 .param pmc __ARG_8
 
 # Body
@@ -17870,73 +17933,73 @@ store_lex '__WLEX_2', $P1
 .tailcall __ARG_8.'_apply'("inlineChar")
 # }
 
-.end # WSubId_925
+.end # WSubId_929
 
 
-.sub '' :anon :subid('WSubId_926') :outer('WSubId_918')
+.sub '' :anon :subid('WSubId_930') :outer('WSubId_922')
 .param pmc __ARG_9
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_927'
+.const 'Sub' $P4 = 'WSubId_931'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_9)
 .return($P2)
 # }
 
-.end # WSubId_926
+.end # WSubId_930
 
 
-.sub '' :anon :subid('WSubId_927') :outer('WSubId_926')
+.sub '' :anon :subid('WSubId_931') :outer('WSubId_930')
 .param pmc __ARG_10
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_928'
+.const 'Sub' $P3 = 'WSubId_932'
 newclosure $P2, $P3
 __ARG_10.'_form'($P2)
 find_lex $P1, '__WLEX_2'
 .return($P1)
 # }
 
-.end # WSubId_927
+.end # WSubId_931
 
 
-.sub '' :anon :subid('WSubId_928') :outer('WSubId_927')
+.sub '' :anon :subid('WSubId_932') :outer('WSubId_931')
 .param pmc __ARG_11
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_929'
+.const 'Sub' $P4 = 'WSubId_933'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_11)
 .return($P2)
 # }
 
-.end # WSubId_928
+.end # WSubId_932
 
 
-.sub '' :anon :subid('WSubId_929') :outer('WSubId_928')
+.sub '' :anon :subid('WSubId_933') :outer('WSubId_932')
 .param pmc __ARG_12
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
 __ARG_12.'_applyWithArgs'("exactly", "\'")
-.const 'Sub' $P3 = 'WSubId_930'
+.const 'Sub' $P3 = 'WSubId_934'
 newclosure $P2, $P3
 $P1 = __ARG_12.'_many'($P2)
 store_lex '__WLEX_2', $P1
 .tailcall __ARG_12.'_applyWithArgs'("exactly", "\'")
 # }
 
-.end # WSubId_929
+.end # WSubId_933
 
 
-.sub '' :anon :subid('WSubId_930') :outer('WSubId_929')
+.sub '' :anon :subid('WSubId_934') :outer('WSubId_933')
 .param pmc __ARG_13
 
 # Body
@@ -17944,7 +18007,7 @@ store_lex '__WLEX_2', $P1
 .tailcall __ARG_13.'_apply'("inlineChar")
 # }
 
-.end # WSubId_930
+.end # WSubId_934
 
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'SeqInliner' ]
@@ -17953,7 +18016,7 @@ addparent $P0, $P1
 .end
 .namespace [ 'JumpTableOptimization' ]
 
-.sub 'Or' :subid('WSubId_931') :method
+.sub 'Or' :subid('WSubId_935') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -17963,7 +18026,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var cs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_932'
+.const 'Sub' $P5 = 'WSubId_936'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -17972,13 +18035,13 @@ $P3 = $P4(self)
 .end # Or
 
 
-.sub '' :anon :subid('WSubId_932') :outer('WSubId_931')
+.sub '' :anon :subid('WSubId_936') :outer('WSubId_935')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_933'
+.const 'Sub' $P3 = 'WSubId_937'
 newclosure $P2, $P3
 $P1 = __ARG_1.'_many'($P2)
 store_lex '__WLEX_1', $P1
@@ -17989,25 +18052,25 @@ find_lex $P1, '__WLEX_1'
 .tailcall $P2.'append'($P1)
 # }
 
-.end # WSubId_932
+.end # WSubId_936
 
 
-.sub '' :anon :subid('WSubId_933') :outer('WSubId_932')
+.sub '' :anon :subid('WSubId_937') :outer('WSubId_936')
 .param pmc __ARG_2
 
 # Body
 # {
-.const 'Sub' $P2 = 'WSubId_934'
+.const 'Sub' $P2 = 'WSubId_938'
 newclosure $P1, $P2
-.const 'Sub' $P4 = 'WSubId_935'
+.const 'Sub' $P4 = 'WSubId_939'
 newclosure $P3, $P4
 .tailcall __ARG_2.'_or'($P1, $P3)
 # }
 
-.end # WSubId_933
+.end # WSubId_937
 
 
-.sub '' :anon :subid('WSubId_934') :outer('WSubId_933')
+.sub '' :anon :subid('WSubId_938') :outer('WSubId_937')
 .param pmc __ARG_3
 
 # Body
@@ -18015,10 +18078,10 @@ newclosure $P3, $P4
 .tailcall __ARG_3.'_applyWithArgs'("jtChoices", "Or")
 # }
 
-.end # WSubId_934
+.end # WSubId_938
 
 
-.sub '' :anon :subid('WSubId_935') :outer('WSubId_933')
+.sub '' :anon :subid('WSubId_939') :outer('WSubId_937')
 .param pmc __ARG_4
 
 # Body
@@ -18026,10 +18089,10 @@ newclosure $P3, $P4
 .tailcall __ARG_4.'_apply'("trans")
 # }
 
-.end # WSubId_935
+.end # WSubId_939
 
 
-.sub 'XOr' :subid('WSubId_936') :method
+.sub 'XOr' :subid('WSubId_940') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -18039,7 +18102,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var cs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_937'
+.const 'Sub' $P5 = 'WSubId_941'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -18048,13 +18111,13 @@ $P3 = $P4(self)
 .end # XOr
 
 
-.sub '' :anon :subid('WSubId_937') :outer('WSubId_936')
+.sub '' :anon :subid('WSubId_941') :outer('WSubId_940')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_938'
+.const 'Sub' $P3 = 'WSubId_942'
 newclosure $P2, $P3
 $P1 = __ARG_1.'_many'($P2)
 store_lex '__WLEX_1', $P1
@@ -18065,25 +18128,25 @@ find_lex $P1, '__WLEX_1'
 .tailcall $P2.'append'($P1)
 # }
 
-.end # WSubId_937
+.end # WSubId_941
 
 
-.sub '' :anon :subid('WSubId_938') :outer('WSubId_937')
+.sub '' :anon :subid('WSubId_942') :outer('WSubId_941')
 .param pmc __ARG_2
 
 # Body
 # {
-.const 'Sub' $P2 = 'WSubId_939'
+.const 'Sub' $P2 = 'WSubId_943'
 newclosure $P1, $P2
-.const 'Sub' $P4 = 'WSubId_940'
+.const 'Sub' $P4 = 'WSubId_944'
 newclosure $P3, $P4
 .tailcall __ARG_2.'_or'($P1, $P3)
 # }
 
-.end # WSubId_938
+.end # WSubId_942
 
 
-.sub '' :anon :subid('WSubId_939') :outer('WSubId_938')
+.sub '' :anon :subid('WSubId_943') :outer('WSubId_942')
 .param pmc __ARG_3
 
 # Body
@@ -18091,10 +18154,10 @@ newclosure $P3, $P4
 .tailcall __ARG_3.'_applyWithArgs'("jtChoices", "XOr")
 # }
 
-.end # WSubId_939
+.end # WSubId_943
 
 
-.sub '' :anon :subid('WSubId_940') :outer('WSubId_938')
+.sub '' :anon :subid('WSubId_944') :outer('WSubId_942')
 .param pmc __ARG_4
 
 # Body
@@ -18102,10 +18165,10 @@ newclosure $P3, $P4
 .tailcall __ARG_4.'_apply'("trans")
 # }
 
-.end # WSubId_940
+.end # WSubId_944
 
 
-.sub 'quotedString' :subid('WSubId_941') :method
+.sub 'quotedString' :subid('WSubId_945') :method
 
 .lex '__WLEX_1', $P3
 .lex '__WLEX_2', $P2
@@ -18118,7 +18181,7 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var cs: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_942'
+.const 'Sub' $P6 = 'WSubId_946'
 newclosure $P5, $P6
 $P4 = $P5(self)
 .return($P4)
@@ -18127,17 +18190,17 @@ $P4 = $P5(self)
 .end # quotedString
 
 
-.sub '' :anon :subid('WSubId_942') :outer('WSubId_941')
+.sub '' :anon :subid('WSubId_946') :outer('WSubId_945')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_943'
+.const 'Sub' $P4 = 'WSubId_947'
 newclosure $P3, $P4
 __ARG_1.'_lookahead'($P3)
-.const 'Sub' $P4 = 'WSubId_944'
+.const 'Sub' $P4 = 'WSubId_948'
 newclosure $P3, $P4
 __ARG_1.'_form'($P3)
 find_lex $P1, '__WLEX_1'
@@ -18146,10 +18209,10 @@ join $S1, "", $P1
 .return($S1)
 # }
 
-.end # WSubId_942
+.end # WSubId_946
 
 
-.sub '' :anon :subid('WSubId_943') :outer('WSubId_942')
+.sub '' :anon :subid('WSubId_947') :outer('WSubId_946')
 .param pmc __ARG_2
 
 # Body
@@ -18157,26 +18220,26 @@ join $S1, "", $P1
 .tailcall __ARG_2.'_apply'("string")
 # }
 
-.end # WSubId_943
+.end # WSubId_947
 
 
-.sub '' :anon :subid('WSubId_944') :outer('WSubId_942')
+.sub '' :anon :subid('WSubId_948') :outer('WSubId_946')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_945'
+.const 'Sub' $P5 = 'WSubId_949'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_3)
 .return($P3)
 # }
 
-.end # WSubId_944
+.end # WSubId_948
 
 
-.sub '' :anon :subid('WSubId_945') :outer('WSubId_944')
+.sub '' :anon :subid('WSubId_949') :outer('WSubId_948')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_1'
@@ -18192,12 +18255,12 @@ if $S1 == $S2 goto __label_3
 goto __label_1
 # switch
 __label_2: # case
-.const 'Sub' $P6 = 'WSubId_946'
+.const 'Sub' $P6 = 'WSubId_950'
 newclosure $P5, $P6
 $P4 = $P5(__ARG_4)
 .return($P4)
 __label_3: # case
-.const 'Sub' $P9 = 'WSubId_950'
+.const 'Sub' $P9 = 'WSubId_954'
 newclosure $P8, $P9
 $P7 = $P8(__ARG_4)
 .return($P7)
@@ -18207,72 +18270,11 @@ throw $P10
 __label_0: # switch end
 # }
 
-.end # WSubId_945
-
-
-.sub '' :anon :subid('WSubId_946') :outer('WSubId_945')
-.param pmc __ARG_5
-
-$P1 = find_lex '__WLEX_1'
-$P2 = find_lex '__WLEX_2'
-# Body
-# {
-.const 'Sub' $P4 = 'WSubId_947'
-newclosure $P3, $P4
-$P1 = __ARG_5.'_many'($P3)
-store_lex '__WLEX_1', $P1
-.tailcall __ARG_5.'_applyWithArgs'("exactly", "\"")
-# }
-
-.end # WSubId_946
-
-
-.sub '' :anon :subid('WSubId_947') :outer('WSubId_946')
-.param pmc __ARG_6
-
-$P1 = find_lex '__WLEX_2'
-# Body
-# {
-.const 'Sub' $P4 = 'WSubId_948'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_6)
-.return($P2)
-# }
-
-.end # WSubId_947
-
-
-.sub '' :anon :subid('WSubId_948') :outer('WSubId_947')
-.param pmc __ARG_7
-
-$P1 = find_lex '__WLEX_2'
-# Body
-# {
-$P1 = __ARG_7.'_applyWithArgs'("foreign", 'OMetaParser', 'eChar')
-store_lex '__WLEX_2', $P1
-.const 'Sub' $P3 = 'WSubId_949'
-newclosure $P2, $P3
-__ARG_7.'_not'($P2)
-find_lex $P1, '__WLEX_2'
-.return($P1)
-# }
-
-.end # WSubId_948
-
-
-.sub '' :anon :subid('WSubId_949') :outer('WSubId_948')
-.param pmc __ARG_8
-
-# Body
-# {
-.tailcall __ARG_8.'_apply'("end")
-# }
-
 .end # WSubId_949
 
 
-.sub '' :anon :subid('WSubId_950') :outer('WSubId_945')
-.param pmc __ARG_9
+.sub '' :anon :subid('WSubId_950') :outer('WSubId_949')
+.param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
@@ -18280,23 +18282,23 @@ $P2 = find_lex '__WLEX_2'
 # {
 .const 'Sub' $P4 = 'WSubId_951'
 newclosure $P3, $P4
-$P1 = __ARG_9.'_many'($P3)
+$P1 = __ARG_5.'_many'($P3)
 store_lex '__WLEX_1', $P1
-.tailcall __ARG_9.'_applyWithArgs'("exactly", "\'")
+.tailcall __ARG_5.'_applyWithArgs'("exactly", "\"")
 # }
 
 .end # WSubId_950
 
 
 .sub '' :anon :subid('WSubId_951') :outer('WSubId_950')
-.param pmc __ARG_10
+.param pmc __ARG_6
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
 .const 'Sub' $P4 = 'WSubId_952'
 newclosure $P3, $P4
-$P2 = $P3(__ARG_10)
+$P2 = $P3(__ARG_6)
 .return($P2)
 # }
 
@@ -18304,16 +18306,16 @@ $P2 = $P3(__ARG_10)
 
 
 .sub '' :anon :subid('WSubId_952') :outer('WSubId_951')
-.param pmc __ARG_11
+.param pmc __ARG_7
 
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-$P1 = __ARG_11.'_applyWithArgs'("foreign", 'OMetaParser', 'eChar')
+$P1 = __ARG_7.'_applyWithArgs'("foreign", 'OMetaParser', 'eChar')
 store_lex '__WLEX_2', $P1
 .const 'Sub' $P3 = 'WSubId_953'
 newclosure $P2, $P3
-__ARG_11.'_not'($P2)
+__ARG_7.'_not'($P2)
 find_lex $P1, '__WLEX_2'
 .return($P1)
 # }
@@ -18322,6 +18324,67 @@ find_lex $P1, '__WLEX_2'
 
 
 .sub '' :anon :subid('WSubId_953') :outer('WSubId_952')
+.param pmc __ARG_8
+
+# Body
+# {
+.tailcall __ARG_8.'_apply'("end")
+# }
+
+.end # WSubId_953
+
+
+.sub '' :anon :subid('WSubId_954') :outer('WSubId_949')
+.param pmc __ARG_9
+
+$P1 = find_lex '__WLEX_1'
+$P2 = find_lex '__WLEX_2'
+# Body
+# {
+.const 'Sub' $P4 = 'WSubId_955'
+newclosure $P3, $P4
+$P1 = __ARG_9.'_many'($P3)
+store_lex '__WLEX_1', $P1
+.tailcall __ARG_9.'_applyWithArgs'("exactly", "\'")
+# }
+
+.end # WSubId_954
+
+
+.sub '' :anon :subid('WSubId_955') :outer('WSubId_954')
+.param pmc __ARG_10
+
+$P1 = find_lex '__WLEX_2'
+# Body
+# {
+.const 'Sub' $P4 = 'WSubId_956'
+newclosure $P3, $P4
+$P2 = $P3(__ARG_10)
+.return($P2)
+# }
+
+.end # WSubId_955
+
+
+.sub '' :anon :subid('WSubId_956') :outer('WSubId_955')
+.param pmc __ARG_11
+
+$P1 = find_lex '__WLEX_2'
+# Body
+# {
+$P1 = __ARG_11.'_applyWithArgs'("foreign", 'OMetaParser', 'eChar')
+store_lex '__WLEX_2', $P1
+.const 'Sub' $P3 = 'WSubId_957'
+newclosure $P2, $P3
+__ARG_11.'_not'($P2)
+find_lex $P1, '__WLEX_2'
+.return($P1)
+# }
+
+.end # WSubId_956
+
+
+.sub '' :anon :subid('WSubId_957') :outer('WSubId_956')
 .param pmc __ARG_12
 
 # Body
@@ -18329,10 +18392,10 @@ find_lex $P1, '__WLEX_2'
 .tailcall __ARG_12.'_apply'("end")
 # }
 
-.end # WSubId_953
+.end # WSubId_957
 
 
-.sub 'jtChoice' :subid('WSubId_954') :method
+.sub 'jtChoice' :subid('WSubId_958') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -18345,9 +18408,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var rest: $P3
 null $P3
-.const 'Sub' $P5 = 'WSubId_955'
+.const 'Sub' $P5 = 'WSubId_959'
 newclosure $P4, $P5
-.const 'Sub' $P7 = 'WSubId_962'
+.const 'Sub' $P7 = 'WSubId_966'
 newclosure $P6, $P7
 .tailcall self.'_or'($P4, $P6)
 # }
@@ -18355,30 +18418,30 @@ newclosure $P6, $P7
 .end # jtChoice
 
 
-.sub '' :anon :subid('WSubId_955') :outer('WSubId_954')
+.sub '' :anon :subid('WSubId_959') :outer('WSubId_958')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_956'
+.const 'Sub' $P5 = 'WSubId_960'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_1)
 .return($P3)
 # }
 
-.end # WSubId_955
+.end # WSubId_959
 
 
-.sub '' :anon :subid('WSubId_956') :outer('WSubId_955')
+.sub '' :anon :subid('WSubId_960') :outer('WSubId_959')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_957'
+.const 'Sub' $P4 = 'WSubId_961'
 newclosure $P3, $P4
 __ARG_2.'_form'($P3)
 root_new $P3, ['parrot';'ResizablePMCArray']
@@ -18393,26 +18456,26 @@ $P3.'push'($P5)
 .return($P3)
 # }
 
-.end # WSubId_956
+.end # WSubId_960
 
 
-.sub '' :anon :subid('WSubId_957') :outer('WSubId_956')
+.sub '' :anon :subid('WSubId_961') :outer('WSubId_960')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_958'
+.const 'Sub' $P5 = 'WSubId_962'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_3)
 .return($P3)
 # }
 
-.end # WSubId_957
+.end # WSubId_961
 
 
-.sub '' :anon :subid('WSubId_958') :outer('WSubId_957')
+.sub '' :anon :subid('WSubId_962') :outer('WSubId_961')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_1'
@@ -18420,35 +18483,35 @@ $P2 = find_lex '__WLEX_2'
 # Body
 # {
 __ARG_4.'_applyWithArgs'("exactly", "And")
-.const 'Sub' $P4 = 'WSubId_959'
+.const 'Sub' $P4 = 'WSubId_963'
 newclosure $P3, $P4
 __ARG_4.'_form'($P3)
-.const 'Sub' $P4 = 'WSubId_961'
+.const 'Sub' $P4 = 'WSubId_965'
 newclosure $P3, $P4
 $P2 = __ARG_4.'_many'($P3)
 store_lex '__WLEX_2', $P2
 .return($P2)
 # }
 
-.end # WSubId_958
+.end # WSubId_962
 
 
-.sub '' :anon :subid('WSubId_959') :outer('WSubId_958')
+.sub '' :anon :subid('WSubId_963') :outer('WSubId_962')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_960'
+.const 'Sub' $P4 = 'WSubId_964'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_5)
 .return($P2)
 # }
 
-.end # WSubId_959
+.end # WSubId_963
 
 
-.sub '' :anon :subid('WSubId_960') :outer('WSubId_959')
+.sub '' :anon :subid('WSubId_964') :outer('WSubId_963')
 .param pmc __ARG_6
 
 $P1 = find_lex '__WLEX_1'
@@ -18461,10 +18524,10 @@ store_lex '__WLEX_1', $P1
 .return($P1)
 # }
 
-.end # WSubId_960
+.end # WSubId_964
 
 
-.sub '' :anon :subid('WSubId_961') :outer('WSubId_958')
+.sub '' :anon :subid('WSubId_965') :outer('WSubId_962')
 .param pmc __ARG_7
 
 # Body
@@ -18472,31 +18535,31 @@ store_lex '__WLEX_1', $P1
 .tailcall __ARG_7.'_apply'("anything")
 # }
 
-.end # WSubId_961
+.end # WSubId_965
 
 
-.sub '' :anon :subid('WSubId_962') :outer('WSubId_954')
+.sub '' :anon :subid('WSubId_966') :outer('WSubId_958')
 .param pmc __ARG_8
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_963'
+.const 'Sub' $P4 = 'WSubId_967'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_8)
 .return($P2)
 # }
 
-.end # WSubId_962
+.end # WSubId_966
 
 
-.sub '' :anon :subid('WSubId_963') :outer('WSubId_962')
+.sub '' :anon :subid('WSubId_967') :outer('WSubId_966')
 .param pmc __ARG_9
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_964'
+.const 'Sub' $P3 = 'WSubId_968'
 newclosure $P2, $P3
 __ARG_9.'_form'($P2)
 root_new $P2, ['parrot';'ResizablePMCArray']
@@ -18512,25 +18575,25 @@ $P2.'push'($P4)
 .return($P2)
 # }
 
-.end # WSubId_963
+.end # WSubId_967
 
 
-.sub '' :anon :subid('WSubId_964') :outer('WSubId_963')
+.sub '' :anon :subid('WSubId_968') :outer('WSubId_967')
 .param pmc __ARG_10
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_965'
+.const 'Sub' $P4 = 'WSubId_969'
 newclosure $P3, $P4
 $P2 = $P3(__ARG_10)
 .return($P2)
 # }
 
-.end # WSubId_964
+.end # WSubId_968
 
 
-.sub '' :anon :subid('WSubId_965') :outer('WSubId_964')
+.sub '' :anon :subid('WSubId_969') :outer('WSubId_968')
 .param pmc __ARG_11
 
 $P1 = find_lex '__WLEX_1'
@@ -18543,10 +18606,10 @@ store_lex '__WLEX_1', $P1
 .return($P1)
 # }
 
-.end # WSubId_965
+.end # WSubId_969
 
 
-.sub 'jtChoices' :subid('WSubId_966') :method
+.sub 'jtChoices' :subid('WSubId_970') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -18562,7 +18625,7 @@ null $P2
 null $P3
 # var jt: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_967'
+.const 'Sub' $P7 = 'WSubId_971'
 newclosure $P6, $P7
 $P5 = $P6(self)
 .return($P5)
@@ -18571,7 +18634,7 @@ $P5 = $P6(self)
 .end # jtChoices
 
 
-.sub '' :anon :subid('WSubId_967') :outer('WSubId_966')
+.sub '' :anon :subid('WSubId_971') :outer('WSubId_970')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -18588,7 +18651,7 @@ $P4["choiceOp"] = $P1
 $P4["choice"] = $P2
 new $P3, [ "JumpTable" ], $P4
 store_lex '__WLEX_3', $P3
-.const 'Sub' $P5 = 'WSubId_968'
+.const 'Sub' $P5 = 'WSubId_972'
 newclosure $P4, $P5
 __ARG_1.'_many'($P4)
 __ARG_1.'_apply'("setHelped")
@@ -18596,26 +18659,26 @@ find_lex $P3, '__WLEX_3'
 .tailcall $P3.'toTree'()
 # }
 
-.end # WSubId_967
+.end # WSubId_971
 
 
-.sub '' :anon :subid('WSubId_968') :outer('WSubId_967')
+.sub '' :anon :subid('WSubId_972') :outer('WSubId_971')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_969'
+.const 'Sub' $P5 = 'WSubId_973'
 newclosure $P4, $P5
 $P3 = $P4(__ARG_2)
 .return($P3)
 # }
 
-.end # WSubId_968
+.end # WSubId_972
 
 
-.sub '' :anon :subid('WSubId_969') :outer('WSubId_968')
+.sub '' :anon :subid('WSubId_973') :outer('WSubId_972')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_2'
@@ -18629,7 +18692,7 @@ find_lex $P1, '__WLEX_2'
 .tailcall $P2.'add'($P1)
 # }
 
-.end # WSubId_969
+.end # WSubId_973
 
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'JumpTableOptimization' ]
@@ -18638,7 +18701,7 @@ addparent $P0, $P1
 .end
 .namespace [ 'OMetaOptimizer' ]
 
-.sub 'optimizeGrammar' :subid('WSubId_970') :method
+.sub 'optimizeGrammar' :subid('WSubId_974') :method
 
 .lex '__WLEX_1', $P2
 .lex '__WLEX_2', $P3
@@ -18654,7 +18717,7 @@ null $P2
 null $P3
 # var rs: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_971'
+.const 'Sub' $P7 = 'WSubId_975'
 newclosure $P6, $P7
 $P5 = $P6(self)
 .return($P5)
@@ -18663,7 +18726,7 @@ $P5 = $P6(self)
 .end # optimizeGrammar
 
 
-.sub '' :anon :subid('WSubId_971') :outer('WSubId_970')
+.sub '' :anon :subid('WSubId_975') :outer('WSubId_974')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -18671,7 +18734,7 @@ $P2 = find_lex '__WLEX_2'
 $P3 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_972'
+.const 'Sub' $P5 = 'WSubId_976'
 newclosure $P4, $P5
 __ARG_1.'_form'($P4)
 root_new $P4, ['parrot';'ResizablePMCArray']
@@ -18685,10 +18748,10 @@ find_lex $P3, '__WLEX_3'
 .tailcall $P4.'append'($P3)
 # }
 
-.end # WSubId_971
+.end # WSubId_975
 
 
-.sub '' :anon :subid('WSubId_972') :outer('WSubId_971')
+.sub '' :anon :subid('WSubId_976') :outer('WSubId_975')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -18696,16 +18759,16 @@ $P2 = find_lex '__WLEX_2'
 $P3 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_973'
+.const 'Sub' $P6 = 'WSubId_977'
 newclosure $P5, $P6
 $P4 = $P5(__ARG_2)
 .return($P4)
 # }
 
-.end # WSubId_972
+.end # WSubId_976
 
 
-.sub '' :anon :subid('WSubId_973') :outer('WSubId_972')
+.sub '' :anon :subid('WSubId_977') :outer('WSubId_976')
 .param pmc __ARG_3
 
 $P1 = find_lex '__WLEX_1'
@@ -18718,17 +18781,17 @@ $P1 = __ARG_3.'_apply'("anything")
 store_lex '__WLEX_1', $P1
 $P2 = __ARG_3.'_apply'("anything")
 store_lex '__WLEX_2', $P2
-.const 'Sub' $P5 = 'WSubId_974'
+.const 'Sub' $P5 = 'WSubId_978'
 newclosure $P4, $P5
 $P3 = __ARG_3.'_many'($P4)
 store_lex '__WLEX_3', $P3
 .return($P3)
 # }
 
-.end # WSubId_973
+.end # WSubId_977
 
 
-.sub '' :anon :subid('WSubId_974') :outer('WSubId_973')
+.sub '' :anon :subid('WSubId_978') :outer('WSubId_977')
 .param pmc __ARG_4
 
 # Body
@@ -18736,10 +18799,10 @@ store_lex '__WLEX_3', $P3
 .tailcall __ARG_4.'_apply'("optimizeRule")
 # }
 
-.end # WSubId_974
+.end # WSubId_978
 
 
-.sub 'optimizeRule' :subid('WSubId_975') :method
+.sub 'optimizeRule' :subid('WSubId_979') :method
 
 .lex '__WLEX_1', $P2
 # Body
@@ -18749,7 +18812,7 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var r: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_976'
+.const 'Sub' $P5 = 'WSubId_980'
 newclosure $P4, $P5
 $P3 = $P4(self)
 .return($P3)
@@ -18758,7 +18821,7 @@ $P3 = $P4(self)
 .end # optimizeRule
 
 
-.sub '' :anon :subid('WSubId_976') :outer('WSubId_975')
+.sub '' :anon :subid('WSubId_980') :outer('WSubId_979')
 .param pmc __ARG_1
 
 $P1 = find_lex '__WLEX_1'
@@ -18766,22 +18829,22 @@ $P1 = find_lex '__WLEX_1'
 # {
 $P1 = __ARG_1.'_apply'("anything")
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P3 = 'WSubId_977'
+.const 'Sub' $P3 = 'WSubId_981'
 newclosure $P2, $P3
-.const 'Sub' $P5 = 'WSubId_978'
+.const 'Sub' $P5 = 'WSubId_982'
 newclosure $P4, $P5
 __ARG_1.'_or'($P2, $P4)
-.const 'Sub' $P3 = 'WSubId_979'
+.const 'Sub' $P3 = 'WSubId_983'
 newclosure $P2, $P3
 __ARG_1.'_many'($P2)
 find_lex $P1, '__WLEX_1'
 .return($P1)
 # }
 
-.end # WSubId_976
+.end # WSubId_980
 
 
-.sub '' :anon :subid('WSubId_977') :outer('WSubId_976')
+.sub '' :anon :subid('WSubId_981') :outer('WSubId_980')
 .param pmc __ARG_2
 
 $P1 = find_lex '__WLEX_1'
@@ -18793,10 +18856,10 @@ store_lex '__WLEX_1', $P1
 .return($P1)
 # }
 
-.end # WSubId_977
+.end # WSubId_981
 
 
-.sub '' :anon :subid('WSubId_978') :outer('WSubId_976')
+.sub '' :anon :subid('WSubId_982') :outer('WSubId_980')
 .param pmc __ARG_3
 
 # Body
@@ -18804,26 +18867,26 @@ store_lex '__WLEX_1', $P1
 .tailcall __ARG_3.'_apply'("empty")
 # }
 
-.end # WSubId_978
+.end # WSubId_982
 
 
-.sub '' :anon :subid('WSubId_979') :outer('WSubId_976')
+.sub '' :anon :subid('WSubId_983') :outer('WSubId_980')
 .param pmc __ARG_4
 
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_980'
+.const 'Sub' $P3 = 'WSubId_984'
 newclosure $P2, $P3
-.const 'Sub' $P5 = 'WSubId_981'
+.const 'Sub' $P5 = 'WSubId_985'
 newclosure $P4, $P5
 .tailcall __ARG_4.'_or'($P2, $P4)
 # }
 
-.end # WSubId_979
+.end # WSubId_983
 
 
-.sub '' :anon :subid('WSubId_980') :outer('WSubId_979')
+.sub '' :anon :subid('WSubId_984') :outer('WSubId_983')
 .param pmc __ARG_5
 
 $P1 = find_lex '__WLEX_1'
@@ -18835,10 +18898,10 @@ store_lex '__WLEX_1', $P1
 .return($P1)
 # }
 
-.end # WSubId_980
+.end # WSubId_984
 
 
-.sub '' :anon :subid('WSubId_981') :outer('WSubId_979')
+.sub '' :anon :subid('WSubId_985') :outer('WSubId_983')
 .param pmc __ARG_6
 
 $P1 = find_lex '__WLEX_1'
@@ -18850,7 +18913,7 @@ store_lex '__WLEX_1', $P1
 .return($P1)
 # }
 
-.end # WSubId_981
+.end # WSubId_985
 
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'OMetaOptimizer' ]
