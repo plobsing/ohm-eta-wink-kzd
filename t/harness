@@ -1,0 +1,36 @@
+#! winxed
+
+function main[main](var argv) {
+    using extern TAP.Parser;
+    using extern TAP.Formatter;
+
+    argv.shift(); // ignore argv[0]
+
+    var agg = new TAP.Parser.Aggregator;
+    var fmt = new TAP.Formatter.Console;
+    fmt.prepare(argv);
+    agg.start();
+    for (string filename in argv) {
+	run_test(agg, filename);
+    }
+    agg.stop();
+    fmt.summary(agg);
+}
+
+function run_test(var agg, string testfile) {
+    var fh = open('bin/Ωη -L blib ' + testfile, 'rp');
+    var sb = new StringBuilder;
+
+    // ignore winxed warnings (impossible to dissable) to produce correct TAP
+    string line;
+    while (length(line = fh.readline()) > 0) {
+	const string prefix = 'WARNING:';
+	if (substr(line, 0, length(prefix)) != prefix)
+	    ${ push sb, line };
+    }
+
+    var tp = new TAP.Parser;
+    tp.tap(sb);
+    tp.run();
+    agg.add(testfile, tp);
+}
