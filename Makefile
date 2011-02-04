@@ -4,7 +4,6 @@ CPP           = cpp
 PARROT_CONFIG = parrot_config
 PARROT        = parrot
 WINXED        = winxed
-INSTALL       = install
 
 # programs required by bootstrap makefile
 export CPP
@@ -16,7 +15,7 @@ export PARROT
 # read parrot configuration
 EXE        = $(shell $(PARROT_CONFIG) exe)
 OMETAC_EXE = Ωη$(EXE)
-LIBDIR     = $(shell $(PARROT_CONFIG) libdir)
+LIBDIR     = $(shell $(PARROT_CONFIG) libdir)$(shell $(PARROT_CONFIG) versiondir)/library
 BINDIR     = $(shell $(PARROT_CONFIG) bindir)
 PBC2EXE    = $(BINDIR)/pbc_to_exe$(EXE)
 
@@ -49,9 +48,15 @@ test:
 	$(WINXED) t/harness $(TEST_FILES)
 
 install:
-	$(INSTALL) blib/OMetaWinxed.pbc          $(LIBDIR)
-	$(INSTALL) blib/OMetaWinxed/Compiler.pbc $(LIBDIR)
-	$(INSTALL) bin/$(OMETAC_EXE)             $(BINDIR)
+	install blib/OMetaWinxed.pbc          $(LIBDIR)
+	mkdir   $(LIBDIR)/OMetaWinxed
+	install blib/OMetaWinxed/Compiler.pbc $(LIBDIR)/OMetaWinxed
+	install bin/Ωη			      $(BINDIR)
+
+uninstall:
+	rm -rf $(LIBDIR)/OMetaWinxed.pbc
+	rm -rf $(LIBDIR)/OMetaWinxed
+	rm -rf $(BINDIR)/Ωη
 
 bootstrap:
 	cd bootstrap; $(MAKE) stage2.pir ometa-base.pir
