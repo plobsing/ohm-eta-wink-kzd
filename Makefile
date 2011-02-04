@@ -22,7 +22,11 @@ PBC2EXE    = $(BINDIR)/pbc_to_exe$(EXE)
 
 BLIB_DIRS  = blib blib/OMetaWinxed bin
 
-.PHONY: build install bootstrap blib-dirs
+TEST_FILES = \
+    t/character-classifier.Ωη \
+    t/tutorial.Ωη
+
+.PHONY: build test install bootstrap blib-dirs
 
 build: blib/OMetaWinxed/Compiler.pbc blib/OMetaWinxed.pbc bin/$(OMETAC_EXE)
 
@@ -40,6 +44,9 @@ bin/$(OMETAC_EXE): src/ometac.winxed blib-dirs
 
 blib-dirs:
 	mkdir -p blib blib/OMetaWinxed bin
+
+test:
+	$(WINXED) t/harness $(TEST_FILES)
 
 install:
 	$(INSTALL) blib/OMetaWinxed.pbc          $(LIBDIR)
