@@ -5,7 +5,7 @@ function main(argv) {
     using Test.More.ok;
     using Test.More.is;
 
-    plan(3);
+    plan(5);
     var a = new A();
 
     ok(!throws( function () {a.matchAll('4', 'rule');} ), 'accept a digit');
