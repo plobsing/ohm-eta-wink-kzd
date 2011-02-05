@@ -11,6 +11,7 @@ function main[main](var argv) {
     fmt.prepare(argv);
     agg.start();
     for (string filename in argv) {
+	say(filename);
 	run_test(agg, filename);
     }
     agg.stop();
