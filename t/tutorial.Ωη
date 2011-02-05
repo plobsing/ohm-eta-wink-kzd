@@ -40,7 +40,7 @@ function recognizer_test(string targ) {
     m.matchAll(targ, 'expr');
     return true;
   } catch (e) {
-    if (e !== m.fail)
+    if (e.payload !== m.fail)
       throw e;
     return false;
   }
