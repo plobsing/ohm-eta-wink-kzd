@@ -2,19 +2,41 @@
 
 .namespace [ ]
 
-.sub 'fail' :anon :immediate
+.sub '_fail' :anon :immediate
 
 .annotate 'file', 'ometa-base.winxed'
 .annotate 'line', 3
 # Body
 # {
-# predefined Error
 .annotate 'line', 4
-root_new $P1, ['parrot';'Exception']
-$P1['message'] = 'failed match'
+# var fail: $P1
+box $P1, "match failed"
+.annotate 'line', 5
 .return($P1)
 # }
-.annotate 'line', 5
+.annotate 'line', 6
+
+.end # _fail
+
+
+.sub 'fail' :anon
+
+.annotate 'line', 8
+# Body
+# {
+.annotate 'line', 9
+.const 'Sub' $P2 = '_fail'
+.annotate 'line', 10
+# var e: $P1
+new $P1, [ 'Exception' ]
+.annotate 'line', 11
+setattribute $P1, 'message', $P2
+.annotate 'line', 12
+setattribute $P1, 'payload', $P2
+.annotate 'line', 13
+.return($P1)
+# }
+.annotate 'line', 14
 
 .end # fail
 
@@ -22,24 +44,24 @@ $P1['message'] = 'failed match'
 .sub 'is_sequenceable' :anon
 .param pmc __ARG_1
 
-.annotate 'line', 7
+.annotate 'line', 16
 # Body
 # {
-.annotate 'line', 8
+.annotate 'line', 17
 isa $I1, __ARG_1, 'String'
 if $I1 goto __label_2
 isa $I1, __ARG_1, 'ResizablePMCArray'
 __label_2:
 unless $I1 goto __label_0
-.annotate 'line', 9
+.annotate 'line', 18
 .return(1)
 goto __label_1
 __label_0: # else
-.annotate 'line', 11
+.annotate 'line', 20
 .return(0)
 __label_1: # endif
 # }
-.annotate 'line', 12
+.annotate 'line', 21
 
 .end # is_sequenceable
 
@@ -47,26 +69,26 @@ __label_1: # endif
 .sub 'typeof' :anon
 .param pmc __ARG_1
 
-.annotate 'line', 14
+.annotate 'line', 23
 # Body
 # {
-.annotate 'line', 15
+.annotate 'line', 24
 # var t: $P1
 null $P1
-.annotate 'line', 16
+.annotate 'line', 25
 # pirop typeof
 typeof $P1, __ARG_1
-.annotate 'line', 17
+.annotate 'line', 26
 .return($P1)
 # }
-.annotate 'line', 18
+.annotate 'line', 27
 
 .end # typeof
 
 .namespace [ 'Failer' ]
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'Failer' ]
-.annotate 'line', 21
+.annotate 'line', 30
 addattribute $P0, 'used'
 .end
 .namespace [ 'OMInputStream' ]
@@ -74,35 +96,35 @@ addattribute $P0, 'used'
 .sub 'init_pmc' :method :vtable
 .param pmc __ARG_1
 
-.annotate 'line', 31
+.annotate 'line', 40
 # Body
 # {
-.annotate 'line', 32
+.annotate 'line', 41
 root_new $P2, ['parrot';'Hash']
 setattribute self, 'memo', $P2
-.annotate 'line', 33
+.annotate 'line', 42
 getattribute $P1, self, 'tl'
 if_null $P1, __label_0
 # {
-.annotate 'line', 34
+.annotate 'line', 43
 getattribute $P3, self, 'tl'
 getattribute $P4, $P3, 'lst'
 setattribute self, 'lst', $P4
-.annotate 'line', 35
+.annotate 'line', 44
 getattribute $P4, self, 'tl'
 getattribute $P5, $P4, 'idx'
 setattribute self, 'idx', $P5
 # }
 __label_0: # endif
 # }
-.annotate 'line', 37
+.annotate 'line', 46
 
 .end # init_pmc
 
 
 .sub 'head' :method
 
-.annotate 'line', 38
+.annotate 'line', 47
 # Body
 # {
 getattribute $P1, self, 'hd'
@@ -114,7 +136,7 @@ getattribute $P1, self, 'hd'
 
 .sub 'tail' :method
 
-.annotate 'line', 39
+.annotate 'line', 48
 # Body
 # {
 getattribute $P1, self, 'tl'
@@ -126,16 +148,16 @@ getattribute $P1, self, 'tl'
 
 .sub 'type' :method
 
-.annotate 'line', 40
+.annotate 'line', 49
 # Body
 # {
-.annotate 'line', 41
+.annotate 'line', 50
 .const 'Sub' $P1 = 'typeof'
-.annotate 'line', 42
+.annotate 'line', 51
 getattribute $P2, self, 'lst'
 .tailcall $P1($P2)
 # }
-.annotate 'line', 43
+.annotate 'line', 52
 
 .end # type
 
@@ -143,90 +165,92 @@ getattribute $P2, self, 'lst'
 .sub 'upTo' :method
 .param pmc __ARG_1
 
-.annotate 'line', 44
+.annotate 'line', 53
 # Body
 # {
-.annotate 'line', 45
+.annotate 'line', 54
 # var ans: $P1
 root_new $P1, ['parrot';'ResizablePMCArray']
-.annotate 'line', 46
+.annotate 'line', 55
 # var curr: $P2
 set $P2, self
 __label_1: # while
-.annotate 'line', 47
+.annotate 'line', 56
 eq $P2, __ARG_1, __label_0
 # {
-.annotate 'line', 48
+.annotate 'line', 57
 $P3 = $P2.'head'()
 $P1.'push'($P3)
-.annotate 'line', 49
+.annotate 'line', 58
 $P2 = $P2.'tail'()
 # }
 goto __label_1
 __label_0: # endwhile
-.annotate 'line', 51
+.annotate 'line', 60
 getattribute $P4, self, 'type'
 set $S1, $P4
 ne $S1, 'String', __label_2
-.annotate 'line', 52
+.annotate 'line', 61
 .tailcall $P1.'join'('')
 goto __label_3
 __label_2: # else
-.annotate 'line', 54
+.annotate 'line', 63
 .return($P1)
 __label_3: # endif
 # }
-.annotate 'line', 55
+.annotate 'line', 64
 
 .end # upTo
 
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'OMInputStream' ]
-.annotate 'line', 25
+.annotate 'line', 34
 addattribute $P0, 'memo'
-.annotate 'line', 26
+.annotate 'line', 35
 addattribute $P0, 'lst'
-.annotate 'line', 27
+.annotate 'line', 36
 addattribute $P0, 'idx'
-.annotate 'line', 28
+.annotate 'line', 37
 addattribute $P0, 'hd'
-.annotate 'line', 29
+.annotate 'line', 38
 addattribute $P0, 'tl'
 .end
 .namespace [ 'OMInputStreamEnd' ]
 
 .sub 'head' :method
 
-.annotate 'line', 59
+.annotate 'line', 68
 # Body
 # {
-.annotate 'line', 60
+.annotate 'line', 69
 .const 'Sub' $P1 = 'fail'
-.annotate 'line', 61
-throw $P1
+.annotate 'line', 70
+$P2 = $P1()
+throw $P2
 # }
-.annotate 'line', 62
+.annotate 'line', 71
 
 .end # head
 
 
 .sub 'tail' :method
 
-.annotate 'line', 63
+.annotate 'line', 72
 # Body
 # {
-.annotate 'line', 64
+.annotate 'line', 73
 .const 'Sub' $P1 = 'fail'
-.annotate 'line', 65
-throw $P1
+.annotate 'line', 74
+$P2 = $P1()
+throw $P2
 # }
-.annotate 'line', 66
+.annotate 'line', 75
 
 .end # tail
 
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'OMInputStreamEnd' ]
-.annotate 'line', 58
+.annotate 'line', 67
 get_class $P1, [ 'OMInputStream' ]
 addparent $P0, $P1
 .end
@@ -235,23 +259,23 @@ addparent $P0, $P1
 .sub 'init_pmc' :method :vtable
 .param pmc __ARG_1
 
-.annotate 'line', 70
+.annotate 'line', 79
 # Body
 # {
-.annotate 'line', 71
+.annotate 'line', 80
 getattribute $P3, self, 'lst'
 getattribute $P4, self, 'idx'
 $P2 = $P3[$P4]
 setattribute self, 'hd', $P2
 # }
-.annotate 'line', 72
+.annotate 'line', 81
 
 .end # init_pmc
 
 
 .sub 'head' :method
 
-.annotate 'line', 73
+.annotate 'line', 82
 # Body
 # {
 getattribute $P1, self, 'hd'
@@ -263,15 +287,15 @@ getattribute $P1, self, 'hd'
 
 .sub 'tail' :method
 
-.annotate 'line', 74
+.annotate 'line', 83
 # Body
 # {
-.annotate 'line', 75
+.annotate 'line', 84
 .const 'Sub' $P1 = 'makeListOMInputStream'
-.annotate 'line', 76
+.annotate 'line', 85
 getattribute $P2, self, 'tl'
 unless_null $P2, __label_0
-.annotate 'line', 77
+.annotate 'line', 86
 getattribute $P5, self, 'lst'
 getattribute $P6, self, 'idx'
 set $I2, $P6
@@ -279,17 +303,17 @@ add $I1, $I2, 1
 $P4 = $P1($P5, $I1)
 setattribute self, 'tl', $P4
 __label_0: # endif
-.annotate 'line', 78
+.annotate 'line', 87
 getattribute $P2, self, 'tl'
 .return($P2)
 # }
-.annotate 'line', 79
+.annotate 'line', 88
 
 .end # tail
 
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'ListOMInputStream' ]
-.annotate 'line', 69
+.annotate 'line', 78
 get_class $P1, [ 'OMInputStream' ]
 addparent $P0, $P1
 .end
@@ -299,10 +323,10 @@ addparent $P0, $P1
 .param pmc __ARG_1
 .param int __ARG_2 :optional
 
-.annotate 'line', 82
+.annotate 'line', 91
 # Body
 # {
-.annotate 'line', 83
+.annotate 'line', 92
 # var klass: $P1
 # predefined elements
 elements $I1, __ARG_1
@@ -314,13 +338,13 @@ set $S1, 'OMInputStreamEnd'
 __label_0:
 # predefined get_class
 get_class $P1, $S1
-.annotate 'line', 85
+.annotate 'line', 94
 # var obj: $P2
 $P2 = $P1.'new'(__ARG_1 :named('lst'), __ARG_2 :named('idx'))
-.annotate 'line', 86
+.annotate 'line', 95
 .return($P2)
 # }
-.annotate 'line', 87
+.annotate 'line', 96
 
 .end # makeListOMInputStream
 
@@ -328,7 +352,7 @@ $P2 = $P1.'new'(__ARG_1 :named('lst'), __ARG_2 :named('idx'))
 
 .sub 'head' :method
 
-.annotate 'line', 92
+.annotate 'line', 101
 # Body
 # {
 getattribute $P1, self, 'target'
@@ -340,7 +364,7 @@ getattribute $P1, self, 'target'
 
 .sub 'type' :method
 
-.annotate 'line', 93
+.annotate 'line', 102
 # Body
 # {
 getattribute $P1, self, 'target'
@@ -352,7 +376,7 @@ getattribute $P1, self, 'target'
 
 .sub 'upTo' :method
 
-.annotate 'line', 94
+.annotate 'line', 103
 # Body
 # {
 getattribute $P1, self, 'target'
@@ -364,48 +388,48 @@ getattribute $P1, self, 'target'
 
 .sub 'tail' :method
 
-.annotate 'line', 95
+.annotate 'line', 104
 # Body
 # {
-.annotate 'line', 96
+.annotate 'line', 105
 # var tail: $P1
 getattribute $P3, self, 'target'
 $P1 = $P3.'tail'()
-.annotate 'line', 97
+.annotate 'line', 106
 # var proxy: $P2
 root_new $P3, ['parrot';'Hash']
 getattribute $P5, self, 'target'
 $P4 = $P5.'tail'()
 $P3['target'] = $P4
 new $P2, [ 'OMInputStreamProxy' ], $P3
-.annotate 'line', 98
+.annotate 'line', 107
 .return($P2)
 # }
-.annotate 'line', 99
+.annotate 'line', 108
 
 .end # tail
 
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'OMInputStreamProxy' ]
-.annotate 'line', 90
+.annotate 'line', 99
 get_class $P1, [ 'OMInputStream' ]
 addparent $P0, $P1
-.annotate 'line', 91
+.annotate 'line', 100
 addattribute $P0, 'target'
 .end
 .namespace [ 'OMeta' ]
 
 .sub 'init' :method :vtable
 
-.annotate 'line', 107
+.annotate 'line', 116
 # Body
 # {
-.annotate 'line', 108
-.const 'Sub' $P1 = 'fail'
-.annotate 'line', 109
+.annotate 'line', 117
+.const 'Sub' $P1 = '_fail'
+.annotate 'line', 118
 setattribute self, 'fail', $P1
 # }
-.annotate 'line', 110
+.annotate 'line', 119
 
 .end # init
 
@@ -413,18 +437,18 @@ setattribute self, 'fail', $P1
 .sub 'init_pmc' :method :vtable
 .param pmc __ARG_1
 
-.annotate 'line', 112
+.annotate 'line', 121
 # Body
 # {
-.annotate 'line', 113
-.const 'Sub' $P1 = 'fail'
-.annotate 'line', 114
+.annotate 'line', 122
+.const 'Sub' $P1 = '_fail'
+.annotate 'line', 123
 setattribute self, 'fail', $P1
-.annotate 'line', 115
+.annotate 'line', 124
 root_new $P3, ['parrot';'Hash']
 setattribute self, 'stash', $P3
 # }
-.annotate 'line', 116
+.annotate 'line', 125
 
 .end # init_pmc
 
@@ -432,15 +456,15 @@ setattribute self, 'stash', $P3
 .sub 'get_pmc_keyed' :method :vtable
 .param pmc __ARG_1
 
-.annotate 'line', 118
+.annotate 'line', 127
 # Body
 # {
-.annotate 'line', 119
+.annotate 'line', 128
 getattribute $P2, self, 'stash'
 $P1 = $P2[__ARG_1]
 .return($P1)
 # }
-.annotate 'line', 120
+.annotate 'line', 129
 
 .end # get_pmc_keyed
 
@@ -448,15 +472,15 @@ $P1 = $P2[__ARG_1]
 .sub 'get_pmc_keyed_str' :method :vtable
 .param string __ARG_1
 
-.annotate 'line', 122
+.annotate 'line', 131
 # Body
 # {
-.annotate 'line', 123
+.annotate 'line', 132
 getattribute $P2, self, 'stash'
 $P1 = $P2[__ARG_1]
 .return($P1)
 # }
-.annotate 'line', 124
+.annotate 'line', 133
 
 .end # get_pmc_keyed_str
 
@@ -464,15 +488,15 @@ $P1 = $P2[__ARG_1]
 .sub 'get_string_keyed' :method :vtable
 .param pmc __ARG_1
 
-.annotate 'line', 126
+.annotate 'line', 135
 # Body
 # {
-.annotate 'line', 127
+.annotate 'line', 136
 getattribute $P2, self, 'stash'
 $P1 = $P2[__ARG_1]
 .return($P1)
 # }
-.annotate 'line', 128
+.annotate 'line', 137
 
 .end # get_string_keyed
 
@@ -480,16 +504,16 @@ $P1 = $P2[__ARG_1]
 .sub 'get_integer_keyed' :method :vtable
 .param pmc __ARG_1
 
-.annotate 'line', 130
+.annotate 'line', 139
 # Body
 # {
 # predefined int
-.annotate 'line', 131
+.annotate 'line', 140
 getattribute $P1, self, 'stash'
 $I1 = $P1[__ARG_1]
 .return($I1)
 # }
-.annotate 'line', 132
+.annotate 'line', 141
 
 .end # get_integer_keyed
 
@@ -498,14 +522,14 @@ $I1 = $P1[__ARG_1]
 .param pmc __ARG_1
 .param pmc __ARG_2
 
-.annotate 'line', 134
+.annotate 'line', 143
 # Body
 # {
-.annotate 'line', 135
+.annotate 'line', 144
 getattribute $P1, self, 'stash'
 $P1[__ARG_1] = __ARG_2
 # }
-.annotate 'line', 136
+.annotate 'line', 145
 
 .end # set_pmc_keyed
 
@@ -514,14 +538,14 @@ $P1[__ARG_1] = __ARG_2
 .param string __ARG_1
 .param pmc __ARG_2
 
-.annotate 'line', 138
+.annotate 'line', 147
 # Body
 # {
-.annotate 'line', 139
+.annotate 'line', 148
 getattribute $P1, self, 'stash'
 $P1[__ARG_1] = __ARG_2
 # }
-.annotate 'line', 140
+.annotate 'line', 149
 
 .end # set_pmc_keyed_str
 
@@ -530,14 +554,14 @@ $P1[__ARG_1] = __ARG_2
 .param pmc __ARG_1
 .param string __ARG_2
 
-.annotate 'line', 142
+.annotate 'line', 151
 # Body
 # {
-.annotate 'line', 143
+.annotate 'line', 152
 getattribute $P1, self, 'stash'
 $P1[__ARG_1] = __ARG_2
 # }
-.annotate 'line', 144
+.annotate 'line', 153
 
 .end # set_string_keyed
 
@@ -546,48 +570,65 @@ $P1[__ARG_1] = __ARG_2
 .param pmc __ARG_1
 .param int __ARG_2
 
-.annotate 'line', 146
+.annotate 'line', 155
 # Body
 # {
-.annotate 'line', 147
+.annotate 'line', 156
 getattribute $P1, self, 'stash'
 $P1[__ARG_1] = __ARG_2
 # }
-.annotate 'line', 148
+.annotate 'line', 157
 
 .end # set_integer_keyed
+
+
+.sub '_fail' :method
+
+.annotate 'line', 159
+# Body
+# {
+.annotate 'line', 160
+.const 'Sub' $P1 = 'fail'
+.annotate 'line', 161
+.tailcall $P1()
+# }
+.annotate 'line', 162
+
+.end # _fail
 
 
 .sub '_apply' :method
 .param string __ARG_1
 
-.annotate 'line', 150
+.annotate 'line', 164
 # Body
 # {
-.annotate 'line', 151
+.annotate 'line', 165
 .const 'Sub' $P10 = 'fail'
-.annotate 'line', 152
+.annotate 'line', 166
+.const 'Sub' $P11 = '_fail'
+.annotate 'line', 167
 # var memoRec: $P1
-getattribute $P11, self, 'input'
-getattribute $P12, $P11, 'memo'
-$P1 = $P12[__ARG_1]
-.annotate 'line', 153
+getattribute $P12, self, 'input'
+getattribute $P13, $P12, 'memo'
+$P1 = $P13[__ARG_1]
+.annotate 'line', 168
 unless_null $P1, __label_0
 # {
-.annotate 'line', 154
+.annotate 'line', 169
 # var origInput: $P2
 getattribute $P2, self, 'input'
-.annotate 'line', 155
+.annotate 'line', 170
 # var failer: $P3
 new $P3, [ 'Failer' ]
-.annotate 'line', 156
+.annotate 'line', 171
 # var method: $P4
 null $P4
-.annotate 'line', 158
+.annotate 'line', 173
 # try: create handler
-new $P11, 'ExceptionHandler'
-set_label $P11, __label_2
-push_eh $P11
+new $P12, 'ExceptionHandler'
+set_label $P12, __label_2
+push_eh $P12
 # try: begin
 # {
 # predefined find_method
@@ -604,84 +645,87 @@ pop_eh
 # {
 concat $S1, 'tried to apply undefined rule "', __ARG_1
 concat $S1, $S1, '"'
-.annotate 'line', 159
+.annotate 'line', 174
 # predefined die
 die $S1
 # }
 # catch end
 __label_3:
-.annotate 'line', 161
-getattribute $P12, self, 'input'
-getattribute $P13, $P12, 'memo'
-$P13[__ARG_1] = $P3
-.annotate 'line', 162
+.annotate 'line', 176
+getattribute $P13, self, 'input'
+getattribute $P14, $P13, 'memo'
+$P14[__ARG_1] = $P3
+.annotate 'line', 177
 # var ans: $P6
-root_new $P13, ['parrot';'ResizablePMCArray']
+root_new $P14, ['parrot';'ResizablePMCArray']
 # predefined callmethodwithargs
-$P6 = self.$P4($P13 :flat)
-.annotate 'line', 163
-getattribute $P14, $P2, 'memo'
-.annotate 'line', 164
+$P6 = self.$P4($P14 :flat)
+.annotate 'line', 178
+getattribute $P15, $P2, 'memo'
+.annotate 'line', 179
 root_new $P1, ['parrot';'Hash']
 $P1['ans'] = $P6
-getattribute $P15, self, 'input'
-$P1['nextInput'] = $P15
-.annotate 'line', 163
-$P14[__ARG_1] = $P1
-.annotate 'line', 166
-getattribute $P15, $P3, 'used'
-if_null $P15, __label_4
-unless $P15 goto __label_4
+getattribute $P16, self, 'input'
+$P1['nextInput'] = $P16
+.annotate 'line', 178
+$P15[__ARG_1] = $P1
+.annotate 'line', 181
+getattribute $P16, $P3, 'used'
+if_null $P16, __label_4
+unless $P16 goto __label_4
 # {
-.annotate 'line', 167
+.annotate 'line', 182
 # var sentinel: $P7
 getattribute $P7, self, 'input'
 __label_6: # Infinite loop
-.annotate 'line', 168
+.annotate 'line', 183
 # {
-.annotate 'line', 169
+.annotate 'line', 184
 # try: create handler
-new $P16, 'ExceptionHandler'
-set_label $P16, __label_7
-push_eh $P16
+new $P17, 'ExceptionHandler'
+set_label $P17, __label_7
+push_eh $P17
 # try: begin
 # {
-.annotate 'line', 170
+.annotate 'line', 185
 setattribute self, 'input', $P2
-.annotate 'line', 171
+.annotate 'line', 186
 # var ans: $P8
-root_new $P16, ['parrot';'ResizablePMCArray']
+root_new $P17, ['parrot';'ResizablePMCArray']
 # predefined callmethodwithargs
-$P8 = self.$P4($P16 :flat)
-.annotate 'line', 172
-getattribute $P18, self, 'input'
-ne_addr $P18, $P7, __label_9
-.annotate 'line', 173
-throw $P10
+$P8 = self.$P4($P17 :flat)
+.annotate 'line', 187
+getattribute $P19, self, 'input'
+ne_addr $P19, $P7, __label_9
+.annotate 'line', 188
+$P20 = $P10()
+throw $P20
 __label_9: # endif
-.annotate 'line', 174
+.annotate 'line', 189
 $P1['ans'] = $P8
-.annotate 'line', 175
-getattribute $P18, self, 'input'
-$P1['nextInput'] = $P18
+.annotate 'line', 190
+getattribute $P19, self, 'input'
+$P1['nextInput'] = $P19
 # }
 # try: end
 pop_eh
 goto __label_8
-.annotate 'line', 169
+.annotate 'line', 184
 # catch
 __label_7:
 .get_results($P9)
 finalize $P9
 pop_eh
 # {
-.annotate 'line', 177
-eq_addr $P9, $P10, __label_10
-.annotate 'line', 178
-throw $P9
+.annotate 'line', 192
+getattribute $P20, $P9, 'payload'
+eq_addr $P20, $P11, __label_10
+.annotate 'line', 193
+# pirop rethrow
+rethrow $P9
 __label_10: # endif
 goto __label_5 # break
-.annotate 'line', 179
+.annotate 'line', 194
 # }
 # catch end
 __label_8:
@@ -693,26 +737,27 @@ __label_4: # endif
 # }
 goto __label_1
 __label_0: # else
-.annotate 'line', 183
+.annotate 'line', 198
 isa $I1, $P1, 'Failer'
 unless $I1 goto __label_11
 # {
-box $P19, 1
-.annotate 'line', 184
-setattribute $P1, 'used', $P19
-.annotate 'line', 185
-throw $P10
+box $P21, 1
+.annotate 'line', 199
+setattribute $P1, 'used', $P21
+.annotate 'line', 200
+$P21 = $P10()
+throw $P21
 # }
 __label_11: # endif
 __label_1: # endif
-.annotate 'line', 187
-$P20 = $P1['nextInput']
-setattribute self, 'input', $P20
-$P20 = $P1['ans']
-.annotate 'line', 188
-.return($P20)
+.annotate 'line', 202
+$P23 = $P1['nextInput']
+setattribute self, 'input', $P23
+$P22 = $P1['ans']
+.annotate 'line', 203
+.return($P22)
 # }
-.annotate 'line', 189
+.annotate 'line', 204
 
 .end # _apply
 
@@ -721,37 +766,37 @@ $P20 = $P1['ans']
 .param string __ARG_1
 .param pmc __ARG_2 :slurpy
 
-.annotate 'line', 191
+.annotate 'line', 206
 # Body
 # {
 # for loop
-.annotate 'line', 192
+.annotate 'line', 207
 # int i: $I1
 # predefined elements
 elements $I2, __ARG_2
 sub $I1, $I2, 1
 __label_2: # for condition
 lt $I1, 0, __label_1
-.annotate 'line', 193
+.annotate 'line', 208
 $P2 = __ARG_2[$I1]
 self.'_prependInput'($P2)
 __label_0: # for iteration
 set $I3, $I1
-.annotate 'line', 192
+.annotate 'line', 207
 dec $I1
 goto __label_2
 __label_1: # for end
-.annotate 'line', 194
+.annotate 'line', 209
 # var method: $P1
 # predefined find_method
 find_method $P1, self, __ARG_1
-.annotate 'line', 195
+.annotate 'line', 210
 root_new $P3, ['parrot';'ResizablePMCArray']
 # predefined callmethodwithargs
 $P2 = self.$P1($P3 :flat)
 .return($P2)
 # }
-.annotate 'line', 196
+.annotate 'line', 211
 
 .end # _applyWithArgs
 
@@ -761,40 +806,40 @@ $P2 = self.$P1($P3 :flat)
 .param string __ARG_2
 .param pmc __ARG_3 :slurpy
 
-.annotate 'line', 198
+.annotate 'line', 213
 # Body
 # {
 # for loop
-.annotate 'line', 199
+.annotate 'line', 214
 # int i: $I1
 # predefined elements
 elements $I2, __ARG_3
 sub $I1, $I2, 1
 __label_2: # for condition
 lt $I1, 0, __label_1
-.annotate 'line', 200
+.annotate 'line', 215
 $P3 = __ARG_3[$I1]
 self.'_prependInput'($P3)
 __label_0: # for iteration
 set $I3, $I1
-.annotate 'line', 199
+.annotate 'line', 214
 dec $I1
 goto __label_2
 __label_1: # for end
-.annotate 'line', 201
+.annotate 'line', 216
 # var klass: $P1
 # predefined get_class
 get_class $P1, __ARG_1
-.annotate 'line', 202
+.annotate 'line', 217
 # var method: $P2
 $P2 = $P1.'find_method'(__ARG_2)
-.annotate 'line', 203
+.annotate 'line', 218
 root_new $P4, ['parrot';'ResizablePMCArray']
 # predefined callmethodwithargs
 $P3 = self.$P2($P4 :flat)
 .return($P3)
 # }
-.annotate 'line', 204
+.annotate 'line', 219
 
 .end # _superApplyWithArgs
 
@@ -802,10 +847,10 @@ $P3 = self.$P2($P4 :flat)
 .sub '_prependInput' :method
 .param pmc __ARG_1
 
-.annotate 'line', 206
+.annotate 'line', 221
 # Body
 # {
-.annotate 'line', 207
+.annotate 'line', 222
 root_new $P3, ['parrot';'Hash']
 $P3['hd'] = __ARG_1
 getattribute $P4, self, 'input'
@@ -813,21 +858,21 @@ $P3['tl'] = $P4
 new $P2, [ 'OMInputStream' ], $P3
 setattribute self, 'input', $P2
 # }
-.annotate 'line', 208
+.annotate 'line', 223
 
 .end # _prependInput
 
 
 .sub 'memoizeParameterizedRules' :method
 
-.annotate 'line', 210
+.annotate 'line', 225
 # Body
 # {
 # predefined die
-.annotate 'line', 211
+.annotate 'line', 226
 die "TODO"
 # }
-.annotate 'line', 212
+.annotate 'line', 227
 
 .end # memoizeParameterizedRules
 
@@ -835,19 +880,20 @@ die "TODO"
 .sub '_pred' :method
 .param int __ARG_1
 
-.annotate 'line', 214
+.annotate 'line', 229
 # Body
 # {
-.annotate 'line', 215
+.annotate 'line', 230
 .const 'Sub' $P1 = 'fail'
 unless __ARG_1 goto __label_0
-.annotate 'line', 217
+.annotate 'line', 232
 .return(1)
 __label_0: # endif
-.annotate 'line', 218
-throw $P1
+.annotate 'line', 233
+$P2 = $P1()
+throw $P2
 # }
-.annotate 'line', 219
+.annotate 'line', 234
 
 .end # _pred
 
@@ -855,24 +901,26 @@ throw $P1
 .sub '_not' :method
 .param pmc __ARG_1
 
-.annotate 'line', 221
+.annotate 'line', 236
 # Body
 # {
-.annotate 'line', 222
+.annotate 'line', 237
 .const 'Sub' $P3 = 'fail'
-.annotate 'line', 223
+.annotate 'line', 238
+.const 'Sub' $P4 = '_fail'
+.annotate 'line', 239
 # var origInput: $P1
 getattribute $P1, self, 'input'
-.annotate 'line', 224
+.annotate 'line', 240
 # try: create handler
-new $P4, 'ExceptionHandler'
-set_label $P4, __label_0
-push_eh $P4
+new $P5, 'ExceptionHandler'
+set_label $P5, __label_0
+push_eh $P5
 # try: begin
 # {
-root_new $P5, ['parrot';'ResizablePMCArray']
+root_new $P6, ['parrot';'ResizablePMCArray']
 # predefined callmethodwithargs
-$P7 = self.__ARG_1($P5 :flat)
+$P8 = self.__ARG_1($P6 :flat)
 # }
 # try: end
 pop_eh
@@ -883,22 +931,25 @@ __label_0:
 finalize $P2
 pop_eh
 # {
-.annotate 'line', 226
-eq_addr $P2, $P3, __label_2
-.annotate 'line', 227
-throw $P2
+.annotate 'line', 242
+getattribute $P5, $P2, 'payload'
+eq_addr $P5, $P4, __label_2
+.annotate 'line', 243
+# pirop rethrow
+rethrow $P2
 __label_2: # endif
-.annotate 'line', 228
+.annotate 'line', 244
 setattribute self, 'input', $P1
-.annotate 'line', 229
+.annotate 'line', 245
 .return(1)
 # }
 # catch end
 __label_1:
-.annotate 'line', 231
-throw $P3
+.annotate 'line', 247
+$P7 = $P3()
+throw $P7
 # }
-.annotate 'line', 232
+.annotate 'line', 248
 
 .end # _not
 
@@ -906,23 +957,23 @@ throw $P3
 .sub '_lookahead' :method
 .param pmc __ARG_1
 
-.annotate 'line', 234
+.annotate 'line', 250
 # Body
 # {
-.annotate 'line', 235
+.annotate 'line', 251
 # var origInput: $P1
 getattribute $P1, self, 'input'
-.annotate 'line', 236
+.annotate 'line', 252
 # var result: $P2
 root_new $P3, ['parrot';'ResizablePMCArray']
 # predefined callmethodwithargs
 $P2 = self.__ARG_1($P3 :flat)
-.annotate 'line', 237
+.annotate 'line', 253
 setattribute self, 'input', $P1
-.annotate 'line', 238
+.annotate 'line', 254
 .return($P2)
 # }
-.annotate 'line', 239
+.annotate 'line', 255
 
 .end # _lookahead
 
@@ -930,50 +981,54 @@ setattribute self, 'input', $P1
 .sub '_or' :method
 .param pmc __ARG_1 :slurpy
 
-.annotate 'line', 241
+.annotate 'line', 257
 # Body
 # {
-.annotate 'line', 242
+.annotate 'line', 258
 .const 'Sub' $P4 = 'fail'
-.annotate 'line', 243
+.annotate 'line', 259
+.const 'Sub' $P5 = '_fail'
+.annotate 'line', 260
 # var origInput: $P1
 getattribute $P1, self, 'input'
-.annotate 'line', 244
-iter $P5, __ARG_1
-set $P5, 0
+.annotate 'line', 261
+iter $P6, __ARG_1
+set $P6, 0
 __label_0: # for iteration
-unless $P5 goto __label_1
-shift $P2, $P5
+unless $P6 goto __label_1
+shift $P2, $P6
 # {
-.annotate 'line', 245
+.annotate 'line', 262
 # try: create handler
-new $P6, 'ExceptionHandler'
-set_label $P6, __label_2
-push_eh $P6
+new $P7, 'ExceptionHandler'
+set_label $P7, __label_2
+push_eh $P7
 # try: begin
 # {
-.annotate 'line', 246
+.annotate 'line', 263
 setattribute self, 'input', $P1
-.annotate 'line', 247
-root_new $P7, ['parrot';'ResizablePMCArray']
+.annotate 'line', 264
+root_new $P8, ['parrot';'ResizablePMCArray']
 # predefined callmethodwithargs
-$P6 = self.$P2($P7 :flat)
-.return($P6)
+$P7 = self.$P2($P8 :flat)
+.return($P7)
 # }
 # try: end
 pop_eh
 goto __label_3
-.annotate 'line', 245
+.annotate 'line', 262
 # catch
 __label_2:
 .get_results($P3)
 finalize $P3
 pop_eh
 # {
-.annotate 'line', 249
-eq_addr $P3, $P4, __label_4
-.annotate 'line', 250
-throw $P3
+.annotate 'line', 266
+getattribute $P9, $P3, 'payload'
+eq_addr $P9, $P5, __label_4
+.annotate 'line', 267
+# pirop rethrow
+rethrow $P3
 __label_4: # endif
 # }
 # catch end
@@ -981,10 +1036,11 @@ __label_3:
 # }
 goto __label_0
 __label_1: # endfor
-.annotate 'line', 253
-throw $P4
+.annotate 'line', 270
+$P10 = $P4()
+throw $P10
 # }
-.annotate 'line', 254
+.annotate 'line', 271
 
 .end # _or
 
@@ -993,64 +1049,68 @@ throw $P4
 .param string __ARG_1
 .param pmc __ARG_2 :slurpy
 
-.annotate 'line', 256
+.annotate 'line', 273
 # Body
 # {
-.annotate 'line', 257
+.annotate 'line', 274
 .const 'Sub' $P6 = 'fail'
-.annotate 'line', 258
+.annotate 'line', 275
+.const 'Sub' $P7 = '_fail'
+.annotate 'line', 276
 # var origInput: $P1
 getattribute $P1, self, 'input'
-.annotate 'line', 259
+.annotate 'line', 277
 # var ans: $P2
 null $P2
-.annotate 'line', 260
+.annotate 'line', 278
 # var newInput: $P3
 null $P3
-.annotate 'line', 261
-iter $P7, __ARG_2
-set $P7, 0
+.annotate 'line', 279
+iter $P8, __ARG_2
+set $P8, 0
 __label_0: # for iteration
-unless $P7 goto __label_1
-shift $P4, $P7
+unless $P8 goto __label_1
+shift $P4, $P8
 # {
-.annotate 'line', 262
+.annotate 'line', 280
 # try: create handler
-new $P8, 'ExceptionHandler'
-set_label $P8, __label_2
-push_eh $P8
+new $P9, 'ExceptionHandler'
+set_label $P9, __label_2
+push_eh $P9
 # try: begin
 # {
-.annotate 'line', 263
+.annotate 'line', 281
 setattribute self, 'input', $P1
-.annotate 'line', 264
-root_new $P8, ['parrot';'ResizablePMCArray']
+.annotate 'line', 282
+root_new $P9, ['parrot';'ResizablePMCArray']
 # predefined callmethodwithargs
-$P2 = self.$P4($P8 :flat)
+$P2 = self.$P4($P9 :flat)
 if_null $P3, __label_4
 unless $P3 goto __label_4
 concat $S1, 'more than one choice matched by "exclusive-OR" in ', __ARG_1
-.annotate 'line', 266
+.annotate 'line', 284
 # predefined die
 die $S1
 __label_4: # endif
-.annotate 'line', 267
+.annotate 'line', 285
 getattribute $P3, self, 'input'
 # }
 # try: end
 pop_eh
 goto __label_3
-.annotate 'line', 262
+.annotate 'line', 280
 # catch
 __label_2:
 .get_results($P5)
 finalize $P5
 pop_eh
 # {
-.annotate 'line', 269
-eq_addr $P5, $P6, __label_5
-.annotate 'line', 270
-throw $P5
+.annotate 'line', 287
+getattribute $P11, $P5, 'payload'
+eq_addr $P11, $P7, __label_5
+.annotate 'line', 288
+# pirop rethrow
+rethrow $P5
 __label_5: # endif
 # }
 # catch end
@@ -1060,36 +1120,37 @@ goto __label_0
 __label_1: # endfor
 if_null $P3, __label_6
 unless $P3 goto __label_6
-.annotate 'line', 273
+.annotate 'line', 291
 # {
-.annotate 'line', 274
+.annotate 'line', 292
 setattribute self, 'input', $P3
-.annotate 'line', 275
+.annotate 'line', 293
 .return($P2)
 # }
 goto __label_7
 __label_6: # else
 # {
-.annotate 'line', 277
-throw $P6
+.annotate 'line', 295
+$P12 = $P6()
+throw $P12
 # }
 __label_7: # endif
 # }
-.annotate 'line', 279
+.annotate 'line', 297
 
 .end # _xor
 
 
 .sub 'disableXORs' :method
 
-.annotate 'line', 281
+.annotate 'line', 299
 # Body
 # {
 # predefined die
-.annotate 'line', 282
+.annotate 'line', 300
 die "TODO"
 # }
-.annotate 'line', 283
+.annotate 'line', 301
 
 .end # disableXORs
 
@@ -1097,18 +1158,18 @@ die "TODO"
 .sub '_opt' :method
 .param pmc __ARG_1
 
-.annotate 'line', 285
+.annotate 'line', 303
 # Body
 # {
-.annotate 'line', 286
-.const 'Sub' $P4 = 'fail'
-.annotate 'line', 287
+.annotate 'line', 304
+.const 'Sub' $P4 = '_fail'
+.annotate 'line', 305
 # var origInput: $P1
 getattribute $P1, self, 'input'
-.annotate 'line', 288
+.annotate 'line', 306
 # var ans: $P2
 null $P2
-.annotate 'line', 289
+.annotate 'line', 307
 # try: create handler
 new $P5, 'ExceptionHandler'
 set_label $P5, __label_0
@@ -1128,20 +1189,22 @@ __label_0:
 finalize $P3
 pop_eh
 # {
-.annotate 'line', 291
-eq_addr $P3, $P4, __label_2
-.annotate 'line', 292
-throw $P3
+.annotate 'line', 309
+getattribute $P5, $P3, 'payload'
+eq_addr $P5, $P4, __label_2
+.annotate 'line', 310
+# pirop rethrow
+rethrow $P3
 __label_2: # endif
-.annotate 'line', 293
+.annotate 'line', 311
 setattribute self, 'input', $P1
 # }
 # catch end
 __label_1:
-.annotate 'line', 295
+.annotate 'line', 313
 .return($P2)
 # }
-.annotate 'line', 296
+.annotate 'line', 314
 
 .end # _opt
 
@@ -1151,12 +1214,12 @@ __label_1:
 .param pmc __ARG_2 :optional
 .param int __ARG_3 :opt_flag
 
-.annotate 'line', 298
+.annotate 'line', 316
 # Body
 # {
-.annotate 'line', 299
-.const 'Sub' $P4 = 'fail'
-.annotate 'line', 300
+.annotate 'line', 317
+.const 'Sub' $P4 = '_fail'
+.annotate 'line', 318
 # var ans: $P1
 unless __ARG_3 goto __label_1
 root_new $P5, ['parrot';'ResizablePMCArray']
@@ -1168,12 +1231,12 @@ root_new $P7, ['parrot';'ResizablePMCArray']
 set $P1, $P7
 __label_0:
 __label_3: # Infinite loop
-.annotate 'line', 301
+.annotate 'line', 319
 # {
-.annotate 'line', 302
+.annotate 'line', 320
 # var origInput: $P2
 getattribute $P2, self, 'input'
-.annotate 'line', 303
+.annotate 'line', 321
 # try: create handler
 new $P5, 'ExceptionHandler'
 set_label $P5, __label_4
@@ -1194,14 +1257,16 @@ __label_4:
 finalize $P3
 pop_eh
 # {
-.annotate 'line', 305
-eq_addr $P3, $P4, __label_6
-.annotate 'line', 306
-throw $P3
+.annotate 'line', 323
+getattribute $P9, $P3, 'payload'
+eq_addr $P9, $P4, __label_6
+.annotate 'line', 324
+# pirop rethrow
+rethrow $P3
 __label_6: # endif
-.annotate 'line', 307
+.annotate 'line', 325
 setattribute self, 'input', $P2
-.annotate 'line', 308
+.annotate 'line', 326
 .return($P1)
 # }
 # catch end
@@ -1210,7 +1275,7 @@ __label_5:
 goto __label_3
 __label_2: # Infinite loop end
 # }
-.annotate 'line', 311
+.annotate 'line', 329
 
 .end # _many
 
@@ -1218,16 +1283,16 @@ __label_2: # Infinite loop end
 .sub '_many1' :method
 .param pmc __ARG_1
 
-.annotate 'line', 313
+.annotate 'line', 331
 # Body
 # {
-.annotate 'line', 314
+.annotate 'line', 332
 root_new $P2, ['parrot';'ResizablePMCArray']
 # predefined callmethodwithargs
 $P1 = self.__ARG_1($P2 :flat)
 .tailcall self.'_many'(__ARG_1, $P1)
 # }
-.annotate 'line', 315
+.annotate 'line', 333
 
 .end # _many1
 
@@ -1235,46 +1300,47 @@ $P1 = self.__ARG_1($P2 :flat)
 .sub '_form' :method
 .param pmc __ARG_1
 
-.annotate 'line', 317
+.annotate 'line', 335
 # Body
 # {
-.annotate 'line', 318
+.annotate 'line', 336
 .const 'Sub' $P4 = 'fail'
-.annotate 'line', 319
+.annotate 'line', 337
 .const 'Sub' $P5 = 'is_sequenceable'
-.annotate 'line', 320
+.annotate 'line', 338
 .const 'Sub' $P6 = 'makeListOMInputStream'
-.annotate 'line', 321
+.annotate 'line', 339
 # var v: $P1
 $P1 = self.'_apply'('anything')
-.annotate 'line', 322
+.annotate 'line', 340
 $P7 = $P5($P1)
 isfalse $I1, $P7
 unless $I1 goto __label_0
-.annotate 'line', 323
-throw $P4
+.annotate 'line', 341
+$P8 = $P4()
+throw $P8
 __label_0: # endif
-.annotate 'line', 324
+.annotate 'line', 342
 # var origInput: $P2
 getattribute $P2, self, 'input'
 # {
-.annotate 'line', 326
+.annotate 'line', 344
 $P8 = $P6($P1)
 setattribute self, 'input', $P8
-.annotate 'line', 327
+.annotate 'line', 345
 # var r: $P3
-root_new $P8, ['parrot';'ResizablePMCArray']
+root_new $P9, ['parrot';'ResizablePMCArray']
 # predefined callmethodwithargs
-$P3 = self.__ARG_1($P8 :flat)
-.annotate 'line', 328
+$P3 = self.__ARG_1($P9 :flat)
+.annotate 'line', 346
 self.'_apply'('end')
 # }
-.annotate 'line', 330
+.annotate 'line', 348
 setattribute self, 'input', $P2
-.annotate 'line', 331
+.annotate 'line', 349
 .return($P1)
 # }
-.annotate 'line', 332
+.annotate 'line', 350
 
 .end # _form
 
@@ -1282,21 +1348,21 @@ setattribute self, 'input', $P2
 .sub '_consumedBy' :method
 .param pmc __ARG_1
 
-.annotate 'line', 334
+.annotate 'line', 352
 # Body
 # {
-.annotate 'line', 335
+.annotate 'line', 353
 # var origInput: $P1
 getattribute $P1, self, 'input'
-.annotate 'line', 336
+.annotate 'line', 354
 root_new $P2, ['parrot';'ResizablePMCArray']
 # predefined callmethodwithargs
 $P4 = self.__ARG_1($P2 :flat)
-.annotate 'line', 337
+.annotate 'line', 355
 getattribute $P2, self, 'input'
 .tailcall $P1.'upTo'($P2)
 # }
-.annotate 'line', 338
+.annotate 'line', 356
 
 .end # _consumedBy
 
@@ -1304,29 +1370,29 @@ getattribute $P2, self, 'input'
 .sub '_idxConsumedBy' :method
 .param pmc __ARG_1
 
-.annotate 'line', 340
+.annotate 'line', 358
 # Body
 # {
-.annotate 'line', 341
+.annotate 'line', 359
 # var origInput: $P1
 getattribute $P1, self, 'input'
-.annotate 'line', 342
+.annotate 'line', 360
 root_new $P2, ['parrot';'ResizablePMCArray']
 # predefined callmethodwithargs
 $P4 = self.__ARG_1($P2 :flat)
-.annotate 'line', 343
+.annotate 'line', 361
 root_new $P2, ['parrot';'Hash']
-.annotate 'line', 344
+.annotate 'line', 362
 getattribute $P3, $P1, 'idx'
 $P2['fromIdx'] = $P3
-.annotate 'line', 345
+.annotate 'line', 363
 getattribute $P4, self, 'input'
 getattribute $P5, $P4, 'idx'
 $P2['toIdx'] = $P5
-.annotate 'line', 343
+.annotate 'line', 361
 .return($P2)
 # }
-.annotate 'line', 347
+.annotate 'line', 365
 
 .end # _idxConsumedBy
 
@@ -1334,21 +1400,21 @@ $P2['toIdx'] = $P5
 .sub '_interleave' :method
 .param pmc __ARG_1 :slurpy
 
-.annotate 'line', 349
+.annotate 'line', 367
 # Body
 # {
 # predefined die
-.annotate 'line', 350
+.annotate 'line', 368
 die "TODO"
 # }
-.annotate 'line', 351
+.annotate 'line', 369
 
 .end # _interleave
 
 
 .sub '_currIdx' :method
 
-.annotate 'line', 353
+.annotate 'line', 371
 # Body
 # {
 getattribute $P1, self, 'input'
@@ -1361,36 +1427,36 @@ getattribute $P2, $P1, 'idx'
 
 .sub 'anything' :method
 
-.annotate 'line', 355
+.annotate 'line', 373
 # Body
 # {
-.annotate 'line', 356
+.annotate 'line', 374
 # var ans: $P1
 getattribute $P2, self, 'input'
 $P1 = $P2.'head'()
-.annotate 'line', 357
+.annotate 'line', 375
 getattribute $P4, self, 'input'
 $P3 = $P4.'tail'()
 setattribute self, 'input', $P3
-.annotate 'line', 358
+.annotate 'line', 376
 .return($P1)
 # }
-.annotate 'line', 359
+.annotate 'line', 377
 
 .end # anything
 
 
 .sub 'end' :subid('WSubId_1') :method
 
-.annotate 'line', 361
+.annotate 'line', 379
 # Body
 # {
-.annotate 'line', 362
+.annotate 'line', 380
 .const 'Sub' $P2 = 'WSubId_2'
 newclosure $P1, $P2
 .tailcall self.'_not'($P1)
 # }
-.annotate 'line', 363
+.annotate 'line', 381
 
 .end # end
 
@@ -1398,7 +1464,7 @@ newclosure $P1, $P2
 .sub '' :anon :subid('WSubId_2') :outer('WSubId_1')
 .param pmc __ARG_1
 
-.annotate 'line', 362
+.annotate 'line', 380
 # Body
 # {
 __ARG_1.'_apply'('anything')
@@ -1409,7 +1475,7 @@ __ARG_1.'_apply'('anything')
 
 .sub 'pos' :method
 
-.annotate 'line', 365
+.annotate 'line', 383
 # Body
 # {
 getattribute $P1, self, 'input'
@@ -1422,7 +1488,7 @@ getattribute $P2, $P1, 'idx'
 
 .sub 'empty' :method
 
-.annotate 'line', 367
+.annotate 'line', 385
 # Body
 # {
 .return(1)
@@ -1433,138 +1499,82 @@ getattribute $P2, $P1, 'idx'
 
 .sub 'apply' :method
 
-.annotate 'line', 369
+.annotate 'line', 387
 # Body
 # {
-.annotate 'line', 370
+.annotate 'line', 388
 $P1 = self.'_apply'('anything')
 .tailcall self.'_apply'($P1)
 # }
-.annotate 'line', 371
+.annotate 'line', 389
 
 .end # apply
 
 
 .sub 'foreign' :method
 
-.annotate 'line', 373
+.annotate 'line', 391
 # Body
 # {
-.annotate 'line', 374
+.annotate 'line', 392
 # var g: $P1
 $P1 = self.'_apply'('anything')
-.annotate 'line', 375
+.annotate 'line', 393
 # var r: $P2
 $P2 = self.'_apply'('anything')
-.annotate 'line', 376
+.annotate 'line', 394
 # var proxy: $P3
 root_new $P6, ['parrot';'Hash']
 getattribute $P7, self, 'input'
 $P6['target'] = $P7
 new $P3, [ 'OMInputStreamProxy' ], $P6
-.annotate 'line', 377
+.annotate 'line', 395
 # var gi: $P4
 set $S1, $P1
 # predefined get_class
 get_class $P6, $S1
 $P4 = $P6.'new'($P3 :named('input'))
-.annotate 'line', 378
+.annotate 'line', 396
 # var ans: $P5
 $P5 = $P4.'_apply'($P2)
-.annotate 'line', 379
+.annotate 'line', 397
 getattribute $P8, $P4, 'input'
 getattribute $P9, $P8, 'target'
 setattribute self, 'input', $P9
-.annotate 'line', 380
+.annotate 'line', 398
 .return($P5)
 # }
-.annotate 'line', 381
+.annotate 'line', 399
 
 .end # foreign
 
 
 .sub 'exactly' :method
 
-.annotate 'line', 383
+.annotate 'line', 401
 # Body
 # {
-.annotate 'line', 384
+.annotate 'line', 402
 .const 'Sub' $P2 = 'fail'
-.annotate 'line', 385
+.annotate 'line', 403
 # var wanted: $P1
 $P1 = self.'_apply'('anything')
-.annotate 'line', 386
+.annotate 'line', 404
 $P3 = self.'_apply'('anything')
 ne $P3, $P1, __label_0
-.annotate 'line', 387
+.annotate 'line', 405
 .return($P1)
 __label_0: # endif
-.annotate 'line', 388
-throw $P2
+.annotate 'line', 406
+$P3 = $P2()
+throw $P3
 # }
-.annotate 'line', 389
+.annotate 'line', 407
 
 .end # exactly
 
 
 .sub 'null' :method
-
-.annotate 'line', 391
-# Body
-# {
-.annotate 'line', 392
-# var ans: $P1
-$P1 = self.'_apply'('anything')
-.annotate 'line', 393
-isnull $I1, $P1
-self.'_pred'($I1)
-.annotate 'line', 394
-.return($P1)
-# }
-.annotate 'line', 395
-
-.end # null
-
-
-.sub 'number' :method
-
-.annotate 'line', 397
-# Body
-# {
-.annotate 'line', 398
-# var ans: $P1
-$P1 = self.'_apply'('anything')
-.annotate 'line', 399
-isa $I1, $P1, 'Number'
-self.'_pred'($I1)
-.annotate 'line', 400
-.return($P1)
-# }
-.annotate 'line', 401
-
-.end # number
-
-
-.sub 'string' :method
-
-.annotate 'line', 403
-# Body
-# {
-.annotate 'line', 404
-# var ans: $P1
-$P1 = self.'_apply'('anything')
-.annotate 'line', 405
-isa $I1, $P1, 'String'
-self.'_pred'($I1)
-.annotate 'line', 406
-.return($P1)
-# }
-.annotate 'line', 407
-
-.end # string
-
-
-.sub 'char' :method
 
 .annotate 'line', 409
 # Body
@@ -1573,6 +1583,63 @@ self.'_pred'($I1)
 # var ans: $P1
 $P1 = self.'_apply'('anything')
 .annotate 'line', 411
+isnull $I1, $P1
+self.'_pred'($I1)
+.annotate 'line', 412
+.return($P1)
+# }
+.annotate 'line', 413
+
+.end # null
+
+
+.sub 'number' :method
+
+.annotate 'line', 415
+# Body
+# {
+.annotate 'line', 416
+# var ans: $P1
+$P1 = self.'_apply'('anything')
+.annotate 'line', 417
+isa $I1, $P1, 'Number'
+self.'_pred'($I1)
+.annotate 'line', 418
+.return($P1)
+# }
+.annotate 'line', 419
+
+.end # number
+
+
+.sub 'string' :method
+
+.annotate 'line', 421
+# Body
+# {
+.annotate 'line', 422
+# var ans: $P1
+$P1 = self.'_apply'('anything')
+.annotate 'line', 423
+isa $I1, $P1, 'String'
+self.'_pred'($I1)
+.annotate 'line', 424
+.return($P1)
+# }
+.annotate 'line', 425
+
+.end # string
+
+
+.sub 'char' :method
+
+.annotate 'line', 427
+# Body
+# {
+.annotate 'line', 428
+# var ans: $P1
+$P1 = self.'_apply'('anything')
+.annotate 'line', 429
 isa $I1, $P1, 'String'
 unless $I1 goto __label_0
 set $S1, $P1
@@ -1581,10 +1648,10 @@ length $I2, $S1
 iseq $I1, $I2, 1
 __label_0:
 self.'_pred'($I1)
-.annotate 'line', 412
+.annotate 'line', 430
 .return($P1)
 # }
-.annotate 'line', 413
+.annotate 'line', 431
 
 .end # char
 
@@ -1592,35 +1659,35 @@ self.'_pred'($I1)
 .sub '_cclass_char' :method
 .param int __ARG_1
 
-.annotate 'line', 415
+.annotate 'line', 433
 # Body
 # {
-.annotate 'line', 416
+.annotate 'line', 434
 # string c: $S1
 $P1 = self.'_apply'('char')
 null $S1
 if_null $P1, __label_0
 set $S1, $P1
 __label_0:
-.annotate 'line', 417
+.annotate 'line', 435
 # int pred: $I1
 null $I1
-.annotate 'line', 418
+.annotate 'line', 436
 # pirop is_cclass
 is_cclass $I1, __ARG_1, $S1, 0
-.annotate 'line', 419
+.annotate 'line', 437
 self.'_pred'($I1)
-.annotate 'line', 420
+.annotate 'line', 438
 .return($S1)
 # }
-.annotate 'line', 421
+.annotate 'line', 439
 
 .end # _cclass_char
 
 
 .sub 'space' :method
 
-.annotate 'line', 423
+.annotate 'line', 441
 # Body
 # {
 .tailcall self.'_cclass_char'(32)
@@ -1631,15 +1698,15 @@ self.'_pred'($I1)
 
 .sub 'spaces' :subid('WSubId_3') :method
 
-.annotate 'line', 425
+.annotate 'line', 443
 # Body
 # {
-.annotate 'line', 426
+.annotate 'line', 444
 .const 'Sub' $P2 = 'WSubId_4'
 newclosure $P1, $P2
 .tailcall self.'_many'($P1)
 # }
-.annotate 'line', 427
+.annotate 'line', 445
 
 .end # spaces
 
@@ -1647,7 +1714,7 @@ newclosure $P1, $P2
 .sub '' :anon :subid('WSubId_4') :outer('WSubId_3')
 .param pmc __ARG_1
 
-.annotate 'line', 426
+.annotate 'line', 444
 # Body
 # {
 .tailcall __ARG_1.'_apply'('space')
@@ -1658,7 +1725,7 @@ newclosure $P1, $P2
 
 .sub 'digit' :method
 
-.annotate 'line', 429
+.annotate 'line', 447
 # Body
 # {
 .tailcall self.'_cclass_char'(8)
@@ -1669,7 +1736,7 @@ newclosure $P1, $P2
 
 .sub 'hexdigit' :method
 
-.annotate 'line', 431
+.annotate 'line', 449
 # Body
 # {
 .tailcall self.'_cclass_char'(16)
@@ -1680,7 +1747,7 @@ newclosure $P1, $P2
 
 .sub 'lower' :method
 
-.annotate 'line', 433
+.annotate 'line', 451
 # Body
 # {
 .tailcall self.'_cclass_char'(2)
@@ -1691,7 +1758,7 @@ newclosure $P1, $P2
 
 .sub 'upper' :method
 
-.annotate 'line', 435
+.annotate 'line', 453
 # Body
 # {
 .tailcall self.'_cclass_char'(1)
@@ -1702,7 +1769,7 @@ newclosure $P1, $P2
 
 .sub 'letter' :method
 
-.annotate 'line', 437
+.annotate 'line', 455
 # Body
 # {
 .tailcall self.'_cclass_char'(4)
@@ -1713,7 +1780,7 @@ newclosure $P1, $P2
 
 .sub 'letterOrDigit' :method
 
-.annotate 'line', 439
+.annotate 'line', 457
 # Body
 # {
 .tailcall self.'_cclass_char'(2048)
@@ -1724,23 +1791,23 @@ newclosure $P1, $P2
 
 .sub 'firstAndRest' :subid('WSubId_5') :method
 
-.annotate 'line', 441
+.annotate 'line', 459
 .lex '__WLEX_1', $P2
 # Body
 # {
-.annotate 'line', 442
+.annotate 'line', 460
 # var first: $P1
 $P1 = self.'_apply'('anything')
-.annotate 'line', 443
+.annotate 'line', 461
 # var rest: $P2
 $P2 = self.'_apply'('anything')
-.annotate 'line', 444
+.annotate 'line', 462
 .const 'Sub' $P4 = 'WSubId_6'
 newclosure $P3, $P4
 $P5 = self.'_apply'($P1)
 .tailcall self.'_many'($P3, $P5)
 # }
-.annotate 'line', 445
+.annotate 'line', 463
 
 .end # firstAndRest
 
@@ -1748,7 +1815,7 @@ $P5 = self.'_apply'($P1)
 .sub '' :anon :subid('WSubId_6') :outer('WSubId_5')
 .param pmc __ARG_1
 
-.annotate 'line', 444
+.annotate 'line', 462
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
@@ -1760,50 +1827,50 @@ $P1 = find_lex '__WLEX_1'
 
 .sub 'seq' :method
 
-.annotate 'line', 447
+.annotate 'line', 465
 # Body
 # {
-.annotate 'line', 448
+.annotate 'line', 466
 # var xs: $P1
 $P1 = self.'_apply'('anything')
-.annotate 'line', 449
+.annotate 'line', 467
 iter $P3, $P1
 set $P3, 0
 __label_0: # for iteration
 unless $P3 goto __label_1
 shift $P2, $P3
-.annotate 'line', 450
+.annotate 'line', 468
 self.'_applyWithArgs'('exactly', $P2)
 goto __label_0
 __label_1: # endfor
-.annotate 'line', 451
+.annotate 'line', 469
 .return($P1)
 # }
-.annotate 'line', 452
+.annotate 'line', 470
 
 .end # seq
 
 
 .sub 'notLast' :subid('WSubId_7') :method
 
-.annotate 'line', 454
+.annotate 'line', 472
 .lex '__WLEX_1', $P1
 # Body
 # {
-.annotate 'line', 455
+.annotate 'line', 473
 # var rule: $P1
 $P1 = self.'_apply'('anything')
-.annotate 'line', 456
+.annotate 'line', 474
 # var ans: $P2
 $P2 = self.'_apply'($P1)
-.annotate 'line', 457
+.annotate 'line', 475
 .const 'Sub' $P4 = 'WSubId_8'
 newclosure $P3, $P4
 self.'_lookahead'($P3)
-.annotate 'line', 458
+.annotate 'line', 476
 .return($P2)
 # }
-.annotate 'line', 459
+.annotate 'line', 477
 
 .end # notLast
 
@@ -1811,7 +1878,7 @@ self.'_lookahead'($P3)
 .sub '' :anon :subid('WSubId_8') :outer('WSubId_7')
 .param pmc __ARG_1
 
-.annotate 'line', 457
+.annotate 'line', 475
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
@@ -1827,66 +1894,67 @@ $P1 = find_lex '__WLEX_1'
 .param pmc __ARG_3
 .param pmc __ARG_4
 
-.annotate 'line', 461
+.annotate 'line', 479
 # Body
 # {
-.annotate 'line', 462
-.const 'Sub' $P5 = 'fail'
-.annotate 'line', 463
+.annotate 'line', 480
+.const 'Sub' $P5 = '_fail'
+.annotate 'line', 481
 .const 'Sub' $P6 = 'typeof'
-.annotate 'line', 464
+.annotate 'line', 482
 # var m: $P1
 $P7 = $P6(self)
-$P1 = $P7.'new'(__ARG_1 :named('input'), $P5 :named('fail'))
-.annotate 'line', 465
+$P1 = $P7.'new'(__ARG_1 :named('input'))
+.annotate 'line', 483
 # try: create handler
 new $P7, 'ExceptionHandler'
 set_label $P7, __label_0
 push_eh $P7
 # try: begin
 # {
-.annotate 'line', 467
+.annotate 'line', 485
 # var result: $P2
 null $P2
-.annotate 'line', 468
+.annotate 'line', 486
 unless_null __ARG_3, __label_2
-.annotate 'line', 469
+.annotate 'line', 487
 $P2 = $P1.'_apply'(__ARG_2)
 goto __label_3
 __label_2: # else
-.annotate 'line', 471
+.annotate 'line', 489
 $P2 = $P1.'_applyWithArgs'(__ARG_2, __ARG_3 :flat)
 __label_3: # endif
-.annotate 'line', 472
+.annotate 'line', 490
 .return($P2)
 # }
 # try: end
 pop_eh
 goto __label_1
-.annotate 'line', 465
+.annotate 'line', 483
 # catch
 __label_0:
 .get_results($P3)
 finalize $P3
 pop_eh
 # {
-.annotate 'line', 474
-issame $I1, $P3, $P5
+.annotate 'line', 492
+getattribute $P8, $P3, 'payload'
+issame $I1, $P8, $P5
 unless $I1 goto __label_5
 isnull $I1, __ARG_4
 not $I1
 __label_5:
 unless $I1 goto __label_4
 # {
-.annotate 'line', 475
+.annotate 'line', 493
 # var input: $P4
 getattribute $P4, $P1, 'input'
-.annotate 'line', 476
+.annotate 'line', 494
 getattribute $P8, $P4, 'idx'
 if_null $P8, __label_6
 # {
 __label_8: # while
-.annotate 'line', 477
+.annotate 'line', 495
 getattribute $P9, $P4, 'tl'
 isnull $I1, $P9
 not $I1
@@ -1897,27 +1965,28 @@ isnull $I1, $P11
 not $I1
 __label_9:
 unless $I1 goto __label_7
-.annotate 'line', 478
+.annotate 'line', 496
 getattribute $P4, $P4, 'tl'
 goto __label_8
 __label_7: # endwhile
-.annotate 'line', 479
-getattribute $P8, $P4, 'idx'
-dec $P8
+.annotate 'line', 497
+getattribute $P9, $P4, 'idx'
+dec $P9
 # }
 __label_6: # endif
-.annotate 'line', 481
-getattribute $P9, $P4, 'idx'
-.tailcall __ARG_4($P1, $P9)
+.annotate 'line', 499
+getattribute $P10, $P4, 'idx'
+.tailcall __ARG_4($P1, $P10)
 # }
 __label_4: # endif
-.annotate 'line', 483
-throw $P3
+.annotate 'line', 501
+# pirop rethrow
+rethrow $P3
 # }
 # catch end
 __label_1:
 # }
-.annotate 'line', 485
+.annotate 'line', 503
 
 .end # _genericMatch
 
@@ -1928,18 +1997,18 @@ __label_1:
 .param pmc __ARG_3 :optional
 .param pmc __ARG_4 :optional
 
-.annotate 'line', 487
+.annotate 'line', 505
 # Body
 # {
-.annotate 'line', 488
+.annotate 'line', 506
 .const 'Sub' $P1 = 'makeListOMInputStream'
-.annotate 'line', 489
+.annotate 'line', 507
 root_new $P3, ['parrot';'ResizablePMCArray']
 $P3.'push'(__ARG_1)
 $P2 = $P1($P3)
 .tailcall self.'_genericMatch'($P2, __ARG_2, __ARG_3, __ARG_4)
 # }
-.annotate 'line', 490
+.annotate 'line', 508
 
 .end # match
 
@@ -1950,53 +2019,53 @@ $P2 = $P1($P3)
 .param pmc __ARG_3 :optional
 .param pmc __ARG_4 :optional
 
-.annotate 'line', 492
+.annotate 'line', 510
 # Body
 # {
-.annotate 'line', 493
+.annotate 'line', 511
 .const 'Sub' $P1 = 'makeListOMInputStream'
-.annotate 'line', 494
+.annotate 'line', 512
 $P2 = $P1(__ARG_1)
 .tailcall self.'_genericMatch'($P2, __ARG_2, __ARG_3, __ARG_4)
 # }
-.annotate 'line', 495
+.annotate 'line', 513
 
 .end # matchAll
 
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'OMeta' ]
-.annotate 'line', 103
+.annotate 'line', 112
 addattribute $P0, 'input'
-.annotate 'line', 104
+.annotate 'line', 113
 addattribute $P0, 'fail'
-.annotate 'line', 105
+.annotate 'line', 114
 addattribute $P0, 'stash'
 .end
 .namespace [ 'Parser' ]
 
 .sub 'listOf' :subid('WSubId_9') :method
 
-.annotate 'line', 499
+.annotate 'line', 517
 .lex '__WLEX_1', $P1
 .lex '__WLEX_2', $P2
 # Body
 # {
-.annotate 'line', 500
+.annotate 'line', 518
 # var rule: $P1
 $P1 = self.'_apply'('anything')
-.annotate 'line', 501
+.annotate 'line', 519
 # var delim: $P2
 $P2 = self.'_apply'('anything')
-.annotate 'line', 502
+.annotate 'line', 520
 .const 'Sub' $P4 = 'WSubId_10'
 newclosure $P3, $P4
-.annotate 'line', 510
+.annotate 'line', 528
 .const 'Sub' $P6 = 'WSubId_12'
 newclosure $P5, $P6
-.annotate 'line', 502
+.annotate 'line', 520
 .tailcall self.'_or'($P3, $P5)
 # }
-.annotate 'line', 512
+.annotate 'line', 530
 
 .end # listOf
 
@@ -2004,21 +2073,21 @@ newclosure $P5, $P6
 .sub '' :anon :subid('WSubId_10') :outer('WSubId_9')
 .param pmc __ARG_1
 
-.annotate 'line', 502
+.annotate 'line', 520
 $P2 = find_lex '__WLEX_1'
 $P3 = find_lex '__WLEX_2'
 # Body
 # {
-.annotate 'line', 503
+.annotate 'line', 521
 # var ans: $P1
 $P1 = __ARG_1.'_apply'($P2)
-.annotate 'line', 504
+.annotate 'line', 522
 .const 'Sub' $P5 = 'WSubId_11'
 newclosure $P4, $P5
-.annotate 'line', 504
+.annotate 'line', 522
 .tailcall __ARG_1.'_many'($P4, $P1)
 # }
-.annotate 'line', 509
+.annotate 'line', 527
 
 .end # WSubId_10
 
@@ -2026,17 +2095,17 @@ newclosure $P4, $P5
 .sub '' :anon :subid('WSubId_11') :outer('WSubId_10')
 .param pmc __ARG_2
 
-.annotate 'line', 504
+.annotate 'line', 522
 $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.annotate 'line', 505
+.annotate 'line', 523
 __ARG_2.'_applyWithArgs'('token', $P1)
-.annotate 'line', 506
+.annotate 'line', 524
 .tailcall __ARG_2.'_apply'($P2)
 # }
-.annotate 'line', 507
+.annotate 'line', 525
 
 .end # WSubId_11
 
@@ -2044,7 +2113,7 @@ __ARG_2.'_applyWithArgs'('token', $P1)
 .sub '' :anon :subid('WSubId_12') :outer('WSubId_9')
 .param pmc __ARG_3
 
-.annotate 'line', 510
+.annotate 'line', 528
 # Body
 # {
 root_new $P1, ['parrot';'ResizablePMCArray']
@@ -2056,24 +2125,24 @@ root_new $P1, ['parrot';'ResizablePMCArray']
 
 .sub 'token' :method
 
-.annotate 'line', 513
+.annotate 'line', 531
 # Body
 # {
-.annotate 'line', 514
+.annotate 'line', 532
 # var cs: $P1
 $P1 = self.'_apply'('anything')
-.annotate 'line', 515
+.annotate 'line', 533
 self.'_apply'('spaces')
-.annotate 'line', 516
+.annotate 'line', 534
 .tailcall self.'_applyWithArgs'('seq', $P1)
 # }
-.annotate 'line', 517
+.annotate 'line', 535
 
 .end # token
 
 .sub Winxed_class_init :anon :load :init
 newclass $P0, [ 'Parser' ]
-.annotate 'line', 498
+.annotate 'line', 516
 get_class $P1, [ 'OMeta' ]
 addparent $P0, $P1
 .end

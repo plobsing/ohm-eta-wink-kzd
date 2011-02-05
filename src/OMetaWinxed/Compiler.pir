@@ -318,10 +318,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var y: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_2'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_2'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # fromTo
@@ -356,10 +355,9 @@ find_lex $P2, '__WLEX_2'
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_4'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_2)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_4'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_2)
 # }
 
 .end # WSubId_3
@@ -478,10 +476,9 @@ newclosure $P4, $P5
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_13'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_2)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_13'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_2)
 # }
 
 .end # WSubId_12
@@ -501,7 +498,7 @@ goto __label_1
 __label_2: # case
 .return("_")
 __label_1: # default
-getattribute $P2, __ARG_3, 'fail'
+$P2 = __ARG_3.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -558,10 +555,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var r: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_18'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_18'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # iName
@@ -594,10 +590,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_20'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_20'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # isKeyword
@@ -629,10 +624,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var k: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_22'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_22'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # keyword
@@ -669,10 +663,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var n: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_24'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_24'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # nameTok
@@ -710,10 +703,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var v: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_26'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_26'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # hexDigit
@@ -774,10 +766,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_29'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_1)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_29'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_1)
 # }
 
 .end # WSubId_28
@@ -850,10 +841,9 @@ newclosure $P7, $P8
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_33'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_33'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_32
@@ -872,13 +862,12 @@ if $S1 == $S2 goto __label_2
 goto __label_1
 # switch
 __label_2: # case
-.const 'Sub' $P5 = 'WSubId_34'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_34'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 __label_1: # default
-getattribute $P6, __ARG_2, 'fail'
-throw $P6
+$P5 = __ARG_2.'_fail'()
+throw $P5
 __label_0: # switch end
 # }
 
@@ -912,10 +901,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_36'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_4)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_36'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_4)
 # }
 
 .end # WSubId_35
@@ -975,10 +963,9 @@ $P5.'push'($P6)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_39'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_7)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_39'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_7)
 # }
 
 .end # WSubId_38
@@ -1000,7 +987,7 @@ __label_2: # case
 newclosure $P2, $P3
 .tailcall __ARG_8.'_many1'($P2)
 __label_1: # default
-getattribute $P4, __ARG_8, 'fail'
+$P4 = __ARG_8.'_fail'()
 throw $P4
 __label_0: # switch end
 # }
@@ -1024,10 +1011,9 @@ __label_0: # switch end
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_42'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_10)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_42'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_10)
 # }
 
 .end # WSubId_41
@@ -1056,10 +1042,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var c: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_44'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_44'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # escapeChar
@@ -1113,10 +1098,9 @@ newclosure $P6, $P7
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_47'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_47'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_46
@@ -1143,13 +1127,12 @@ newclosure $P3, $P4
 newclosure $P5, $P6
 .tailcall __ARG_2.'_or'($P3, $P5)
 __label_3: # case
-.const 'Sub' $P9 = 'WSubId_64'
-newclosure $P8, $P9
-$P7 = $P8(__ARG_2)
-.return($P7)
+.const 'Sub' $P8 = 'WSubId_64'
+newclosure $P7, $P8
+.tailcall $P7(__ARG_2)
 __label_1: # default
-getattribute $P10, __ARG_2, 'fail'
-throw $P10
+$P9 = __ARG_2.'_fail'()
+throw $P9
 __label_0: # switch end
 # }
 
@@ -1162,10 +1145,9 @@ __label_0: # switch end
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_49'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_3)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_49'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_3)
 # }
 
 .end # WSubId_48
@@ -1184,13 +1166,12 @@ if $S1 == $S2 goto __label_2
 goto __label_1
 # switch
 __label_2: # case
-.const 'Sub' $P5 = 'WSubId_50'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_4)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_50'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_4)
 __label_1: # default
-getattribute $P6, __ARG_4, 'fail'
-throw $P6
+$P5 = __ARG_4.'_fail'()
+throw $P5
 __label_0: # switch end
 # }
 
@@ -1256,10 +1237,9 @@ newclosure $P3, $P4
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_54'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_8)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_54'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_8)
 # }
 
 .end # WSubId_53
@@ -1284,10 +1264,9 @@ __ARG_9.'_not'($P1)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_56'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_10)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_56'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_10)
 # }
 
 .end # WSubId_55
@@ -1313,10 +1292,9 @@ __ARG_11.'_applyWithArgs'("exactly", "\"")
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_58'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_12)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_58'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_12)
 # }
 
 .end # WSubId_57
@@ -1378,10 +1356,9 @@ newclosure $P3, $P4
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_62'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_16)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_62'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_16)
 # }
 
 .end # WSubId_61
@@ -1468,10 +1445,9 @@ newclosure $P3, $P4
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_68'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_22)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_68'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_22)
 # }
 
 .end # WSubId_67
@@ -1508,10 +1484,9 @@ __ARG_23.'_not'($P1)
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_71'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_25)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_71'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_25)
 # }
 
 .end # WSubId_70
@@ -1557,7 +1532,7 @@ __label_2: # case
 __label_3: # case
 .return("`")
 __label_1: # default
-getattribute $P2, __ARG_27, 'fail'
+$P2 = __ARG_27.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -1575,10 +1550,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var s: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_74'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_74'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # special
@@ -1733,20 +1707,18 @@ newclosure $P34, $P35
 newclosure $P36, $P37
 .tailcall __ARG_2.'_or'($P34, $P36)
 __label_21: # case
-.const 'Sub' $P40 = 'WSubId_109'
-newclosure $P39, $P40
-$P38 = $P39(__ARG_2)
-.return($P38)
+.const 'Sub' $P39 = 'WSubId_109'
+newclosure $P38, $P39
+.tailcall $P38(__ARG_2)
 __label_22: # case
-.const 'Sub' $P43 = 'WSubId_113'
-newclosure $P42, $P43
-$P41 = $P42(__ARG_2)
-.return($P41)
+.const 'Sub' $P41 = 'WSubId_113'
+newclosure $P40, $P41
+.tailcall $P40(__ARG_2)
 __label_23: # case
 .return(".")
 __label_1: # default
-getattribute $P44, __ARG_2, 'fail'
-throw $P44
+$P42 = __ARG_2.'_fail'()
+throw $P42
 __label_0: # switch end
 # }
 
@@ -1758,10 +1730,9 @@ __label_0: # switch end
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_77'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_3)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_77'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_3)
 # }
 
 .end # WSubId_76
@@ -1785,7 +1756,7 @@ newclosure $P2, $P3
 newclosure $P4, $P5
 .tailcall __ARG_4.'_or'($P2, $P4)
 __label_1: # default
-getattribute $P6, __ARG_4, 'fail'
+$P6 = __ARG_4.'_fail'()
 throw $P6
 __label_0: # switch end
 # }
@@ -1798,10 +1769,9 @@ __label_0: # switch end
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_79'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_5)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_79'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_5)
 # }
 
 .end # WSubId_78
@@ -1821,7 +1791,7 @@ goto __label_1
 __label_2: # case
 .return("!==")
 __label_1: # default
-getattribute $P2, __ARG_6, 'fail'
+$P2 = __ARG_6.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -1856,10 +1826,9 @@ __label_0: # switch end
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_83'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_9)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_83'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_9)
 # }
 
 .end # WSubId_82
@@ -1883,7 +1852,7 @@ newclosure $P2, $P3
 newclosure $P4, $P5
 .tailcall __ARG_10.'_or'($P2, $P4)
 __label_1: # default
-getattribute $P6, __ARG_10, 'fail'
+$P6 = __ARG_10.'_fail'()
 throw $P6
 __label_0: # switch end
 # }
@@ -1896,10 +1865,9 @@ __label_0: # switch end
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_85'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_11)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_85'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_11)
 # }
 
 .end # WSubId_84
@@ -1919,7 +1887,7 @@ goto __label_1
 __label_2: # case
 .return("===")
 __label_1: # default
-getattribute $P2, __ARG_12, 'fail'
+$P2 = __ARG_12.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -1954,10 +1922,9 @@ __label_0: # switch end
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_89'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_15)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_89'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_15)
 # }
 
 .end # WSubId_88
@@ -1977,7 +1944,7 @@ goto __label_1
 __label_2: # case
 .return(">=")
 __label_1: # default
-getattribute $P2, __ARG_16, 'fail'
+$P2 = __ARG_16.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -2001,10 +1968,9 @@ __label_0: # switch end
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_92'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_18)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_92'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_18)
 # }
 
 .end # WSubId_91
@@ -2024,7 +1990,7 @@ goto __label_1
 __label_2: # case
 .return("<=")
 __label_1: # default
-getattribute $P2, __ARG_19, 'fail'
+$P2 = __ARG_19.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -2048,10 +2014,9 @@ __label_0: # switch end
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_95'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_21)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_95'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_21)
 # }
 
 .end # WSubId_94
@@ -2075,7 +2040,7 @@ __label_2: # case
 __label_3: # case
 .return("+=")
 __label_1: # default
-getattribute $P2, __ARG_22, 'fail'
+$P2 = __ARG_22.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -2099,10 +2064,9 @@ __label_0: # switch end
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_98'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_24)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_98'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_24)
 # }
 
 .end # WSubId_97
@@ -2126,7 +2090,7 @@ __label_2: # case
 __label_3: # case
 .return("-=")
 __label_1: # default
-getattribute $P2, __ARG_25, 'fail'
+$P2 = __ARG_25.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -2150,10 +2114,9 @@ __label_0: # switch end
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_101'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_27)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_101'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_27)
 # }
 
 .end # WSubId_100
@@ -2173,7 +2136,7 @@ goto __label_1
 __label_2: # case
 .return("*=")
 __label_1: # default
-getattribute $P2, __ARG_28, 'fail'
+$P2 = __ARG_28.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -2197,10 +2160,9 @@ __label_0: # switch end
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_104'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_30)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_104'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_30)
 # }
 
 .end # WSubId_103
@@ -2220,7 +2182,7 @@ goto __label_1
 __label_2: # case
 .return("/=")
 __label_1: # default
-getattribute $P2, __ARG_31, 'fail'
+$P2 = __ARG_31.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -2244,10 +2206,9 @@ __label_0: # switch end
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_107'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_33)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_107'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_33)
 # }
 
 .end # WSubId_106
@@ -2267,7 +2228,7 @@ goto __label_1
 __label_2: # case
 .return("%=")
 __label_1: # default
-getattribute $P2, __ARG_34, 'fail'
+$P2 = __ARG_34.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -2304,7 +2265,7 @@ newclosure $P2, $P3
 newclosure $P4, $P5
 .tailcall __ARG_36.'_or'($P2, $P4)
 __label_1: # default
-getattribute $P6, __ARG_36, 'fail'
+$P6 = __ARG_36.'_fail'()
 throw $P6
 __label_0: # switch end
 # }
@@ -2317,10 +2278,9 @@ __label_0: # switch end
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_111'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_37)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_111'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_37)
 # }
 
 .end # WSubId_110
@@ -2340,7 +2300,7 @@ goto __label_1
 __label_2: # case
 .return("&&=")
 __label_1: # default
-getattribute $P2, __ARG_38, 'fail'
+$P2 = __ARG_38.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -2377,7 +2337,7 @@ newclosure $P2, $P3
 newclosure $P4, $P5
 .tailcall __ARG_40.'_or'($P2, $P4)
 __label_1: # default
-getattribute $P6, __ARG_40, 'fail'
+$P6 = __ARG_40.'_fail'()
 throw $P6
 __label_0: # switch end
 # }
@@ -2390,10 +2350,9 @@ __label_0: # switch end
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_115'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_41)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_115'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_41)
 # }
 
 .end # WSubId_114
@@ -2413,7 +2372,7 @@ goto __label_1
 __label_2: # case
 .return("||=")
 __label_1: # default
-getattribute $P2, __ARG_42, 'fail'
+$P2 = __ARG_42.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -2439,10 +2398,9 @@ __label_0: # switch end
 # var fromIdx: $P1
 getattribute $P2, self, 'input'
 getattribute $P1, $P2, 'idx'
-.const 'Sub' $P4 = 'WSubId_118'
-newclosure $P3, $P4
-$P2 = $P3(self)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_118'
+newclosure $P2, $P3
+.tailcall $P2(self)
 # }
 
 .end # tok
@@ -2535,10 +2493,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var ts: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_125'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_125'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # toks
@@ -2587,10 +2544,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var t: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_128'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_128'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # token
@@ -2628,10 +2584,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var t: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_130'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_130'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # name
@@ -2672,10 +2627,9 @@ null $P3
 null $P4
 # var rhs: $P5
 null $P5
-.const 'Sub' $P8 = 'WSubId_132'
-newclosure $P7, $P8
-$P6 = $P7(self)
-.return($P6)
+.const 'Sub' $P7 = 'WSubId_132'
+newclosure $P6, $P7
+.tailcall $P6(self)
 # }
 
 .end # expr
@@ -2726,10 +2680,9 @@ $P2 = find_lex '__WLEX_3'
 $P3 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_134'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_2)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_134'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_2)
 # }
 
 .end # WSubId_133
@@ -2771,10 +2724,9 @@ $P1 = find_lex '__WLEX_4'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_136'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_4)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_136'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_4)
 # }
 
 .end # WSubId_135
@@ -2810,10 +2762,9 @@ $P1 = find_lex '__WLEX_4'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_138'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_6)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_138'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_6)
 # }
 
 .end # WSubId_137
@@ -2851,10 +2802,9 @@ $P1 = find_lex '__WLEX_4'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_140'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_8)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_140'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_8)
 # }
 
 .end # WSubId_139
@@ -2892,10 +2842,9 @@ $P1 = find_lex '__WLEX_4'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_142'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_10)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_142'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_10)
 # }
 
 .end # WSubId_141
@@ -2933,10 +2882,9 @@ $P1 = find_lex '__WLEX_4'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_144'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_12)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_144'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_12)
 # }
 
 .end # WSubId_143
@@ -2974,10 +2922,9 @@ $P1 = find_lex '__WLEX_4'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_146'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_14)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_146'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_14)
 # }
 
 .end # WSubId_145
@@ -3015,10 +2962,9 @@ $P1 = find_lex '__WLEX_4'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_148'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_16)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_148'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_16)
 # }
 
 .end # WSubId_147
@@ -3056,10 +3002,9 @@ $P1 = find_lex '__WLEX_4'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_150'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_18)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_150'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_18)
 # }
 
 .end # WSubId_149
@@ -3096,10 +3041,9 @@ $P3.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_152'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_20)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_152'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_20)
 # }
 
 .end # WSubId_151
@@ -3149,10 +3093,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_155'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_1)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_155'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_1)
 # }
 
 .end # WSubId_154
@@ -3226,10 +3169,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_159'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_1)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_159'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_1)
 # }
 
 .end # WSubId_158
@@ -3303,10 +3245,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_163'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_1)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_163'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_1)
 # }
 
 .end # WSubId_162
@@ -3342,10 +3283,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_165'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_3)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_165'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_3)
 # }
 
 .end # WSubId_164
@@ -3383,10 +3323,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_167'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_5)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_167'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_5)
 # }
 
 .end # WSubId_166
@@ -3424,10 +3363,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_169'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_7)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_169'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_7)
 # }
 
 .end # WSubId_168
@@ -3465,10 +3403,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_171'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_9)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_171'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_9)
 # }
 
 .end # WSubId_170
@@ -3540,10 +3477,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_175'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_1)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_175'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_1)
 # }
 
 .end # WSubId_174
@@ -3581,10 +3517,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_177'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_3)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_177'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_3)
 # }
 
 .end # WSubId_176
@@ -3622,10 +3557,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_179'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_5)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_179'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_5)
 # }
 
 .end # WSubId_178
@@ -3663,10 +3597,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_181'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_7)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_181'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_7)
 # }
 
 .end # WSubId_180
@@ -3704,10 +3637,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_183'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_9)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_183'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_9)
 # }
 
 .end # WSubId_182
@@ -3745,10 +3677,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_185'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_11)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_185'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_11)
 # }
 
 .end # WSubId_184
@@ -3822,10 +3753,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_189'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_1)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_189'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_1)
 # }
 
 .end # WSubId_188
@@ -3865,10 +3795,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_191'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_3)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_191'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_3)
 # }
 
 .end # WSubId_190
@@ -3946,10 +3875,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_195'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_1)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_195'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_1)
 # }
 
 .end # WSubId_194
@@ -3989,10 +3917,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_197'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_3)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_197'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_3)
 # }
 
 .end # WSubId_196
@@ -4032,10 +3959,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_199'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_5)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_199'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_5)
 # }
 
 .end # WSubId_198
@@ -4113,10 +4039,9 @@ newclosure $P13, $P14
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_203'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_203'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_202
@@ -4150,10 +4075,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_205'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_3)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_205'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_3)
 # }
 
 .end # WSubId_204
@@ -4187,10 +4111,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_207'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_5)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_207'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_5)
 # }
 
 .end # WSubId_206
@@ -4224,10 +4147,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_209'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_7)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_209'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_7)
 # }
 
 .end # WSubId_208
@@ -4261,10 +4183,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_211'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_9)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_211'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_9)
 # }
 
 .end # WSubId_210
@@ -4313,10 +4234,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var p: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_214'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_214'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # postfix
@@ -4348,10 +4268,9 @@ newclosure $P6, $P7
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_216'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_2)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_216'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_2)
 # }
 
 .end # WSubId_215
@@ -4383,10 +4302,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_218'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_4)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_218'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_4)
 # }
 
 .end # WSubId_217
@@ -4418,10 +4336,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_220'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_6)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_220'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_6)
 # }
 
 .end # WSubId_219
@@ -4483,10 +4400,9 @@ $P4 = find_lex '__WLEX_4'
 $P5 = find_lex '__WLEX_5'
 # Body
 # {
-.const 'Sub' $P8 = 'WSubId_223'
-newclosure $P7, $P8
-$P6 = $P7(__ARG_1)
-.return($P6)
+.const 'Sub' $P7 = 'WSubId_223'
+newclosure $P6, $P7
+.tailcall $P6(__ARG_1)
 # }
 
 .end # WSubId_222
@@ -4525,10 +4441,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_225'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_3)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_225'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_3)
 # }
 
 .end # WSubId_224
@@ -4566,10 +4481,9 @@ $P2 = find_lex '__WLEX_4'
 $P3 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_227'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_5)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_227'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_5)
 # }
 
 .end # WSubId_226
@@ -4611,10 +4525,9 @@ $P1 = find_lex '__WLEX_5'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_229'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_7)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_229'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_7)
 # }
 
 .end # WSubId_228
@@ -4654,10 +4567,9 @@ $P1 = find_lex '__WLEX_4'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_231'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_9)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_231'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_9)
 # }
 
 .end # WSubId_230
@@ -4751,10 +4663,9 @@ newclosure $P25, $P26
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_235'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_235'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_234
@@ -4782,10 +4693,9 @@ find_lex $P1, '__WLEX_1'
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_237'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_3)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_237'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_3)
 # }
 
 .end # WSubId_236
@@ -4812,10 +4722,9 @@ $P1.'push'($P2)
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_239'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_5)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_239'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_5)
 # }
 
 .end # WSubId_238
@@ -4846,10 +4755,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_241'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_7)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_241'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_7)
 # }
 
 .end # WSubId_240
@@ -4893,10 +4801,9 @@ $P2 = find_lex '__WLEX_3'
 $P3 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_244'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_10)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_244'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_10)
 # }
 
 .end # WSubId_243
@@ -4955,10 +4862,9 @@ $P8.'push'($P3)
 $P1 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_247'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_13)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_247'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_13)
 # }
 
 .end # WSubId_246
@@ -4995,10 +4901,9 @@ find_lex $P1, '__WLEX_3'
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_250'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_16)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_250'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_16)
 # }
 
 .end # WSubId_249
@@ -5023,10 +4928,9 @@ null $P1
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_252'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_18)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_252'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_18)
 # }
 
 .end # WSubId_251
@@ -5060,10 +4964,9 @@ $P2.'push'($P4)
 $P1 = find_lex '__WLEX_5'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_254'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_20)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_254'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_20)
 # }
 
 .end # WSubId_253
@@ -5106,10 +5009,9 @@ find_lex $P1, '__WLEX_5'
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_257'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_23)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_257'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_23)
 # }
 
 .end # WSubId_256
@@ -5144,10 +5046,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var bs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_259'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_259'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # json
@@ -5186,10 +5087,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var v: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_261'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_261'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # jsonBinding
@@ -5298,10 +5198,9 @@ newclosure $P5, $P6
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_268'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_268'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_267
@@ -5345,10 +5244,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var f: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_271'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_271'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # anonFunc
@@ -5386,10 +5284,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var ss: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_273'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_273'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # funcRest
@@ -5444,10 +5341,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var ss: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_275'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_275'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # block
@@ -5483,10 +5379,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var n: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_277'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_277'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # var
@@ -5579,10 +5474,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var i: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_283'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_283'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # varInit
@@ -5622,10 +5516,9 @@ $P6.'push'($P2)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_285'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_2)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_285'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_2)
 # }
 
 .end # WSubId_284
@@ -5648,10 +5541,9 @@ __ARG_3.'_applyWithArgs'("token", "=")
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_287'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_4)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_287'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_4)
 # }
 
 .end # WSubId_286
@@ -5684,10 +5576,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var v: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_289'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_289'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # varNoInit
@@ -5813,10 +5704,9 @@ newclosure $P48, $P49
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_293'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_2)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_293'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_2)
 # }
 
 .end # WSubId_292
@@ -5846,10 +5736,9 @@ $P2 = find_lex '__WLEX_3'
 $P3 = find_lex '__WLEX_4'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_295'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_4)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_295'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_4)
 # }
 
 .end # WSubId_294
@@ -5896,10 +5785,9 @@ $P4.'push'($P3)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_297'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_6)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_297'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_6)
 # }
 
 .end # WSubId_296
@@ -5922,10 +5810,9 @@ __ARG_7.'_applyWithArgs'("token", "else")
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_299'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_8)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_299'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_8)
 # }
 
 .end # WSubId_298
@@ -5955,10 +5842,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_5'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_301'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_10)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_301'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_10)
 # }
 
 .end # WSubId_300
@@ -5998,10 +5884,9 @@ $P1 = find_lex '__WLEX_5'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_303'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_12)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_303'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_12)
 # }
 
 .end # WSubId_302
@@ -6045,10 +5930,9 @@ $P3 = find_lex '__WLEX_7'
 $P4 = find_lex '__WLEX_5'
 # Body
 # {
-.const 'Sub' $P7 = 'WSubId_305'
-newclosure $P6, $P7
-$P5 = $P6(__ARG_14)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_305'
+newclosure $P5, $P6
+.tailcall $P5(__ARG_14)
 # }
 
 .end # WSubId_304
@@ -6134,10 +6018,9 @@ $P11.'push'($P4)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_309'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_18)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_309'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_18)
 # }
 
 .end # WSubId_308
@@ -6176,10 +6059,9 @@ $P1.'push'($P2)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_312'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_21)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_312'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_21)
 # }
 
 .end # WSubId_311
@@ -6218,10 +6100,9 @@ $P1.'push'($P2)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_315'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_24)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_315'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_24)
 # }
 
 .end # WSubId_314
@@ -6252,10 +6133,9 @@ $P2 = find_lex '__WLEX_9'
 $P3 = find_lex '__WLEX_5'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_317'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_26)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_317'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_26)
 # }
 
 .end # WSubId_316
@@ -6328,10 +6208,9 @@ $P2 = find_lex '__WLEX_10'
 $P3 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_321'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_30)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_321'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_30)
 # }
 
 .end # WSubId_320
@@ -6392,10 +6271,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_10'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_324'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_33)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_324'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_33)
 # }
 
 .end # WSubId_323
@@ -6433,10 +6311,9 @@ $P3.'push'($P2)
 $P1 = find_lex '__WLEX_10'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_326'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_35)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_326'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_35)
 # }
 
 .end # WSubId_325
@@ -6468,10 +6345,9 @@ $P2.'push'($P1)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_328'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_37)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_328'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_37)
 # }
 
 .end # WSubId_327
@@ -6498,10 +6374,9 @@ $P1.'push'($P2)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_330'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_39)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_330'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_39)
 # }
 
 .end # WSubId_329
@@ -6529,10 +6404,9 @@ $P1.'push'($P2)
 $P1 = find_lex '__WLEX_9'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_332'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_41)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_332'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_41)
 # }
 
 .end # WSubId_331
@@ -6567,10 +6441,9 @@ $P2 = find_lex '__WLEX_9'
 $P3 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_334'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_43)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_334'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_43)
 # }
 
 .end # WSubId_333
@@ -6615,10 +6488,9 @@ $P4.'push'($P3)
 $P1 = find_lex '__WLEX_9'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_336'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_45)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_336'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_45)
 # }
 
 .end # WSubId_335
@@ -6665,10 +6537,9 @@ $P2.'push'($P1)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_339'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_48)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_339'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_48)
 # }
 
 .end # WSubId_338
@@ -6697,10 +6568,9 @@ $P1.'push'($P3)
 $P1 = find_lex '__WLEX_9'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_341'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_50)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_341'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_50)
 # }
 
 .end # WSubId_340
@@ -6729,10 +6599,9 @@ $P1 = find_lex '__WLEX_3'
 $P2 = find_lex '__WLEX_11'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_343'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_52)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_343'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_52)
 # }
 
 .end # WSubId_342
@@ -6771,10 +6640,9 @@ $P1 = find_lex '__WLEX_3'
 $P2 = find_lex '__WLEX_12'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_345'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_54)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_345'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_54)
 # }
 
 .end # WSubId_344
@@ -6815,10 +6683,9 @@ $P3.'push'($P1)
 $P1 = find_lex '__WLEX_12'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_347'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_56)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_347'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_56)
 # }
 
 .end # WSubId_346
@@ -6855,10 +6722,9 @@ $P2.'push'($P4)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_349'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_58)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_349'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_58)
 # }
 
 .end # WSubId_348
@@ -6891,10 +6757,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var es: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_351'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_351'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # classRest
@@ -6959,10 +6824,9 @@ newclosure $P5, $P6
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_355'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_355'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_354
@@ -6989,10 +6853,9 @@ find_lex $P1, '__WLEX_1'
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_357'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_3)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_357'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_3)
 # }
 
 .end # WSubId_356
@@ -7021,10 +6884,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var v: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_359'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_359'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # classVar
@@ -7108,10 +6970,9 @@ null $P2
 null $P3
 # var b: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_364'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_364'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # flag
@@ -7152,10 +7013,9 @@ $P4.'push'($P2)
 $P1 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_366'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_2)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_366'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_2)
 # }
 
 .end # WSubId_365
@@ -7183,10 +7043,9 @@ find_lex $P1, '__WLEX_3'
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_368'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_4)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_368'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_4)
 # }
 
 .end # WSubId_367
@@ -7215,10 +7074,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var fs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_370'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_370'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # flagsList
@@ -7260,10 +7118,9 @@ null $P2
 null $P3
 # var f: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_372'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_372'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # funcDecl
@@ -7318,10 +7175,9 @@ find_lex $P3, '__WLEX_3'
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_375'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_3)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_375'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_3)
 # }
 
 .end # WSubId_374
@@ -7356,10 +7212,9 @@ null $P2
 null $P3
 # var c: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_377'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_377'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # classDecl
@@ -7405,10 +7260,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var ss: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_379'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_379'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # srcElems
@@ -7491,10 +7345,9 @@ newclosure $P6, $P7
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_385'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_3)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_385'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_3)
 # }
 
 .end # WSubId_384
@@ -7525,10 +7378,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var es: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_387'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_387'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # topLevel
@@ -7605,10 +7457,9 @@ newclosure $P7, $P8
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_391'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_391'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_390
@@ -7640,10 +7491,9 @@ $P2 = find_lex '__WLEX_3'
 $P3 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_393'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_3)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_393'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_3)
 # }
 
 .end # WSubId_392
@@ -7706,10 +7556,9 @@ $P6.'push'($P15)
 $P1 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_395'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_5)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_395'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_5)
 # }
 
 .end # WSubId_394
@@ -7776,10 +7625,9 @@ newclosure $P3, $P4
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_400'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_10)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_400'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_10)
 # }
 
 .end # WSubId_399
@@ -7852,10 +7700,9 @@ newclosure $P5, $P6
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_405'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_2)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_405'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_2)
 # }
 
 .end # WSubId_404
@@ -7896,10 +7743,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var ans: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_407'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_407'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # trans
@@ -7929,10 +7775,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_409'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_409'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 # }
 
 .end # WSubId_408
@@ -7987,10 +7832,9 @@ newclosure $P8, $P9
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_412'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_412'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_411
@@ -8018,10 +7862,9 @@ find_lex $P1, '__WLEX_1'
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_414'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_3)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_414'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_3)
 # }
 
 .end # WSubId_413
@@ -8048,10 +7891,9 @@ store_lex '__WLEX_1', $P1
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_416'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_5)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_416'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_5)
 # }
 
 .end # WSubId_415
@@ -8083,10 +7925,9 @@ concat $S2, $S2, "}"
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_418'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_7)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_418'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_7)
 # }
 
 .end # WSubId_417
@@ -8126,10 +7967,9 @@ store_lex '__WLEX_2', $P1
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_421'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_10)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_421'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_10)
 # }
 
 .end # WSubId_420
@@ -8167,10 +8007,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var r: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_423'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_423'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # blockSemiTrans
@@ -8204,10 +8043,9 @@ find_lex $P2, '__WLEX_2'
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_425'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_2)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_425'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_2)
 # }
 
 .end # WSubId_424
@@ -8248,10 +8086,9 @@ find_lex $P1, '__WLEX_1'
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_427'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_4)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_427'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_4)
 # }
 
 .end # WSubId_426
@@ -8323,10 +8160,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var n: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_429'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_429'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # number
@@ -8361,10 +8197,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var s: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_431'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_431'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # string
@@ -8395,10 +8230,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_433'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_433'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # arr
@@ -8449,10 +8283,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var x: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_436'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_436'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # unop
@@ -8498,10 +8331,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var x: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_438'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_438'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # getp
@@ -8546,10 +8378,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var x: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_440'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_440'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # geta
@@ -8590,10 +8421,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_442'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_442'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # get
@@ -8627,10 +8457,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var rhs: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_444'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_444'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # set
@@ -8679,10 +8508,9 @@ null $P2
 null $P3
 # var rhs: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_446'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_446'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # mset
@@ -8738,10 +8566,9 @@ null $P2
 null $P3
 # var y: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_448'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_448'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # binop
@@ -8795,10 +8622,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var x: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_450'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_450'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # preop
@@ -8841,10 +8667,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var x: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_452'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_452'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # postop
@@ -8899,10 +8724,9 @@ newclosure $P5, $P6
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_455'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_1)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_455'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_1)
 # }
 
 .end # WSubId_454
@@ -8926,10 +8750,9 @@ __ARG_2.'_apply'("null")
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_457'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_3)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_457'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_3)
 # }
 
 .end # WSubId_456
@@ -8969,10 +8792,9 @@ null $P2
 null $P3
 # var e: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_459'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_459'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # if
@@ -9028,10 +8850,9 @@ null $P2
 null $P3
 # var e: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_461'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_461'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # condExpr
@@ -9085,10 +8906,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var body: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_463'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_463'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # while
@@ -9133,10 +8953,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var cond: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_465'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_465'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # doWhile
@@ -9188,10 +9007,9 @@ null $P3
 null $P4
 # var body: $P5
 null $P5
-.const 'Sub' $P8 = 'WSubId_467'
-newclosure $P7, $P8
-$P6 = $P7(self)
-.return($P6)
+.const 'Sub' $P7 = 'WSubId_467'
+newclosure $P6, $P7
+.tailcall $P6(self)
 # }
 
 .end # for
@@ -9255,10 +9073,9 @@ null $P2
 null $P3
 # var body: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_469'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_469'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # forIn
@@ -9327,10 +9144,9 @@ newclosure $P6, $P7
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_472'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_472'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_471
@@ -9362,10 +9178,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_474'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_3)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_474'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_3)
 # }
 
 .end # WSubId_473
@@ -9407,10 +9222,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_476'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_476'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # begin
@@ -9458,10 +9272,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_479'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_479'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # top
@@ -9526,10 +9339,9 @@ newclosure $P6, $P7
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_483'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_483'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_482
@@ -9558,10 +9370,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_485'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_3)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_485'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_3)
 # }
 
 .end # WSubId_484
@@ -9603,10 +9414,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var fs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_487'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_487'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # flaglist
@@ -9655,10 +9465,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var body: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_490'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_490'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # anonfunc
@@ -9728,10 +9537,9 @@ $P2 = find_lex '__WLEX_2'
 $P3 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_493'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_1)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_493'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_1)
 # }
 
 .end # WSubId_492
@@ -9781,10 +9589,9 @@ $P3 = find_lex '__WLEX_2'
 $P4 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P7 = 'WSubId_495'
-newclosure $P6, $P7
-$P5 = $P6(__ARG_3)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_495'
+newclosure $P5, $P6
+.tailcall $P5(__ARG_3)
 # }
 
 .end # WSubId_494
@@ -9865,10 +9672,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_498'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_1)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_498'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_1)
 # }
 
 .end # WSubId_497
@@ -9921,10 +9727,9 @@ $P2 = find_lex '__WLEX_3'
 $P3 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_501'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_4)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_501'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_4)
 # }
 
 .end # WSubId_500
@@ -9976,10 +9781,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var args: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_503'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_503'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # call
@@ -10040,10 +9844,9 @@ null $P2
 null $P3
 # var args: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_506'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_506'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # send
@@ -10125,10 +9928,9 @@ newclosure $P6, $P7
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_510'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_510'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_509
@@ -10161,10 +9963,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_512'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_3)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_512'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_3)
 # }
 
 .end # WSubId_511
@@ -10210,10 +10011,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var name: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_514'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_514'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # var
@@ -10260,10 +10060,9 @@ null $P2
 null $P3
 # var init: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_516'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_516'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # varinit
@@ -10312,10 +10111,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_518'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_518'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # throw
@@ -10355,10 +10153,9 @@ null $P2
 null $P3
 # var c: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_520'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_520'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # try
@@ -10408,10 +10205,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var props: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_522'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_522'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # json
@@ -10462,10 +10258,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var val: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_525'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_525'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # binding
@@ -10510,10 +10305,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var cases: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_527'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_527'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # switch
@@ -10572,10 +10366,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var y: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_530'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_530'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # case
@@ -10617,10 +10410,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var y: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_532'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_532'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # default
@@ -10663,10 +10455,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var y: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_534'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_534'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # fromTo
@@ -10701,10 +10492,9 @@ find_lex $P2, '__WLEX_2'
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_536'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_2)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_536'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_2)
 # }
 
 .end # WSubId_535
@@ -10812,10 +10602,9 @@ newclosure $P4, $P5
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_544'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_1)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_544'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_1)
 # }
 
 .end # WSubId_543
@@ -10839,7 +10628,7 @@ __label_2: # case
 __label_3: # case
 .return("$")
 __label_1: # default
-getattribute $P2, __ARG_2, 'fail'
+$P2 = __ARG_2.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -10907,10 +10696,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_550'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_550'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # tsName
@@ -10940,10 +10728,9 @@ join $S1, "", $P1
 # var fromIdx: $P1
 getattribute $P2, self, 'input'
 getattribute $P1, $P2, 'idx'
-.const 'Sub' $P4 = 'WSubId_552'
-newclosure $P3, $P4
-$P2 = $P3(self)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_552'
+newclosure $P2, $P3
+.tailcall $P2(self)
 # }
 
 .end # name
@@ -10987,10 +10774,9 @@ newclosure $P5, $P6
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_555'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_555'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_554
@@ -11009,13 +10795,12 @@ if $S1 == $S2 goto __label_2
 goto __label_1
 # switch
 __label_2: # case
-.const 'Sub' $P5 = 'WSubId_556'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_556'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 __label_1: # default
-getattribute $P6, __ARG_2, 'fail'
-throw $P6
+$P5 = __ARG_2.'_fail'()
+throw $P5
 __label_0: # switch end
 # }
 
@@ -11061,10 +10846,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_559'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_559'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # tsString
@@ -11096,10 +10880,9 @@ join $S1, "", $P1
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_561'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_2)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_561'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_2)
 # }
 
 .end # WSubId_560
@@ -11140,10 +10923,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_564'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_564'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # characters
@@ -11184,10 +10966,9 @@ $P2.'push'($P4)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_566'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_2)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_566'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_2)
 # }
 
 .end # WSubId_565
@@ -11212,10 +10993,9 @@ __ARG_3.'_not'($P1)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_568'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_4)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_568'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_4)
 # }
 
 .end # WSubId_567
@@ -11243,10 +11023,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_570'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_570'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # sCharacters
@@ -11285,10 +11064,9 @@ $P2.'push'($P4)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_572'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_2)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_572'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_2)
 # }
 
 .end # WSubId_571
@@ -11329,10 +11107,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_575'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_575'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # string
@@ -11369,10 +11146,9 @@ $P2.'push'($P4)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_577'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_2)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_577'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_2)
 # }
 
 .end # WSubId_576
@@ -11410,7 +11186,7 @@ __label_2: # case
 __label_3: # case
 .return("`")
 __label_1: # default
-getattribute $P2, __ARG_4, 'fail'
+$P2 = __ARG_4.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -11442,10 +11218,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var ds: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_581'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_581'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # number
@@ -11493,10 +11268,9 @@ $P5.'push'($P6)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_583'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_2)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_583'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_2)
 # }
 
 .end # WSubId_582
@@ -11516,7 +11290,7 @@ goto __label_1
 __label_2: # case
 .return("-")
 __label_1: # default
-getattribute $P2, __ARG_3, 'fail'
+$P2 = __ARG_3.'_fail'()
 throw $P2
 __label_0: # switch end
 # }
@@ -11529,10 +11303,9 @@ __label_0: # switch end
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_585'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_4)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_585'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_4)
 # }
 
 .end # WSubId_584
@@ -11571,10 +11344,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_588'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_588'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # keyword
@@ -11637,10 +11409,9 @@ newclosure $P5, $P6
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_592'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_592'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_591
@@ -11659,13 +11430,12 @@ if $S1 == $S2 goto __label_2
 goto __label_1
 # switch
 __label_2: # case
-.const 'Sub' $P5 = 'WSubId_593'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_593'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 __label_1: # default
-getattribute $P6, __ARG_2, 'fail'
-throw $P6
+$P5 = __ARG_2.'_fail'()
+throw $P5
 __label_0: # switch end
 # }
 
@@ -11693,10 +11463,9 @@ find_lex $P1, '__WLEX_1'
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_595'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_4)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_595'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_4)
 # }
 
 .end # WSubId_594
@@ -11750,10 +11519,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_598'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_1)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_598'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_1)
 # }
 
 .end # WSubId_597
@@ -11798,10 +11566,9 @@ $P2 = find_lex '__WLEX_1'
 $P3 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_600'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_3)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_600'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_3)
 # }
 
 .end # WSubId_599
@@ -11855,10 +11622,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_602'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_5)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_602'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_5)
 # }
 
 .end # WSubId_601
@@ -11897,10 +11663,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var r: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_604'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_604'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # hostExpr
@@ -11931,10 +11696,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var r: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_606'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_606'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # curlyHostExpr
@@ -11965,10 +11729,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var r: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_608'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_608'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # primHostExpr
@@ -12054,10 +11817,9 @@ newclosure $P5, $P6
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_614'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_614'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_613
@@ -12088,10 +11850,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_616'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_3)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_616'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_3)
 # }
 
 .end # WSubId_615
@@ -12127,10 +11888,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_618'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_618'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # arrSemAction
@@ -12166,10 +11926,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_620'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_620'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # semPred
@@ -12227,10 +11986,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_623'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_1)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_623'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_1)
 # }
 
 .end # WSubId_622
@@ -12266,10 +12024,9 @@ find_lex $P2, '__WLEX_2'
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_625'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_3)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_625'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_3)
 # }
 
 .end # WSubId_624
@@ -12294,10 +12051,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_627'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_5)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_627'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_5)
 # }
 
 .end # WSubId_626
@@ -12333,10 +12089,9 @@ find_lex $P2, '__WLEX_2'
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_629'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_7)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_629'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_7)
 # }
 
 .end # WSubId_628
@@ -12381,10 +12136,9 @@ null $P2
 null $P3
 # var xs: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_632'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_632'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # expr5
@@ -12417,10 +12171,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_634'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_634'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 # }
 
 .end # WSubId_633
@@ -12456,10 +12209,9 @@ find_lex $P2, '__WLEX_3'
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_636'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_4)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_636'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_4)
 # }
 
 .end # WSubId_635
@@ -12516,10 +12268,9 @@ newclosure $P5, $P6
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_640'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_640'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_639
@@ -12552,10 +12303,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_642'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_3)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_642'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_3)
 # }
 
 .end # WSubId_641
@@ -12606,10 +12356,9 @@ newclosure $P9, $P10
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_645'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_645'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_644
@@ -12641,10 +12390,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_647'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_3)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_647'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_3)
 # }
 
 .end # WSubId_646
@@ -12671,10 +12419,9 @@ newclosure $P2, $P3
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_649'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_5)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_649'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_5)
 # }
 
 .end # WSubId_648
@@ -12701,10 +12448,9 @@ store_lex '__WLEX_1', $P1
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_651'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_7)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_651'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_7)
 # }
 
 .end # WSubId_650
@@ -12736,10 +12482,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_653'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_9)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_653'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_9)
 # }
 
 .end # WSubId_652
@@ -12766,10 +12511,9 @@ newclosure $P2, $P3
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_655'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_11)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_655'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_11)
 # }
 
 .end # WSubId_654
@@ -12796,10 +12540,9 @@ store_lex '__WLEX_1', $P1
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_657'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_13)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_657'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_13)
 # }
 
 .end # WSubId_656
@@ -12831,10 +12574,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_659'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_15)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_659'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_15)
 # }
 
 .end # WSubId_658
@@ -12861,10 +12603,9 @@ newclosure $P2, $P3
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_661'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_17)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_661'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_17)
 # }
 
 .end # WSubId_660
@@ -12891,10 +12632,9 @@ store_lex '__WLEX_1', $P1
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_663'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_19)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_663'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_19)
 # }
 
 .end # WSubId_662
@@ -12935,10 +12675,9 @@ null $P2
 null $P3
 # var act: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_665'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_665'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # expr4
@@ -12973,10 +12712,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_667'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_667'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 # }
 
 .end # WSubId_666
@@ -13027,10 +12765,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_670'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_5)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_670'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_5)
 # }
 
 .end # WSubId_669
@@ -13077,10 +12814,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_673'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_8)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_673'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_8)
 # }
 
 .end # WSubId_672
@@ -13132,10 +12868,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_676'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_676'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # optIter
@@ -13165,10 +12900,9 @@ newclosure $P4, $P5
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_678'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_2)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_678'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_2)
 # }
 
 .end # WSubId_677
@@ -13212,7 +12946,7 @@ find_lex $P1, '__WLEX_1'
 $P7.'push'($P1)
 .return($P7)
 __label_1: # default
-getattribute $P9, __ARG_3, 'fail'
+$P9 = __ARG_3.'_fail'()
 throw $P9
 __label_0: # switch end
 # }
@@ -13226,10 +12960,9 @@ __label_0: # switch end
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_680'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_4)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_680'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_4)
 # }
 
 .end # WSubId_679
@@ -13262,10 +12995,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var n: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_682'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_682'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # optBind
@@ -13297,10 +13029,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_684'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_684'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 # }
 
 .end # WSubId_683
@@ -13320,13 +13051,12 @@ if $S1 == $S2 goto __label_2
 goto __label_1
 # switch
 __label_2: # case
-.const 'Sub' $P6 = 'WSubId_685'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_3)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_685'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_3)
 __label_1: # default
-getattribute $P7, __ARG_3, 'fail'
-throw $P7
+$P6 = __ARG_3.'_fail'()
+throw $P6
 __label_0: # switch end
 # }
 
@@ -13342,10 +13072,9 @@ $P2 = find_lex '__WLEX_1'
 # {
 $P1 = __ARG_4.'_apply'("name")
 store_lex '__WLEX_2', $P1
-.const 'Sub' $P5 = 'WSubId_686'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_4)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_686'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_4)
 # }
 
 .end # WSubId_685
@@ -13380,10 +13109,9 @@ $P3.'push'($P2)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_688'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_6)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_688'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_6)
 # }
 
 .end # WSubId_687
@@ -13437,10 +13165,9 @@ newclosure $P9, $P10
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_691'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_691'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_690
@@ -13455,10 +13182,9 @@ $P1 = find_lex '__WLEX_1'
 __ARG_2.'_applyWithArgs'("token", ":")
 $P1 = __ARG_2.'_apply'("name")
 store_lex '__WLEX_1', $P1
-.const 'Sub' $P4 = 'WSubId_692'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_2)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_692'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_2)
 # }
 
 .end # WSubId_691
@@ -13497,10 +13223,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_694'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_4)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_694'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_4)
 # }
 
 .end # WSubId_693
@@ -13532,10 +13257,9 @@ find_lex $P1, '__WLEX_2'
 $P1 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_696'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_6)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_696'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_6)
 # }
 
 .end # WSubId_695
@@ -13606,10 +13330,9 @@ newclosure $P7, $P8
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_701'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_701'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_700
@@ -13641,10 +13364,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_703'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_3)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_703'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_3)
 # }
 
 .end # WSubId_702
@@ -13728,10 +13450,9 @@ newclosure $P15, $P16
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_708'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_2)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_708'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_2)
 # }
 
 .end # WSubId_707
@@ -13802,10 +13523,9 @@ $P2.'push'($P1)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_713'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_7)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_713'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_7)
 # }
 
 .end # WSubId_712
@@ -13881,10 +13601,9 @@ newclosure $P7, $P8
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_719'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_13)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_719'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_13)
 # }
 
 .end # WSubId_718
@@ -13917,10 +13636,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_721'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_15)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_721'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_15)
 # }
 
 .end # WSubId_720
@@ -13953,10 +13671,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_723'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_17)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_723'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_17)
 # }
 
 .end # WSubId_722
@@ -13989,10 +13706,9 @@ $P2.'push'($P1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_725'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_19)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_725'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_19)
 # }
 
 .end # WSubId_724
@@ -14048,10 +13764,9 @@ newclosure $P4, $P5
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_729'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_2)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_729'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_2)
 # }
 
 .end # WSubId_728
@@ -14085,10 +13800,9 @@ null $P2
 null $P3
 # var xs: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_731'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_731'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # rule
@@ -14157,10 +13871,9 @@ store_lex '__WLEX_1', $P1
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_734'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_3)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_734'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_3)
 # }
 
 .end # WSubId_733
@@ -14199,10 +13912,9 @@ null $P3
 null $P4
 # var b2: $P5
 null $P5
-.const 'Sub' $P8 = 'WSubId_736'
-newclosure $P7, $P8
-$P6 = $P7(self)
-.return($P6)
+.const 'Sub' $P7 = 'WSubId_736'
+newclosure $P6, $P7
+.tailcall $P6(self)
 # }
 
 .end # rulePart
@@ -14244,10 +13956,9 @@ $P1 = find_lex '__WLEX_4'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_738'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_738'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 # }
 
 .end # WSubId_737
@@ -14282,10 +13993,9 @@ $P3.'push'($P1)
 $P1 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_740'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_4)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_740'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_4)
 # }
 
 .end # WSubId_739
@@ -14321,10 +14031,9 @@ null $P2
 null $P3
 # var rs: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_742'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_742'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # grammar
@@ -14371,10 +14080,9 @@ $P4 = $P5.'append'($P3)
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_744'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_2)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_744'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_2)
 # }
 
 .end # WSubId_743
@@ -14397,10 +14105,9 @@ __ARG_3.'_applyWithArgs'("token", "<:")
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_746'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_4)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_746'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_4)
 # }
 
 .end # WSubId_745
@@ -14455,10 +14162,9 @@ newclosure $P8, $P9
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_749'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_749'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_748
@@ -14477,13 +14183,12 @@ if $S1 == $S2 goto __label_2
 goto __label_1
 # switch
 __label_2: # case
-.const 'Sub' $P5 = 'WSubId_750'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_750'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 __label_1: # default
-getattribute $P6, __ARG_2, 'fail'
-throw $P6
+$P5 = __ARG_2.'_fail'()
+throw $P5
 __label_0: # switch end
 # }
 
@@ -14533,10 +14238,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_753'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_5)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_753'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_5)
 # }
 
 .end # WSubId_752
@@ -14588,10 +14292,9 @@ concat $S3, $S3, ")"
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_756'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_8)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_756'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_8)
 # }
 
 .end # WSubId_755
@@ -14626,10 +14329,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var expr: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_758'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_758'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Act
@@ -14660,10 +14362,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var expr: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_760'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_760'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Pred
@@ -14698,10 +14399,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_762'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_762'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Or
@@ -14749,10 +14449,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_765'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_765'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # XOr
@@ -14830,10 +14529,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_769'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_1)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_769'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_1)
 # }
 
 .end # WSubId_768
@@ -14901,10 +14599,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_773'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_773'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Opt
@@ -14939,10 +14636,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_775'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_775'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Many
@@ -14977,10 +14673,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_777'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_777'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Many1
@@ -15015,10 +14710,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_779'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_779'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Not
@@ -15053,10 +14747,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_781'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_781'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Lookahead
@@ -15091,10 +14784,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_783'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_783'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Form
@@ -15129,10 +14821,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_785'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_785'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # ConsBy
@@ -15167,10 +14858,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_787'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_787'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # IdxConsBy
@@ -15208,10 +14898,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var v: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_789'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_789'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # Set
@@ -15252,10 +14941,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var cases: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_791'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_791'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # JumpTable
@@ -15299,10 +14987,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_794'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_794'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Interleave
@@ -15356,10 +15043,9 @@ null $P2
 null $P3
 # var body: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_797'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_797'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # Rule
@@ -15418,10 +15104,9 @@ null $P2
 null $P3
 # var rules: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_799'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_799'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # Grammar
@@ -15492,10 +15177,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var part: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_802'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_802'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # intPart
@@ -15534,10 +15218,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_804'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_804'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 # }
 
 .end # WSubId_803
@@ -15573,10 +15256,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var e: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_806'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_806'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # jtCase
@@ -15611,10 +15293,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_808'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_808'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 # }
 
 .end # WSubId_807
@@ -15647,10 +15328,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var n: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_810'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_810'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # local
@@ -15680,10 +15360,9 @@ newclosure $P4, $P5
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_812'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_2)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_812'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_2)
 # }
 
 .end # WSubId_811
@@ -15713,10 +15392,9 @@ __ARG_3.'_pred'($I1)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_814'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_4)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_814'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_4)
 # }
 
 .end # WSubId_813
@@ -15768,10 +15446,9 @@ newclosure $P5, $P6
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_817'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_817'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_816
@@ -15829,10 +15506,9 @@ store_lex '__WLEX_1', $P1
 
 # Body
 # {
-.const 'Sub' $P3 = 'WSubId_821'
-newclosure $P2, $P3
-$P1 = $P2(__ARG_5)
-.return($P1)
+.const 'Sub' $P2 = 'WSubId_821'
+newclosure $P1, $P2
+.tailcall $P1(__ARG_5)
 # }
 
 .end # WSubId_820
@@ -15876,10 +15552,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var ans: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_824'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_824'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # trans
@@ -15909,10 +15584,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_826'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_826'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 # }
 
 .end # WSubId_825
@@ -15946,10 +15620,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_828'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_828'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # transFn
@@ -16006,10 +15679,9 @@ newclosure $P5, $P6
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_831'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_831'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_830
@@ -16108,10 +15780,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var ans: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_834'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_834'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # trans
@@ -16141,10 +15812,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_836'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_836'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 # }
 
 .end # WSubId_835
@@ -16185,10 +15855,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_838'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_838'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # optimize
@@ -16223,10 +15892,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var args: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_840'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_840'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # App
@@ -16278,10 +15946,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var expr: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_843'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_843'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Act
@@ -16316,10 +15983,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var expr: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_845'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_845'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Pred
@@ -16354,10 +16020,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_847'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_847'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Or
@@ -16404,10 +16069,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_850'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_850'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # XOr
@@ -16454,10 +16118,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var xs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_853'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_853'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # And
@@ -16504,10 +16167,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_856'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_856'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Opt
@@ -16542,10 +16204,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_858'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_858'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Many
@@ -16580,10 +16241,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_860'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_860'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Many1
@@ -16621,10 +16281,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var v: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_862'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_862'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # Set
@@ -16664,10 +16323,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_864'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_864'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Not
@@ -16702,10 +16360,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_866'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_866'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Lookahead
@@ -16740,10 +16397,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_868'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_868'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Form
@@ -16778,10 +16434,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_870'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_870'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # ConsBy
@@ -16816,10 +16471,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var x: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_872'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_872'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # IdxConsBy
@@ -16860,10 +16514,9 @@ null $P2
 null $P3
 # var ces: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_874'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_874'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # JumpTable
@@ -16898,10 +16551,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_876'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_876'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 # }
 
 .end # WSubId_875
@@ -16935,10 +16587,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_878'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_4)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_878'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_4)
 # }
 
 .end # WSubId_877
@@ -16977,10 +16628,9 @@ null $P2
 null $P3
 # var xs: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_880'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_880'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # Interleave
@@ -17015,10 +16665,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_882'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_882'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 # }
 
 .end # WSubId_881
@@ -17052,10 +16701,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_884'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_4)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_884'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_4)
 # }
 
 .end # WSubId_883
@@ -17094,10 +16742,9 @@ null $P2
 null $P3
 # var body: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_886'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_886'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # Rule
@@ -17167,10 +16814,9 @@ newclosure $P6, $P7
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_889'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_889'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_888
@@ -17199,10 +16845,9 @@ find_lex $P1, '__WLEX_1'
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_891'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_3)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_891'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_3)
 # }
 
 .end # WSubId_890
@@ -17255,10 +16900,9 @@ newclosure $P6, $P7
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_894'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_894'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_893
@@ -17287,10 +16931,9 @@ find_lex $P1, '__WLEX_1'
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_896'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_3)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_896'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_3)
 # }
 
 .end # WSubId_895
@@ -17343,10 +16986,9 @@ newclosure $P6, $P7
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_899'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_1)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_899'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_1)
 # }
 
 .end # WSubId_898
@@ -17375,10 +17017,9 @@ find_lex $P1, '__WLEX_1'
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_901'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_3)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_901'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_3)
 # }
 
 .end # WSubId_900
@@ -17421,10 +17062,9 @@ null $P3
 null $P4
 # var x: $P5
 null $P5
-.const 'Sub' $P8 = 'WSubId_903'
-newclosure $P7, $P8
-$P6 = $P7(self)
-.return($P6)
+.const 'Sub' $P7 = 'WSubId_903'
+newclosure $P6, $P7
+.tailcall $P6(self)
 # }
 
 .end # transInside
@@ -17461,10 +17101,9 @@ $P2 = find_lex '__WLEX_2'
 $P3 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_905'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_2)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_905'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_2)
 # }
 
 .end # WSubId_904
@@ -17500,10 +17139,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_907'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_4)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_907'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_4)
 # }
 
 .end # WSubId_906
@@ -17535,10 +17173,9 @@ $P2 = find_lex '__WLEX_2'
 $P3 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_909'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_6)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_909'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_6)
 # }
 
 .end # WSubId_908
@@ -17621,10 +17258,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_913'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_1)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_913'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_1)
 # }
 
 .end # WSubId_912
@@ -17644,13 +17280,12 @@ if $S1 == $S2 goto __label_2
 goto __label_1
 # switch
 __label_2: # case
-.const 'Sub' $P6 = 'WSubId_914'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_2)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_914'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_2)
 __label_1: # default
-getattribute $P7, __ARG_2, 'fail'
-throw $P7
+$P6 = __ARG_2.'_fail'()
+throw $P6
 __label_0: # switch end
 # }
 
@@ -17696,10 +17331,9 @@ $P1 = find_lex '__WLEX_3'
 $P2 = find_lex '__WLEX_4'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_916'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_4)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_916'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_4)
 # }
 
 .end # WSubId_915
@@ -17751,10 +17385,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var c: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_919'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_919'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # inlineChar
@@ -17809,10 +17442,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var cs: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_922'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_922'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # seqString
@@ -17844,10 +17476,9 @@ newclosure $P5, $P6
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_924'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_2)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_924'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_2)
 # }
 
 .end # WSubId_923
@@ -17875,10 +17506,9 @@ isa $I1, $P1, "String"
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_926'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_4)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_926'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_4)
 # }
 
 .end # WSubId_925
@@ -17906,10 +17536,9 @@ find_lex $P1, '__WLEX_2'
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_928'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_6)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_928'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_6)
 # }
 
 .end # WSubId_927
@@ -17949,10 +17578,9 @@ store_lex '__WLEX_2', $P1
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_931'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_9)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_931'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_9)
 # }
 
 .end # WSubId_930
@@ -17980,10 +17608,9 @@ find_lex $P1, '__WLEX_2'
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_933'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_11)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_933'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_11)
 # }
 
 .end # WSubId_932
@@ -18033,10 +17660,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var cs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_936'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_936'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # Or
@@ -18109,10 +17735,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var cs: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_941'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_941'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # XOr
@@ -18188,10 +17813,9 @@ getattribute $P1, $P4, 'idx'
 null $P2
 # var cs: $P3
 null $P3
-.const 'Sub' $P6 = 'WSubId_946'
-newclosure $P5, $P6
-$P4 = $P5(self)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_946'
+newclosure $P4, $P5
+.tailcall $P4(self)
 # }
 
 .end # quotedString
@@ -18237,10 +17861,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_949'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_3)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_949'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_3)
 # }
 
 .end # WSubId_948
@@ -18262,18 +17885,16 @@ if $S1 == $S2 goto __label_3
 goto __label_1
 # switch
 __label_2: # case
-.const 'Sub' $P6 = 'WSubId_950'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_4)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_950'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_4)
 __label_3: # case
-.const 'Sub' $P9 = 'WSubId_954'
-newclosure $P8, $P9
-$P7 = $P8(__ARG_4)
-.return($P7)
+.const 'Sub' $P7 = 'WSubId_954'
+newclosure $P6, $P7
+.tailcall $P6(__ARG_4)
 __label_1: # default
-getattribute $P10, __ARG_4, 'fail'
-throw $P10
+$P8 = __ARG_4.'_fail'()
+throw $P8
 __label_0: # switch end
 # }
 
@@ -18303,10 +17924,9 @@ store_lex '__WLEX_1', $P1
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_952'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_6)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_952'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_6)
 # }
 
 .end # WSubId_951
@@ -18364,10 +17984,9 @@ store_lex '__WLEX_1', $P1
 $P1 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_956'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_10)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_956'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_10)
 # }
 
 .end # WSubId_955
@@ -18432,10 +18051,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_960'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_1)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_960'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_1)
 # }
 
 .end # WSubId_959
@@ -18473,10 +18091,9 @@ $P1 = find_lex '__WLEX_1'
 $P2 = find_lex '__WLEX_2'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_962'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_3)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_962'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_3)
 # }
 
 .end # WSubId_961
@@ -18509,10 +18126,9 @@ store_lex '__WLEX_2', $P2
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_964'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_5)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_964'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_5)
 # }
 
 .end # WSubId_963
@@ -18551,10 +18167,9 @@ store_lex '__WLEX_1', $P1
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_967'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_8)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_967'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_8)
 # }
 
 .end # WSubId_966
@@ -18591,10 +18206,9 @@ $P2.'push'($P4)
 $P1 = find_lex '__WLEX_1'
 # Body
 # {
-.const 'Sub' $P4 = 'WSubId_969'
-newclosure $P3, $P4
-$P2 = $P3(__ARG_10)
-.return($P2)
+.const 'Sub' $P3 = 'WSubId_969'
+newclosure $P2, $P3
+.tailcall $P2(__ARG_10)
 # }
 
 .end # WSubId_968
@@ -18632,10 +18246,9 @@ null $P2
 null $P3
 # var jt: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_971'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_971'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # jtChoices
@@ -18676,10 +18289,9 @@ $P1 = find_lex '__WLEX_2'
 $P2 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P5 = 'WSubId_973'
-newclosure $P4, $P5
-$P3 = $P4(__ARG_2)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_973'
+newclosure $P3, $P4
+.tailcall $P3(__ARG_2)
 # }
 
 .end # WSubId_972
@@ -18724,10 +18336,9 @@ null $P2
 null $P3
 # var rs: $P4
 null $P4
-.const 'Sub' $P7 = 'WSubId_975'
-newclosure $P6, $P7
-$P5 = $P6(self)
-.return($P5)
+.const 'Sub' $P6 = 'WSubId_975'
+newclosure $P5, $P6
+.tailcall $P5(self)
 # }
 
 .end # optimizeGrammar
@@ -18766,10 +18377,9 @@ $P2 = find_lex '__WLEX_2'
 $P3 = find_lex '__WLEX_3'
 # Body
 # {
-.const 'Sub' $P6 = 'WSubId_977'
-newclosure $P5, $P6
-$P4 = $P5(__ARG_2)
-.return($P4)
+.const 'Sub' $P5 = 'WSubId_977'
+newclosure $P4, $P5
+.tailcall $P4(__ARG_2)
 # }
 
 .end # WSubId_976
@@ -18819,10 +18429,9 @@ getattribute $P3, self, 'input'
 getattribute $P1, $P3, 'idx'
 # var r: $P2
 null $P2
-.const 'Sub' $P5 = 'WSubId_980'
-newclosure $P4, $P5
-$P3 = $P4(self)
-.return($P3)
+.const 'Sub' $P4 = 'WSubId_980'
+newclosure $P3, $P4
+.tailcall $P3(self)
 # }
 
 .end # optimizeRule
@@ -19092,7 +18701,7 @@ goto __label_0
 __label_1: # endfor
 .annotate 'line', 116
 # pirop push
-push $P1, "default: throw self.fail;}})(self)"
+push $P1, "default: throw self._fail();}})(self)"
 # predefined string
 set $S2, $P1
 .annotate 'line', 117

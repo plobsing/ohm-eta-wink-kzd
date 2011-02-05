@@ -32,7 +32,7 @@ function jumpTableCode[method](var cases) {
     string s = "case " + string(x[0]) + ":return " + string(x[1]) + ";";
     ${ push buf, s };
   }
-  ${ push buf, "default: throw self.fail;}})(self)" };
+  ${ push buf, "default: throw self._fail();}})(self)" };
   return string(buf);
 }
 
