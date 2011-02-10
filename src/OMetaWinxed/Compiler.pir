@@ -26,8 +26,8 @@ find_encoding $I0, 'utf8'
 trans_encoding $S1, $S0, $I0
 $P1[$I1] = $S1
 __label_0: # for iteration
-set $I3, $I1
 .annotate 'line', 5
+set $I3, $I1
 inc $I1
 goto __label_2
 __label_1: # for end
@@ -92,8 +92,8 @@ new $P1, ['StringBuilder']
 .annotate 'line', 25
 # pirop push
 push $P1, '"'
-box $P2, __ARG_1
 .annotate 'line', 26
+box $P2, __ARG_1
 iter $P3, $P2
 set $P3, 0
 __label_0: # for iteration
@@ -113,8 +113,8 @@ __label_1: # endfor
 # pirop push
 push $P1, '"'
 # predefined string
-set $S2, $P1
 .annotate 'line', 31
+set $S2, $P1
 .return($S2)
 # }
 .annotate 'line', 32
@@ -137,9 +137,9 @@ ne $S2, "\\", __label_0
 # string c: $S1
 # predefined substr
 substr $S1, __ARG_1, 1, 1
+.annotate 'line', 37
 set $S2, $S1
 set $S3, "\\"
-.annotate 'line', 37
 if $S2 == $S3 goto __label_4
 set $S3, "r"
 if $S2 == $S3 goto __label_5
@@ -192,9 +192,9 @@ setattribute self, 'choices', $P2
 .annotate 'line', 57
 getattribute $P1, self, 'choice'
 self.'add'($P1)
-null $P2
 .annotate 'line', 58
-setattribute self, 'choice', $P2
+null $P1
+setattribute self, 'choice', $P1
 # }
 .annotate 'line', 59
 
@@ -926,9 +926,9 @@ newclosure $P3, $P4
 newclosure $P5, $P6
 $P2 = __ARG_5.'_or'($P3, $P5)
 store_lex '__WLEX_3', $P2
-root_new $P5, ['parrot';'ResizablePMCArray']
-box $P6, "number"
-$P5.'push'($P6)
+root_new $P3, ['parrot';'ResizablePMCArray']
+box $P4, "number"
+$P3.'push'($P4)
 # predefined float
 find_lex $P1, '__WLEX_2'
 # predefined join
@@ -939,9 +939,9 @@ join $S2, "", $P2
 concat $S3, $S1, "."
 concat $S3, $S3, $S2
 set $N1, $S3
-box $P6, $N1
-$P5.'push'($P6)
-.return($P5)
+box $P4, $N1
+$P3.'push'($P4)
+.return($P3)
 # }
 
 .end # WSubId_36
@@ -4832,14 +4832,14 @@ newclosure $P6, $P7
 $P3 = __ARG_11.'_or'($P4, $P6)
 store_lex '__WLEX_1', $P3
 __ARG_11.'_applyWithArgs'("token", ")")
-root_new $P8, ['parrot';'ResizablePMCArray']
-box $P9, "new"
-$P8.'push'($P9)
+root_new $P4, ['parrot';'ResizablePMCArray']
+box $P5, "new"
+$P4.'push'($P5)
 find_lex $P1, '__WLEX_4'
-$P8.'push'($P1)
+$P4.'push'($P1)
 find_lex $P3, '__WLEX_1'
-$P8.'push'($P3)
-.return($P8)
+$P4.'push'($P3)
+.return($P4)
 # }
 
 .end # WSubId_244
@@ -5965,27 +5965,27 @@ newclosure $P7, $P8
 $P2 = __ARG_15.'_or'($P5, $P7)
 store_lex '__WLEX_2', $P2
 __ARG_15.'_applyWithArgs'("token", ";")
-.const 'Sub' $P10 = 'WSubId_313'
-newclosure $P9, $P10
-.const 'Sub' $P12 = 'WSubId_314'
-newclosure $P11, $P12
-$P3 = __ARG_15.'_or'($P9, $P11)
+.const 'Sub' $P6 = 'WSubId_313'
+newclosure $P5, $P6
+.const 'Sub' $P8 = 'WSubId_314'
+newclosure $P7, $P8
+$P3 = __ARG_15.'_or'($P5, $P7)
 store_lex '__WLEX_7', $P3
 __ARG_15.'_applyWithArgs'("token", ")")
 $P4 = __ARG_15.'_apply'("stmt")
 store_lex '__WLEX_5', $P4
-root_new $P11, ['parrot';'ResizablePMCArray']
-box $P12, "for"
-$P11.'push'($P12)
+root_new $P5, ['parrot';'ResizablePMCArray']
+box $P6, "for"
+$P5.'push'($P6)
 find_lex $P1, '__WLEX_6'
-$P11.'push'($P1)
+$P5.'push'($P1)
 find_lex $P2, '__WLEX_2'
-$P11.'push'($P2)
+$P5.'push'($P2)
 find_lex $P3, '__WLEX_7'
-$P11.'push'($P3)
+$P5.'push'($P3)
 find_lex $P4, '__WLEX_5'
-$P11.'push'($P4)
-.return($P11)
+$P5.'push'($P4)
+.return($P5)
 # }
 
 .end # WSubId_305
@@ -7523,28 +7523,28 @@ find_lex $P2, '__WLEX_3'
 $P1.'push'($P2)
 __ARG_4.'_applyWithArgs'("token", "}")
 __ARG_4.'_apply'("spaces")
+root_new $P4, ['parrot';'ResizablePMCArray']
+box $P5, "call"
+$P4.'push'($P5)
 root_new $P6, ['parrot';'ResizablePMCArray']
-box $P7, "call"
+box $P7, "anonfunc"
 $P6.'push'($P7)
 root_new $P8, ['parrot';'ResizablePMCArray']
-box $P9, "anonfunc"
+box $P9, "self"
 $P8.'push'($P9)
-root_new $P10, ['parrot';'ResizablePMCArray']
-box $P11, "self"
-$P10.'push'($P11)
-$P8.'push'($P10)
-root_new $P13, ['parrot';'ResizablePMCArray']
-box $P14, "begin"
-$P13.'push'($P14)
-find_lex $P1, '__WLEX_2'
-$P12 = $P13.'append'($P1)
-$P8.'push'($P12)
 $P6.'push'($P8)
-root_new $P15, ['parrot';'ResizablePMCArray']
-box $P16, "self"
-$P15.'push'($P16)
-$P6.'push'($P15)
-.return($P6)
+root_new $P11, ['parrot';'ResizablePMCArray']
+box $P12, "begin"
+$P11.'push'($P12)
+find_lex $P1, '__WLEX_2'
+$P10 = $P11.'append'($P1)
+$P6.'push'($P10)
+$P4.'push'($P6)
+root_new $P13, ['parrot';'ResizablePMCArray']
+box $P14, "self"
+$P13.'push'($P14)
+$P4.'push'($P13)
+.return($P4)
 # }
 
 .end # WSubId_393
@@ -11243,11 +11243,11 @@ store_lex '__WLEX_1', $P1
 newclosure $P3, $P4
 $P2 = __ARG_1.'_many1'($P3)
 store_lex '__WLEX_2', $P2
-root_new $P5, ['parrot';'ResizablePMCArray']
-box $P6, "App"
-$P5.'push'($P6)
-box $P6, "exactly"
-$P5.'push'($P6)
+root_new $P3, ['parrot';'ResizablePMCArray']
+box $P4, "App"
+$P3.'push'($P4)
+box $P4, "exactly"
+$P3.'push'($P4)
 find_lex $P1, '__WLEX_1'
 find_lex $P2, '__WLEX_2'
 # predefined join
@@ -11255,9 +11255,9 @@ join $S1, "", $P2
 set $I2, $P1
 set $I3, $S1
 add $I1, $I2, $I3
-box $P6, $I1
-$P5.'push'($P6)
-.return($P5)
+box $P4, $I1
+$P3.'push'($P4)
+.return($P3)
 # }
 
 .end # WSubId_581
@@ -13826,26 +13826,26 @@ __ARG_1["locals"] = $P4
 find_lex $P1, '__WLEX_1'
 $P2 = __ARG_1.'_applyWithArgs'("rulePart", $P1)
 store_lex '__WLEX_2', $P2
-.const 'Sub' $P7 = 'WSubId_733'
-newclosure $P6, $P7
-$P3 = __ARG_1.'_many'($P6)
+.const 'Sub' $P5 = 'WSubId_733'
+newclosure $P4, $P5
+$P3 = __ARG_1.'_many'($P4)
 store_lex '__WLEX_3', $P3
-root_new $P6, ['parrot';'ResizablePMCArray']
-box $P7, "Rule"
-$P6.'push'($P7)
+root_new $P4, ['parrot';'ResizablePMCArray']
+box $P5, "Rule"
+$P4.'push'($P5)
 find_lex $P1, '__WLEX_1'
-$P6.'push'($P1)
-$P8 = __ARG_1["locals"]
-$P6.'push'($P8)
-root_new $P10, ['parrot';'ResizablePMCArray']
-box $P11, "Or"
-$P10.'push'($P11)
+$P4.'push'($P1)
+$P6 = __ARG_1["locals"]
+$P4.'push'($P6)
+root_new $P8, ['parrot';'ResizablePMCArray']
+box $P9, "Or"
+$P8.'push'($P9)
 find_lex $P2, '__WLEX_2'
-$P10.'push'($P2)
+$P8.'push'($P2)
 find_lex $P3, '__WLEX_3'
-$P9 = $P10.'append'($P3)
-$P6.'push'($P9)
-.return($P6)
+$P7 = $P8.'append'($P3)
+$P4.'push'($P7)
+.return($P4)
 # }
 
 .end # WSubId_731
@@ -18703,8 +18703,8 @@ __label_1: # endfor
 # pirop push
 push $P1, "default: throw self._fail();}})(self)"
 # predefined string
-set $S2, $P1
 .annotate 'line', 117
+set $S2, $P1
 .return($S2)
 # }
 .annotate 'line', 118
