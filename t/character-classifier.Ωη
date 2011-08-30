@@ -6,7 +6,7 @@ function main(argv) {
     using Test.More.is;
 
     plan(5);
-    var a = new A();
+    var a = new A;
 
     ok(!throws( function () {a.matchAll('4', 'rule');} ), 'accept a digit');
     ok(!throws( function () {a.matchAll('Q', 'rule');} ), 'accept a letter');
