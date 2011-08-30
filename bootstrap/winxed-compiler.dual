@@ -90,8 +90,8 @@ ometa WinxedParser <: Parser {
                | anonFunc
                | "new" ( name
                        | "str":s -> toProgramString(s) ):cls
-                   "(" ( expr | empty -> UNDEF ):e ")"                               -> [#new, cls, e]
-               | "new" name:n                                                        -> [#new, n, UNDEF]
+                   "(" ( expr | empty -> UNDEF ):e ")"                               -> [#new, cls, 1, e]
+               | "new" name:cls                                                      -> [#new, cls, 0]
                | "[" listOf(#expr, ','):es "]"                                       -> [#arr].CONCAT(es)
                | json
                | name:n                                                              -> [#get, n],
@@ -228,8 +228,9 @@ ometa WinxedTranslator {
 
   call     trans:fn trans*:args                         -> (string(fn)   +                     '(' + JOIN(args, ',') + ')'),
   send     :msg trans:recv trans*:args                  -> (string(recv) + '.' + string(msg) + '(' + JOIN(args, ',') + ')'),
-  new      :cls UNDEF                                   -> ('new ' + string(cls) + '()'),
-  new      :cls trans:arg                               -> ('new ' + string(cls) + '(' + string(arg) + ')'),
+  new      :cls 0                                   -> ('new ' + string(cls)),
+  new      :cls 1 UNDEF                              -> ('new ' + string(cls) + '()'),
+  new      :cls 1 trans:arg                          -> ('new ' + string(cls) + '(' + string(arg) + ')'),
   var      :type :name                                  -> (string(type) + ' ' + string(name)),
   varinit  :type :name trans:init                       -> (string(type) + ' ' + string(name) + ' = ' + string(init)),
   throw    trans:x                                      -> ('throw ' + string(x)),
