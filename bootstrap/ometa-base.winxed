@@ -160,7 +160,7 @@ class OMeta {
     var memoRec = self.input.memo[rule];
     if (memoRec == null) {
       var origInput = self.input;
-      var failer    = new Failer();
+      var failer    = new Failer;
       var method;
 
       try       { method = find_method(self, rule); }
