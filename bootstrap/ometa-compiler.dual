@@ -87,9 +87,10 @@ ometa OMetaTranslator {
   Or         transFn*:xs                   -> ('self._or(' +  JOIN(xs, ',') + ')'),
   XOr        transFn*:xs                       {xs.unshift(toProgramString(SELF['name'] + "." + SELF['rName']))}
                                            -> ('self._xor(' + JOIN(xs, ',') + ')'),
-  And        notLast(#trans)*:xs trans:y
-             {xs.push('return ' + string(y))}      -> ('(function(var self){' + JOIN(xs, ';') + ';})(self)'),
+  And        andFunc:x                     -> (string(x) + '(self)'),
   And                                      -> '',
+  andFunc  = notLast(#trans)*:xs trans:y
+             {xs.push('return ' + string(y))}      -> ('(function(var self){' + JOIN(xs, ';') + ';})'),
   Opt        transFn:x                     -> ('self._opt(' +           string(x) + ')'),
   Many       transFn:x                     -> ('self._many(' +          string(x) + ')'),
   Many1      transFn:x                     -> ('self._many1(' +         string(x) + ')'),
@@ -117,8 +118,9 @@ ometa OMetaTranslator {
   locals   = !(SELF['seen'] = {}) [ local+:vs ] -> JOIN(vs, '')
            | []                            -> '',
 
-  trans    = [:t apply(t):ans]             -> ans,
-  transFn  = trans:x                       -> ('(function(var self){return ' + string(x) + ';})')
+  trans    = [:t   apply(t):ans]           -> ans,
+  transFn  = [#And andFunc:ans ]           -> ans // special case to avoid double-function-wrapping And nodes
+           | trans:x                       -> ('(function(var self){return ' + string(x) + ';})')
 }
 
 // vim: sts=2 sw=2 et ft=javascript nowrap : 
