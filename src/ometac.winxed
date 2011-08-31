@@ -9,8 +9,8 @@ function main[main](var argv) {
   var files = argv;
 
   if (opts['help']
-  || opts['usage']
-  || elements(files) == 0)
+  ||  opts['usage']
+  ||  elements(files) == 0)
     usage_exit();
 
 
@@ -46,6 +46,10 @@ function main[main](var argv) {
 	say('parse error at index ' + string(i));
 	throw m.fail;
     });
+    if (opts['debug']) {
+      using extern dumper;
+      _dumper(tree);
+    }
     string output = (new OMetaWinxedTranslator).match(tree, 'trans', null, function(var m, int i) {
 	say("translation error (shouldn't happen) at index " + string(i));
 	throw m.fail;
@@ -76,6 +80,7 @@ function main[main](var argv) {
 function getGetopt() {
   using extern Getopt.Obj;
   var getopt = new Getopt.Obj;
+  ${ push getopt, 'debug|d'   }; 
   ${ push getopt, 'output|o=s'   }; 
   ${ push getopt, 'lib-path|L=s' }; 
   ${ push getopt, 'inc-path|I=s' }; 
